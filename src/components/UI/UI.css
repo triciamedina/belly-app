@@ -59,13 +59,15 @@
 
 .TextLink {
     font-family: inherit;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.0096em;
     padding: 0px 15px;
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
+
 .TextLink:visited {
     color: black;
 }
@@ -83,4 +85,92 @@
     font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
+}
+
+.Header {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    z-index: 3;
+}
+
+.Back {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translate(0, -50%);
+    background-color: transparent;
+}
+
+.Share {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translate(0, -50%);
+    background-color: transparent;
+}
+
+.Close {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translate(0, -50%);
+    background-color: transparent;
+}
+
+.Options {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    padding: 23px 20px;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+}
+
+.icon-more {
+    width: 12px;
+    height: 24px;
+}
+
+.Menu {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translate(0, -50%);
+    background-color: transparent;
+}
+
+.icon-menu {
+    height: 24px;
+    width: 24px;
 }

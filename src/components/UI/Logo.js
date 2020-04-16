@@ -9,9 +9,9 @@ export function Logo(props) {
 
 export function Lockup(props) {
     return (
-        <div className={props.className} {...props}>
+        <div className='Lockup' {...props}>
             <Logo className='Logo small' href='#'/>
-            <h1>Belly</h1>
+            <h1 className='Lockup__wordmark'>Belly</h1>
         </div>
     )
 }

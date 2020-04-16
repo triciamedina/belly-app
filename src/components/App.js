@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Lockup } from './UI/Logo'
+import PublicNav from './PublicNav/PublicNav';
 
 function App() {
   return (
     <main className='App'>
-      <Lockup className='Lockup'/>
+      <PublicNav />
     </main>
   );
 }
