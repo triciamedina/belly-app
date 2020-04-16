@@ -10,7 +10,6 @@ function Bills(props) {
     return (
         <>
             <PrivateNav/>
-            {/* MenuDrawer here */}
             <main className='Bills'>
             <Switch>
                 <Route exact path={['/bills', '/bills/owned-by-me']}>

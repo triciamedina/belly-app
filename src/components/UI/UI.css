@@ -56,6 +56,16 @@
     border: 2px solid #EBE5FC;
 }
 
+.Button.sign-out {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    padding: 0px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 60%);
+}
+
 .TextLink {
     font-family: inherit;
     font-size: 16px;
