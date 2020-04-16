@@ -35,12 +35,11 @@
     border-radius: 4px;
     text-decoration: none;
     display: inline-block;
-    border: 2px solid #efefef;
+    cursor: pointer;
 }
 
 .ButtonLink:hover {
     background-color: #EBE5FC;
-    border: 2px solid #EBE5FC;
 }
 
 .ButtonLink:visited {

@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import PublicNav from './PublicNav/PublicNav';
+import Bills from '../routes/Bills/Bills'
 
-function App() {
-  return (
-    <main className='App'>
-      <PublicNav />
-    </main>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className='App'>
+        <Switch>
+          <Route 
+            path={'/bills'} 
+            component={Bills}
+          />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
