@@ -1,16 +1,11 @@
 import React from 'react';
 
-import { Button, ButtonLink } from './Utils/Utils'
+import { Lockup } from './UI/Logo'
 
 function App() {
   return (
     <main className='App'>
-      <ButtonLink href='#' className='ButtonLink ghost'>
-        Sign in
-      </ButtonLink>
-      <Button className='Button'>
-        Sign in
-      </Button>
+      <Lockup className='Lockup'/>
     </main>
   );
 }

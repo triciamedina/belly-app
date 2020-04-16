@@ -56,3 +56,31 @@
     background-color: #EBE5FC;
     border: 2px solid #EBE5FC;
 }
+
+.TextLink {
+    font-family: inherit;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0.0096em;
+    padding: 0px 15px;
+    text-decoration: none;
+    color: black;
+}
+.TextLink:visited {
+    color: black;
+}
+
+.TextLink:hover {
+    color: #621FEE;
+}
+
+.Input.outline {
+    border: 1px solid rgba(0,0,0,50%);
+    border-radius: 4px;
+    margin: 10px 0px;
+    padding: 20px 15px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+}
