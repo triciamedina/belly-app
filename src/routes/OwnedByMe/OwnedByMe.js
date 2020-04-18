@@ -3,7 +3,7 @@ import './OwnedByMe.css';
 
 import { ButtonLink } from '../../components/UI/UI';
 
-function OwnedByMe(props) {
+function OwnedByMe() {
     return (
         <div className='OwnedByMe'>
             <div className='OwnedByMe__title-container'>

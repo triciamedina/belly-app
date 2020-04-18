@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { StateProvider } from '../state';
 
 import Bills from '../routes/Bills/Bills';
+import LandingPage from '../routes/LandingPage/LandingPage';
 
 function App() {
   const initialState ={
@@ -25,6 +26,10 @@ function App() {
     <StateProvider initialState={initialState} reducer={reducer}>
       <div className='App'>
         <Switch>
+          <Route
+            exact path={'/'}
+            component={LandingPage}
+          />
           <Route 
             path={'/bills'} 
             component={Bills}
