@@ -1,12 +1,12 @@
 import React from 'react';
-import './PublicNav.css';
+import './HeaderPublic.css';
 
 import { Header, TextLink } from '../UI/UI';
 import { Lockup } from '../UI/Logo';
 
-function PublicNav() {
+function HeaderPublic() {
     return (
-        <Header className='Header PublicNav'>
+        <Header className='Header Public'>
             <Lockup />
             <div>
                 <TextLink className='TextLink' href='#'>
@@ -20,4 +20,4 @@ function PublicNav() {
     )
 }
 
-export default PublicNav;
+export default HeaderPublic;
