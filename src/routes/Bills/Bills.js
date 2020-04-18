@@ -2,14 +2,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './Bills.css';
 
-import PrivateNav from '../../components/PrivateNav/PrivateNav';
+import HeaderPrivate from '../../components/HeaderPrivate/HeaderPrivate';
 import OwnedByMe from '../OwnedByMe/OwnedByMe';
 import SharedWithMe from '../SharedWithMe/SharedWithMe';
 
 function Bills(props) {
     return (
         <>
-            <PrivateNav/>
+            <HeaderPrivate/>
             <main className='Bills'>
             <Switch>
                 <Route exact path={['/bills', '/bills/owned-by-me']}>

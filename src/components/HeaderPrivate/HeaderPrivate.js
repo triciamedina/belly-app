@@ -1,14 +1,14 @@
 import React from 'react';
-import './PrivateNav.css';
+import './HeaderPrivate.css';
 
 import { Header } from '../UI/UI';
 import { Lockup } from '../UI/Logo';
 import MenuDrawer from '../MenuDrawer/MenuDrawer';
 import MenuButton from '../MenuButton/MenuButton';
 
-function PrivateNav() {
+function HeaderPrivate() {
     return (
-        <Header className='Header PrivateNav'>
+        <Header className='Header Private'>
             <Lockup />
             <MenuDrawer />
             <MenuButton />
@@ -16,4 +16,4 @@ function PrivateNav() {
     )
 }
 
-export default PrivateNav;
+export default HeaderPrivate;
