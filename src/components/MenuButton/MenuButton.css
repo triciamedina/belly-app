@@ -1,0 +1,12 @@
+.MenuButton {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%; left: 18px;
+    transform: translate(0px, -50%);
+    background-color: transparent;
+}

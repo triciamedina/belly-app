@@ -6,6 +6,8 @@ import ChevronLeft from '../../img/icon-chevron-left.svg';
 import X from '../../img/icon-x.svg';
 import More from '../../img/icon-more.svg';
 import MenuIcon from '../../img/icon-menu.svg';
+import EditIcon from '../../img/icon-edit.svg';
+import UsersIcon from '../../img/icon-users.svg';
 
 export function Button(props) {
     return <button className={props.className} {...props}>{props.children}</button>
@@ -59,10 +61,20 @@ export function Options(props) {
     )
 }
 
-export function Menu(props) {
+export function IconMenu() {
     return (
-        <button className='Menu' {...props}>
-            <img className='icon-menu' src={MenuIcon} alt=''/>
-        </button>
+        <img className='icon-menu' src={MenuIcon} alt=''/>
+    )
+}
+
+export function IconEdit() {
+    return (
+        <img className='icon-edit' src={EditIcon} alt=''/>
+    )
+}
+
+export function IconUsers() {
+    return (
+        <img className='icon-users' src={UsersIcon} alt=''/>
     )
 }

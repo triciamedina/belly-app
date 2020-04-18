@@ -1,17 +1,22 @@
 import React from 'react';
 import './MenuDrawer.css';
 
-import { Button } from '../UI/UI';
+import { useStateValue } from '../../state';
 
-function MenuDrawer(props) {
-    return (
-        // Need to add an overlay to disable layer behind drawer
+import Avatar from '../Avatar/Avatar';
+import { Button } from '../UI/UI';
+import MenuList from '../MenuList/MenuList';
+
+function MenuDrawer() {
+    const [{ menu }] = useStateValue();
+    const shouldShowMenu = menu.isMenuOpen;
+
+    return shouldShowMenu ? (
         <div className='MenuDrawer'>
             <div className='Profile'>
-                {/* Move avatar to its own component in UI? */}
-                <div className='Avatar pink'>
-                    TM
-                </div>
+                <Avatar className='Avatar pink'>
+                    TR
+                </Avatar>
                 <h2 className='Profile__username'>
                     Username
                 </h2>
@@ -19,8 +24,11 @@ function MenuDrawer(props) {
                     Sign out
                 </Button>
             </div>
+            <nav>
+                <MenuList />
+            </nav>
         </div>
-    )
+    ) : null;
 }
 
 export default MenuDrawer;
