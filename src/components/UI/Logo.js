@@ -7,11 +7,20 @@ export function Logo(props) {
     )
 }
 
-export function Lockup(props) {
+export function LockupHorizontal (props) {
     return (
-        <div className='Lockup' {...props}>
+        <div className='LockupHorizontal' {...props}>
             <Logo className='Logo small' href='#'/>
-            <h1 className='Lockup__wordmark'>Belly</h1>
+            <h1 className='LockupHorizontal__wordmark'>Belly</h1>
+        </div>
+    )
+}
+
+export function LockupVertical (props) {
+    return (
+        <div className='LockupVertical' {...props}>
+            <Logo className='Logo large' href='#'/>
+            <h2 className='LockupVertical__wordmark'>Belly</h2>
         </div>
     )
 }

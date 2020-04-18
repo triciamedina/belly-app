@@ -19,14 +19,28 @@
     height: 37px;
 }
 
-.Lockup {
+.LockupHorizontal {
     display: flex;
     align-items: center;
 }
 
-.Lockup__wordmark {
+.LockupHorizontal__wordmark {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
     margin: 0px 10px;
+}
+
+.LockupVertical {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.LockupVertical__wordmark {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 55px;
+    margin: 12px 0px;
+    letter-spacing: 0.0129em;
 }
