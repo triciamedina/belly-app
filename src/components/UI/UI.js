@@ -53,14 +53,6 @@ export function Close(props) {
     )
 }
 
-export function Options(props) {
-    return (
-        <button className='Options' {...props}>
-            <img className='icon-more' src={More} alt=''/>
-        </button>
-    )
-}
-
 export function IconMenu() {
     return (
         <img className='icon-menu' src={MenuIcon} alt=''/>
@@ -76,5 +68,17 @@ export function IconEdit() {
 export function IconUsers() {
     return (
         <img className='icon-users' src={UsersIcon} alt=''/>
+    )
+}
+
+export function IconMore() {
+    return (
+        <img className='icon-more' src={More} alt=''/>
+    )
+}
+
+export function Emoji(props) {
+    return (
+        <div className='Emoji'>{props.children}</div>
     )
 }

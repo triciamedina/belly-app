@@ -1,0 +1,56 @@
+.BillItemOwned {
+    position: relative;
+}
+
+.BillItemOwned .edit {
+    color: black;
+    text-decoration: none;
+    display: flex;
+}
+
+.BillItemOwned .edit:visited {
+    color: black;
+}
+
+.BillItemOwned:hover {
+    background-color: #EBE5FC;
+}
+
+.BillItemOwned:hover .Emoji {
+    background-color: white;
+}
+
+.BillItemOwned .details {
+    padding: 16px 0px;
+}
+
+.BillItemOwned h3 {
+    padding: 16px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 0.0096em;
+    margin-bottom: 5px;
+}
+
+.BillItemOwned p {
+    padding: 16px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 0.0096em;
+    color: rgba(0, 0, 0, 60%);
+}
+
+.view-options {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    padding: 23px 20px;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+}
