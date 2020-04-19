@@ -9,7 +9,7 @@ function LoginForm() {
     const [ enteredUsername, setEnteredUsername ] = useState('');
     const [ enteredPassword, setEnteredPassword ] = useState('');
 
-    const [{ profile }, dispatch] = useStateValue();
+    const [ , dispatch] = useStateValue();
 
     const getRandomColor = () => {
         const colors = ['pink', 'light-blue', 'light-purple', 'orange', 'purple', 'blue'];
