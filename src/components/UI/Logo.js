@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Logo.css';
 
 export function Logo(props) {
     return (
-        <a className={props.className} {...props}><div></div></a>
+        <Link to='/' className={props.className} {...props}><div></div></Link>
     )
 }
 

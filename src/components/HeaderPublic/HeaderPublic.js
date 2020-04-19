@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HeaderPublic.css';
 
-import { Header, TextLink } from '../UI/UI';
+import { Header } from '../UI/UI';
 import { LockupHorizontal } from '../UI/Logo';
 
 function HeaderPublic() {
@@ -9,12 +10,12 @@ function HeaderPublic() {
         <Header className='Header Public'>
             <LockupHorizontal />
             <div>
-                <TextLink className='TextLink' href='#'>
+                <Link className='TextLink' to='/login'>
                     Sign in
-                </TextLink>
-                <TextLink className='TextLink' href='#'>
+                </Link>
+                <Link className='TextLink' to='/register'>
                     Sign up
-                </TextLink>
+                </Link>
             </div>
         </Header>
     )
