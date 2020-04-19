@@ -1,17 +1,22 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Redirect } from 'react-router-dom';
 import './Entry.css';
 
 import { Logo } from '../../components/UI/Logo';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
+import { useStateValue } from '../../state';
+
 function Entry() {
     const location = useLocation();
     const isLoginPage = location.pathname === '/login';
     const isRegisterPage = location.pathname === '/register';
+    const [{ login }] = useStateValue();
 
-    return (
+    return login.isLoggedIn 
+        ? <Redirect to={'/bills'} />
+        : (
         <main className='Entry'>
             <div className='Entry__primary'>
                 <Logo className='Logo medium' />

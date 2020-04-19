@@ -9,8 +9,29 @@
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;
+    text-transform: uppercase;
 }
 
 .pink {
     background-color: lightcoral;
+}
+
+.light-blue {
+    background-color: lightblue;
+}
+
+.light-purple {
+    background-color: plum;
+}
+
+.orange {
+    background-color: salmon;
+}
+
+.purple {
+    background-color: rebeccapurple;
+}
+
+.blue {
+    background-color: royalblue;
 }

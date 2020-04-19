@@ -9,16 +9,18 @@ import MenuList from '../MenuList/MenuList';
 
 function MenuDrawer() {
     const [{ menu }] = useStateValue();
+    const [{ profile }] = useStateValue();
+    
     const shouldShowMenu = menu.isMenuOpen;
 
     return shouldShowMenu ? (
         <div className='MenuDrawer'>
             <div className='Profile'>
-                <Avatar className='Avatar pink'>
-                    TR
+                <Avatar className={'Avatar ' + profile.avatarColor}>
+                    {profile.username.slice(0, 2)}
                 </Avatar>
                 <h2 className='Profile__username'>
-                    Username
+                    {profile.username}
                 </h2>
                 <Button className='Button sign-out'>
                     Sign out

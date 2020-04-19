@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import PublicOnlyRoute from '../routes/PublicOnlyRoute';
+import PrivateRoute from '../routes/PrivateRoute';
 import { StateProvider } from '../state';
 
 import Bills from '../routes/Bills/Bills';
@@ -7,9 +9,13 @@ import LandingPage from '../routes/LandingPage/LandingPage';
 import Entry from '../routes/Entry/Entry';
 
 function App() {
-  const initialState ={
+  const initialState = {
     menu: { isMenuOpen: false },
-    login: { isLoggedIn: false }
+    login: { isLoggedIn: false },
+    profile: {
+      username: '',
+      avatarColor: ''
+    }
   };
 
   const reducer = (state, action) => {
@@ -18,6 +24,12 @@ function App() {
         return {
           ...state,
           menu: action.newMenu
+        }
+      case 'onLoginSuccess':
+        return {
+          ...state,
+          login: action.setLogin,
+          profile: action.setProfile
         }
       default:
         return state;
@@ -28,15 +40,15 @@ function App() {
     <StateProvider initialState={initialState} reducer={reducer}>
       <div className='App'>
         <Switch>
-          <Route
+          <PublicOnlyRoute
             exact path={'/'}
             component={LandingPage}
           />
-          <Route
+          <PublicOnlyRoute
             path={['/login', '/register']}
             component={Entry}
           />
-          <Route 
+          <PrivateRoute 
             path={'/bills'} 
             component={Bills}
           />
