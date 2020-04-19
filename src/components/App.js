@@ -4,10 +4,12 @@ import { StateProvider } from '../state';
 
 import Bills from '../routes/Bills/Bills';
 import LandingPage from '../routes/LandingPage/LandingPage';
+import Entry from '../routes/Entry/Entry';
 
 function App() {
   const initialState ={
-    menu: { isMenuOpen: false }
+    menu: { isMenuOpen: false },
+    login: { isLoggedIn: false }
   };
 
   const reducer = (state, action) => {
@@ -29,6 +31,10 @@ function App() {
           <Route
             exact path={'/'}
             component={LandingPage}
+          />
+          <Route
+            path={['/login', '/register']}
+            component={Entry}
           />
           <Route 
             path={'/bills'} 
