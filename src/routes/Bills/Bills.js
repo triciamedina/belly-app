@@ -1,13 +1,19 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './Bills.css';
 
 import HeaderPrivate from '../../components/HeaderPrivate/HeaderPrivate';
 import OwnedByMe from '../OwnedByMe/OwnedByMe';
 import SharedWithMe from '../SharedWithMe/SharedWithMe';
 
-function Bills(props) {
-    return (
+import { useStateValue } from '../../state';
+
+function Bills() {
+    const [{ login }] = useStateValue();
+
+    return !login.isLoggedIn 
+        ? <Redirect to={'/'} />
+        : (
         <>
             <HeaderPrivate/>
             <main className='Bills'>

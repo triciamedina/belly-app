@@ -31,6 +31,10 @@ function App() {
           login: action.setLogin,
           profile: action.setProfile
         }
+      case 'onLogout':
+        return {
+          ...initialState
+        }
       default:
         return state;
     };

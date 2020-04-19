@@ -2,7 +2,7 @@ import React from 'react';
 import './MenuDrawer.css';
 
 import { useStateValue } from '../../state';
-
+import TokenService from '../../services/token-service';
 import Avatar from '../Avatar/Avatar';
 import { Button } from '../UI/UI';
 import MenuList from '../MenuList/MenuList';
@@ -10,8 +10,16 @@ import MenuList from '../MenuList/MenuList';
 function MenuDrawer() {
     const [{ menu }] = useStateValue();
     const [{ profile }] = useStateValue();
+    const [ , dispatch] = useStateValue();
     
     const shouldShowMenu = menu.isMenuOpen;
+
+    const signOutHandler = () => {
+        TokenService.clearAuthToken();
+        dispatch({
+            type: 'onLogout'
+        })
+    }
 
     return shouldShowMenu ? (
         <div className='MenuDrawer'>
@@ -22,7 +30,10 @@ function MenuDrawer() {
                 <h2 className='Profile__username'>
                     {profile.username}
                 </h2>
-                <Button className='Button sign-out'>
+                <Button
+                    className='Button sign-out'
+                    onClick={signOutHandler}
+                >
                     Sign out
                 </Button>
             </div>
