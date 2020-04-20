@@ -33,7 +33,7 @@ const DATA ={
         },
         {
             id: 2,
-            billName: 'Señor Sisig',
+            billName: 'Lers Ros',
             billThumbnail: '&#127791',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
@@ -64,7 +64,7 @@ const DATA ={
         },
         {
             id: 3,
-            billName: 'Señor Sisig',
+            billName: 'The Spice Jar',
             billThumbnail: '&#127791',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',

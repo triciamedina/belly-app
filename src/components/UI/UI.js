@@ -8,6 +8,7 @@ import More from '../../img/icon-more.svg';
 import MenuIcon from '../../img/icon-menu.svg';
 import EditIcon from '../../img/icon-edit.svg';
 import UsersIcon from '../../img/icon-users.svg';
+import TrashIcon from '../../img/icon-trash.svg';
 
 export function Button(props) {
     return <button className={props.className} {...props}>{props.children}</button>
@@ -34,14 +35,6 @@ export function Back(props) {
         <button className='Back' {...props}>
             <img className='icon-chevron-left' src={ChevronLeft} alt=''/>
         </button>
-    )
-}
-
-export function Share(props) {
-    return (
-        <button className='Share' {...props}>
-            <img className='icon-share' src={ShareIcon} alt=''/>
-        </button> 
     )
 }
 
@@ -74,6 +67,18 @@ export function IconUsers() {
 export function IconMore() {
     return (
         <img className='icon-more' src={More} alt=''/>
+    )
+}
+
+export function IconShare() {
+    return (
+        <img className='icon-share' src={ShareIcon} alt=''/>
+    )
+}
+
+export function IconTrash() {
+    return (
+        <img className='icon-trash' src={TrashIcon} alt=''/>
     )
 }
 

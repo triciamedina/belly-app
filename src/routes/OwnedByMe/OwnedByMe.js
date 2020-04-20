@@ -1,6 +1,5 @@
 import React from 'react';
 import './OwnedByMe.css';
-
 import { ButtonLink } from '../../components/UI/UI';
 import BillList from '../../components/BillList/BillList';
 import BillItemOwned from '../../components/BillItemOwned/BillItemOwned';
@@ -27,10 +26,6 @@ function OwnedByMe() {
                     items={items}
                 />
             }
-            {/* key={index}
-                        id={index}
-                        items={transactionsByDay}
-                        listItemType={TransactionItem} */}
         </div>
     )
 }

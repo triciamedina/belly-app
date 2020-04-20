@@ -3,11 +3,9 @@ import { Switch } from 'react-router-dom';
 import PublicOnlyRoute from '../routes/PublicOnlyRoute';
 import PrivateRoute from '../routes/PrivateRoute';
 import { StateProvider } from '../state';
-
 import Bills from '../routes/Bills/Bills';
 import LandingPage from '../routes/LandingPage/LandingPage';
 import Entry from '../routes/Entry/Entry';
-
 import DATA from '../store';
 
 function App() {
@@ -40,6 +38,11 @@ function App() {
       case 'onLogout':
         return {
           ...initialState
+        }
+      case 'updateBills':
+        return {
+          ...state,
+          bills: action.setBills
         }
       default:
         return state;

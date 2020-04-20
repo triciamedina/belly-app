@@ -29,7 +29,7 @@ function LoginForm() {
                 username: enteredUsername,
                 avatarColor: randomColor
             }
-        })
+        });
 
         const basicToken = TokenService.makeBasicAuthToken(enteredUsername, enteredPassword);
         TokenService.saveAuthToken(basicToken);
