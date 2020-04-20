@@ -40,7 +40,6 @@
 
 .input-container.emoji {
     text-align: center;
-    position: relative;
 }
 
 .emoji-input {
@@ -58,7 +57,62 @@
 
 .emoji-mart {
     position: absolute;
-    top: 75px; left: 50%;
+    top: 80px; left: 50%;
     transform: translate(-50%, 0);
     text-align: left;
+    z-index: 3;
+}
+
+.name-input {
+    font-family: 'Roboto', sans-serif;
+    border: 0px;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    margin: 10px 0px;
+    padding: 15px 10px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.input-container.currency label {
+    color: white;
+    font-size: 16px;
+    float: left;
+    line-height: 68px;
+}
+
+.input-container.currency input {
+    border: 0px;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    margin: 10px 0px;
+    padding: 15px 10px;
+    width: 100px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+.input-container.currency span {
+    position: absolute;
+    top: 0; right: 0;
+    transform: translate(-102px, 0);
+    color: white;
+    font-size: 16px;
+    line-height: 68px;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 34px 0px;
 }
