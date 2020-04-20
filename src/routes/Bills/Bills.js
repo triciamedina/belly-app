@@ -5,6 +5,7 @@ import './Bills.css';
 import HeaderPrivate from '../../components/HeaderPrivate/HeaderPrivate';
 import OwnedByMe from '../OwnedByMe/OwnedByMe';
 import SharedWithMe from '../SharedWithMe/SharedWithMe';
+import BillForm from '../../components/BillForm/BillForm';
 
 // import { useStateValue } from '../../state';
 
@@ -13,17 +14,23 @@ function Bills() {
 
     return (
         <>
-            <HeaderPrivate/>
-            <main className='Bills'>
             <Switch>
                 <Route exact path={['/bills', '/bills/owned-by-me']}>
-                    <OwnedByMe />
+                    <HeaderPrivate/>
+                    <main className='Bills'>
+                        <OwnedByMe />
+                    </main>
+                </Route>
+                <Route path={'/bills/owned-by-me/add-new'}>
+                    <BillForm />
                 </Route>
                 <Route exact path={['/bills/shared-with-me']}>
-                    <SharedWithMe />
+                    <HeaderPrivate/>
+                    <main className='Bills'>
+                        <SharedWithMe />
+                    </main>
                 </Route>
             </Switch>
-            </main>
         </>
     )
 }

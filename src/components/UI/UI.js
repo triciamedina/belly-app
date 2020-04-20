@@ -38,11 +38,9 @@ export function Back(props) {
     )
 }
 
-export function Close(props) {
+export function IconClose() {
     return (
-        <button className='Close' {...props}>
-            <img className='icon-x' src={X} alt=''/>
-        </button>
+        <img className='icon-x' src={X} alt=''/>
     )
 }
 

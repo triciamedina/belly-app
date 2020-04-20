@@ -6,6 +6,7 @@ import { StateProvider } from '../state';
 import Bills from '../routes/Bills/Bills';
 import LandingPage from '../routes/LandingPage/LandingPage';
 import Entry from '../routes/Entry/Entry';
+
 import DATA from '../store';
 
 function App() {

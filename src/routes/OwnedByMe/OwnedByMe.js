@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './OwnedByMe.css';
-import { ButtonLink } from '../../components/UI/UI';
 import BillList from '../../components/BillList/BillList';
 import BillItemOwned from '../../components/BillItemOwned/BillItemOwned';
 import { useStateValue } from '../../state';
@@ -15,9 +15,12 @@ function OwnedByMe() {
                 <h2 className='OwnedByMe__title'>
                     Owned by me
                 </h2>
-                <ButtonLink className='ButtonLink OwnedByMe__add-button'>
+                <Link 
+                    className='ButtonLink OwnedByMe__add-button'
+                    to={'/bills/owned-by-me/add-new'}
+                >
                     <span>New bill</span>
-                </ButtonLink>
+                </Link>
             </div>
             <div className='BillList'>
             {bills.ownedByMe.length === 0

@@ -3,7 +3,7 @@ const DATA ={
         {
             id: 1,
             billName: 'Señor Sisig',
-            billThumbnail: '&#127791',
+            billThumbnail: '🌯',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',
@@ -34,7 +34,7 @@ const DATA ={
         {
             id: 2,
             billName: 'Lers Ros',
-            billThumbnail: '&#127791',
+            billThumbnail: '🌯',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',
@@ -65,7 +65,7 @@ const DATA ={
         {
             id: 3,
             billName: 'The Spice Jar',
-            billThumbnail: '&#127791',
+            billThumbnail: '🌯',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',
@@ -98,7 +98,7 @@ const DATA ={
         {
             id: 1,
             billName: 'Rooster & Rice',
-            billThumbnail: '&#127791',
+            billThumbnail: '🌯',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',

@@ -9,8 +9,8 @@ function BillItemOwned(props) {
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
     const [{ bills }, dispatch] = useStateValue();
 
-    const deleteHandler = event => {
-        const selected = parseInt(event.target.id)
+    const deleteHandler = () => {
+        const selected = parseInt(props.id)
         const filtered = bills.ownedByMe.filter(bill => bill.id !== selected);
         dispatch({
             type: 'updateBills',
@@ -42,7 +42,6 @@ function BillItemOwned(props) {
                 ?   <BillItemOptions 
                         onOutsideClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
                         onDelete={() => deleteHandler}
-                        id={props.id}
                     />
                 : null
             }

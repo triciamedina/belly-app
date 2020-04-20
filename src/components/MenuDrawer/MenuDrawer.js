@@ -1,6 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './MenuDrawer.css';
-
 import { useStateValue } from '../../state';
 import TokenService from '../../services/token-service';
 import Avatar from '../Avatar/Avatar';
@@ -11,14 +11,16 @@ function MenuDrawer() {
     const [{ menu }] = useStateValue();
     const [{ profile }] = useStateValue();
     const [ , dispatch] = useStateValue();
-    
+    const history = useHistory();
+
     const shouldShowMenu = menu.isMenuOpen;
 
     const signOutHandler = () => {
         TokenService.clearAuthToken();
         dispatch({
             type: 'onLogout'
-        })
+        });
+        history.push('/');
     }
 
     return shouldShowMenu ? (
