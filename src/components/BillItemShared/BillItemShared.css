@@ -1,0 +1,45 @@
+.BillItemShared {
+    position: relative;
+}
+
+.BillItemShared .edit {
+    color: black;
+    text-decoration: none;
+    display: flex;
+}
+
+.BillItemShared .edit:visited {
+    color: black;
+}
+
+.BillItemShared:hover {
+    background-color: #EBE5FC;
+}
+
+.BillItemShared:hover .Emoji {
+    background-color: white;
+}
+
+.BillItemShared .details {
+    padding: 16px 0px;
+}
+
+.BillItemShared h3 {
+    padding: 16px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 0.0096em;
+    margin-bottom: 5px;
+}
+
+.BillItemShared p {
+    padding: 16px 0px;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 0.0096em;
+    color: rgba(0, 0, 0, 60%);
+}

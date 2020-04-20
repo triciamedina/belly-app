@@ -28,12 +28,8 @@ function BillItemOwned(props) {
                     {ReactHtmlParser(props.billThumbnail)}
                 </Emoji>                               
                 <div className='details'>
-                    <h3>
-                        {props.billName}
-                    </h3>
-                    <p>
-                        {props.lastViewed}
-                    </p>
+                    <h3>{props.billName}</h3>
+                    <p>{props.lastViewed}</p>
                 </div>
             </a>
             <button 

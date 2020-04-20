@@ -19,6 +19,7 @@ function OwnedByMe() {
                     <span>New bill</span>
                 </ButtonLink>
             </div>
+            <div className='BillList'>
             {bills.ownedByMe.length === 0
                 ? 'There are no bills owned by you'
                 : <BillList 
@@ -26,6 +27,7 @@ function OwnedByMe() {
                     items={items}
                 />
             }
+            </div>
         </div>
     )
 }

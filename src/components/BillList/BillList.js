@@ -6,13 +6,11 @@ function BillList(props) {
     const ListItemType = listItemType;
 
     return (
-        <div className='BillList'>
-            <ul>
-                {items.map(item => 
-                    <ListItemType key={item.id} {...item}></ListItemType>
-                )}
-            </ul>
-        </div>
+        <ul>
+            {items.map(item => 
+                <ListItemType key={item.id} {...item}></ListItemType>
+            )}
+        </ul>
     )
 }
 
