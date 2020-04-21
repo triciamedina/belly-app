@@ -29,9 +29,9 @@ function Bills() {
                 {/* <Route exact path={'/bills/:bill_id/edit'}>
                     Also goes to bill form
                 </Route> */}
-                {/* <Route path={'/bills/:bill_id'}>
+                <Route path={'/bills/:bill_id'}>
                     Bill editor workspace
-                </Route> */}
+                </Route>
                 {/* <Route path={['/bills/:bill_id/add', '/bills/:bill_id/edit/:item_id']}>
                     Item form
                 </Route> */}

@@ -25,7 +25,7 @@ function BillItemOwned(props) {
 
     return (
         <li className='BillItemOwned'>
-            <a className='edit' href='/bills/:bill_id'>
+            <a className='edit' href={`/bills/${id}`}>
                 <Emoji>
                     {ReactHtmlParser(billThumbnail)}
                 </Emoji>                               
