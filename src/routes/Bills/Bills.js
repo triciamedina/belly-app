@@ -7,29 +7,34 @@ import OwnedByMe from '../OwnedByMe/OwnedByMe';
 import SharedWithMe from '../SharedWithMe/SharedWithMe';
 import BillForm from '../../components/BillForm/BillForm';
 
-// import { useStateValue } from '../../state';
-
 function Bills() {
-    // const [{ login }] = useStateValue();
-
     return (
         <>
             <Switch>
-                <Route exact path={['/bills', '/bills/owned-by-me']}>
+                <Route exact path={['/bills']}>
                     <HeaderPrivate/>
                     <main className='Bills'>
                         <OwnedByMe />
                     </main>
                 </Route>
-                <Route path={'/bills/owned-by-me/add-new'}>
-                    <BillForm />
-                </Route>
-                <Route exact path={['/bills/shared-with-me']}>
+                <Route exact path={['/bills/shared']}>
                     <HeaderPrivate/>
                     <main className='Bills'>
                         <SharedWithMe />
                     </main>
                 </Route>
+                <Route path={'/bills/add'}>
+                    <BillForm />
+                </Route>
+                {/* <Route exact path={'/bills/:bill_id/edit'}>
+                    Also goes to bill form
+                </Route> */}
+                {/* <Route path={'/bills/:bill_id'}>
+                    Bill editor workspace
+                </Route> */}
+                {/* <Route path={['/bills/:bill_id/add', '/bills/:bill_id/edit/:item_id']}>
+                    Item form
+                </Route> */}
             </Switch>
         </>
     )

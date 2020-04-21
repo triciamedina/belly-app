@@ -6,10 +6,16 @@ import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 
 function BillForm() {
-    const [ shouldShowPicker, togglePickerState ] = useState();
     const history = useHistory();
-    const emojiEl = useRef(null)
+    const [ shouldShowPicker, togglePickerState ] = useState(false);
+    const [ enteredBillName, setEnteredBillName ] = useState('');
+    const [ enteredDiscounts, setEnteredDiscounts ] = useState('');
+    const [ enteredTax, setEnteredTax ] = useState('');
+    const [ enteredTip, setEnteredTip ] = useState('');
+    const [ enteredFees, setEnteredFees ] = useState('');
+    const [ enteredTotal, setEnteredTotal ] = useState('');
 
+    const emojiEl = useRef(null)
     const selectEmojiHandler = (emoji) => {
         emojiEl.current.value = emoji;
         togglePickerState(!shouldShowPicker);
@@ -32,8 +38,9 @@ function BillForm() {
                             ref={emojiEl}
                             placeholder='🌯'
                             className='emoji-input'
-                            onClick={() => togglePickerState(!shouldShowPicker)} 
+                            onFocus={() => togglePickerState(!shouldShowPicker)} 
                             aria-label='Emoji'
+                            required
                         />
                         {shouldShowPicker
                             ? <Picker onSelect={(emoji) => selectEmojiHandler(emoji.native)}/>
@@ -48,6 +55,8 @@ function BillForm() {
                             className='name-input'
                             placeholder='Bill name'
                             aria-label='Bill name'
+                            value={enteredBillName}
+                            onChange={event => setEnteredBillName(event.target.value)}
                         />
                     </div>
                     <div className='input-container currency'>
@@ -62,6 +71,8 @@ function BillForm() {
                             id='discounts' 
                             name='discounts' 
                             placeholder='0.00'
+                            value={enteredDiscounts}
+                            onChange={event => setEnteredDiscounts(event.target.value)}
                         />
                     </div>
                     <div className='input-container currency'>
@@ -76,6 +87,8 @@ function BillForm() {
                             id='tax' 
                             name='tax' 
                             placeholder='0.00'
+                            value={enteredTax}
+                            onChange={event => setEnteredTax(event.target.value)}
                         />
                     </div>
                     <div className='input-container currency'>
@@ -90,6 +103,8 @@ function BillForm() {
                             id='tip' 
                             name='tip' 
                             placeholder='0.00'
+                            value={enteredTip}
+                            onChange={event => setEnteredTip(event.target.value)}
                         />
                     </div>
                     <div className='input-container currency'>
@@ -104,6 +119,8 @@ function BillForm() {
                             id='fees' 
                             name='fees' 
                             placeholder='0.00'
+                            value={enteredFees}
+                            onChange={event => setEnteredFees(event.target.value)}
                         />
                     </div>
                     <div className='input-container currency'>
@@ -118,6 +135,8 @@ function BillForm() {
                             id='total' 
                             name='total' 
                             placeholder='0.00'
+                            value={enteredTotal}
+                            onChange={event => setEnteredTotal(event.target.value)}
                         />
                     </div>
                     <div className='button-container'>

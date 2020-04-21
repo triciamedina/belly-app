@@ -7,13 +7,10 @@ import Avatar from '../Avatar/Avatar';
 import { Button } from '../UI/UI';
 import MenuList from '../MenuList/MenuList';
 
-function MenuDrawer() {
-    const [{ menu }] = useStateValue();
+const MenuDrawer = React.forwardRef((props, ref) => {
     const [{ profile }] = useStateValue();
     const [ , dispatch] = useStateValue();
     const history = useHistory();
-
-    const shouldShowMenu = menu.isMenuOpen;
 
     const signOutHandler = () => {
         TokenService.clearAuthToken();
@@ -23,8 +20,8 @@ function MenuDrawer() {
         history.push('/');
     }
 
-    return shouldShowMenu ? (
-        <div className='MenuDrawer'>
+    return (
+        <div className='MenuDrawer' ref={ref}>
             <div className='Profile'>
                 <Avatar className={'Avatar ' + profile.avatarColor}>
                     {profile.username.slice(0, 2)}
@@ -43,7 +40,7 @@ function MenuDrawer() {
                 <MenuList />
             </nav>
         </div>
-    ) : null;
-}
+    )
+});
 
 export default MenuDrawer;

@@ -17,7 +17,7 @@ function OwnedByMe() {
                 </h2>
                 <Link 
                     className='ButtonLink OwnedByMe__add-button'
-                    to={'/bills/owned-by-me/add-new'}
+                    to={'/bills/add'}
                 >
                     <span>New bill</span>
                 </Link>

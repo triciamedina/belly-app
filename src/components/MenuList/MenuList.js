@@ -8,7 +8,7 @@ function MenuList() {
     return (
         <ul className='MenuList'>
             <li className='MenuList__item'>
-                <MenuLink path='/bills/owned-by-me'>
+                <MenuLink path='/bills'>
                     <IconEdit />
                     <span className='MenuList__item__name'>
                         Owned by me
@@ -16,7 +16,7 @@ function MenuList() {
                 </MenuLink>
             </li>
             <li className='MenuList__item'>
-                <MenuLink path='/bills/shared-with-me'>
+                <MenuLink path='/bills/shared'>
                     <IconUsers />
                     <span className='MenuList__item__name'>
                         Shared with me

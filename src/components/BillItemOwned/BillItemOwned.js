@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import './BillItemOwned.css';
 import { IconMore, Emoji } from '../UI/UI';
 import BillItemOptions from '../BillItemOptions/BillItemOptions';
+import OutsideClick from '../OutsideClick/OutsideClick';
 import ReactHtmlParser from 'react-html-parser';
 import { useStateValue } from '../../state';
 
 function BillItemOwned(props) {
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
     const [{ bills }, dispatch] = useStateValue();
+    const { id, billThumbnail, billName, lastViewed } = props;
 
     const deleteHandler = () => {
-        const selected = parseInt(props.id)
+        const selected = parseInt(id)
         const filtered = bills.ownedByMe.filter(bill => bill.id !== selected);
         dispatch({
             type: 'updateBills',
@@ -23,13 +25,13 @@ function BillItemOwned(props) {
 
     return (
         <li className='BillItemOwned'>
-            <a className='edit' href='#'>
+            <a className='edit' href='/bills/:bill_id'>
                 <Emoji>
-                    {ReactHtmlParser(props.billThumbnail)}
+                    {ReactHtmlParser(billThumbnail)}
                 </Emoji>                               
                 <div className='details'>
-                    <h3>{props.billName}</h3>
-                    <p>{props.lastViewed}</p>
+                    <h3>{billName}</h3>
+                    <p>{lastViewed}</p>
                 </div>
             </a>
             <button 
@@ -39,10 +41,11 @@ function BillItemOwned(props) {
                 <IconMore />
             </button>
             {isOptionsMenuOpen 
-                ?   <BillItemOptions 
+                ?   <OutsideClick 
                         onOutsideClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
-                        onDelete={() => deleteHandler}
-                    />
+                    >
+                        <BillItemOptions onDelete={() => deleteHandler}/>
+                    </OutsideClick>
                 : null
             }
         </li>
