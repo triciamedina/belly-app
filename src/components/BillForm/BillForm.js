@@ -5,6 +5,7 @@ import { IconClose, Button } from '../UI/UI';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { useStateValue } from '../../state';
+import { v4 as uuidv4 } from 'uuid';
 
 function BillForm() {
     const history = useHistory();
@@ -27,7 +28,7 @@ function BillForm() {
         event.preventDefault();
         const current = bills.ownedByMe;
         const newBill = {
-            id: '12',
+            id: uuidv4(),
             billName: enteredBillName,
             billThumbnail: emojiEl.current.value,
             lastViewed: 'Last viewed today at 1:25 pm',
