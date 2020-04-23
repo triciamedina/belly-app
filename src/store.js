@@ -34,7 +34,7 @@ const DATA ={
         {
             id: 2,
             billName: 'Lers Ros',
-            billThumbnail: '🌯',
+            billThumbnail: '🍜',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',
@@ -65,7 +65,7 @@ const DATA ={
         {
             id: 3,
             billName: 'The Spice Jar',
-            billThumbnail: '🌯',
+            billThumbnail: '🥘',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',
@@ -96,9 +96,9 @@ const DATA ={
     ],
     sharedWithMe: [
         {
-            id: 1,
+            id: 4,
             billName: 'Rooster & Rice',
-            billThumbnail: '🌯',
+            billThumbnail: '🐓',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
             tax: '1.99',

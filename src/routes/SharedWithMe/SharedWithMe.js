@@ -4,7 +4,7 @@ import { useStateValue } from '../../state';
 import BillList from '../../components/BillList/BillList';
 import BillItemShared from '../../components/BillItemShared/BillItemShared';
 
-function SharedWithMe(props) {
+function SharedWithMe() {
     const [{ bills }] = useStateValue();
     const items = bills.sharedWithMe;
 

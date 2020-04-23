@@ -5,8 +5,9 @@ import BillItemOptions from '../BillItemOptions/BillItemOptions';
 import OutsideClick from '../OutsideClick/OutsideClick';
 import ReactHtmlParser from 'react-html-parser';
 import { useStateValue } from '../../state';
+import { Link } from 'react-router-dom';
 
-function BillItemOwned(props) {
+const BillItemOwned = React.memo(props => {
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
     const [{ bills }, dispatch] = useStateValue();
     const { id, billThumbnail, billName, lastViewed } = props;
@@ -25,7 +26,7 @@ function BillItemOwned(props) {
 
     return (
         <li className='BillItemOwned'>
-            <a className='edit' href={`/bills/${id}`}>
+            <Link className='edit' to={`/bills/${id}`} >
                 <Emoji>
                     {ReactHtmlParser(billThumbnail)}
                 </Emoji>                               
@@ -33,7 +34,7 @@ function BillItemOwned(props) {
                     <h3>{billName}</h3>
                     <p>{lastViewed}</p>
                 </div>
-            </a>
+            </Link>
             <button 
                 className='view-options'
                 onClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
@@ -50,6 +51,6 @@ function BillItemOwned(props) {
             }
         </li>
     )
-}
+})
 
 export default BillItemOwned;

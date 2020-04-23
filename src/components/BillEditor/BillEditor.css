@@ -1,0 +1,53 @@
+.BillEditorHeader {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 15px;
+    z-index: 3;
+}
+
+.BillEditor {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.BillEditor__overview {
+    width: 100%;
+}
+
+.overview__bill-name {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.overview__bill-name:visited {
+    color: black;
+}
+
+.overview__bill-name h1 {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0px 15px;
+    padding: 0px;
+}
+
+.overview__bill-name .Emoji {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    background-color: #f4f4f4;
+    margin: 0px;
+}

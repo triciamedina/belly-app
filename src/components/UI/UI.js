@@ -30,11 +30,9 @@ export function Header(props) {
     return <header className={props.className}>{props.children}</header>
 }
 
-export function Back(props) {
+export function IconBack() {
     return (
-        <button className='Back' {...props}>
-            <img className='icon-chevron-left' src={ChevronLeft} alt=''/>
-        </button>
+        <img className='icon-chevron-left' src={ChevronLeft} alt=''/>
     )
 }
 

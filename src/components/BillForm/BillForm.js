@@ -1,34 +1,48 @@
 import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
-import './BillForm.css';
-import { IconClose, Button } from '../UI/UI';
-import 'emoji-mart/css/emoji-mart.css';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Picker } from 'emoji-mart';
-import { useStateValue } from '../../state';
 import { v4 as uuidv4 } from 'uuid';
+import { IconClose, Button } from '../UI/UI';
+import { useStateValue } from '../../state';
+import 'emoji-mart/css/emoji-mart.css';
+import './BillForm.css';
 
 function BillForm() {
     const history = useHistory();
     const [{ bills }, dispatch] = useStateValue();
-    const [ shouldShowPicker, togglePickerState ] = useState(false);
-    const [ enteredBillName, setEnteredBillName ] = useState('');
-    const [ enteredDiscounts, setEnteredDiscounts ] = useState('');
-    const [ enteredTax, setEnteredTax ] = useState('');
-    const [ enteredTip, setEnteredTip ] = useState('');
-    const [ enteredFees, setEnteredFees ] = useState('');
-    const [ enteredTotal, setEnteredTotal ] = useState('');
+    const { ownedByMe, sharedWithMe } = bills;
 
+    // Pull data from app state if editing an existing bill
+    const routeParamsId = useRouteMatch().params.bill_id;
+    const [ ownedItem ] = ownedByMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId);
+    const [ sharedItem ] = sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId);
+    let existingBill = '';
+    if (routeParamsId) {
+        existingBill = ownedItem || sharedItem;
+    }
+
+    // Controlled inputs
+    const [ shouldShowPicker, togglePickerState ] = useState(false);
+    const [ enteredBillName, setEnteredBillName ] = useState(existingBill.billName || '');
+    const [ enteredDiscounts, setEnteredDiscounts ] = useState(existingBill.discounts || '');
+    const [ enteredTax, setEnteredTax ] = useState(existingBill.tax || '');
+    const [ enteredTip, setEnteredTip ] = useState(existingBill.tip || '');
+    const [ enteredFees, setEnteredFees ] = useState(existingBill.fees || '');
+    const [ enteredTotal, setEnteredTotal ] = useState(existingBill.total || '');
+
+    // Uncontrolled input
     const emojiEl = useRef(null)
     const selectEmojiHandler = (emoji) => {
         emojiEl.current.value = emoji;
         togglePickerState(!shouldShowPicker);
     }
 
+    // Form submit
     const submitHandler = (event) => {
         event.preventDefault();
-        const current = bills.ownedByMe;
+        
         const newBill = {
-            id: uuidv4(),
+            id: existingBill.id || uuidv4(),
             billName: enteredBillName,
             billThumbnail: emojiEl.current.value,
             lastViewed: 'Last viewed today at 1:25 pm',
@@ -37,15 +51,32 @@ function BillForm() {
             tip: enteredTip,
             fees: enteredFees,
             total: enteredTotal,
-            items: []
+            items: existingBill.items || []
         };
-        const newList = [...current, newBill];
+        
+        let newOwnedList= null;
+        let newSharedList = null;
+        let oldList;
+
+        if (existingBill) {
+            if (ownedItem) {
+                oldList = ownedByMe.filter(bill => (bill.id.toString() || bill.id) !== routeParamsId);
+                newOwnedList = [...oldList, newBill];
+            }
+            if (sharedItem) {
+                oldList = sharedWithMe.filter(bill => (bill.id.toString() || bill.id) !== routeParamsId);
+                newSharedList = [...oldList, newBill]
+            }
+        } else {
+            oldList = bills.ownedByMe;
+            newOwnedList =  [...oldList, newBill];
+        }
 
         dispatch({
             type: 'updateBills',
             setBills: {
-                ownedByMe: newList,
-                sharedWithMe: bills.sharedWithMe
+                ownedByMe: newOwnedList || bills.ownedByMe,
+                sharedWithMe: newSharedList || bills.sharedWithMe
             }
         });
         history.push('/');
@@ -70,6 +101,7 @@ function BillForm() {
                             className='emoji-input'
                             onFocus={() => togglePickerState(!shouldShowPicker)} 
                             aria-label='Emoji'
+                            defaultValue={existingBill.billThumbnail || ''}
                             required
                         />
                         {shouldShowPicker
@@ -171,7 +203,7 @@ function BillForm() {
                     </div>
                     <div className='button-container'>
                         <Button className='Button' type='submit'>
-                            Next
+                            {existingBill ? 'Save' : 'Next'}
                         </Button>
                     </div>
                 </form>

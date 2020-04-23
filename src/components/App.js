@@ -10,6 +10,7 @@ import Entry from '../routes/Entry/Entry';
 import DATA from '../store';
 
 function App() {
+
   const initialState = {
     menu: { isMenuOpen: false },
     login: { isLoggedIn: false },

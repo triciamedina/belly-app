@@ -4,7 +4,7 @@ import './MenuLink.css';
 
 import { useStateValue } from '../../state';
 
-function MenuLink(props) {
+const MenuLink = React.memo(props => {
     const [{ menu }, dispatch] = useStateValue();
     const shouldShowMenu = menu.isMenuOpen;
 
@@ -20,6 +20,6 @@ function MenuLink(props) {
             {props.children}
         </Link>
     )
-}
+})
 
 export default MenuLink;

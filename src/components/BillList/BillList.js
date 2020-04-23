@@ -1,7 +1,7 @@
 import React from 'react';
 import './BillList.css';
 
-function BillList(props) {
+const BillList = React.memo(props => {
     const { listItemType, items } = props;
     const ListItemType = listItemType;
 
@@ -12,6 +12,6 @@ function BillList(props) {
             )}
         </ul>
     )
-}
+})
 
 export default BillList;
