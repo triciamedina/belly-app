@@ -3,6 +3,7 @@ import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
 import { IconBack, IconShare, Emoji } from '../UI/UI';
+import AvatarList from '../AvatarList/AvatarList';
 
 function BillEditor() {
     const history = useHistory();
@@ -77,7 +78,14 @@ function BillEditor() {
                         </div>
                     </div>
                 </div>
-                
+                <div className='currently-viewing'>
+                    <h2>Currently viewing</h2>
+                    <AvatarList list={[
+                        { name: 'Tricia', avatarColor: 'orange' }, 
+                        { name: 'Sam', avatarColor: 'purple' }, 
+                        { name: 'Frodo', avatarColor: 'blue' }
+                    ]}/>
+                </div>
             </main>
         </>
     )

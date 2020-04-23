@@ -1,0 +1,9 @@
+.AvatarList {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
