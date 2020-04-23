@@ -13,8 +13,8 @@ const BillItemOwned = React.memo(props => {
     const { id, billThumbnail, billName, lastViewed } = props;
 
     const deleteHandler = () => {
-        const selected = parseInt(id)
-        const filtered = bills.ownedByMe.filter(bill => bill.id !== selected);
+        const selected = id.toString();
+        const filtered = bills.ownedByMe.filter(bill => bill.id.toString() !== selected);
         dispatch({
             type: 'updateBills',
             setBills: {

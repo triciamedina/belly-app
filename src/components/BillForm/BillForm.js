@@ -14,8 +14,8 @@ function BillForm() {
 
     // Pull data from app state if editing an existing bill
     const routeParamsId = useRouteMatch().params.bill_id;
-    const [ ownedItem ] = ownedByMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId);
-    const [ sharedItem ] = sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId);
+    const [ ownedItem ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
+    const [ sharedItem ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
     let existingBill = '';
     if (routeParamsId) {
         existingBill = ownedItem || sharedItem;
@@ -31,7 +31,7 @@ function BillForm() {
     const [ enteredTotal, setEnteredTotal ] = useState(existingBill.total || '');
 
     // Uncontrolled input
-    const emojiEl = useRef(null)
+    const emojiEl = useRef(null);
     const selectEmojiHandler = (emoji) => {
         emojiEl.current.value = emoji;
         togglePickerState(!shouldShowPicker);
@@ -41,6 +41,7 @@ function BillForm() {
     const submitHandler = (event) => {
         event.preventDefault();
         
+        // Build new bill object
         const newBill = {
             id: existingBill.id || uuidv4(),
             billName: enteredBillName,
@@ -53,18 +54,21 @@ function BillForm() {
             total: enteredTotal,
             items: existingBill.items || []
         };
-        
+
+        // Build new lists
+
         let newOwnedList= null;
         let newSharedList = null;
         let oldList;
 
+        
         if (existingBill) {
             if (ownedItem) {
-                oldList = ownedByMe.filter(bill => (bill.id.toString() || bill.id) !== routeParamsId);
+                oldList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
                 newOwnedList = [...oldList, newBill];
             }
             if (sharedItem) {
-                oldList = sharedWithMe.filter(bill => (bill.id.toString() || bill.id) !== routeParamsId);
+                oldList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
                 newSharedList = [...oldList, newBill]
             }
         } else {
@@ -72,6 +76,7 @@ function BillForm() {
             newOwnedList =  [...oldList, newBill];
         }
 
+        // Update state
         dispatch({
             type: 'updateBills',
             setBills: {
@@ -79,7 +84,9 @@ function BillForm() {
                 sharedWithMe: newSharedList || bills.sharedWithMe
             }
         });
-        history.push('/');
+
+        // Go back to previous page
+        history.goBack();
     }
 
     return (
