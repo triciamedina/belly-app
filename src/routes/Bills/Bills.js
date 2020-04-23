@@ -30,7 +30,7 @@ function Bills() {
                 <Route exact path={'/bills/:bill_id'}>
                     <BillEditor />
                 </Route>
-                {/* <Route path={['/bills/:bill_id/add', '/bills/:bill_id/edit/:item_id']}>
+                {/* <Route path={['/bills/:bill_id/add', '/bills/:bill_id/:item_id/edit']}>
                     Item form
                 </Route> */}
             </Switch>
