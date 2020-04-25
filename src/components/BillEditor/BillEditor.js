@@ -17,11 +17,16 @@ function BillEditor() {
 
     const currentBill = ownedItem || sharedItem;
 
+    const handleGoBack = () => {
+        (ownedItem && history.push('/bills')) ||
+        (sharedItem && history.push('/bills/shared'))
+    }
+
     return (
         <>
             {/*  Header nav */}
             <header className='BillEditorHeader'>
-                <button className='Back' onClick={() => history.goBack()}>
+                <button className='Back' onClick={() => handleGoBack()}>
                     <IconBack />
                 </button>
                 <button className='Share'>

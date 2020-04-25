@@ -16,7 +16,7 @@ const DATA ={
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
-                    split: [
+                    splitList: [
                         {
                             id: 1,
                             nickname: 'Tricia',
@@ -34,7 +34,7 @@ const DATA ={
                     itemName: 'Tosilog Burrito',
                     quantity: '1',
                     price: '8.99',
-                    split: [
+                    splitList: [
                         {
                             id: 1,
                             nickname: 'Tricia',
@@ -52,7 +52,7 @@ const DATA ={
                     itemName: 'Sisig With Rice',
                     quantity: '1',
                     price: '8.99',
-                    split: [
+                    splitList: [
                         {
                             id: 1,
                             nickname: 'Tricia',
@@ -83,7 +83,7 @@ const DATA ={
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
-                    split: [
+                    splitList: [
                         {
                             id: 1,
                             nickname: 'Tricia',
@@ -114,7 +114,7 @@ const DATA ={
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
-                    split: [
+                    splitList: [
                         {
                             id: 1,
                             nickname: 'Tricia',
@@ -147,7 +147,7 @@ const DATA ={
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
-                    split: [
+                    splitList: [
                         {
                             id: 1,
                             nickname: 'Tricia',

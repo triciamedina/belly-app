@@ -85,8 +85,8 @@ function BillForm() {
             }
         });
 
-        // Go back to previous page
-        history.goBack();
+        // Go to bill editor 
+        history.push(`/bills/${newBill.id}`);
     }
 
     return (

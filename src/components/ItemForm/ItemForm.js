@@ -1,11 +1,21 @@
 import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import { useStateValue } from '../../state';
 import './ItemForm.css';
 import { IconClose, Button, IconSubtract, IconAdd } from '../UI/UI';
 
 function ItemForm(props) {
     const history = useHistory();
+    const location = useLocation();
+    const [{ bills }, dispatch] = useStateValue();
+    const { ownedByMe, sharedWithMe } = bills;
 
+    const routeParamsId = useRouteMatch().params.bill_id;
+    const [ owned ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
+    const [ shared ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
+    
+    const isNew = location.pathname === `/bills/${routeParamsId}/add`;
     let existingItem = '';
 
     const deleteHandler = (event) => {
@@ -15,7 +25,45 @@ function ItemForm(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        console.log('ItemForm submitted', enteredItemName, quantityEl.current.value, enteredItemPrice)
+        // Build new item object
+        const newItem = {
+            id: existingItem.id || uuidv4(),
+            itemName: enteredItemName,
+            quantity: quantityEl.current.value,
+            price: enteredItemPrice,
+            splitList: existingItem.splitList || []
+        };
+
+        let newOwnedList= null;
+        let newSharedList = null;
+        let oldList;
+        let currentBill;
+
+        if (isNew) {
+            if (owned) {
+                oldList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
+                currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
+                currentBill.items.push(newItem);
+                newOwnedList = [...oldList, currentBill];
+            }
+            if (shared) {
+                oldList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
+                currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
+                currentBill.items.push(newItem);
+                newSharedList = [...oldList, currentBill];
+            }
+        }
+
+        dispatch({
+            type: 'updateBills',
+            setBills: {
+                ownedByMe: newOwnedList || bills.ownedByMe,
+                sharedWithMe: newSharedList || bills.sharedWithMe
+            }
+        });
+
+        // Go to bill editor 
+        history.push(`/bills/${routeParamsId}`);
     }
 
     const subtractQuantityHandler = (event) => {
