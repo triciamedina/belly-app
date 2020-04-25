@@ -42,6 +42,11 @@ function App() {
           ...initialState
         }
       case 'updateBills':
+      // start a fetch here
+      //
+      // action.(payload)
+      // return state
+      //case 'billsUpdated':
         return {
           ...state,
           bills: action.setBills

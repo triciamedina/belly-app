@@ -1,30 +1,30 @@
-.BillItemShared {
+.BillShared {
     position: relative;
 }
 
-.BillItemShared .edit {
+.BillShared .edit {
     color: black;
     text-decoration: none;
     display: flex;
 }
 
-.BillItemShared .edit:visited {
+.BillShared .edit:visited {
     color: black;
 }
 
-.BillItemShared:hover {
+.BillShared:hover {
     background-color: #EBE5FC;
 }
 
-.BillItemShared:hover .Emoji {
+.BillShared:hover .Emoji {
     background-color: white;
 }
 
-.BillItemShared .details {
+.BillShared .details {
     padding: 16px 0px;
 }
 
-.BillItemShared h3 {
+.BillShared h3 {
     padding: 16px 0px;
     font-size: 14px;
     font-weight: 400;
@@ -34,7 +34,7 @@
     margin-bottom: 5px;
 }
 
-.BillItemShared p {
+.BillShared p {
     padding: 16px 0px;
     font-size: 14px;
     font-weight: 400;

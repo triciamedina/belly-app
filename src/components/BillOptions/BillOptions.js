@@ -1,10 +1,10 @@
 import React from 'react';
-import './BillItemOptions.css';
+import './BillOptions.css';
 import { IconShare, IconTrash } from '../UI/UI';
 
-const BillItemOptions = React.forwardRef((props, ref) => {
+const BillOptions = React.forwardRef((props, ref) => {
     return (
-        <div className='BillItemOptions' ref={ref}>
+        <div className='BillOptions' ref={ref}>
             <ul className='OptionsList'>
                 <li className='Option'>
                     <button>
@@ -26,4 +26,4 @@ const BillItemOptions = React.forwardRef((props, ref) => {
     )
 })
 
-export default BillItemOptions;
+export default BillOptions;

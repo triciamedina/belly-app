@@ -4,6 +4,7 @@ import './BillEditor.css';
 import { useStateValue } from '../../state';
 import { IconBack, IconShare, Emoji } from '../UI/UI';
 import AvatarList from '../AvatarList/AvatarList';
+import ItemList from '../ItemList/ItemList';
 
 function BillEditor() {
     const history = useHistory();
@@ -36,6 +37,7 @@ function BillEditor() {
                             {currentBill.billName}
                         </h1>
                     </Link>
+                    <ItemList items={currentBill.items}/>
                     <div className='bill-totals'>
                         <div className='col-1'>
                             <Link className='bill-totals__edit' to={`/bills/${currentBill.id}/edit`}>
@@ -80,6 +82,7 @@ function BillEditor() {
                 </div>
                 <div className='currently-viewing'>
                     <h2>Currently viewing</h2>
+                    {/* This list will update based on who is currently in the room */}
                     <AvatarList list={[
                         { name: 'Tricia', avatarColor: 'orange' }, 
                         { name: 'Sam', avatarColor: 'purple' }, 

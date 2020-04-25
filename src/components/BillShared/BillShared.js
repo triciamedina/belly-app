@@ -1,13 +1,13 @@
 import React from 'react';
-import './BillItemShared.css';
+import './BillShared.css';
 import { Emoji } from '../UI/UI';
 import ReactHtmlParser from 'react-html-parser';
 import { Link } from 'react-router-dom';
 
-const BillItemShared = React.memo(props => {
+const BillShared = React.memo(props => {
     const { id, billThumbnail, billName, lastViewed } = props;
     return (
-        <li className='BillItemShared'>
+        <li className='BillShared'>
             <Link className='edit' to={`/bills/${id}`}>
                 <Emoji>
                     {ReactHtmlParser(billThumbnail)}
@@ -21,4 +21,4 @@ const BillItemShared = React.memo(props => {
     )
 })
 
-export default BillItemShared;
+export default BillShared;

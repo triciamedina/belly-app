@@ -28,6 +28,42 @@ const DATA ={
                             shareQty: '2'
                         }
                     ]
+                },
+                {
+                    id: 2,
+                    itemName: 'Tosilog Burrito',
+                    quantity: '1',
+                    price: '8.99',
+                    split: [
+                        {
+                            id: 1,
+                            nickname: 'Tricia',
+                            shareQty: '1'
+                        },
+                        {
+                            id: 2,
+                            nickname: 'Frodo',
+                            shareQty: '2'
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    itemName: 'Sisig With Rice',
+                    quantity: '1',
+                    price: '8.99',
+                    split: [
+                        {
+                            id: 1,
+                            nickname: 'Tricia',
+                            shareQty: '1'
+                        },
+                        {
+                            id: 2,
+                            nickname: 'Frodo',
+                            shareQty: '2'
+                        }
+                    ]
                 }
             ]
         },

@@ -2,7 +2,7 @@ import React from 'react';
 import './SharedWithMe.css';
 import { useStateValue } from '../../state';
 import BillList from '../../components/BillList/BillList';
-import BillItemShared from '../../components/BillItemShared/BillItemShared';
+import BillShared from '../../components/BillShared/BillShared';
 
 function SharedWithMe() {
     const [{ bills }] = useStateValue();
@@ -19,7 +19,7 @@ function SharedWithMe() {
             {bills.sharedWithMe.length === 0
                 ? 'There are no bills shared with you'
                 : <BillList 
-                    listItemType={BillItemShared}
+                    listItemType={BillShared}
                     items={items}
                 />
             }

@@ -219,4 +219,4 @@ function BillForm() {
     )
 }
 
-export default BillForm;
+export default React.memo(BillForm, );

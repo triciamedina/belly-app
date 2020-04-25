@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './OwnedByMe.css';
 import BillList from '../../components/BillList/BillList';
-import BillItemOwned from '../../components/BillItemOwned/BillItemOwned';
+import BillOwned from '../../components/BillOwned/BillOwned';
 import { useStateValue } from '../../state';
 
 function OwnedByMe() {
@@ -26,7 +26,7 @@ function OwnedByMe() {
             {bills.ownedByMe.length === 0
                 ? 'There are no bills owned by you'
                 : <BillList 
-                    listItemType={BillItemOwned}
+                    listItemType={BillOwned}
                     items={items}
                 />
             }
