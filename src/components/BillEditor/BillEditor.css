@@ -111,3 +111,27 @@
     padding: 0px;
     color: #757575;
 }
+
+.AddItemButton {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background-color: #f4f4f4;
+    margin-bottom: 5px;
+    margin-left: 18px;
+    margin-right: 18px;
+    padding-left: 55px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 60px;
+    color: #757575;
+    text-decoration: none;
+}
+
+.AddItemButton:visited {
+    color: #757575;
+}
+
+.AddItemButton:hover {
+    background-color: #EBE5FC;
+}

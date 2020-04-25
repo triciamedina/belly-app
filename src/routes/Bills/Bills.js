@@ -7,6 +7,7 @@ import OwnedByMe from '../OwnedByMe/OwnedByMe';
 import SharedWithMe from '../SharedWithMe/SharedWithMe';
 import BillForm from '../../components/BillForm/BillForm';
 import BillEditor from '../../components/BillEditor/BillEditor';
+import ItemForm from '../../components/ItemForm/ItemForm';
 
 function Bills() {
     return (
@@ -30,9 +31,9 @@ function Bills() {
                 <Route exact path={'/bills/:bill_id'}>
                     <BillEditor />
                 </Route>
-                {/* <Route path={['/bills/:bill_id/add', '/bills/:bill_id/:item_id/edit']}>
-                    Item form
-                </Route> */}
+                <Route path={['/bills/:bill_id/add', '/bills/:bill_id/:item_id/edit']}>
+                    <ItemForm />
+                </Route>
             </Switch>
         </>
     )

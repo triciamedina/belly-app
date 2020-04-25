@@ -9,6 +9,8 @@ import MenuIcon from '../../img/icon-menu.svg';
 import EditIcon from '../../img/icon-edit.svg';
 import UsersIcon from '../../img/icon-users.svg';
 import TrashIcon from '../../img/icon-trash.svg';
+import AddIcon from '../../img/icon-add.svg';
+import MinusIcon from '../../img/icon-minus.svg';
 
 export function Button(props) {
     return <button className={props.className} {...props}>{props.children}</button>
@@ -75,6 +77,18 @@ export function IconShare() {
 export function IconTrash() {
     return (
         <img className='icon-trash' src={TrashIcon} alt=''/>
+    )
+}
+
+export function IconAdd() {
+    return (
+        <img className='icon-add' src={AddIcon} alt='' />
+    )
+}
+
+export function IconSubtract() {
+    return (
+        <img className='icon-minus' src={MinusIcon} alt='' />
     )
 }
 

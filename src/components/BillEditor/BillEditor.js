@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
-import { IconBack, IconShare, Emoji } from '../UI/UI';
+import { IconBack, IconShare, Emoji, IconAdd } from '../UI/UI';
 import AvatarList from '../AvatarList/AvatarList';
 import ItemList from '../ItemList/ItemList';
 
@@ -19,6 +19,7 @@ function BillEditor() {
 
     return (
         <>
+            {/*  Header nav */}
             <header className='BillEditorHeader'>
                 <button className='Back' onClick={() => history.goBack()}>
                     <IconBack />
@@ -27,8 +28,12 @@ function BillEditor() {
                     <IconShare />
                 </button>
             </header>
+
             <main className='BillEditor'>
+
                 <div className='BillEditor__overview'>
+
+                    {/* Bill name and link to edit form */}
                     <Link className='overview__bill-name' to={`/bills/${currentBill.id}/edit`}>
                         <Emoji>
                             {currentBill.billThumbnail}
@@ -37,7 +42,17 @@ function BillEditor() {
                             {currentBill.billName}
                         </h1>
                     </Link>
+
+                    {/* Items list */}
                     <ItemList items={currentBill.items}/>
+
+                    {/* Add new item button */}
+                    <Link className='AddItemButton' to={`/bills/${currentBill.id}/add`}>
+                        <IconAdd />
+                        Add
+                    </Link>
+
+                    {/* Bill totals */}
                     <div className='bill-totals'>
                         <div className='col-1'>
                             <Link className='bill-totals__edit' to={`/bills/${currentBill.id}/edit`}>
@@ -80,6 +95,8 @@ function BillEditor() {
                         </div>
                     </div>
                 </div>
+
+                {/* Currently viewing */}
                 <div className='currently-viewing'>
                     <h2>Currently viewing</h2>
                     {/* This list will update based on who is currently in the room */}
@@ -89,6 +106,7 @@ function BillEditor() {
                         { name: 'Frodo', avatarColor: 'blue' }
                     ]}/>
                 </div>
+
             </main>
         </>
     )

@@ -17,12 +17,12 @@
 
 .Button.ghost {
     background-color: transparent;
-    border: 2px solid #efefef;
+    /* border: 2px solid #efefef; */
 }
 
 .Button.ghost:hover {
-    background-color: #EBE5FC;
-    border: 2px solid #EBE5FC;
+    color: #EBE5FC !important;
+    /* border: 2px solid #EBE5FC; */
 }
 
 .ButtonLink {
@@ -177,6 +177,12 @@
 .icon-trash {
     height: 20px;
     width: 20px;
+}
+
+.icon-add {
+    width: 14px;
+    height: 14px;
+    margin: 5px;
 }
 
 .Emoji {

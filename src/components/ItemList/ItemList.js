@@ -3,7 +3,7 @@ import './ItemList.css';
 
 function ItemList(props) {
     const { items } = props;
-    console.log(items);
+
     return (
         <ul className='ItemList'>
             {items.map((item, index) => 

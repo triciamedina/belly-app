@@ -32,17 +32,17 @@
     max-width: 600px;
 }
 
-.input-container {
+.BillForm .input-container {
     width: 100%;
     text-align: right;
     position: relative;
 }
 
-.input-container.emoji {
+.BillForm .input-container.emoji {
     text-align: center;
 }
 
-.emoji-input {
+.BillForm .emoji-input {
     display: inline-block;
     text-align: center;
     background-color: white;
@@ -63,7 +63,7 @@
     z-index: 3;
 }
 
-.name-input {
+.BillForm .name-input {
     font-family: 'Roboto', sans-serif;
     border: 0px;
     border-bottom: 1px solid white;
@@ -78,14 +78,14 @@
     margin-bottom: 50px;
 }
 
-.input-container.currency label {
+.BillForm .input-container.currency label {
     color: white;
     font-size: 16px;
     float: left;
     line-height: 68px;
 }
 
-.input-container.currency input {
+.BillForm .input-container.currency input {
     border: 0px;
     border-bottom: 1px solid white;
     background-color: transparent;
@@ -97,7 +97,7 @@
     font-size: 16px;
 }
 
-.input-container.currency span {
+.BillForm .input-container.currency span {
     position: absolute;
     top: 0; right: 0;
     transform: translate(-102px, 0);
@@ -106,7 +106,7 @@
     line-height: 68px;
 }
 
-.button-container {
+.BillForm .button-container {
     position: absolute;
     bottom: 0;
     left: 0;
