@@ -11,12 +11,29 @@ function ItemForm(props) {
     const [{ bills }, dispatch] = useStateValue();
     const { ownedByMe, sharedWithMe } = bills;
 
+    //  ID of current bill
     const routeParamsId = useRouteMatch().params.bill_id;
+
+    // ID of current item (will be null if adding a new item)
+    const routeParamsItemId = useRouteMatch().params.item_id;
+
+    // Targets bill that the item belongs to (one will be null)
     const [ owned ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
     const [ shared ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
     
+    // Checks whether adding a new item or modifying an existing one
     const isNew = location.pathname === `/bills/${routeParamsId}/add`;
+    const isExisting = location.pathname === `/bills/${routeParamsId}/${routeParamsItemId}/edit`;
+
     let existingItem = '';
+    if (isExisting) {
+        if (owned) {
+            existingItem = owned.items.filter(item => item.id.toString() === routeParamsItemId)[0]; 
+        }
+        if (shared) {
+            existingItem = shared.items.filter(item => item.id.toString() === routeParamsItemId)[0];
+        }
+    }
 
     const deleteHandler = (event) => {
         event.preventDefault();
@@ -36,21 +53,46 @@ function ItemForm(props) {
 
         let newOwnedList= null;
         let newSharedList = null;
-        let oldList;
+        let oldBillList;
+        let oldItemList;
+        let newItemList;
         let currentBill;
 
         if (isNew) {
             if (owned) {
-                oldList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
+                oldBillList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
                 currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
                 currentBill.items.push(newItem);
-                newOwnedList = [...oldList, currentBill];
+                newOwnedList = [...oldBillList, currentBill];
             }
             if (shared) {
-                oldList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
+                oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
                 currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
                 currentBill.items.push(newItem);
-                newSharedList = [...oldList, currentBill];
+                newSharedList = [...oldBillList, currentBill];
+            }
+        } else {
+            if (owned) {
+                // Bill list to be merged with
+                oldBillList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
+                // Bill to be merged with
+                currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
+                //Item list to be merged with
+                oldItemList = currentBill.items.filter(item => item.id !== newItem.id);
+                newItemList = [...oldItemList, newItem];
+                currentBill.items = newItemList;
+                newOwnedList = [...oldBillList, currentBill];
+            }
+            if (shared) {
+                // Bill list to be merged with
+                oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
+                // Bill to be merged with
+                currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
+                //Item list to be merged with
+                oldItemList = currentBill.items.filter(item => item.id !== newItem.id);
+                newItemList = [...oldItemList, newItem];
+                currentBill.items = newItemList;
+                newOwnedList = [...oldBillList, currentBill];
             }
         }
 
@@ -117,7 +159,7 @@ function ItemForm(props) {
                             min='0'
                             aria-label='Item quanitity'
                             placeholder={1}
-                            defaultValue={1}
+                            defaultValue={existingItem.quantity || 1}
                             ref={quantityEl}
                         >
                         </input>
