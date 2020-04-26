@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ItemList.css';
+import AvatarList from '../AvatarList/AvatarList';
 
 function ItemList(props) {
     const { items, currentBillId } = props;
@@ -17,6 +18,9 @@ function ItemList(props) {
                             {item.itemName}
                         </h2>
                     </Link>
+                    <button className='edit-share'>
+                        <AvatarList list={item.splitList}/>
+                    </button>
                 </li>)
             )}
         </ul>

@@ -10,7 +10,7 @@ function AvatarList(props) {
             {list.map((person, index) => 
                 (<li key={index}>
                     <Avatar className={'Avatar ' + person.avatarColor}>
-                        {person.name.slice(0,2)}
+                        {person.nickname.slice(0,2)}
                     </Avatar>
                 </li>)
             )}

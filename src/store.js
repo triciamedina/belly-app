@@ -20,11 +20,13 @@ const DATA ={
                         {
                             id: 1,
                             nickname: 'Tricia',
+                            avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
                             nickname: 'Frodo',
+                            avatarColor: 'blue',
                             shareQty: '2'
                         }
                     ]
@@ -38,11 +40,13 @@ const DATA ={
                         {
                             id: 1,
                             nickname: 'Tricia',
+                            avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
                             nickname: 'Frodo',
+                            avatarColor: 'blue',
                             shareQty: '2'
                         }
                     ]
@@ -56,11 +60,13 @@ const DATA ={
                         {
                             id: 1,
                             nickname: 'Tricia',
+                            avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
                             nickname: 'Frodo',
+                            avatarColor: 'blue',
                             shareQty: '2'
                         }
                     ]
@@ -87,11 +93,13 @@ const DATA ={
                         {
                             id: 1,
                             nickname: 'Tricia',
+                            avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
                             nickname: 'Frodo',
+                            avatarColor: 'blue',
                             shareQty: '2'
                         }
                     ]
@@ -118,11 +126,13 @@ const DATA ={
                         {
                             id: 1,
                             nickname: 'Tricia',
+                            avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
                             nickname: 'Frodo',
+                            avatarColor: 'blue',
                             shareQty: '2'
                         }
                     ]
@@ -151,11 +161,13 @@ const DATA ={
                         {
                             id: 1,
                             nickname: 'Tricia',
+                            avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
                             nickname: 'Frodo',
+                            avatarColor: 'blue',
                             shareQty: '2'
                         }
                     ]

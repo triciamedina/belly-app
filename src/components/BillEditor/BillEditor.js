@@ -106,9 +106,9 @@ function BillEditor() {
                     <h2>Currently viewing</h2>
                     {/* This list will update based on who is currently in the room */}
                     <AvatarList list={[
-                        { name: 'Tricia', avatarColor: 'orange' }, 
-                        { name: 'Sam', avatarColor: 'purple' }, 
-                        { name: 'Frodo', avatarColor: 'blue' }
+                        { nickname: 'Tricia', avatarColor: 'orange' }, 
+                        { nickname: 'Sam', avatarColor: 'purple' }, 
+                        { nickname: 'Frodo', avatarColor: 'blue' }
                     ]}/>
                 </div>
 
