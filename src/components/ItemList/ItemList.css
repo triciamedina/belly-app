@@ -4,3 +4,36 @@
     margin: 0px;
     list-style: none;
 }
+
+.Item {
+    display: flex;
+    width: 100%;
+    background-color: #f4f4f4;
+    margin-bottom: 5px;
+}
+
+.Item .edit-item {
+    text-decoration: none;
+    color: black;
+    flex: 2;
+}
+
+.item .edit-item:visited {
+    color: black;
+}
+
+.Item h2 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.0096em;
+    line-height: 60px;
+    margin: 0px;
+}
+
+.Item .quantity {
+    font-weight: 500;
+    padding: 20px;
+    margin-right: 15px;
+    color: white;
+    background-color: #4f4f4f;
+}

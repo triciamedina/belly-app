@@ -49,7 +49,7 @@ function BillEditor() {
                     </Link>
 
                     {/* Items list */}
-                    <ItemList items={currentBill.items}/>
+                    <ItemList currentBillId={currentBill.id} items={currentBill.items}/>
 
                     {/* Add new item button */}
                     <Link className='AddItemButton' to={`/bills/${currentBill.id}/add`}>
