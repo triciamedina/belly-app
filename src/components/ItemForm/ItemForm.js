@@ -37,7 +37,37 @@ function ItemForm(props) {
 
     const deleteHandler = (event) => {
         event.preventDefault();
-        console.log('Item deleted')
+        let newOwnedList= null;
+        let newSharedList = null;
+        let oldBillList;
+        let currentBill;
+        let newItemList;
+
+        if (owned) {
+            oldBillList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
+            currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
+            newItemList = currentBill.items.filter(item => item.id.toString() !== routeParamsItemId);
+            currentBill.items = newItemList;
+            newOwnedList = [...oldBillList, currentBill];
+        }
+        if (shared) {
+            oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
+            currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
+            newItemList = currentBill.items.filter(item => item.id.toString() !== routeParamsItemId);
+            currentBill.items = newItemList;
+            newSharedList = [...oldBillList, currentBill];
+        }
+        
+        dispatch({
+            type: 'updateBills',
+            setBills: {
+                ownedByMe: newOwnedList || bills.ownedByMe,
+                sharedWithMe: newSharedList || bills.sharedWithMe
+            }
+        });
+
+        // Go to bill editor 
+        history.push(`/bills/${routeParamsId}`);
     }
 
     const submitHandler = (event) => {
