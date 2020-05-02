@@ -1,0 +1,35 @@
+.SplitDetail {
+    padding: 12px 0px;
+    background-color: #4f4f4f;
+    text-align: center;
+}
+
+.SplitDetail .Back {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 18px;
+    left: 32px;
+    background-color: transparent;
+    transform: unset;
+    filter: invert(91%) sepia(0%) saturate(7462%) hue-rotate(86deg) brightness(116%) contrast(111%);
+}
+
+.split-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px;
+}
+
+.split-name h2 {
+    margin: 0px 15px;
+    padding: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 24px;
+}

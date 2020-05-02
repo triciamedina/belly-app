@@ -19,7 +19,10 @@ function ItemList(props) {
                         </h2>
                     </Link>
                     <button className='edit-share'>
-                        <AvatarList list={item.splitList}/>
+                        {item.splitList.length === 0
+                            ? <p>Split</p>
+                            : <AvatarList list={item.splitList}/>
+                        }
                     </button>
                 </li>)
             )}

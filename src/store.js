@@ -19,12 +19,14 @@ const DATA ={
                     splitList: [
                         {
                             id: 1,
+                            itemId: 1,
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            itemId: 1,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
                             shareQty: '2'
@@ -39,12 +41,14 @@ const DATA ={
                     splitList: [
                         {
                             id: 1,
+                            itemId: 2,
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            itemId: 2,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
                             shareQty: '2'
@@ -59,12 +63,14 @@ const DATA ={
                     splitList: [
                         {
                             id: 1,
+                            itemId: 3,
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            itemId: 3,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
                             shareQty: '2'
@@ -85,19 +91,21 @@ const DATA ={
             total: '12.98',
             items: [
                 {
-                    id: 1,
+                    id: 4,
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
                     splitList: [
                         {
                             id: 1,
+                            itemId: 4,
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            itemId: 4,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
                             shareQty: '2'
@@ -118,19 +126,21 @@ const DATA ={
             total: '12.98',
             items: [
                 {
-                    id: 1,
+                    id: 5,
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
                     splitList: [
                         {
                             id: 1,
+                            itemId: 5,
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            itemId: 5,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
                             shareQty: '2'
@@ -153,19 +163,21 @@ const DATA ={
             total: '12.98',
             items: [
                 {
-                    id: 1,
+                    id: 6,
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
                     splitList: [
                         {
                             id: 1,
+                            itemId: 6,
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            itemId: 6,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
                             shareQty: '2'

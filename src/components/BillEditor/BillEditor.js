@@ -5,6 +5,7 @@ import { useStateValue } from '../../state';
 import { IconBack, IconShare, Emoji, IconAdd } from '../UI/UI';
 import AvatarList from '../AvatarList/AvatarList';
 import ItemList from '../ItemList/ItemList';
+import SplitSummary from '../SplitSummary/SplitSummary';
 
 function BillEditor() {
     const history = useHistory();
@@ -99,6 +100,11 @@ function BillEditor() {
                             </Link>
                         </div>
                     </div>
+                </div>
+
+                {/* Split summary */}
+                <div className='split-summary'>
+                    <SplitSummary currentBill={currentBill} />
                 </div>
 
                 {/* Currently viewing */}

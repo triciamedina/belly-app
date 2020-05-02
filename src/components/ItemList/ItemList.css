@@ -19,7 +19,7 @@
 .Item .edit-item {
     text-decoration: none;
     color: black;
-    flex: 2;
+    flex: 3;
 }
 
 .item .edit-item:visited {
@@ -50,4 +50,13 @@
     color: black;
     border: 0;
     background-color: transparent;
+}
+
+.Item .edit-share p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 60px;
+    color: #757575;
+    margin: 0px;
 }

@@ -21,6 +21,10 @@ function App() {
     bills: {
       ownedByMe: DATA.ownedByMe,
       sharedWithMe: DATA.sharedWithMe
+    },
+    billDetail: {
+      isBillDetailOpen: false,
+      currentlyViewing: ''
     }
   };
 
@@ -50,6 +54,11 @@ function App() {
         return {
           ...state,
           bills: action.setBills
+        }
+      case 'toggleBillDetail':
+        return {
+          ...state,
+          billDetail: action.setBillDetail
         }
       default:
         return state;
