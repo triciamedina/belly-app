@@ -27,7 +27,7 @@ function SplitSummary(props) {
 
     const items = summaryArray.map(item => {
         const person = item[1];
-        const personTotal = SplitService.calculateTotal(person);
+        const personTotal = SplitService.calculatePersonTotal(person, summaryArray, currentBill);
 
         return (
             <li className='SplitSummaryItem' key={item[0]}>
@@ -44,7 +44,7 @@ function SplitSummary(props) {
     return ( 
         <>
             {shouldShowDetail
-                ? <SplitDetail summaryArray={summaryArray} />
+                ?   <SplitDetail summaryArray={summaryArray} currentBill={currentBill} />
                 :   <ul className='SplitSummary'>
                         {items}
                     </ul>

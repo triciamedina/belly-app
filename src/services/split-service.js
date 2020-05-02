@@ -73,13 +73,31 @@ const SplitService = {
         // Repeat for discounts, tax, tip, fees, and total but using different split rules
         return summary;
     },
-    calculateTotal(person) {
+    calculateSubtotal(person) {
         const items= person.items;
         let sum = 0;
         items.forEach(item => {
             sum += item.sum;
         })
         return sum;
+    },
+    calculateBillSubtotal(bill) {
+        const { items } = bill;
+        let sum = 0;
+        items.forEach(item => {
+            sum += parseFloat(item.price);
+        })
+        return sum;
+    },
+    calculatePersonTotal(person, summaryArray, currentBill) {
+        const itemsSubtotal = SplitService.calculateSubtotal(person);
+        const billItemsSubtotal = SplitService.calculateBillSubtotal(currentBill);
+        const { tax, tip, fees, discounts } = currentBill;
+        const personTax = tax * (itemsSubtotal / billItemsSubtotal);
+        const personTip = tip / summaryArray.length;
+        const personFees = fees / summaryArray.length;
+        const personDiscounts = discounts / summaryArray.length;
+        return itemsSubtotal + personTax + personTip + personFees - personDiscounts;
     }
 }
 

@@ -6,10 +6,10 @@ const DATA ={
             billThumbnail: '🌯',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
-            tax: '1.99',
-            tip: '2',
-            fees: '0',
-            total: '12.98',
+            tax: '2.50',
+            tip: '5',
+            fees: '3',
+            total: '37.47',
             items: [
                 {
                     id: 1,
