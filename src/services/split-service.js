@@ -1,3 +1,7 @@
+import Dinero from 'dinero.js';
+const Money = Dinero;
+const currency = 'USD';
+
 const SplitService = {
     getSummary(bill) {
 
@@ -23,16 +27,17 @@ const SplitService = {
         }
 
         // Build object with total price of each item with itemId, total price
-        // item 1 is sisig burrito, 1 x 8.99
 
         const items = bill.items;
         const itemTotals = {};
 
         for (let i = 0; i < items.length; i++) {
             const currentItem = items[i];
+            const quantity = Number(currentItem.quantity);
+            const price = Money({ amount: (Number(currentItem.price)*100), currency});
             const itemTotal = {
                 itemName: currentItem.itemName,
-                total: currentItem.quantity * currentItem.price,
+                total: price.multiply(quantity),
                 shareTotal: 0
             }
 
@@ -40,7 +45,7 @@ const SplitService = {
         }
         
         // Iterate through each item and build a share object to add to each person in the summary object
-
+        
         for (let i = 0; i < items.length; i ++) {
             const currentItem = items[i];
             const currentSplitList = currentItem.splitList;
@@ -50,54 +55,81 @@ const SplitService = {
                 const share = {
                     itemName: currentItem.itemName,
                     itemId: splitter.itemId,
-                    share: parseInt(splitter.shareQty),
+                    share: Number(splitter.shareQty),
                 }
+
                 summary[splitterId].items.push(share);
-                itemTotals[splitter.itemId].shareTotal += parseInt(splitter.shareQty);
+                itemTotals[splitter.itemId].shareTotal += Number(splitter.shareQty);
             }
         }
-
+        
         for (const key in summary) {
             const person = summary[key];
             const items = person.items
             for (let i = 0; i < items.length; i++) {
+                // Item ID (number)
                 const currentItem = items[i].itemId;
+
+                // Shares for current person (number)
                 const share = items[i].share;
+
+                // Dinero object
                 const itemTotal = itemTotals[currentItem].total;
+                
+                // Total nummber of shares (number)
                 const itemShares = itemTotals[currentItem].shareTotal;
-                const total = itemTotal * share / itemShares;
-            items[i].sum = total;
+
+                // Calculate total using Dinero object
+                const total = itemTotal.multiply((share / itemShares));
+                
+                items[i].sum = total;
             }
         }
 
-        // Repeat for discounts, tax, tip, fees, and total but using different split rules
         return summary;
     },
     calculateSubtotal(person) {
-        const items= person.items;
-        let sum = 0;
-        items.forEach(item => {
-            sum += item.sum;
-        })
+        const items = person.items;
+
+        const sum = items.reduce((accumulator, currentValue) => { 
+                    return accumulator.add(currentValue.sum)
+                }, Money({ amount: 0, currency }));
+        
+        // Sum is Dinero object
         return sum;
+        
     },
     calculateBillSubtotal(bill) {
         const { items } = bill;
-        let sum = 0;
-        items.forEach(item => {
-            sum += parseFloat(item.price);
-        })
+
+        const sum = items.reduce((accumulator, currentValue) => {
+                return accumulator.add(Money({ amount: (Number(currentValue.price)*100), currency}));
+            }, Money({ amount: 0, currency })); 
+        
+        // Dinero object
         return sum;
     },
     calculatePersonTotal(person, summaryArray, currentBill) {
+        // Dinero object
         const itemsSubtotal = SplitService.calculateSubtotal(person);
+        
+        // Dinero object
         const billItemsSubtotal = SplitService.calculateBillSubtotal(currentBill);
+
+        // Number
+        const ratio = itemsSubtotal.getAmount() / billItemsSubtotal.getAmount();
+
+        // Strings
         const { tax, tip, fees, discounts } = currentBill;
-        const personTax = tax * (itemsSubtotal / billItemsSubtotal);
-        const personTip = tip / summaryArray.length;
-        const personFees = fees / summaryArray.length;
-        const personDiscounts = discounts / summaryArray.length;
-        return itemsSubtotal + personTax + personTip + personFees - personDiscounts;
+
+        // Dinero objects
+        const personTax = Money({ amount: (Number(tax)*100), currency }).multiply(ratio);
+        const personTip = Money({ amount: (Number(tip)*100), currency }).divide(summaryArray.length);
+        const personFees = Money({ amount: Number(fees)*100, currency }).divide(summaryArray.length);
+        const personDiscounts = Money({ amount: Number(discounts)*100, currency}).divide(summaryArray.length);
+
+        // Dinero object
+        return itemsSubtotal.add(personTax).add(personTip).add(personFees).subtract(personDiscounts);
     }
 }
 

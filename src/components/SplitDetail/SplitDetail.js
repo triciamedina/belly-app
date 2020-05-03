@@ -3,8 +3,10 @@ import { IconBack } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
 import { useStateValue } from '../../state';
 import './SplitDetail.css';
-import Currency from '../Currency/Currency';
 import SplitService from '../../services/split-service';
+import Dinero from 'dinero.js';
+const Money = Dinero;
+const currency = 'USD';
 
 function SplitDetail(props) {
     const { summaryArray, currentBill } = props;
@@ -16,12 +18,16 @@ function SplitDetail(props) {
     const [ personDetails ] = summaryArray.filter(person => person[0] === currentlyViewing);
     const person = personDetails[1];
     const itemsSubtotal = SplitService.calculateSubtotal(person);
+    // Dinero object
     const billItemsSubtotal = SplitService.calculateBillSubtotal(currentBill);
-    
-    const personTax = tax * (itemsSubtotal / billItemsSubtotal);
-    const personTip = tip / summaryArray.length;
-    const personFees = fees / summaryArray.length;
-    const personDiscounts = discounts / summaryArray.length;
+
+    // Number
+    const ratio = itemsSubtotal.getAmount() / billItemsSubtotal.getAmount();
+
+    const personTax = Money({ amount: (Number(tax)*100), currency }).multiply(ratio);
+    const personTip = Money({ amount: (Number(tip)*100), currency }).divide(summaryArray.length);
+    const personFees = Money({ amount: Number(fees)*100, currency }).divide(summaryArray.length);
+    const personDiscounts = Money({ amount: Number(discounts)*100, currency}).divide(summaryArray.length);
     const personTotal = SplitService.calculatePersonTotal(person, summaryArray, currentBill);
 
     const toggleDetailState = () => {
@@ -39,7 +45,7 @@ function SplitDetail(props) {
             <li key={item.itemId}>
                 {item.itemName}
                 <span className='currency'>$</span>
-                <span className='amount'><Currency amount={item.sum} /></span>
+                <span className='amount'>{item.sum.toFormat('0,0.00')}</span>
             </li>
         )
     });
@@ -67,32 +73,32 @@ function SplitDetail(props) {
                         <li>
                             Items subtotal
                             <span className='currency'>$</span>
-                            <span className='amount'><Currency amount={itemsSubtotal} /></span>
+                            <span className='amount'>{itemsSubtotal.toFormat('0,0.00')}</span>
                         </li>
                         <li>
                             Tax
                             <span className='currency'>$</span>
-                            <span className='amount'><Currency amount={personTax} /></span>
+                            <span className='amount'>{personTax.toFormat('0,0.00')}</span>
                         </li>
                         <li>
                             Tip
                             <span className='currency'>$</span>
-                            <span className='amount'><Currency amount={personTip} /></span>
+                            <span className='amount'>{personTip.toFormat('0,0.00')}</span>
                         </li>
                         <li>
                             Fees
                             <span className='currency'>$</span>
-                            <span className='amount'><Currency amount={personFees} /></span>
+                            <span className='amount'>{personFees.toFormat('0,0.00')}</span>
                         </li>
                         <li>
                             Discounts
                             <span className='currency'>$</span>
-                            <span className='amount'>(<Currency amount={personDiscounts} />)</span>
+                            <span className='amount'>({personDiscounts.toFormat('0,0.00')})</span>
                         </li>
                         <li>
                             Total
                             <span className='currency'>$</span>
-                            <span className='amount'><Currency amount={personTotal} /></span>
+                            <span className='amount'>{personTotal.toFormat('0,0.00')}</span>
                         </li>
                     </ul>
                 </li>

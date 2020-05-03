@@ -6,6 +6,9 @@ import { IconBack, IconShare, Emoji, IconAdd } from '../UI/UI';
 import AvatarList from '../AvatarList/AvatarList';
 import ItemList from '../ItemList/ItemList';
 import SplitSummary from '../SplitSummary/SplitSummary';
+import Dinero from 'dinero.js';
+const Money = Dinero;
+const currency = 'USD';
 
 function BillEditor() {
     const history = useHistory();
@@ -65,7 +68,9 @@ function BillEditor() {
                                 <h2>
                                     Discounts
                                     <span className='currency'>$</span>
-                                    <span className='amount'>{currentBill.discounts}</span>
+                                    <span className='amount'>
+                                        {Money({ amount: (Number(currentBill.discounts)*100), currency}).toFormat('0,0.00')}
+                                    </span>
                                 </h2>
                             </Link>
                         </div>
@@ -74,28 +79,36 @@ function BillEditor() {
                                 <h2>
                                     Tax
                                     <span className='currency'>$</span>
-                                    <span className='amount'>{currentBill.tax}</span>
+                                    <span className='amount'>
+                                        {Money({ amount: (Number(currentBill.tax)*100), currency}).toFormat('0,0.00')}
+                                    </span>
                                 </h2>
                             </Link>
                             <Link className='bill-totals__edit' to={`/bills/${currentBill.id}/edit`}>
                                 <h2>
                                     Tip
                                     <span className='currency'>$</span>
-                                    <span className='amount'>{currentBill.tip}</span>
+                                    <span className='amount'>
+                                        {Money({ amount: (Number(currentBill.tip)*100), currency}).toFormat('0,0.00')}
+                                    </span>
                                 </h2>
                             </Link>
                             <Link className='bill-totals__edit' to={`/bills/${currentBill.id}/edit`}>
                                 <h2>
                                     Fees
                                     <span className='currency'>$</span>
-                                    <span className='amount'>{currentBill.fees}</span>
+                                    <span className='amount'>
+                                        {Money({ amount: (Number(currentBill.fees)*100), currency}).toFormat('0,0.00')}
+                                    </span>
                                 </h2>
                             </Link>
                             <Link className='bill-totals__edit' to={`/bills/${currentBill.id}/edit`}>
                                 <h2>
                                     Total
                                     <span className='currency'>$</span>
-                                    <span className='amount'>{currentBill.total}</span>
+                                    <span className='amount'>
+                                        {Money({ amount: (Number(currentBill.total)*100), currency}).toFormat('0,0.00')}
+                                    </span>
                                 </h2>
                             </Link>
                         </div>

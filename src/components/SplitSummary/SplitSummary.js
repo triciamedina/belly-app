@@ -2,7 +2,6 @@ import React from 'react';
 import './SplitSummary.css';
 import SplitService from '../../services/split-service';
 import Avatar from '../Avatar/Avatar';
-import Currency from '../Currency/Currency';
 import { useStateValue } from '../../state';
 import SplitDetail from '../SplitDetail/SplitDetail';
 
@@ -35,7 +34,7 @@ function SplitSummary(props) {
                     <Avatar className={'Avatar ' + person.avatarColor}>
                         {person.nickname.slice(0,2)}
                     </Avatar>
-                    <span><Currency amount={personTotal} shouldShowSymbol={true} /></span>
+                    <span>{personTotal.toFormat('$0,0.00')}</span>
                 </button>
             </li>
         )

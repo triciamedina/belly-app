@@ -5,8 +5,14 @@ function Currency(props) {
 
     return (
         <>
-            { new Intl.NumberFormat(lang, { style: shouldShowSymbol ? 'currency' : 'decimal', currency})
-                        .format(amount) }
+            { new Intl.NumberFormat(lang, 
+                { 
+                    style: shouldShowSymbol ? 'currency' : 'decimal', 
+                    currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })
+                .format(amount) }
         </>
     )
 }
