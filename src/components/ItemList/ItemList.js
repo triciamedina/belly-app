@@ -1,11 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../../state';
 import './ItemList.css';
 import AvatarList from '../AvatarList/AvatarList';
 import SplitItemForm from '../SplitItemForm/SplitItemForm';
 
 function ItemList(props) {
     const { items, currentBillId } = props;
+    const [ { splitItem } , dispatch ] = useStateValue();
+    const shouldShowSplitForm = splitItem.isSplitItemOpen;
+    const { currentlyViewing } = splitItem;
+
+    const handleOpenForm = (itemId) => {
+        const newView = itemId;
+        console.log(newView)
+        dispatch({
+            type: 'toggleSplitItem',
+            setSplitItem: { 
+                isSplitItemOpen: !shouldShowSplitForm,
+                currentlyViewing: newView
+            }
+        });
+    }
 
     return (
         <ul className='ItemList'>
@@ -19,13 +35,13 @@ function ItemList(props) {
                             {item.itemName}
                         </h2>
                     </Link>
-                    <button className='edit-share'>
+                    <button className='edit-share' onClick={() => handleOpenForm(item.id)}>
                         {item.splitList.length === 0
                             ? <p>Split</p>
                             : <AvatarList list={item.splitList}/>
                         }
                     </button>
-                    <SplitItemForm />
+                    {(shouldShowSplitForm && currentlyViewing === item.id) ? <SplitItemForm /> : null}
                 </li>)
             )}
         </ul>

@@ -25,6 +25,10 @@ function App() {
     billDetail: {
       isBillDetailOpen: false,
       currentlyViewing: ''
+    },
+    splitItem: {
+      isSplitItemOpen: false,
+      currentlyViewing: ''
     }
   };
 
@@ -59,6 +63,11 @@ function App() {
         return {
           ...state,
           billDetail: action.setBillDetail
+        }
+      case 'toggleSplitItem':
+        return {
+          ...state,
+          splitItem: action.setSplitItem
         }
       default:
         return state;
