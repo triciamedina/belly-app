@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SplitItemForm.css';
 import { IconClose, IconSubtract, IconAdd } from '../UI/UI';
 import { useStateValue } from '../../state';
@@ -19,9 +19,24 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         });
     }
 
+
     console.log(item.splitList)
 
     const items = item.splitList.map(person => {
+        const [ shareQty, setShareQty ] = useState(person.shareQty);
+
+        const decrementShare = () => {
+            if (shareQty > 0) {
+                const newValue = Number(shareQty) - 1;
+                setShareQty(newValue);
+            }
+        }
+
+        const incrementShare = () => {
+            const newValue = Number(shareQty) + 1;
+            setShareQty(newValue);
+        }
+
         return (
             <li className='split-item' key={person.id}>
                 <Avatar className={'Avatar ' + person.avatarColor}>
@@ -29,18 +44,20 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 </Avatar>
                 <h3>{person.nickname}</h3>
                 <div className='split-count'>
-                    <span className='count'>{person.shareQty}</span>
-                    <button className='add-subtract-btn'>
+                    <span className='count'>
+                        {shareQty}
+                    </span>
+                    <button className='add-subtract-btn' onClick={() => decrementShare()}>
                         <IconSubtract />
                     </button>
-                    <button className='add-subtract-btn'>
+                    <button className='add-subtract-btn' onClick={() => incrementShare()}>
                         <IconAdd />
                     </button>
                 </div>
             </li>
         )
     });
-    
+
     return (
         <div className='SplitItemForm' ref={ref}>
             <button className='close' onClick={() => handleCloseForm()}>
