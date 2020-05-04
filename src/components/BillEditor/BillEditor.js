@@ -58,7 +58,8 @@ function BillEditor() {
                     {/* Add new item button */}
                     <Link className='AddItemButton' to={`/bills/${currentBill.id}/add`}>
                         <IconAdd />
-                        Add
+                        {/* {currentBill.items.length ? 'Add' : 'Add items'} */}
+                        Add items
                     </Link>
 
                     {/* Bill totals */}
