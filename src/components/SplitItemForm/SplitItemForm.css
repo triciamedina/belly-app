@@ -8,3 +8,23 @@
     width: 100%;
     max-width: 340px;
 }
+
+.SplitItemForm .close {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background-color: transparent;
+}
+
+.SplitItemForm .split-list {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 60px;
+}

@@ -4,6 +4,7 @@ import { useStateValue } from '../../state';
 import './ItemList.css';
 import AvatarList from '../AvatarList/AvatarList';
 import SplitItemForm from '../SplitItemForm/SplitItemForm';
+import OutsideClick from '../OutsideClick/OutsideClick';
 
 function ItemList(props) {
     const { items, currentBillId } = props;
@@ -11,9 +12,9 @@ function ItemList(props) {
     const shouldShowSplitForm = splitItem.isSplitItemOpen;
     const { currentlyViewing } = splitItem;
 
-    const handleOpenForm = (itemId) => {
+    const toggleOpenForm = (itemId) => {
         const newView = itemId;
-        console.log(newView)
+
         dispatch({
             type: 'toggleSplitItem',
             setSplitItem: { 
@@ -25,8 +26,8 @@ function ItemList(props) {
 
     return (
         <ul className='ItemList'>
-            {items.map((item, index) => 
-                (<li key={index} className='Item'>
+            {items.map((item, index) => (
+                <li key={index} className='Item'>
                     <Link className='edit-item' to={`/bills/${currentBillId}/${item.id}/edit`}>
                         <h2>
                             <span className='quantity'>
@@ -35,15 +36,20 @@ function ItemList(props) {
                             {item.itemName}
                         </h2>
                     </Link>
-                    <button className='edit-share' onClick={() => handleOpenForm(item.id)}>
+                    <button className='edit-share' onClick={() => toggleOpenForm(item.id)}>
                         {item.splitList.length === 0
                             ? <p>Split</p>
                             : <AvatarList list={item.splitList}/>
                         }
                     </button>
-                    {(shouldShowSplitForm && currentlyViewing === item.id) ? <SplitItemForm /> : null}
-                </li>)
-            )}
+                    {(shouldShowSplitForm && currentlyViewing === item.id) 
+                        ?   <OutsideClick onOutsideClick={() => toggleOpenForm('')}>
+                                <SplitItemForm item={item} /> 
+                            </OutsideClick>
+                        : null
+                    }
+                </li>
+            ))}
         </ul>
     )
 }
