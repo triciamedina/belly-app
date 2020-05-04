@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ItemList.css';
 import AvatarList from '../AvatarList/AvatarList';
+import SplitItemForm from '../SplitItemForm/SplitItemForm';
 
 function ItemList(props) {
     const { items, currentBillId } = props;
@@ -24,6 +25,7 @@ function ItemList(props) {
                             : <AvatarList list={item.splitList}/>
                         }
                     </button>
+                    <SplitItemForm />
                 </li>)
             )}
         </ul>
