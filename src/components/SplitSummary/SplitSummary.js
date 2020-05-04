@@ -41,12 +41,12 @@ function SplitSummary(props) {
     });
 
     return ( 
-        <>
+        <div className='split-summary'>
             {shouldShowDetail
                 ?   <SplitDetail summaryArray={summaryArray} currentBill={currentBill} />
                 :   (items.length ? <ul className='SplitSummary'>{items}</ul> : null)
             } 
-        </>
+        </div>
     )
 }
 

@@ -52,14 +52,6 @@
     margin: 0px;
 }
 
-.BillEditor .split-summary {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0px 18px;
-}
-
 .currently-viewing {
     display: flex;
     align-items: center;

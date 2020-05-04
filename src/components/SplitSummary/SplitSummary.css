@@ -1,3 +1,11 @@
+.BillEditor .split-summary {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 18px;
+}
+
 .SplitSummary {
     list-style: none;
     margin: 0px;
