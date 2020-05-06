@@ -4,14 +4,23 @@ import { IconSubtract, IconAdd } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
 
 function SplitItem(props) {
-        const { id, nickname, avatarColor, shareQty, handleSplit } = props;
+        const { 
+            id, 
+            nickname, 
+            avatarColor, 
+            shareQty, 
+            handleSplit,
+            handleShowSplitterForm
+        } = props;
 
         return (
-            <li className='split-item' key={id}>
-                <Avatar className={'Avatar ' + avatarColor}>
-                    {nickname.slice(0,2)}
-                </Avatar>
-                <h3>{nickname}</h3>
+            <li className='SplitItem' key={id}>
+                <button className='edit' onClick={() => handleShowSplitterForm(id)}>
+                    <Avatar className={'Avatar ' + avatarColor}>
+                        {nickname.slice(0,2)}
+                    </Avatar>
+                    <h3>{nickname}</h3>
+                </button>
                 <div className='split-count'>
                     <span className='count'>
                         {shareQty}
@@ -20,7 +29,8 @@ function SplitItem(props) {
                         onClick={() => handleSplit(id, 
                             {
                                 name: nickname, 
-                                shareQty: shareQty > 0 ? (Number(shareQty) - 1).toString() : shareQty
+                                shareQty: shareQty > 0 ? (Number(shareQty) - 1).toString() : shareQty,
+                                avatarColor
                             }
                         )}
                     >
@@ -30,7 +40,8 @@ function SplitItem(props) {
                         onClick={() => handleSplit(id, 
                             { 
                                 name: nickname, 
-                                shareQty: (Number(shareQty) + 1).toString() 
+                                shareQty: (Number(shareQty) + 1).toString(),
+                                avatarColor
                             }
                         )}
                     >
