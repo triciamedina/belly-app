@@ -8,17 +8,17 @@ import OutsideClick from '../OutsideClick/OutsideClick';
 
 function ItemList(props) {
     const { items, currentBillId } = props;
-    const [ { splitItem } , dispatch ] = useStateValue();
-    const shouldShowSplitForm = splitItem.isSplitItemOpen;
-    const { currentlyViewing } = splitItem;
+    const [ { splitForm } , dispatch ] = useStateValue();
+    const shouldShowSplitForm = splitForm.isSplitFormOpen;
+    const { currentlyViewing } = splitForm;
 
     const toggleOpenForm = (itemId) => {
         const newView = itemId;
 
         dispatch({
-            type: 'toggleSplitItem',
-            setSplitItem: { 
-                isSplitItemOpen: !shouldShowSplitForm,
+            type: 'toggleSplitForm',
+            setSplitForm: { 
+                isSplitFormOpen: !shouldShowSplitForm,
                 currentlyViewing: newView
             }
         });
@@ -44,7 +44,7 @@ function ItemList(props) {
                     </button>
                     {(shouldShowSplitForm && currentlyViewing === item.id) 
                         ?   <OutsideClick onOutsideClick={() => toggleOpenForm('')}>
-                                <SplitItemForm item={item} /> 
+                                <SplitItemForm billId={currentBillId} itemId={item.id} /> 
                             </OutsideClick>
                         : null
                     }

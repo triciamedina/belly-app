@@ -1,81 +1,86 @@
 import React, { useState } from 'react';
 import './SplitItemForm.css';
-import { IconClose, IconSubtract, IconAdd } from '../UI/UI';
+import { IconClose, IconAdd } from '../UI/UI';
 import { useStateValue } from '../../state';
-import Avatar from '../Avatar/Avatar';
+import SplitItem from '../SplitItem/SplitItem';
 
 const SplitItemForm = React.forwardRef((props, ref) => {
-    const { item } = props;
-    const [ { splitItem } , dispatch ] = useStateValue();
-    const shouldShowSplitForm = splitItem.isSplitItemOpen;
-
+    // Handle show/hide split form
+    const [ { splitForm } , dispatch ] = useStateValue();
+    const shouldShowSplitForm = splitForm.isSplitFormOpen;
     const handleCloseForm = () => {
         dispatch({
-            type: 'toggleSplitItem',
-            setSplitItem: { 
-                isSplitItemOpen: !shouldShowSplitForm,
+            type: 'toggleSplitForm',
+            setSplitForm: { 
+                isSplitFormOpen: !shouldShowSplitForm,
                 currentlyViewing: ''
             }
         });
     }
 
+    // Bill Id and Item Id from props
+    const { billId, itemId } = props;
 
-    console.log(item.splitList)
+    // Match bill and item from context
+    const [{ bills }] = useStateValue();
+    const { ownedByMe, sharedWithMe } = bills;
+    const [ owned ] = ownedByMe.filter(bill => bill.id === billId);
+    const [ shared ] = sharedWithMe.filter(bill => bill.id === billId);
+    
+    // Target current item and split list
+    const [ currentItem ] = 
+        owned.items.filter(item => item.id === itemId) || shared.items.filter(item => item.id === itemId);
+    
+    // Local state to manage increment/decrement 
+    const currentShares = {};
+    currentItem.splitList.forEach(item => {
+        currentShares[item.id] = { name: item.nickname, shareQty: item.shareQty }
+    })
+    const [ split, setSplits ] = useState(currentShares || {});
 
-    const items = item.splitList.map(person => {
-        const [ shareQty, setShareQty ] = useState(person.shareQty);
+    // Update local state on increment/decrement click
+    const handleSplit = (id, value) => {
+        setSplits({...split, [id]: value});
+    }
 
-        const decrementShare = () => {
-            if (shareQty > 0) {
-                const newValue = Number(shareQty) - 1;
-                setShareQty(newValue);
-            }
-        }
-
-        const incrementShare = () => {
-            const newValue = Number(shareQty) + 1;
-            setShareQty(newValue);
-        }
-
-        return (
-            <li className='split-item' key={person.id}>
-                <Avatar className={'Avatar ' + person.avatarColor}>
-                    {person.nickname.slice(0,2)}
-                </Avatar>
-                <h3>{person.nickname}</h3>
-                <div className='split-count'>
-                    <span className='count'>
-                        {shareQty}
-                    </span>
-                    <button className='add-subtract-btn' onClick={() => decrementShare()}>
-                        <IconSubtract />
-                    </button>
-                    <button className='add-subtract-btn' onClick={() => incrementShare()}>
-                        <IconAdd />
-                    </button>
-                </div>
-            </li>
-        )
-    });
+    // const submitHandler = () => {
+    //     console.log('saved')
+    // }
 
     return (
+        <>
+        
         <div className='SplitItemForm' ref={ref}>
             <button className='close' onClick={() => handleCloseForm()}>
                 <IconClose />
             </button>
             <ul className='split-list'>
-                {items}
+                {currentItem.splitList.map(person => {
+                    const { id, nickname, avatarColor} = person;
+
+                    return <SplitItem 
+                                key={id}
+                                id={id} 
+                                nickname={nickname} 
+                                avatarColor={avatarColor} 
+                                shareQty={split[id].shareQty}
+                                handleSplit={handleSplit}
+                            />
+                })}
             </ul>
             <button className='add-item'>
                 <IconAdd />
                 Add
             </button>
             <div className='button-container'>
-                <button className='Button save'>
+                <button className='Button save' 
+                    // onClick={() => submitHandler()}
+                >
                     Save
                 </button>
             </div>
         </div>
+        </>
     )
 });
 
