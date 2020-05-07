@@ -25,7 +25,7 @@ function SplitterForm(props) {
         event.preventDefault();
         
         const id = splitterToEdit ? splitterToEdit[0] : uuidv4();
-        const shareQty = splitterToEdit ? splitterToEdit[1].shareQty : '0';
+        const shareQty = splitterToEdit ? splitterToEdit[1].shareQty : '1';
         const avatarColor = splitterToEdit ? splitterToEdit[1].avatarColor : getRandomColor()
 
         handleSplit(id, 

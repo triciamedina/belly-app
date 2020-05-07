@@ -27,10 +27,11 @@ const SplitItemForm = React.forwardRef((props, ref) => {
     const { ownedByMe, sharedWithMe } = bills;
     const [ owned ] = ownedByMe.filter(bill => bill.id === billId);
     const [ shared ] = sharedWithMe.filter(bill => bill.id === billId);
-    
+    console.log(itemId)
     // Target current item and split list
-    const [ currentItem ] = 
-        owned.items.filter(item => item.id === itemId) || shared.items.filter(item => item.id === itemId);
+    const [ currentItem ] = owned
+        ? owned.items.filter(item => item.id === itemId)
+        : shared.items.filter(item => item.id === itemId);
     
     // Populate with initial list from context
     const currentShares = {};
@@ -89,8 +90,56 @@ const SplitItemForm = React.forwardRef((props, ref) => {
             newSplitList.push(newPerson);
         })
 
-        console.log(currentItem.splitList, newSplitList)
+        let oldBillList;
+        let currentBill;
+        let oldItemList;
+        let updatedItem;
+        let newItemList;
+        let newOwnedList;
+        let newSharedList
 
+        if (owned) {
+            
+            // Bill list to be merged with
+            oldBillList = ownedByMe.filter(bill => bill.id.toString() !== owned.id.toString());
+            
+            // Bill to be merged with
+            currentBill = ownedByMe.filter(bill => bill.id.toString() === owned.id.toString())[0];
+            
+            //Item list to be merged with
+            oldItemList = currentBill.items.filter(item => item.id.toString() !== currentItem.id.toString());
+            // Item to update
+            updatedItem = currentBill.items.filter(item => item.id.toString() === currentItem.id.toString())[0];
+            updatedItem.splitList = newSplitList;
+
+            newItemList = [...oldItemList, updatedItem];
+            currentBill.items = newItemList;
+            newOwnedList = [...oldBillList, currentBill];
+        }
+        if (shared) {
+            // Bill list to be merged with
+            oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== shared.id.toString());
+            // Bill to be merged with
+            currentBill = sharedWithMe.filter(bill => bill.id.toString() === shared.id.toString())[0];
+            //Item list to be merged with
+            oldItemList = currentBill.items.filter(item => item.id.toString() !== currentItem.id.toString());
+            // Item to update
+            updatedItem = currentBill.items.filter(item => item.id.toString() === currentItem.id.toString())[0];
+            updatedItem.splitList = newSplitList;
+            newItemList = [...oldItemList, updatedItem];
+            currentBill.items = newItemList;
+            newSharedList = [...oldBillList, currentBill];
+        }
+
+        dispatch({
+            type: 'updateBills',
+            setBills: {
+                ownedByMe: newOwnedList || bills.ownedByMe,
+                sharedWithMe: newSharedList || bills.sharedWithMe
+            }
+        });
+
+        handleCloseForm();
     }
 
     // Render list of splitters from local state
