@@ -23,13 +23,6 @@ const DATA ={
                             nickname: 'Tricia',
                             avatarColor: 'orange',
                             shareQty: '1'
-                        },
-                        {
-                            id: 2,
-                            itemId: 1,
-                            nickname: 'Frodo',
-                            avatarColor: 'blue',
-                            shareQty: '2'
                         }
                     ]
                 },
@@ -40,18 +33,11 @@ const DATA ={
                     price: '8.99',
                     splitList: [
                         {
-                            id: 1,
-                            itemId: 2,
-                            nickname: 'Tricia',
-                            avatarColor: 'orange',
-                            shareQty: '1'
-                        },
-                        {
                             id: 2,
                             itemId: 2,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
-                            shareQty: '2'
+                            shareQty: '1'
                         }
                     ]
                 },
@@ -60,22 +46,7 @@ const DATA ={
                     itemName: 'Sisig With Rice',
                     quantity: '1',
                     price: '8.99',
-                    splitList: [
-                        {
-                            id: 1,
-                            itemId: 3,
-                            nickname: 'Tricia',
-                            avatarColor: 'orange',
-                            shareQty: '1'
-                        },
-                        {
-                            id: 2,
-                            itemId: 3,
-                            nickname: 'Frodo',
-                            avatarColor: 'blue',
-                            shareQty: '2'
-                        }
-                    ]
+                    splitList: []
                 }
             ]
         },
