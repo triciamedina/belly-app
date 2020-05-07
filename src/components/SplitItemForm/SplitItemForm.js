@@ -53,6 +53,18 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         setSplit({...split, [id]: value});
     }
 
+    const handleDelete = (id) => {
+
+        const newSplit = Object.keys(split).reduce((object, key) => {
+            if (key !== id) {
+                object[key] = split[key]
+            }
+            return object
+        }, {});
+
+        setSplit(newSplit); 
+    }
+
     const handleEditSplitter = (id) => {
         setSplitter(id);
         toggleOpenSplitterForm(!showSplitterForm);
@@ -63,9 +75,23 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         toggleOpenSplitterForm(!showSplitterForm);
     }
 
-    // const submitHandler = () => {
-    //     console.log('saved')
-    // }
+    const submitHandler = () => {
+
+        // Build new split list
+        const newSplitList = [];
+        Object.entries(split).forEach(person => {
+            const newPerson = {};
+            newPerson.id = person[0];
+            newPerson.itemId = currentItem.id;
+            newPerson.nickname = person[1].name;
+            newPerson.avatarColor = person[1].avatarColor;
+            newPerson.shareQty = person[1].shareQty;
+            newSplitList.push(newPerson);
+        })
+
+        console.log(currentItem.splitList, newSplitList)
+
+    }
 
     // Render list of splitters from local state
     const splitList = Object.entries(split).map(person => {
@@ -91,6 +117,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         handleGoBack={handleGoBack}
                         onClose={handleCloseForm}
                         handleSplit={handleSplit}
+                        handleDelete={handleDelete}
                         splitterToEdit={splitterToEdit}
                     />
                 :   (<div className='SplitItemForm' ref={ref}>
@@ -108,8 +135,9 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                             Add
                         </button>
                         <div className='button-container'>
-                            <button className='Button save' 
-                                // onClick={() => submitHandler()}
+                            <button 
+                                className='Button save' 
+                                onClick={submitHandler}
                             >
                                 Save
                             </button>

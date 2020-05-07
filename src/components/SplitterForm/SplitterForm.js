@@ -4,11 +4,9 @@ import { IconClose, IconBack } from '../UI/UI';
 import { v4 as uuidv4 } from 'uuid';
 
 function SplitterForm(props) {
-    const { handleGoBack, onClose, handleSplit, splitterToEdit } = props;
+    const { handleGoBack, onClose, handleSplit, splitterToEdit, handleDelete } = props;
     const nameOfExisting = splitterToEdit ? splitterToEdit[1].name : null;
     const [ enteredName, setEnteredName ] = useState(nameOfExisting || '');
-
-    console.log(splitterToEdit)
 
     const getRandomColor = () => {
         const colors = ['pink', 'light-blue', 'light-purple', 'orange', 'purple', 'blue'];
@@ -19,7 +17,8 @@ function SplitterForm(props) {
 
     const deleteHandler = (event) => {
         event.preventDefault();
-        console.log('Deleted')
+        handleDelete(splitterToEdit[0]);
+        handleGoBack();
     }
 
     const submitHandler = (event) => {
@@ -59,9 +58,11 @@ function SplitterForm(props) {
                     onChange={event => setEnteredName(event.target.value)}
                 />
                 <div className='button-container'>
-                    <button className='Button ghost' onClick={event => deleteHandler(event)}>
-                        Delete
-                    </button>
+                   {splitterToEdit 
+                    ?   <button className='Button ghost' onClick={event => deleteHandler(event)}>
+                            Delete
+                        </button>
+                    : null}
                     <button className='Button' type='submit'>
                         Save
                     </button>
