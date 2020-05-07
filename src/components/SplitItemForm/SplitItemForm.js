@@ -95,13 +95,15 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         // Build new split list
         const newSplitList = [];
         Object.entries(split).forEach(person => {
-            const newPerson = {};
-            newPerson.id = person[0];
-            newPerson.itemId = currentItem.id;
-            newPerson.nickname = person[1].name;
-            newPerson.avatarColor = person[1].avatarColor;
-            newPerson.shareQty = person[1].shareQty;
-            newSplitList.push(newPerson);
+            if (Number(person[1].shareQty) > 0) {
+                const newPerson = {};
+                newPerson.id = person[0];
+                newPerson.itemId = currentItem.id;
+                newPerson.nickname = person[1].name;
+                newPerson.avatarColor = person[1].avatarColor;
+                newPerson.shareQty = person[1].shareQty;
+                newSplitList.push(newPerson);
+            }
         })
 
         let oldBillList;
