@@ -1,10 +1,14 @@
 import React from 'react';
 import './BillOptions.css';
-import { IconShare, IconTrash } from '../UI/UI';
+import { IconShare, IconTrash, IconClose } from '../UI/UI';
 
 const BillOptions = React.forwardRef((props, ref) => {
+    const { id, onDelete, onClose } = props;
     return (
         <div className='BillOptions' ref={ref}>
+            <button className='close' onClick={onClose}>
+                <IconClose />
+            </button>
             <ul className='OptionsList'>
                 <li className='Option'>
                     <button>
@@ -14,8 +18,8 @@ const BillOptions = React.forwardRef((props, ref) => {
                 </li>
                 <li className='Option'>
                     <button
-                        id={props.id}
-                        onClick={props.onDelete()}
+                        id={id}
+                        onClick={onDelete}
                     >
                         <IconTrash />
                         <span>Delete</span>
@@ -26,4 +30,4 @@ const BillOptions = React.forwardRef((props, ref) => {
     )
 })
 
-export default BillOptions;
+export default React.memo(BillOptions);

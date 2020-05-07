@@ -7,7 +7,25 @@
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
     width: 200px;
     z-index: 6;
-    padding: 12px 0px;
+    padding-top: 32px;
+    padding-bottom: 16px;
+}
+
+.BillOptions .close {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+}
+
+.BillOptions .close img {
+    filter: brightness(0.1)
 }
 
 .Option button {
