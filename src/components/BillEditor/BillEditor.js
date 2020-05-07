@@ -10,7 +10,7 @@ import BillTotals from '../BillTotals/BillTotals'
 
 function BillEditor() {
     const history = useHistory();
-    const [{ bills }] = useStateValue();
+    const [{ bills }, dispatch] = useStateValue();
 
     const routeParamsId = useRouteMatch().params.bill_id;
     const { ownedByMe, sharedWithMe } = bills;
@@ -21,7 +21,15 @@ function BillEditor() {
 
     const handleGoBack = () => {
         (ownedItem && history.push('/bills')) ||
-        (sharedItem && history.push('/bills/shared'))
+        (sharedItem && history.push('/bills/shared'));
+
+        dispatch({
+            type: 'toggleBillDetail',
+            setBillDetail: { 
+                isBillDetailOpen: false,
+                currentlyViewing: ''
+            }
+        });
     }
 
     return (
