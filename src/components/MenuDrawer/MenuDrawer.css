@@ -10,6 +10,23 @@
     z-index: 6;
 }
 
+.MenuDrawer .close {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background-color: transparent;
+}
+
+.MenuDrawer .close img {
+    filter: brightness(0.1)
+}
+
 .Profile {
     padding: 18px;
     padding-top: 0px;

@@ -4,10 +4,11 @@ import './MenuDrawer.css';
 import { useStateValue } from '../../state';
 import TokenService from '../../services/token-service';
 import Avatar from '../Avatar/Avatar';
-import { Button } from '../UI/UI';
+import { Button, IconClose } from '../UI/UI';
 import MenuList from '../MenuList/MenuList';
 
 const MenuDrawer = React.forwardRef((props, ref) => {
+    const { onCloseClick } = props;
     const [{ profile }] = useStateValue();
     const [ , dispatch] = useStateValue();
     const history = useHistory();
@@ -22,6 +23,9 @@ const MenuDrawer = React.forwardRef((props, ref) => {
 
     return (
         <div className='MenuDrawer' ref={ref}>
+            <button className='close' onClick={onCloseClick} >
+                <IconClose />
+            </button>
             <div className='Profile'>
                 <Avatar className={'Avatar ' + profile.avatarColor}>
                     {profile.username.slice(0, 2)}
@@ -43,4 +47,4 @@ const MenuDrawer = React.forwardRef((props, ref) => {
     )
 });
 
-export default MenuDrawer;
+export default React.memo(MenuDrawer);

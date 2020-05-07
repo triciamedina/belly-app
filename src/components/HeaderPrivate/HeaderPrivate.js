@@ -24,7 +24,7 @@ function HeaderPrivate() {
             <MenuButton />
             {shouldShowMenu 
                 ?   <OutsideClick onOutsideClick={() => toggleMenuHandler()} >
-                        <MenuDrawer />
+                        <MenuDrawer onCloseClick={() => toggleMenuHandler()} />
                     </OutsideClick>
                 : null
             }

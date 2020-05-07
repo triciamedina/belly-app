@@ -69,7 +69,6 @@ const SplitItemForm = React.forwardRef((props, ref) => {
     }
 
     const handleDelete = (id) => {
-
         const newSplit = Object.keys(split).reduce((object, key) => {
             if (key !== id) {
                 object[key] = split[key]
@@ -95,6 +94,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         // Build new split list
         const newSplitList = [];
         Object.entries(split).forEach(person => {
+            // Only save to split list if share is greater than 0
             if (Number(person[1].shareQty) > 0) {
                 const newPerson = {};
                 newPerson.id = person[0];
@@ -107,7 +107,6 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         })
 
         let oldBillList;
-        // let currentBill;
         let oldItemList;
         let updatedItem;
         let newItemList;
@@ -115,13 +114,8 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         let newSharedList
 
         if (owned) {
-            
             // Bill list to be merged with
             oldBillList = ownedByMe.filter(bill => bill.id.toString() !== owned.id.toString());
-            
-            // Bill to be merged with
-            // currentBill = ownedByMe.filter(bill => bill.id.toString() === owned.id.toString())[0];
-            
             //Item list to be merged with
             oldItemList = currentBill.items.filter(item => item.id.toString() !== currentItem.id.toString());
             // Item to update
@@ -135,8 +129,6 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         if (shared) {
             // Bill list to be merged with
             oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== shared.id.toString());
-            // Bill to be merged with
-            // currentBill = sharedWithMe.filter(bill => bill.id.toString() === shared.id.toString())[0];
             //Item list to be merged with
             oldItemList = currentBill.items.filter(item => item.id.toString() !== currentItem.id.toString());
             // Item to update
