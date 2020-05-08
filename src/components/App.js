@@ -13,6 +13,7 @@ function App() {
 
   const initialState = {
     menu: { isMenuOpen: false },
+    shareModal: { isShareModalOpen: false },
     login: { isLoggedIn: false },
     profile: {
       username: '',
@@ -39,6 +40,11 @@ function App() {
           ...state,
           menu: action.newMenu
         }
+        case 'toggleShareModalState':
+          return {
+            ...state,
+            shareModal: action.newShareModal
+          }
       case 'onLoginSuccess':
         return {
           ...state,

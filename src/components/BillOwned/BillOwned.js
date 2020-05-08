@@ -45,7 +45,7 @@ const BillOwned = React.memo(props => {
                 ?   <OutsideClick 
                         onOutsideClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
                     >
-                        <BillOptions onDelete={() => deleteHandler} onClose={() => toggleOptionsMenuState(!isOptionsMenuOpen)} />
+                        <BillOptions onDelete={deleteHandler} onClose={() => toggleOptionsMenuState(!isOptionsMenuOpen)} />
                     </OutsideClick>
                 : null
             }

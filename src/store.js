@@ -20,7 +20,7 @@ const DATA ={
                         {
                             id: 1,
                             itemId: 1,
-                            nickname: 'Tricia',
+                            nickname: 'Sam',
                             avatarColor: 'orange',
                             shareQty: '1'
                         }
@@ -70,7 +70,7 @@ const DATA ={
                         {
                             id: 1,
                             itemId: 4,
-                            nickname: 'Tricia',
+                            nickname: 'Sam',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
@@ -105,7 +105,7 @@ const DATA ={
                         {
                             id: 1,
                             itemId: 5,
-                            nickname: 'Tricia',
+                            nickname: 'Sam',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
@@ -142,7 +142,7 @@ const DATA ={
                         {
                             id: 1,
                             itemId: 6,
-                            nickname: 'Tricia',
+                            nickname: 'Sam',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },

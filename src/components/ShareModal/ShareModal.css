@@ -1,0 +1,82 @@
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ShareModal {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 37.5px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
+    z-index: 6;
+    padding: 30px;
+    font-family: inherit;
+}
+
+.ShareModal .close {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background-color: transparent;
+}
+
+.ShareModal .close img {
+    filter: brightness(0.1)
+}
+
+.ShareModal h1 {
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.ShareModal form {
+    padding: 14px 0px;
+    margin: 6px 0px 12px 0px;
+}
+
+.ShareModal textarea {
+    border: 0;
+    border-bottom: 1px solid black;
+    width: 100%;
+    resize: none;
+    font-size: 12px;
+    font-family: inherit;
+}
+
+.ShareModal .Button {
+    padding: 15px 28px;
+}
+
+.ShareModal .Button.ghost {
+    float: right;
+    padding-right: 0px;
+}
+
+.ShareModal .Button.ghost:hover {
+    color: #621FEE !important;
+}
+
+.ShareModal .copy-success {
+    font-size: 14px;
+    margin-left: 15px;
+    color: #621FEE;
+}
