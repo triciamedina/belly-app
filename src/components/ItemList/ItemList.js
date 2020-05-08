@@ -12,6 +12,10 @@ function ItemList(props) {
     const shouldShowSplitForm = splitForm.isSplitFormOpen;
     const { currentlyViewing } = splitForm;
 
+    items.sort((a, b) => {
+        return new Date(a.date_added) - new Date(b.date_added);
+    });
+
     const toggleOpenForm = (itemId) => {
         const newView = itemId;
 

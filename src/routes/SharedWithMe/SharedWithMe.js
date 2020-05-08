@@ -8,6 +8,10 @@ function SharedWithMe() {
     const [{ bills }] = useStateValue();
     const items = bills.sharedWithMe;
 
+    items.sort((a, b) => {
+        return new Date(a.date_added) - new Date(b.date_added);
+    });
+
     return (
         <div className='SharedWithMe'>
             <div className='SharedWithMe__title-container'>

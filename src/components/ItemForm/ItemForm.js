@@ -75,6 +75,7 @@ function ItemForm(props) {
         // Build new item object
         const newItem = {
             id: existingItem.id || uuidv4(),
+            date_added: existingItem.date_added || new Date(),
             itemName: enteredItemName,
             quantity: quantityEl.current.value,
             price: enteredItemPrice,
