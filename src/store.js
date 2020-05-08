@@ -2,6 +2,7 @@ const DATA ={
     ownedByMe: [
         {
             id: 1,
+            date_added: '2020-01-01T23:28:56.782Z',
             billName: 'Señor Sisig',
             billThumbnail: '🌯',
             lastViewed: 'Last viewed today at 1:25 pm',
@@ -13,12 +14,14 @@ const DATA ={
             items: [
                 {
                     id: 1,
+                    date_added: '2020-01-02T23:28:56.782Z',
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
                     splitList: [
                         {
                             id: 1,
+                            date_added: '2020-01-02T23:28:56.782Z',
                             itemId: 1,
                             nickname: 'Sam',
                             avatarColor: 'orange',
@@ -28,12 +31,14 @@ const DATA ={
                 },
                 {
                     id: 2,
+                    date_added: '2020-01-03T23:28:56.782Z',
                     itemName: 'Tosilog Burrito',
                     quantity: '1',
                     price: '8.99',
                     splitList: [
                         {
                             id: 2,
+                            date_added: '2020-01-03T23:28:56.782Z',
                             itemId: 2,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
@@ -43,6 +48,7 @@ const DATA ={
                 },
                 {
                     id: 3,
+                    date_added: '2020-01-04T23:28:56.782Z',
                     itemName: 'Sisig With Rice',
                     quantity: '1',
                     price: '8.99',
@@ -52,6 +58,7 @@ const DATA ={
         },
         {
             id: 2,
+            date_added: '2020-02-01T23:28:56.782Z',
             billName: 'Lers Ros',
             billThumbnail: '🍜',
             lastViewed: 'Last viewed today at 1:25 pm',
@@ -69,6 +76,7 @@ const DATA ={
                     splitList: [
                         {
                             id: 1,
+                            date_added: '2020-01-02T23:28:56.782Z',
                             itemId: 4,
                             nickname: 'Sam',
                             avatarColor: 'orange',
@@ -76,6 +84,7 @@ const DATA ={
                         },
                         {
                             id: 2,
+                            date_added: '2020-01-03T23:28:56.782Z',
                             itemId: 4,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
@@ -87,6 +96,7 @@ const DATA ={
         },
         {
             id: 3,
+            date_added: '2020-03-01T23:28:56.782Z',
             billName: 'The Spice Jar',
             billThumbnail: '🥘',
             lastViewed: 'Last viewed today at 1:25 pm',
@@ -104,6 +114,7 @@ const DATA ={
                     splitList: [
                         {
                             id: 1,
+                            date_added: '2020-01-02T23:28:56.782Z',
                             itemId: 5,
                             nickname: 'Sam',
                             avatarColor: 'orange',
@@ -111,6 +122,7 @@ const DATA ={
                         },
                         {
                             id: 2,
+                            date_added: '2020-01-03T23:28:56.782Z',
                             itemId: 5,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
@@ -124,6 +136,7 @@ const DATA ={
     sharedWithMe: [
         {
             id: 4,
+            date_added: '2020-01-01T23:28:56.782Z',
             billName: 'Rooster & Rice',
             billThumbnail: '🐓',
             lastViewed: 'Last viewed today at 1:25 pm',
@@ -135,6 +148,7 @@ const DATA ={
             items: [
                 {
                     id: 6,
+                    date_added: '2020-01-02T23:28:56.782Z',
                     itemName: 'Sisig Burrito',
                     quantity: '1',
                     price: '8.99',
@@ -142,12 +156,14 @@ const DATA ={
                         {
                             id: 1,
                             itemId: 6,
+                            date_added: '2020-01-02T23:28:56.782Z',
                             nickname: 'Sam',
                             avatarColor: 'orange',
                             shareQty: '1'
                         },
                         {
                             id: 2,
+                            date_added: '2020-01-03T23:28:56.782Z',
                             itemId: 6,
                             nickname: 'Frodo',
                             avatarColor: 'blue',

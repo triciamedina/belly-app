@@ -8,6 +8,7 @@
 
 .SplitItem h3 {
     position: absolute;
+    font-family: 'Roboto', sans-serif;
     top: 50%;
     left: 70px;
     transform: translate(0, -50%);

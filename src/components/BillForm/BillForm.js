@@ -44,6 +44,7 @@ function BillForm() {
         // Build new bill object
         const newBill = {
             id: existingBill.id || uuidv4(),
+            date_added: existingBill.date_added || new Date(),
             billName: enteredBillName,
             billThumbnail: emojiEl.current.value,
             lastViewed: 'Last viewed today at 1:25 pm',
