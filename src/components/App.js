@@ -13,7 +13,10 @@ function App() {
 
   const initialState = {
     menu: { isMenuOpen: false },
-    shareModal: { isShareModalOpen: false },
+    shareModal: { 
+      isShareModalOpen: false,
+      currentlyViewing: ''
+    },
     login: { isLoggedIn: false },
     profile: {
       username: '',

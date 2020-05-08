@@ -4,10 +4,23 @@ import './OwnedByMe.css';
 import BillList from '../../components/BillList/BillList';
 import BillOwned from '../../components/BillOwned/BillOwned';
 import { useStateValue } from '../../state';
+import ShareModal from '../../components/ShareModal/ShareModal';
+import OutsideClick from '../../components/OutsideClick/OutsideClick';
 
 function OwnedByMe() {
-    const [{ bills }] = useStateValue();
+    const [{ bills, shareModal }, dispatch] = useStateValue();
     const items = bills.ownedByMe;
+    const shouldShowShareModal = shareModal.isShareModalOpen;
+
+    const toggleShareModalHandler = () => {
+        dispatch({
+            type: 'toggleShareModalState',
+            newShareModal: { 
+                isShareModalOpen: !shouldShowShareModal,
+                currentlyViewing: ''
+            }
+        });
+    }
 
     return (
         <div className='OwnedByMe'>
@@ -31,6 +44,14 @@ function OwnedByMe() {
                 />
             }
             </div>
+            {shouldShowShareModal 
+                ?   <OutsideClick 
+                        onOutsideClick={toggleShareModalHandler}
+                    >
+                        <ShareModal handleClose={toggleShareModalHandler} /> 
+                    </OutsideClick>
+                : null
+            }
         </div>
     )
 }

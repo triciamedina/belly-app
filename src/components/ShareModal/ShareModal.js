@@ -1,11 +1,18 @@
 import React, { useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import './ShareModal.css';
 import { IconClose } from '../UI/UI';
+import { useStateValue } from '../../state';
 
 const ShareModal = React.forwardRef((props, ref) => {
     const { handleClose } = props;
+    const [{ shareModal }] = useStateValue();
+    const id = shareModal.currentlyViewing;
     const [copySuccess, setCopySuccess] = useState('');
     const urlRef = useRef(null);
+    const location = useLocation().pathname;
+
+    const url = location === '/bills' ? window.location.href + `/${id}` : window.location.href;
 
     const copyToClipboard = (event) => {
         urlRef.current.select();
@@ -24,7 +31,7 @@ const ShareModal = React.forwardRef((props, ref) => {
                 <form>
                     <textarea
                         ref={urlRef}
-                        value={window.location.href} 
+                        value={url} 
                         readOnly
                     >
                     </textarea>

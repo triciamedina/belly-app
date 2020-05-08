@@ -9,8 +9,20 @@ import { Link } from 'react-router-dom';
 
 const BillOwned = React.memo(props => {
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
-    const [{ bills }, dispatch] = useStateValue();
+    const [{ bills, shareModal }, dispatch] = useStateValue();
+    const shouldShowShareModal = shareModal.isShareModalOpen;
     const { id, billThumbnail, billName, lastViewed } = props;
+
+    const toggleShareModalHandler = () => {
+        toggleOptionsMenuState(!isOptionsMenuOpen);
+        dispatch({
+            type: 'toggleShareModalState',
+            newShareModal: { 
+                isShareModalOpen: !shouldShowShareModal,
+                currentlyViewing: id
+            }
+        });
+    }
 
     const deleteHandler = () => {
         const selected = id.toString();
@@ -45,7 +57,11 @@ const BillOwned = React.memo(props => {
                 ?   <OutsideClick 
                         onOutsideClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
                     >
-                        <BillOptions onDelete={deleteHandler} onClose={() => toggleOptionsMenuState(!isOptionsMenuOpen)} />
+                        <BillOptions 
+                            onDelete={deleteHandler}
+                            onClose={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
+                            toggleShareModal={toggleShareModalHandler}
+                        />
                     </OutsideClick>
                 : null
             }

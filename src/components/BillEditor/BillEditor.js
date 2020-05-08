@@ -40,7 +40,10 @@ function BillEditor() {
 
         dispatch({
             type: 'toggleShareModalState',
-            newShareModal: { isShareModalOpen: !shouldShowShareModal }
+            newShareModal: { 
+                isShareModalOpen: !shouldShowShareModal,
+                currentlyViewing: ''
+            }
         });
     }
 
