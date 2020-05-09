@@ -54,7 +54,7 @@ function BillTotals(props) {
                         Total
                         <span className='currency'>$</span>
                         <span className='amount'>
-                            {Money({ amount: (Number(currentBill.total)*100), currency}).toFormat('0,0.00')}
+                            {Money({ amount: (parseInt(Number(currentBill.total)*100)), currency}).toFormat('0,0.00')}
                         </span>
                     </h2>
                 </Link>

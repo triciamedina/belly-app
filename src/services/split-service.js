@@ -103,7 +103,9 @@ const SplitService = {
         const { items } = bill;
 
         const sum = items.reduce((accumulator, currentValue) => {
-                return accumulator.add(Money({ amount: (Number(currentValue.price)*100), currency}));
+            const qty = Number(currentValue.quantity);
+
+                return accumulator.add(Money({ amount: (Number(currentValue.price)*100), currency}).multiply(qty));
             }, Money({ amount: 0, currency })); 
         
         // Dinero object

@@ -63,16 +63,17 @@ const DATA ={
             billThumbnail: '🍜',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
-            tax: '1.99',
-            tip: '2',
-            fees: '0',
-            total: '12.98',
+            tax: '2.38',
+            tip: '4',
+            fees: '0.10',
+            total: '34.38',
             items: [
                 {
                     id: 4,
-                    itemName: 'Sisig Burrito',
-                    quantity: '1',
-                    price: '8.99',
+                    date_added: '2020-02-01T23:28:56.782Z',
+                    itemName: 'Lek Tom Yum Haeng',
+                    quantity: '2',
+                    price: '13.95',
                     splitList: [
                         {
                             id: 1,
@@ -101,16 +102,17 @@ const DATA ={
             billThumbnail: '🥘',
             lastViewed: 'Last viewed today at 1:25 pm',
             discounts: '0',
-            tax: '1.99',
-            tip: '2',
+            tax: '4.76',
+            tip: '8',
             fees: '0',
-            total: '12.98',
+            total: '82.76',
             items: [
                 {
                     id: 5,
-                    itemName: 'Sisig Burrito',
-                    quantity: '1',
-                    price: '8.99',
+                    date_added: '2020-02-01T23:28:56.782Z',
+                    itemName: 'Spiced Chicken Chopped Salad',
+                    quantity: '5',
+                    price: '14',
                     splitList: [
                         {
                             id: 1,
