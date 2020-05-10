@@ -61,6 +61,7 @@
     resize: none;
     font-size: 12px;
     font-family: inherit;
+    white-space: nowrap;  overflow: auto;
 }
 
 .ShareModal .Button {

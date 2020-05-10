@@ -21,6 +21,7 @@
     text-decoration: none;
     color: black;
     flex: 3;
+    overflow: hidden;
 }
 
 .item .edit-item:visited {
@@ -33,6 +34,7 @@
     letter-spacing: 0.0096em;
     line-height: 60px;
     margin: 0px;
+    white-space: nowrap;
 }
 
 .Item .quantity {

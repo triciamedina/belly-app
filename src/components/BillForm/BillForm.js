@@ -28,7 +28,6 @@ function BillForm() {
     const [ enteredTax, setEnteredTax ] = useState(existingBill.tax || '');
     const [ enteredTip, setEnteredTip ] = useState(existingBill.tip || '');
     const [ enteredFees, setEnteredFees ] = useState(existingBill.fees || '');
-    const [ enteredTotal, setEnteredTotal ] = useState(existingBill.total || '');
 
     // Uncontrolled input
     const emojiEl = useRef(null);
@@ -52,7 +51,6 @@ function BillForm() {
             tax: enteredTax,
             tip: enteredTip,
             fees: enteredFees,
-            total: enteredTotal,
             items: existingBill.items || []
         };
 
@@ -191,22 +189,6 @@ function BillForm() {
                             placeholder='0.00'
                             value={enteredFees}
                             onChange={event => setEnteredFees(event.target.value)}
-                        />
-                    </div>
-                    <div className='input-container currency'>
-                        <label htmlFor='total'>
-                            Total
-                        </label>
-                        <span>$</span>
-                        <input 
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='total' 
-                            name='total' 
-                            placeholder='0.00'
-                            value={enteredTotal}
-                            onChange={event => setEnteredTotal(event.target.value)}
                         />
                     </div>
                     <div className='button-container'>

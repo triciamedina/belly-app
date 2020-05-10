@@ -10,7 +10,7 @@ const DATA ={
             tax: '2.50',
             tip: '5',
             fees: '3',
-            total: '37.47',
+
             items: [
                 {
                     id: 1,
@@ -66,7 +66,6 @@ const DATA ={
             tax: '2.38',
             tip: '4',
             fees: '0.10',
-            total: '34.38',
             items: [
                 {
                     id: 4,
@@ -105,12 +104,11 @@ const DATA ={
             tax: '4.76',
             tip: '8',
             fees: '0',
-            total: '82.76',
             items: [
                 {
                     id: 5,
                     date_added: '2020-02-01T23:28:56.782Z',
-                    itemName: 'Spiced Chicken Chopped Salad',
+                    itemName: 'Spiced Chicken Salad',
                     quantity: '5',
                     price: '14',
                     splitList: [
@@ -146,14 +144,13 @@ const DATA ={
             tax: '1.99',
             tip: '2',
             fees: '0',
-            total: '12.98',
             items: [
                 {
                     id: 6,
                     date_added: '2020-01-02T23:28:56.782Z',
-                    itemName: 'Sisig Burrito',
-                    quantity: '1',
-                    price: '8.99',
+                    itemName: 'The Original',
+                    quantity: '2',
+                    price: '15.95',
                     splitList: [
                         {
                             id: 1,
@@ -169,7 +166,7 @@ const DATA ={
                             itemId: 6,
                             nickname: 'Frodo',
                             avatarColor: 'blue',
-                            shareQty: '2'
+                            shareQty: '1'
                         }
                     ]
                 }

@@ -2,11 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './BillTotals.css';
 import Dinero from 'dinero.js';
+import SplitService from '../../services/split-service';
 const Money = Dinero;
 const currency = 'USD';
 
+
 function BillTotals(props) {
     const { currentBill } = props;
+
+    const subtotal = SplitService.calculateBillSubtotal(currentBill);
+    const discounts = Money({ amount: (Number(currentBill.discounts)*100), currency});
+    const tax = Money({ amount: (Number(currentBill.tax)*100), currency});
+    const tip = Money({ amount: (Number(currentBill.tip)*100), currency});
+    const fees = Money({ amount: (Number(currentBill.fees)*100), currency});
+    const total = subtotal.add(tax).add(tip).add(fees).subtract(discounts);
     
     return (
         <div className='bill-totals'>
@@ -16,7 +25,7 @@ function BillTotals(props) {
                         Discounts
                         <span className='currency'>$</span>
                         <span className='amount'>
-                            {Money({ amount: (Number(currentBill.discounts)*100), currency}).toFormat('0,0.00')}
+                            {discounts.toFormat('0,0.00')}
                         </span>
                     </h2>
                 </Link>
@@ -27,7 +36,7 @@ function BillTotals(props) {
                         Tax
                         <span className='currency'>$</span>
                         <span className='amount'>
-                            {Money({ amount: (Number(currentBill.tax)*100), currency}).toFormat('0,0.00')}
+                            {tax.toFormat('0,0.00')}
                         </span>
                     </h2>
                 </Link>
@@ -36,7 +45,7 @@ function BillTotals(props) {
                         Tip
                         <span className='currency'>$</span>
                         <span className='amount'>
-                            {Money({ amount: (Number(currentBill.tip)*100), currency}).toFormat('0,0.00')}
+                            {tip.toFormat('0,0.00')}
                         </span>
                     </h2>
                 </Link>
@@ -45,7 +54,7 @@ function BillTotals(props) {
                         Fees
                         <span className='currency'>$</span>
                         <span className='amount'>
-                            {Money({ amount: (Number(currentBill.fees)*100), currency}).toFormat('0,0.00')}
+                            {fees.toFormat('0,0.00')}
                         </span>
                     </h2>
                 </Link>
@@ -54,7 +63,7 @@ function BillTotals(props) {
                         Total
                         <span className='currency'>$</span>
                         <span className='amount'>
-                            {Money({ amount: (parseInt(Number(currentBill.total)*100)), currency}).toFormat('0,0.00')}
+                            {total.toFormat('0,0.00')}
                         </span>
                     </h2>
                 </Link>
