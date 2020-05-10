@@ -24,10 +24,10 @@ function BillForm() {
     // Controlled inputs
     const [ shouldShowPicker, togglePickerState ] = useState(false);
     const [ enteredBillName, setEnteredBillName ] = useState(existingBill.billName || '');
-    const [ enteredDiscounts, setEnteredDiscounts ] = useState(existingBill.discounts || '');
-    const [ enteredTax, setEnteredTax ] = useState(existingBill.tax || '');
-    const [ enteredTip, setEnteredTip ] = useState(existingBill.tip || '');
-    const [ enteredFees, setEnteredFees ] = useState(existingBill.fees || '');
+    const [ enteredDiscounts, setEnteredDiscounts ] = useState(existingBill.discounts || '0');
+    const [ enteredTax, setEnteredTax ] = useState(existingBill.tax || '0');
+    const [ enteredTip, setEnteredTip ] = useState(existingBill.tip || '0');
+    const [ enteredFees, setEnteredFees ] = useState(existingBill.fees || '0');
 
     // Uncontrolled input
     const emojiEl = useRef(null);
