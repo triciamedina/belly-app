@@ -14,7 +14,10 @@ function HeaderPrivate() {
     const toggleMenuHandler = () => {
         dispatch({
             type: 'toggleMenuState',
-            newMenu: { isMenuOpen: !shouldShowMenu }
+            newMenu: { 
+                isMenuOpen: !shouldShowMenu,
+                currentlyViewing: ''
+            }
         })
     }
 

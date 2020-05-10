@@ -12,7 +12,10 @@ import DATA from '../store';
 function App() {
 
   const initialState = {
-    menu: { isMenuOpen: false },
+    menu: { 
+      isMenuOpen: false,
+      currentlyViewing: 'owned'
+    },
     shareModal: { 
       isShareModalOpen: false,
       currentlyViewing: ''
