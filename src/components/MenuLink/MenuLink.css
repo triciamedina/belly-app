@@ -3,6 +3,11 @@
     color: black;
     display: flex;
     align-items: center;
+    padding: 10px 18px;
+}
+
+.MenuLink:hover {
+    background-color: #EBE5FC;
 }
 
 .MenuLink:visited {

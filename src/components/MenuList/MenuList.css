@@ -6,13 +6,8 @@
 }
 
 .MenuList__item {
-    padding: 10px 18px;
     font-size: 14px;
     letter-spacing: 0.0174em;
-}
-
-.MenuList__item:hover {
-    background-color: #EBE5FC;
 }
 
 .MenuList__item__name {
