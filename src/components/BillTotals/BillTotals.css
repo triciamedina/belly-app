@@ -22,6 +22,10 @@
     color: black;
 }
 
+.bill-totals__edit:hover {
+    color: #621FEE;
+}
+
 .bill-totals h2 {
     margin: 0px;
     margin-bottom: 18px;

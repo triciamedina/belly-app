@@ -58,7 +58,7 @@ function BillTotals(props) {
                         </span>
                     </h2>
                 </Link>
-                <Link className='bill-totals__edit' to={`/bills/${currentBill.id}/edit`}>
+                <div className='bill-totals__total'>
                     <h2>
                         Total
                         <span className='currency'>$</span>
@@ -66,7 +66,7 @@ function BillTotals(props) {
                             {total.toFormat('0,0.00')}
                         </span>
                     </h2>
-                </Link>
+                </div>
             </div>
         </div>
     )

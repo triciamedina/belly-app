@@ -37,6 +37,10 @@
     color: black;
 }
 
+.overview__bill-name:hover {
+    color: #621FEE;
+}
+
 .overview__bill-name h1 {
     font-size: 24px;
     font-weight: 500;
@@ -50,6 +54,10 @@
     font-size: 24px;
     background-color: #f4f4f4;
     margin: 0px;
+}
+
+.overview__bill-name:hover .Emoji {
+    background-color: #EBE5FC;
 }
 
 .currently-viewing {

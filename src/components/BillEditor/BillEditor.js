@@ -36,8 +36,6 @@ function BillEditor() {
     }
 
     const toggleShareModalHandler = () => {
-        // console.log(window.location.href)
-
         dispatch({
             type: 'toggleShareModalState',
             newShareModal: { 
