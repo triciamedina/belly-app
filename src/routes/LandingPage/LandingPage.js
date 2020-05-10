@@ -1,9 +1,8 @@
 import React from 'react';
 import './LandingPage.css';
-
 import HeaderPublic from '../../components/HeaderPublic/HeaderPublic';
 import { LockupVertical } from '../../components/UI/Logo';
-import { ButtonLink } from '../../components/UI/UI';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     return (
@@ -24,9 +23,9 @@ function LandingPage() {
             </div>
         </main>
         <footer className='LandingPage__footer'>
-            <ButtonLink className='ButtonLink'>
+            <Link className='ButtonLink' to='/login'>
                 Try it out
-            </ButtonLink>
+            </Link>
         </footer>
         </>
     )
