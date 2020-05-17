@@ -41,14 +41,17 @@ function SplitDetail(props) {
     }
 
     const items = person.items.map(item => {
+        const { itemId, itemName, sum } = item;
         return (
-            <li key={item.itemId}>
-                {item.itemName}
+            <li key={itemId}>
+                {itemName}
                 <span className='currency'>$</span>
-                <span className='amount'>{item.sum.toFormat('0,0.00')}</span>
+                <span className='amount'>{sum.toFormat('0,0.00')}</span>
             </li>
         )
     });
+
+    const { avatar, nickname } = person;
 
     return (
         <div className='SplitDetail'>
@@ -58,10 +61,10 @@ function SplitDetail(props) {
             </button>
 
             <div className='split-name'>
-                <Avatar className={'Avatar ' + person.avatarColor}>
-                    {person.nickname.slice(0,2)}
+                <Avatar className={'Avatar ' + avatar}>
+                    {nickname.slice(0,2)}
                 </Avatar>
-                <h2>{person.nickname}</h2>
+                <h2>{nickname}</h2>
             </div>
 
             <ul className='split-list'>

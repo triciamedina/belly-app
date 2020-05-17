@@ -5,8 +5,9 @@ const currency = 'USD';
 const SplitService = {
     getSummary(bill) {
 
-        // Build object of unique splitters with their id, name, avatarColor, items
-        const splitList = bill.items.map(item => item.splitList);
+        // Build object of unique splitters with their id, name, avatar, items
+        const splitList = bill.items.map(item => item.split_list);
+
         const flattened = splitList.reduce((accumulator, currentValue) => {
             return accumulator.concat(currentValue)
             },[]);
@@ -18,7 +19,7 @@ const SplitService = {
             if (!summary[currentId]) {
                 const unique = {
                     nickname: flattened[i].nickname,
-                    avatarColor: flattened[i].avatarColor,
+                    avatar: flattened[i].avatar,
                     items: []
                 }
 
@@ -48,18 +49,18 @@ const SplitService = {
         
         for (let i = 0; i < items.length; i ++) {
             const currentItem = items[i];
-            const currentSplitList = currentItem.splitList;
+            const currentSplitList = currentItem.split_list;
             for (let i = 0; i < currentSplitList.length; i++) {
                 const splitter = currentSplitList[i];
                 const splitterId = splitter.id;
                 const share = {
-                    itemName: currentItem.itemName,
-                    itemId: splitter.itemId,
-                    share: Number(splitter.shareQty),
+                    itemName: currentItem.item_name,
+                    itemId: splitter.item_id,
+                    share: Number(splitter.share_qty),
                 }
 
                 summary[splitterId].items.push(share);
-                itemTotals[splitter.itemId].shareTotal += Number(splitter.shareQty);
+                itemTotals[splitter.item_id].shareTotal += Number(splitter.share_qty);
             }
         }
         

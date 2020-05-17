@@ -9,7 +9,7 @@ function AvatarList(props) {
         <ul className='AvatarList'>
             {list.map((person, index) => 
                 (<li key={index}>
-                    <Avatar className={'Avatar ' + person.avatarColor}>
+                    <Avatar className={'Avatar ' + person.avatar}>
                         {person.nickname.slice(0,2)}
                     </Avatar>
                 </li>)

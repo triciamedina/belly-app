@@ -33,25 +33,25 @@ const SplitItemForm = React.forwardRef((props, ref) => {
     const [ currentItem ] = owned
         ? owned.items.filter(item => item.id === itemId)
         : shared.items.filter(item => item.id === itemId);
-    
+
     // Populate with initial list from context
     const currentShares = {};
-    currentItem.splitList.forEach(person => {
+    currentItem.split_list.forEach(person => {
         currentShares[person.id] = { 
             name: person.nickname, 
-            shareQty: person.shareQty,
-            avatarColor: person.avatarColor
+            share_qty: person.share_qty,
+            avatar: person.avatar
         }
     });
 
     // Add other splitters present in bill, with share of 0
     currentBill.items.filter(item => item.id !== itemId).forEach(item => {
-        item.splitList.forEach(person => {
+        item.split_list.forEach(person => {
             if (!currentShares[person.id]) {
                 currentShares[person.id] = {
                     name: person.nickname,
-                    shareQty: '0',
-                    avatarColor: person.avatarColor
+                    share_qty: '0',
+                    avatar: person.avatar
                 }
             }
         })
@@ -95,13 +95,13 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         const newSplitList = [];
         Object.entries(split).forEach(person => {
             // Only save to split list if share is greater than 0
-            if (Number(person[1].shareQty) > 0) {
+            if (Number(person[1].share_qty) > 0) {
                 const newPerson = {};
                 newPerson.id = person[0];
-                newPerson.itemId = currentItem.id;
+                newPerson.item_id = currentItem.id;
                 newPerson.nickname = person[1].name;
-                newPerson.avatarColor = person[1].avatarColor;
-                newPerson.shareQty = person[1].shareQty;
+                newPerson.avatar = person[1].avatar;
+                newPerson.share_qty = person[1].share_qty;
                 newSplitList.push(newPerson);
             }
         })
@@ -153,14 +153,14 @@ const SplitItemForm = React.forwardRef((props, ref) => {
     // Render list of splitters from local state
     const splitList = Object.entries(split).map(person => {
         const id  = person[0]
-        const { name, avatarColor, shareQty } = person[1];
+        const { name, avatar, share_qty } = person[1];
 
         return <SplitItem 
                     key={id}
                     id={id} 
                     nickname={name} 
-                    avatarColor={avatarColor} 
-                    shareQty={shareQty}
+                    avatar={avatar} 
+                    share_qty={share_qty}
                     handleSplit={handleSplit}
                     handleShowSplitterForm={handleEditSplitter}
                 />

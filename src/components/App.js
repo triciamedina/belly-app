@@ -7,8 +7,6 @@ import Bills from '../routes/Bills/Bills';
 import LandingPage from '../routes/LandingPage/LandingPage';
 import Entry from '../routes/Entry/Entry';
 
-import DATA from '../store';
-
 function App() {
 
   const initialState = {
@@ -26,8 +24,8 @@ function App() {
       avatarColor: ''
     },
     bills: {
-      ownedByMe: DATA.ownedByMe,
-      sharedWithMe: DATA.sharedWithMe
+      ownedByMe: [],
+      sharedWithMe: []
     },
     billDetail: {
       isBillDetailOpen: false,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
@@ -9,6 +9,8 @@ import SplitSummary from '../SplitSummary/SplitSummary';
 import BillTotals from '../BillTotals/BillTotals';
 import ShareModal from '../ShareModal/ShareModal';
 import OutsideClick from '../OutsideClick/OutsideClick';
+import TokenService from '../../services/token-service';
+import BillApiService from '../../services/bill-api-service';
 
 function BillEditor() {
     const history = useHistory();
@@ -17,10 +19,33 @@ function BillEditor() {
 
     const routeParamsId = useRouteMatch().params.bill_id;
     const { ownedByMe, sharedWithMe } = bills;
-    const [ ownedItem ] = ownedByMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId);
-    const [ sharedItem ] = sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId);
-
+    const [ ownedItem ] = ownedByMe ? ownedByMe.filter(bill => bill.id.toString() === routeParamsId) : null;
+    const [ sharedItem ] = sharedWithMe ? sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId) : null;
     const currentBill = ownedItem || sharedItem;
+
+    const token = TokenService.getAuthToken();
+
+    useEffect(() => {
+        const getOwnedBills = BillApiService.getOwnedBills(token);
+        const getSharedBills = BillApiService.getSharedBills(token);
+
+        Promise.all([getOwnedBills, getSharedBills])
+            .then(values => {
+                const { ownedByMe } = values[0];
+                const { sharedWithMe } = values[1];
+
+                dispatch({
+                    type: 'updateBills',
+                    setBills: { 
+                        ownedByMe,
+                        sharedWithMe
+                    }
+                });
+            })
+            .catch(res => {
+                console.log(res)
+            });
+    }, [dispatch, token]);
 
     const handleGoBack = () => {
         (ownedItem && history.push('/bills')) ||
@@ -45,70 +70,77 @@ function BillEditor() {
         });
     }
 
-    return (
-        <>
-            {/*  Header nav */}
-            <header className='BillEditorHeader'>
-                <button className='Back' onClick={handleGoBack}>
-                    <IconBack />
-                </button>
-                <button className='Share' onClick={toggleShareModalHandler} >
-                    <IconShare />
-                </button>
-                {shouldShowShareModal 
-                    ?   <OutsideClick 
-                            onOutsideClick={toggleShareModalHandler}
-                        >
-                            <ShareModal handleClose={toggleShareModalHandler} /> 
-                        </OutsideClick>
-                    : null
-                }
-            </header>
+    if (currentBill) {
+        const { id, bill_thumbnail, bill_name, items } = currentBill;
 
-            <main className='BillEditor'>
+        return (
+            <>
+                {/*  Header nav */}
+                <header className='BillEditorHeader'>
+                    <button className='Back' onClick={handleGoBack}>
+                        <IconBack />
+                    </button>
+                    <button className='Share' onClick={toggleShareModalHandler} >
+                        <IconShare />
+                    </button>
+                    {shouldShowShareModal 
+                        ?   <OutsideClick 
+                                onOutsideClick={toggleShareModalHandler}
+                            >
+                                <ShareModal handleClose={toggleShareModalHandler} /> 
+                            </OutsideClick>
+                        : null
+                    }
+                </header>
 
-                <div className='BillEditor__overview'>
+                <main className='BillEditor'>
 
-                    {/* Bill name and link to edit form */}
-                    <Link className='overview__bill-name' to={`/bills/${currentBill.id}/edit`}>
-                        <Emoji>
-                            {currentBill.billThumbnail}
-                        </Emoji>
-                        <h1 className=''>
-                            {currentBill.billName}
-                        </h1>
-                    </Link>
+                    <div className='BillEditor__overview'>
 
-                    {/* Items list */}
-                    <ItemList currentBillId={currentBill.id} items={currentBill.items}/>
+                        {/* Bill name and link to edit form */}
+                        <Link className='overview__bill-name' to={`/bills/${id}/edit`}>
+                            <Emoji>
+                                {bill_thumbnail}
+                            </Emoji>
+                            <h1 className=''>
+                                {bill_name}
+                            </h1>
+                        </Link>
 
-                    {/* Add new item button */}
-                    <Link className='AddItemButton' to={`/bills/${currentBill.id}/add`}>
-                        <IconAdd />
-                        Add items
-                    </Link>
+                        {/* Items list */}
+                        <ItemList currentBillId={id} items={items}/>
 
-                    {/* Bill totals */}
-                    <BillTotals currentBill={currentBill} />
-                </div>
+                        {/* Add new item button */}
+                        <Link className='AddItemButton' to={`/bills/${id}/add`}>
+                            <IconAdd />
+                            Add items
+                        </Link>
 
-                {/* Split summary */}
-                <SplitSummary currentBill={currentBill} />
+                        {/* Bill totals */}
+                        <BillTotals currentBill={currentBill} />
+                    </div>
 
-                {/* Currently viewing */}
-                <div className='currently-viewing'>
-                    <h2>Currently viewing</h2>
-                    {/* This list will update based on who is currently in the room */}
-                    <AvatarList list={[
-                        { nickname: 'Tricia', avatarColor: 'orange' }, 
-                        { nickname: 'Sam', avatarColor: 'purple' }, 
-                        { nickname: 'Frodo', avatarColor: 'blue' }
-                    ]}/>
-                </div>
+                    {/* Split summary */}
+                    <SplitSummary currentBill={currentBill} />
 
-            </main>
-        </>
-    )
+                    {/* Currently viewing */}
+                    <div className='currently-viewing'>
+                        <h2>Currently viewing</h2>
+                        {/* This list will update based on who is currently in the room */}
+                        <AvatarList list={[
+                            { nickname: 'Tricia', avatar: 'orange' }, 
+                            { nickname: 'Sam', avatar: 'purple' }, 
+                            { nickname: 'Frodo', avatar: 'blue' }
+                        ]}/>
+                    </div>
+
+                </main>
+            </>
+        )
+
+    
+    }
+    return <></>
 }
 
 export default BillEditor;

@@ -26,13 +26,14 @@ function SplitSummary(props) {
 
     const items = summaryArray.map(item => {
         const person = item[1];
+        const { nickname, avatar } = person;
         const personTotal = SplitService.calculatePersonTotal(person, summaryArray, currentBill);
 
         return (
             <li className='SplitSummaryItem' key={item[0]}>
                 <button id={item[0]} onClick={() => handleOpenDetails(item[0])}>
-                    <Avatar className={'Avatar ' + person.avatarColor}>
-                        {person.nickname.slice(0,2)}
+                    <Avatar className={'Avatar ' + avatar}>
+                        {nickname.slice(0,2)}
                     </Avatar>
                     <span>{personTotal.toFormat('$0,0.00')}</span>
                 </button>

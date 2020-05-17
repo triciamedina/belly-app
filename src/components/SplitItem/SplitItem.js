@@ -7,8 +7,8 @@ function SplitItem(props) {
         const { 
             id, 
             nickname, 
-            avatarColor, 
-            shareQty, 
+            avatar, 
+            share_qty, 
             handleSplit,
             handleShowSplitterForm
         } = props;
@@ -16,21 +16,21 @@ function SplitItem(props) {
         return (
             <li className='SplitItem' key={id}>
                 <button className='edit' onClick={() => handleShowSplitterForm(id)}>
-                    <Avatar className={'Avatar ' + avatarColor}>
+                    <Avatar className={'Avatar ' + avatar}>
                         {nickname.slice(0,2)}
                     </Avatar>
                     <h3>{nickname}</h3>
                 </button>
                 <div className='split-count'>
                     <span className='count'>
-                        {shareQty}
+                        {share_qty}
                     </span>
                     <button className='add-subtract-btn' 
                         onClick={() => handleSplit(id, 
                             {
                                 name: nickname, 
-                                shareQty: shareQty > 0 ? (Number(shareQty) - 1).toString() : shareQty,
-                                avatarColor
+                                share_q: share_qty > 0 ? (Number(share_qty) - 1).toString() : share_qty,
+                                avatar
                             }
                         )}
                     >
@@ -40,8 +40,8 @@ function SplitItem(props) {
                         onClick={() => handleSplit(id, 
                             { 
                                 name: nickname, 
-                                shareQty: (Number(shareQty) + 1).toString(),
-                                avatarColor
+                                share_qty: (Number(share_qty) + 1).toString(),
+                                avatar
                             }
                         )}
                     >

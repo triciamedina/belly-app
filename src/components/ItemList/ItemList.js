@@ -13,7 +13,7 @@ function ItemList(props) {
     const { currentlyViewing } = splitForm;
 
     items.sort((a, b) => {
-        return new Date(a.date_added) - new Date(b.date_added);
+        return new Date(a.created_at) - new Date(b.created_at);
     });
 
     const toggleOpenForm = (itemId) => {
@@ -27,33 +27,36 @@ function ItemList(props) {
             }
         });
     }
-
+    
     return (
         <ul className='ItemList'>
-            {items.map((item, index) => (
-                <li key={index} className='Item'>
-                    <Link className='edit-item' to={`/bills/${currentBillId}/${item.id}/edit`}>
-                        <h2>
-                            <span className='quantity'>
-                                {item.quantity}x
-                            </span>
-                            {item.itemName}
-                        </h2>
-                    </Link>
-                    <button className='edit-share' onClick={() => toggleOpenForm(item.id)}>
-                        {item.splitList.length === 0
-                            ? <p>Split</p>
-                            : <AvatarList list={item.splitList}/>
+            {items.map((item, index) => {
+                const { id, quantity, item_name, split_list } = item;
+                return (
+                    <li key={index} className='Item'>
+                        <Link className='edit-item' to={`/bills/${currentBillId}/${id}/edit`}>
+                            <h2>
+                                <span className='quantity'>
+                                    {quantity}x
+                                </span>
+                                {item_name}
+                            </h2>
+                        </Link>
+                        <button className='edit-share' onClick={() => toggleOpenForm(id)}>
+                            {split_list.length === 0
+                                ? <p>Split</p>
+                                : <AvatarList list={split_list}/>
+                            }
+                        </button>
+                        {(shouldShowSplitForm && currentlyViewing === id) 
+                            ?   <OutsideClick onOutsideClick={() => toggleOpenForm('')}>
+                                    <SplitItemForm billId={currentBillId} itemId={id} /> 
+                                </OutsideClick>
+                            : null
                         }
-                    </button>
-                    {(shouldShowSplitForm && currentlyViewing === item.id) 
-                        ?   <OutsideClick onOutsideClick={() => toggleOpenForm('')}>
-                                <SplitItemForm billId={currentBillId} itemId={item.id} /> 
-                            </OutsideClick>
-                        : null
-                    }
-                </li>
-            ))}
+                    </li>
+                )})
+            }
         </ul>
     )
 }

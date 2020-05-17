@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "dinero.js": "^1.8.1",
     "emoji-mart": "^3.0.0",
+    "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-html-parser": "^2.0.2",

@@ -10,9 +10,10 @@ import OutsideClick from '../../components/OutsideClick/OutsideClick';
 function OwnedByMe() {
     const [{ bills, shareModal }, dispatch] = useStateValue();
     const items = bills.ownedByMe;
+    console.log(items)
     
     items.sort((a, b) => {
-        return new Date(a.date_added) - new Date(b.date_added);
+        return new Date(a.created_at) - new Date(b.created_at);
     });
 
     const shouldShowShareModal = shareModal.isShareModalOpen;

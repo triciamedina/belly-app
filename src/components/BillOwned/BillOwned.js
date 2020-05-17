@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import './BillOwned.css';
 import { IconMore, Emoji } from '../UI/UI';
 import BillOptions from '../BillOptions/BillOptions';
@@ -11,7 +12,7 @@ const BillOwned = React.memo(props => {
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
     const [{ bills, shareModal }, dispatch] = useStateValue();
     const shouldShowShareModal = shareModal.isShareModalOpen;
-    const { id, billThumbnail, billName, lastViewed } = props;
+    const { id, bill_thumbnail, bill_name, last_viewed } = props;
 
     const toggleShareModalHandler = () => {
         toggleOptionsMenuState(!isOptionsMenuOpen);
@@ -40,11 +41,11 @@ const BillOwned = React.memo(props => {
         <li className='BillOwned'>
             <Link className='edit' to={`/bills/${id}`} >
                 <Emoji>
-                    {ReactHtmlParser(billThumbnail)}
+                    {ReactHtmlParser(bill_thumbnail)}
                 </Emoji>                               
                 <div className='details'>
-                    <h3>{billName}</h3>
-                    <p>{lastViewed}</p>
+                    <h3>{bill_name}</h3>
+                    <p>Last viewed {moment(last_viewed).format('MMMM Do')} at {moment(last_viewed).format('h:mm a')} </p>
                 </div>
             </Link>
             <button 
