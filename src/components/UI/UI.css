@@ -15,6 +15,15 @@
     background-color: #EBE5FC;
 }
 
+.Button:disabled {
+    cursor: not-allowed;
+    color: #6b6e6f;
+}
+
+.Button:disabled:hover {
+    background-color: #efefef;
+}
+
 .Button.ghost {
     background-color: transparent;
     /* border: 2px solid #efefef; */
