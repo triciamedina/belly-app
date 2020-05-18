@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Picker } from 'emoji-mart';
-import { v4 as uuidv4 } from 'uuid';
 import { IconClose, Button } from '../UI/UI';
 import { useStateValue } from '../../state';
 import 'emoji-mart/css/emoji-mart.css';
 import './BillForm.css';
+import TokenService from '../../services/token-service';
+import BillApiService from '../../services/bill-api-service';
+import StickyStateService from '../../services/sticky-state-service';
 
 function BillForm() {
     const history = useHistory();
@@ -17,17 +19,19 @@ function BillForm() {
     const [ ownedItem ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
     const [ sharedItem ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
     let existingBill = '';
+
     if (routeParamsId) {
         existingBill = ownedItem || sharedItem;
     }
 
     // Controlled inputs
-    const [ shouldShowPicker, togglePickerState ] = useState(false);
-    const [ enteredBillName, setEnteredBillName ] = useState(existingBill.billName || '');
-    const [ enteredDiscounts, setEnteredDiscounts ] = useState(existingBill.discounts || '0');
-    const [ enteredTax, setEnteredTax ] = useState(existingBill.tax || '0');
-    const [ enteredTip, setEnteredTip ] = useState(existingBill.tip || '0');
-    const [ enteredFees, setEnteredFees ] = useState(existingBill.fees || '0');
+    const fields = ['enteredBillName', 'enteredDiscounts', 'enteredTax', 'enteredTip', 'enteredFees'];
+    const [ shouldShowPicker, togglePickerState ] = useState();
+    const [ enteredBillName, setEnteredBillName ] = StickyStateService.useStickyState(existingBill ? existingBill.bill_name : '', 'enteredBillName');
+    const [ enteredDiscounts, setEnteredDiscounts ] = StickyStateService.useStickyState(existingBill ? existingBill.discounts : '0', 'enteredDiscounts');
+    const [ enteredTax, setEnteredTax ] = StickyStateService.useStickyState(existingBill ? existingBill.tax : '0', 'enteredTax');
+    const [ enteredTip, setEnteredTip ] = StickyStateService.useStickyState(existingBill ? existingBill.tip : '0', 'enteredTip');
+    const [ enteredFees, setEnteredFees ] = StickyStateService.useStickyState(existingBill ? existingBill.fees : '0', 'enteredFees');
 
     // Uncontrolled input
     const emojiEl = useRef(null);
@@ -36,62 +40,97 @@ function BillForm() {
         togglePickerState(!shouldShowPicker);
     }
 
+    // Form close
+    const closeHandler = () => {
+        StickyStateService.clearStickyState(fields);
+        history.goBack();
+    }
+
     // Form submit
     const submitHandler = (event) => {
         event.preventDefault();
+
+        const token = TokenService.getAuthToken();
         
         // Build new bill object
         const newBill = {
-            id: existingBill.id || uuidv4(),
-            date_added: existingBill.date_added || new Date(),
             billName: enteredBillName,
             billThumbnail: emojiEl.current.value,
-            lastViewed: 'Last viewed today at 1:25 pm',
             discounts: enteredDiscounts,
             tax: enteredTax,
             tip: enteredTip,
             fees: enteredFees,
-            items: existingBill.items || []
         };
 
-        // Build new lists
-
-        let newOwnedList= null;
-        let newSharedList = null;
-        let oldList;
-
-        
         if (existingBill) {
-            if (ownedItem) {
-                oldList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
-                newOwnedList = [...oldList, newBill];
-            }
-            if (sharedItem) {
-                oldList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
-                newSharedList = [...oldList, newBill]
-            }
+            // type, billId, updatedBill, token
+            BillApiService.updateBill('owned', existingBill.id, token, newBill)
+                .then(res => {
+                    const getOwnedBills = BillApiService.getOwnedBills(token);
+                    const getSharedBills = BillApiService.getSharedBills(token);
+
+                    Promise.all([getOwnedBills, getSharedBills])
+                        .then(values => {
+                            const { ownedByMe } = values[0];
+                            const { sharedWithMe } = values[1];
+
+                            dispatch({
+                                type: 'updateBills',
+                                setBills: { 
+                                    ownedByMe,
+                                    sharedWithMe
+                                }
+                            });
+
+                            StickyStateService.clearStickyState(fields);
+
+                            history.push(`/bills/${routeParamsId}`);
+                        })
+                        .catch(res => {
+                            console.log(res)
+                        });
+                })
+                .catch(res => {
+                    console.log(res)
+                });
         } else {
-            oldList = bills.ownedByMe;
-            newOwnedList =  [...oldList, newBill];
+            BillApiService.postNewBill(token, newBill)
+                .then(res => {
+                    const newBillId = res.id;
+                    const getOwnedBills = BillApiService.getOwnedBills(token);
+                    const getSharedBills = BillApiService.getSharedBills(token);
+
+                    Promise.all([getOwnedBills, getSharedBills])
+                        .then(values => {
+                            const { ownedByMe } = values[0];
+                            const { sharedWithMe } = values[1];
+
+                            dispatch({
+                                type: 'updateBills',
+                                setBills: { 
+                                    ownedByMe,
+                                    sharedWithMe
+                                }
+                            });
+
+                            StickyStateService.clearStickyState(fields);
+
+                            history.push(`/bills/${newBillId}`);
+                        })
+                        .catch(res => {
+                            console.log(res)
+                        });
+                })
+                .catch(res => {
+                    console.log(res)
+                });
         }
-
-        // Update state
-        dispatch({
-            type: 'updateBills',
-            setBills: {
-                ownedByMe: newOwnedList || bills.ownedByMe,
-                sharedWithMe: newSharedList || bills.sharedWithMe
-            }
-        });
-
-        // Go to bill editor 
-        history.push(`/bills/${newBill.id}`);
     }
 
     return (
         <>
             <header className='BillFormHeader'>
-                <button className='Close' onClick={() => history.goBack()}>
+                <button className='Close' onClick={() => closeHandler()}>
                     <IconClose />
                 </button>
             </header>
@@ -107,7 +146,7 @@ function BillForm() {
                             className='emoji-input'
                             onFocus={() => togglePickerState(!shouldShowPicker)} 
                             aria-label='Emoji'
-                            defaultValue={existingBill.billThumbnail || ''}
+                            defaultValue={existingBill ? existingBill.bill_thumbnail : ''}
                             required
                         />
                         {shouldShowPicker
