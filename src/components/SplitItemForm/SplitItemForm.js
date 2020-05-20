@@ -6,8 +6,9 @@ import SplitItem from '../SplitItem/SplitItem';
 import SplitterForm from '../SplitterForm/SplitterForm';
 
 const SplitItemForm = React.forwardRef((props, ref) => {
+    const { splitForm, dispatch, billId, itemId } = props;
+
     // Handle show/hide split form
-    const [ { splitForm } , dispatch ] = useStateValue();
     const shouldShowSplitForm = splitForm.isSplitFormOpen;
     const handleCloseForm = () => {
         dispatch({
@@ -18,9 +19,6 @@ const SplitItemForm = React.forwardRef((props, ref) => {
             }
         });
     }
-
-    // Bill Id and Item Id from props
-    const { billId, itemId } = props;
 
     // Match bill and item from context
     const [{ bills }] = useStateValue();

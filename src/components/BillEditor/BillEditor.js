@@ -9,12 +9,12 @@ import SplitSummary from '../SplitSummary/SplitSummary';
 import BillTotals from '../BillTotals/BillTotals';
 import ShareModal from '../ShareModal/ShareModal';
 import OutsideClick from '../OutsideClick/OutsideClick';
-import TokenService from '../../services/token-service';
-import BillApiService from '../../services/bill-api-service';
 
-function BillEditor() {
+function BillEditor(props) {
     const history = useHistory();
-    const [{ bills, shareModal }, dispatch] = useStateValue();
+    const { bills, dispatch, token, BillApiService } = props;
+
+    const [{ shareModal }] = useStateValue();
     const shouldShowShareModal = shareModal.isShareModalOpen;
 
     const routeParamsId = useRouteMatch().params.bill_id;
@@ -23,29 +23,9 @@ function BillEditor() {
     const [ sharedItem ] = sharedWithMe ? sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId) : null;
     const currentBill = ownedItem || sharedItem;
 
-    const token = TokenService.getAuthToken();
-
     useEffect(() => {
-        const getOwnedBills = BillApiService.getOwnedBills(token);
-        const getSharedBills = BillApiService.getSharedBills(token);
-
-        Promise.all([getOwnedBills, getSharedBills])
-            .then(values => {
-                const { ownedByMe } = values[0];
-                const { sharedWithMe } = values[1];
-
-                dispatch({
-                    type: 'updateBills',
-                    setBills: { 
-                        ownedByMe,
-                        sharedWithMe
-                    }
-                });
-            })
-            .catch(res => {
-                console.log(res)
-            });
-    }, [dispatch, token]);
+        BillApiService.getAllBills(token, dispatch);
+    }, [dispatch, token, BillApiService]);
 
     const handleGoBack = () => {
         (ownedItem && history.push('/bills')) ||
@@ -108,7 +88,11 @@ function BillEditor() {
                         </Link>
 
                         {/* Items list */}
-                        <ItemList currentBillId={id} items={items}/>
+                        <ItemList 
+                            currentBillId={id} 
+                            items={items}
+                            dispatch={dispatch}
+                        />
 
                         {/* Add new item button */}
                         <Link className='AddItemButton' to={`/bills/${id}/add`}>
@@ -117,11 +101,16 @@ function BillEditor() {
                         </Link>
 
                         {/* Bill totals */}
-                        <BillTotals currentBill={currentBill} />
+                        <BillTotals 
+                            currentBill={currentBill} 
+                        />
                     </div>
 
                     {/* Split summary */}
-                    <SplitSummary currentBill={currentBill} />
+                    <SplitSummary 
+                        currentBill={currentBill}
+                        dispatch={dispatch}
+                    />
 
                     {/* Currently viewing */}
                     <div className='currently-viewing'>
@@ -143,4 +132,4 @@ function BillEditor() {
     return <></>
 }
 
-export default BillEditor;
+export default React.memo(BillEditor);

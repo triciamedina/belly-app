@@ -1,6 +1,24 @@
 import config from '../config';
 
 const BillApiService = {
+    getAllBills(token, dispatch) {
+        const getOwnedBills = BillApiService.getOwnedBills(token);
+        const getSharedBills = BillApiService.getSharedBills(token);
+
+        Promise.all([getOwnedBills, getSharedBills])
+            .then(values => {
+                const { ownedByMe } = values[0];
+                const { sharedWithMe } = values[1];
+
+                dispatch({
+                    type: 'updateBills',
+                    setBills: { 
+                        ownedByMe,
+                        sharedWithMe
+                    }
+                });
+            })
+    },
     getOwnedBills(token) {
         return fetch(`${config.API_BASE_URL}/bill/owned`, {
             method: 'GET',
@@ -42,7 +60,7 @@ const BillApiService = {
                     : res.json()
             )
     },
-    updateBill(type, billId, token, updatedBill) {
+    updateBill(token, type, billId, updatedBill) {
         return fetch(`${config.API_BASE_URL}/bill/${type}/${billId}`, {
             method: 'PATCH',
             headers: {
@@ -56,7 +74,7 @@ const BillApiService = {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
             )
-    }
+    },
 };
 
 export default BillApiService;

@@ -13,7 +13,7 @@ import TokenService from '../../services/token-service';
 import BillApiService from '../../services/bill-api-service';
 
 function Bills() {
-    const [ , dispatch] = useStateValue();
+    const [ { bills } , dispatch] = useStateValue();
     const token = TokenService.getAuthToken();
 
     useEffect(() => {
@@ -56,23 +56,43 @@ function Bills() {
                 <Route exact path={'/bills'}>
                     <HeaderPrivate/>
                     <main className='Bills'>
-                        <OwnedByMe />
+                        <OwnedByMe 
+                            bills={bills} 
+                            dispatch={dispatch}
+                        />
                     </main>
                 </Route>
                 <Route exact path={'/bills/shared'}>
                     <HeaderPrivate/>
                     <main className='Bills'>
-                        <SharedWithMe />
+                        <SharedWithMe 
+                            bills={bills}
+                        />
                     </main>
                 </Route>
                 <Route exact path={['/bills/add', '/bills/:bill_id/edit']}>
-                    <BillForm />
+                    <BillForm 
+                        bills={bills} 
+                        dispatch={dispatch}
+                        token={token}
+                        BillApiService={BillApiService}
+                    />
                 </Route>
                 <Route exact path={'/bills/:bill_id'}>
-                    <BillEditor />
+                    <BillEditor 
+                        bills={bills} 
+                        dispatch={dispatch}
+                        token={token}
+                        BillApiService={BillApiService}
+                    />
                 </Route>
                 <Route path={['/bills/:bill_id/add', '/bills/:bill_id/:item_id/edit']}>
-                    <ItemForm />
+                    <ItemForm 
+                        bills={bills} 
+                        dispatch={dispatch}
+                        token={token}
+                        BillApiService={BillApiService}
+                    />
                 </Route>
             </Switch>
         </>

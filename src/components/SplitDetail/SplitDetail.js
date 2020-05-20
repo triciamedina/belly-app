@@ -1,7 +1,6 @@
 import React from 'react';
 import { IconBack } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
-import { useStateValue } from '../../state';
 import './SplitDetail.css';
 import SplitService from '../../services/split-service';
 import Dinero from 'dinero.js';
@@ -9,8 +8,7 @@ const Money = Dinero;
 const currency = 'USD';
 
 function SplitDetail(props) {
-    const { summaryArray, currentBill } = props;
-    const [ { billDetail } , dispatch ] = useStateValue();
+    const { summaryArray, currentBill, billDetail, dispatch } = props;
     const { tax, tip, fees, discounts } = currentBill;
     const shouldShowDetail = billDetail.isBillDetailOpen;
     const currentlyViewing = billDetail.currentlyViewing;

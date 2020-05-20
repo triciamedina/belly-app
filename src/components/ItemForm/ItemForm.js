@@ -1,29 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
-import { useStateValue } from '../../state';
 import './ItemForm.css';
 import { IconClose, Button, IconSubtract, IconAdd } from '../UI/UI';
+import ItemApiService from '../../services/item-api-service';
+import StickyStateService from '../../services/sticky-state-service';
 
 function ItemForm(props) {
+    const{ bills, dispatch, token, BillApiService } = props;
+    const { ownedByMe, sharedWithMe } = bills;
     const history = useHistory();
     const location = useLocation();
-    const [{ bills }, dispatch] = useStateValue();
-    const { ownedByMe, sharedWithMe } = bills;
 
     //  ID of current bill
-    const routeParamsId = useRouteMatch().params.bill_id;
+    const routeParamsBillId = useRouteMatch().params.bill_id;
 
     // ID of current item (will be null if adding a new item)
     const routeParamsItemId = useRouteMatch().params.item_id;
 
     // Targets bill that the item belongs to (one will be null)
-    const [ owned ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
-    const [ shared ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
+    const [ owned ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsBillId);
+    const [ shared ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsBillId);
     
     // Checks whether adding a new item or modifying an existing one
-    const isNew = location.pathname === `/bills/${routeParamsId}/add`;
-    const isExisting = location.pathname === `/bills/${routeParamsId}/${routeParamsItemId}/edit`;
+    const isExisting = location.pathname === `/bills/${routeParamsBillId}/${routeParamsItemId}/edit`;
 
     let existingItem = '';
     if (isExisting) {
@@ -35,108 +34,72 @@ function ItemForm(props) {
         }
     }
 
-    const deleteHandler = (event) => {
-        event.preventDefault();
-        let newOwnedList= null;
-        let newSharedList = null;
-        let oldBillList;
-        let currentBill;
-        let newItemList;
+    // Controlled inputs
+    const fields = ['enteredItemName', 'enteredItemPrice', 'enteredItemQuantity'];
+    const [ enteredItemName, setEnteredItemName ] = StickyStateService.useStickyState(existingItem ? existingItem.item_name : '', 'enteredItemName');
+    const [ enteredItemPrice, setEnteredItemPrice ] = StickyStateService.useStickyState(existingItem ? existingItem.price : '', 'enteredItemPrice');
+    const [ enteredItemQuantity ] = StickyStateService.useStickyState(existingItem ? existingItem.quantity : '1', 'enteredItemQuantity');
 
-        if (owned) {
-            oldBillList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
-            currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
-            newItemList = currentBill.items.filter(item => item.id.toString() !== routeParamsItemId);
-            currentBill.items = newItemList;
-            newOwnedList = [...oldBillList, currentBill];
-        }
-        if (shared) {
-            oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
-            currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
-            newItemList = currentBill.items.filter(item => item.id.toString() !== routeParamsItemId);
-            currentBill.items = newItemList;
-            newSharedList = [...oldBillList, currentBill];
-        }
-        
-        dispatch({
-            type: 'updateBills',
-            setBills: {
-                ownedByMe: newOwnedList || bills.ownedByMe,
-                sharedWithMe: newSharedList || bills.sharedWithMe
-            }
-        });
+    // Uncontrolled input
+    const quantityEl = useRef(null);
 
-        // Go to bill editor 
-        history.push(`/bills/${routeParamsId}`);
+    // Form close
+    const closeHandler = () => {
+        StickyStateService.clearStickyState(fields);
+        history.goBack();
     }
 
-    const submitHandler = (event) => {
+    // Delete handler
+    const deleteHandler = (event) => {
         event.preventDefault();
-        // Build new item object
-        const newItem = {
-            id: existingItem.id || uuidv4(),
-            date_added: existingItem.date_added || new Date(),
-            itemName: enteredItemName,
-            quantity: quantityEl.current.value,
-            price: enteredItemPrice,
-            splitList: existingItem.splitList || []
+
+        const itemToDelete = {
+            deleted: new Date(),
         };
 
-        let newOwnedList= null;
-        let newSharedList = null;
-        let oldBillList;
-        let oldItemList;
-        let newItemList;
-        let currentBill;
+        ItemApiService.updateItem(token, Number(routeParamsItemId), itemToDelete)
+            .then(res => {
+                BillApiService.getAllBills(token, dispatch);
+                history.push(`/bills/${routeParamsBillId}`);
+            })
+            .catch(res => {
+                console.log(res)
+            });
+    }
 
-        if (isNew) {
-            if (owned) {
-                oldBillList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
-                currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
-                currentBill.items.push(newItem);
-                newOwnedList = [...oldBillList, currentBill];
-            }
-            if (shared) {
-                oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
-                currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
-                currentBill.items.push(newItem);
-                newSharedList = [...oldBillList, currentBill];
-            }
+    // Submit handler
+    const submitHandler = (event) => {
+        event.preventDefault();
+
+        // Build new item object
+        const newItem = {
+            itemName: enteredItemName,
+            quantity: Number(quantityEl.current.value),
+            price: Number(enteredItemPrice),
+            bill_id: Number(routeParamsBillId)
+        };
+
+        if (isExisting) {
+            ItemApiService.updateItem(token, Number(routeParamsItemId), newItem)
+                .then(res => {
+                    BillApiService.getAllBills(token, dispatch);
+                    StickyStateService.clearStickyState(fields);
+                    history.push(`/bills/${routeParamsBillId}`);
+                })
+                .catch(res => {
+                    console.log(res)
+                });
         } else {
-            if (owned) {
-                // Bill list to be merged with
-                oldBillList = ownedByMe.filter(bill => bill.id.toString() !== routeParamsId);
-                // Bill to be merged with
-                currentBill = ownedByMe.filter(bill => bill.id.toString() === routeParamsId)[0];
-                //Item list to be merged with
-                oldItemList = currentBill.items.filter(item => item.id !== newItem.id);
-                newItemList = [...oldItemList, newItem];
-                currentBill.items = newItemList;
-                newOwnedList = [...oldBillList, currentBill];
-            }
-            if (shared) {
-                // Bill list to be merged with
-                oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== routeParamsId);
-                // Bill to be merged with
-                currentBill = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId)[0];
-                //Item list to be merged with
-                oldItemList = currentBill.items.filter(item => item.id !== newItem.id);
-                newItemList = [...oldItemList, newItem];
-                currentBill.items = newItemList;
-                newOwnedList = [...oldBillList, currentBill];
-            }
+            ItemApiService.postNewItem(token, newItem)
+                .then(res => {
+                    BillApiService.getAllBills(token, dispatch);
+                    StickyStateService.clearStickyState(fields);
+                    history.push(`/bills/${routeParamsBillId}`);
+                })
+                .catch(res => {
+                    console.log(res)
+                });
         }
-
-        dispatch({
-            type: 'updateBills',
-            setBills: {
-                ownedByMe: newOwnedList || bills.ownedByMe,
-                sharedWithMe: newSharedList || bills.sharedWithMe
-            }
-        });
-
-        // Go to bill editor 
-        history.push(`/bills/${routeParamsId}`);
     }
 
     const subtractQuantityHandler = (event) => {
@@ -151,14 +114,10 @@ function ItemForm(props) {
         quantityEl.current.value++;
     }
 
-    const [ enteredItemName, setEnteredItemName ] = useState(existingItem.itemName || '');
-    const [ enteredItemPrice, setEnteredItemPrice ] = useState(existingItem.price || '');
-    const quantityEl = useRef(null);
-
     return (
         <>
             <header className='ItemFormHeader'>
-                <button className='Close' onClick={() => history.goBack()}>
+                <button className='Close' onClick={() => closeHandler()}>
                     <IconClose />
                 </button>
             </header>
@@ -190,7 +149,7 @@ function ItemForm(props) {
                             min='0'
                             aria-label='Item quanitity'
                             placeholder={1}
-                            defaultValue={existingItem.quantity || 1}
+                            defaultValue={enteredItemQuantity}
                             ref={quantityEl}
                         >
                         </input>

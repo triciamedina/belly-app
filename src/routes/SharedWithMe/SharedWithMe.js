@@ -1,11 +1,10 @@
 import React from 'react';
 import './SharedWithMe.css';
-import { useStateValue } from '../../state';
 import BillList from '../../components/BillList/BillList';
 import BillShared from '../../components/BillShared/BillShared';
 
-function SharedWithMe() {
-    const [{ bills }] = useStateValue();
+function SharedWithMe(props) {
+    const { bills } = props;
     const items = bills.sharedWithMe;
 
     items.sort((a, b) => {
@@ -32,4 +31,4 @@ function SharedWithMe() {
     )
 }
 
-export default SharedWithMe;
+export default React.memo(SharedWithMe);

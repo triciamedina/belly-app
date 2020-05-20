@@ -6,8 +6,8 @@ import { useStateValue } from '../../state';
 import SplitDetail from '../SplitDetail/SplitDetail';
 
 function SplitSummary(props) {
-    const { currentBill } = props;
-    const [ { billDetail } , dispatch ] = useStateValue();
+    const { currentBill, dispatch } = props;
+    const [ { billDetail } ] = useStateValue();
     const shouldShowDetail = billDetail.isBillDetailOpen;
 
     const handleOpenDetails = (id) => {
@@ -44,7 +44,12 @@ function SplitSummary(props) {
     return ( 
         <div className='split-summary'>
             {shouldShowDetail
-                ?   <SplitDetail summaryArray={summaryArray} currentBill={currentBill} />
+                ?   <SplitDetail 
+                        summaryArray={summaryArray}
+                        currentBill={currentBill}
+                        billDetail={billDetail}
+                        dispatch={dispatch}
+                    />
                 :   (items.length ? <ul className='SplitSummary'>{items}</ul> : null)
             } 
         </div>

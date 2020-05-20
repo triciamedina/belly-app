@@ -7,12 +7,13 @@ import { useStateValue } from '../../state';
 import ShareModal from '../../components/ShareModal/ShareModal';
 import OutsideClick from '../../components/OutsideClick/OutsideClick';
 
-function OwnedByMe() {
-    const [{ bills, shareModal }, dispatch] = useStateValue();
+function OwnedByMe(props) {
+    const [{ shareModal }] = useStateValue();
+    const { bills, dispatch } = props;
     const items = bills.ownedByMe;
     
     items.sort((a, b) => {
-        return new Date(a.created_at) - new Date(b.created_at);
+        return new Date(a.last_viewed) - new Date(b.last_viewed);
     });
 
     const shouldShowShareModal = shareModal.isShareModalOpen;
@@ -46,6 +47,7 @@ function OwnedByMe() {
                 : <BillList 
                     listItemType={BillOwned}
                     items={items}
+                    dispatch={dispatch}
                 />
             }
             </div>
@@ -61,4 +63,4 @@ function OwnedByMe() {
     )
 }
 
-export default OwnedByMe;
+export default React.memo(OwnedByMe);

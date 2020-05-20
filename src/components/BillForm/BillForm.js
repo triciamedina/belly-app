@@ -2,16 +2,13 @@ import React, { useState, useRef } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Picker } from 'emoji-mart';
 import { IconClose, Button } from '../UI/UI';
-import { useStateValue } from '../../state';
 import 'emoji-mart/css/emoji-mart.css';
 import './BillForm.css';
-import TokenService from '../../services/token-service';
-import BillApiService from '../../services/bill-api-service';
 import StickyStateService from '../../services/sticky-state-service';
 
-function BillForm() {
+function BillForm(props) {
     const history = useHistory();
-    const [{ bills }, dispatch] = useStateValue();
+    const { bills, dispatch, token, BillApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
 
     // Pull data from app state if editing an existing bill
@@ -50,8 +47,6 @@ function BillForm() {
     const submitHandler = (event) => {
         event.preventDefault();
 
-        const token = TokenService.getAuthToken();
-        
         // Build new bill object
         const newBill = {
             billName: enteredBillName,
@@ -63,32 +58,13 @@ function BillForm() {
         };
 
         if (existingBill) {
-            // type, billId, updatedBill, token
-            BillApiService.updateBill('owned', existingBill.id, token, newBill)
+            const type = ownedItem ? 'owned' : 'shared';
+
+            BillApiService.updateBill(token, type, existingBill.id, newBill)
                 .then(res => {
-                    const getOwnedBills = BillApiService.getOwnedBills(token);
-                    const getSharedBills = BillApiService.getSharedBills(token);
-
-                    Promise.all([getOwnedBills, getSharedBills])
-                        .then(values => {
-                            const { ownedByMe } = values[0];
-                            const { sharedWithMe } = values[1];
-
-                            dispatch({
-                                type: 'updateBills',
-                                setBills: { 
-                                    ownedByMe,
-                                    sharedWithMe
-                                }
-                            });
-
-                            StickyStateService.clearStickyState(fields);
-
-                            history.push(`/bills/${routeParamsId}`);
-                        })
-                        .catch(res => {
-                            console.log(res)
-                        });
+                    BillApiService.getAllBills(token, dispatch);
+                    StickyStateService.clearStickyState(fields);
+                    history.push(`/bills/${routeParamsId}`);
                 })
                 .catch(res => {
                     console.log(res)
@@ -97,29 +73,9 @@ function BillForm() {
             BillApiService.postNewBill(token, newBill)
                 .then(res => {
                     const newBillId = res.id;
-                    const getOwnedBills = BillApiService.getOwnedBills(token);
-                    const getSharedBills = BillApiService.getSharedBills(token);
-
-                    Promise.all([getOwnedBills, getSharedBills])
-                        .then(values => {
-                            const { ownedByMe } = values[0];
-                            const { sharedWithMe } = values[1];
-
-                            dispatch({
-                                type: 'updateBills',
-                                setBills: { 
-                                    ownedByMe,
-                                    sharedWithMe
-                                }
-                            });
-
-                            StickyStateService.clearStickyState(fields);
-
-                            history.push(`/bills/${newBillId}`);
-                        })
-                        .catch(res => {
-                            console.log(res)
-                        });
+                    BillApiService.getAllBills(token, dispatch);
+                    StickyStateService.clearStickyState(fields);
+                    history.push(`/bills/${newBillId}`);
                 })
                 .catch(res => {
                     console.log(res)
@@ -241,4 +197,4 @@ function BillForm() {
     )
 }
 
-export default React.memo(BillForm, );
+export default React.memo(BillForm);

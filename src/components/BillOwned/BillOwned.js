@@ -7,10 +7,12 @@ import OutsideClick from '../OutsideClick/OutsideClick';
 import ReactHtmlParser from 'react-html-parser';
 import { useStateValue } from '../../state';
 import { Link } from 'react-router-dom';
+import BillApiService from '../../services/bill-api-service';
+import TokenService from '../../services/token-service';
 
 const BillOwned = React.memo(props => {
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
-    const [{ bills, shareModal }, dispatch] = useStateValue();
+    const [{ shareModal }, dispatch] = useStateValue();
     const shouldShowShareModal = shareModal.isShareModalOpen;
     const { id, bill_thumbnail, bill_name, last_viewed } = props;
 
@@ -26,15 +28,19 @@ const BillOwned = React.memo(props => {
     }
 
     const deleteHandler = () => {
-        const selected = id.toString();
-        const filtered = bills.ownedByMe.filter(bill => bill.id.toString() !== selected);
-        dispatch({
-            type: 'updateBills',
-            setBills: {
-                ownedByMe: filtered,
-                sharedWithMe: bills.sharedWithMe
-            }
-        });
+        const token = TokenService.getAuthToken();
+
+        const billToDelete = {
+            deleted: new Date(),
+        };
+
+        BillApiService.updateBill(token, 'owned', id, billToDelete)
+            .then(res => {
+                BillApiService.getAllBills(token, dispatch);
+            })
+            .catch(res => {
+                console.log(res)
+            });
     }
 
     return (
@@ -45,7 +51,10 @@ const BillOwned = React.memo(props => {
                 </Emoji>                               
                 <div className='details'>
                     <h3>{bill_name}</h3>
-                    <p>Last viewed {moment(last_viewed).format('MMMM Do')} at {moment(last_viewed).format('h:mm a')} </p>
+                    {last_viewed 
+                        ? (<p>Last viewed {moment(last_viewed).format('MMMM Do')} at {moment(last_viewed).format('h:mm a')}</p>)
+                        : (<p>New</p>)
+                    }
                 </div>
             </Link>
             <button 
