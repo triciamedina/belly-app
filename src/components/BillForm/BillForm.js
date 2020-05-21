@@ -70,7 +70,7 @@ function BillForm(props) {
                     console.log(res)
                 });
         } else {
-            BillApiService.postNewBill(token, newBill)
+            BillApiService.postNewOwnedBill(token, newBill)
                 .then(res => {
                     const newBillId = res.id;
                     BillApiService.getAllBills(token, dispatch);

@@ -10,6 +10,7 @@ import BillTotals from '../BillTotals/BillTotals';
 import ShareModal from '../ShareModal/ShareModal';
 import OutsideClick from '../OutsideClick/OutsideClick';
 import ViewApiService from '../../services/view-api-service';
+import ReferrerService from '../../services/referrer-service';
 
 function BillEditor(props) {
     const history = useHistory();
@@ -29,12 +30,19 @@ function BillEditor(props) {
     }, [dispatch, token, BillApiService]);
 
     useEffect(() => {
+        BillApiService.getAllBills(token, dispatch);
+    }, [token, BillApiService, dispatch]);
+
+    useEffect(() => {
         const newView = {
-            bill_id: currentBill.id
+            bill_id: routeParamsId
         };
         ViewApiService.postView(token, newView);
-        BillApiService.getAllBills(token, dispatch);
-    }, [token, currentBill.id, BillApiService, dispatch]);
+    }, [token, routeParamsId]);
+
+    useEffect(() => {
+        ReferrerService.clearReferrerToken();
+    }, [])
 
     const handleGoBack = () => {
         (ownedItem && history.push('/bills')) ||
@@ -137,8 +145,6 @@ function BillEditor(props) {
                 </main>
             </>
         )
-
-    
     }
     return <></>
 }

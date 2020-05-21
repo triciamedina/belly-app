@@ -12,7 +12,7 @@ function SharedWithMe(props) {
     }, [dispatch, token, BillApiService]);
 
     items.sort((a, b) => {
-        return new Date(b.date_added) - new Date(a.date_added);
+        return new Date(b.last_viewed) - new Date(a.last_viewed);
     });
 
     return (

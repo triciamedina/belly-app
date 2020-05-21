@@ -45,8 +45,8 @@ const BillApiService = {
                     : res.json()
             )
     },
-    postNewBill(token, newBill) {
-        return fetch(`${config.API_BASE_URL}/bill`, {
+    postNewOwnedBill(token, newBill) {
+        return fetch(`${config.API_BASE_URL}/bill/owned`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

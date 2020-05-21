@@ -7,15 +7,17 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 import { useStateValue } from '../../state';
+import ReferrerService from '../../services/referrer-service';
 
 function Entry() {
     const location = useLocation();
     const isLoginPage = location.pathname === '/login';
     const isRegisterPage = location.pathname === '/register';
     const [{ login }] = useStateValue();
+    const referrer = ReferrerService.getReferrerToken();
 
     return login.isLoggedIn 
-        ? <Redirect to={'/bills'} />
+        ? <Redirect to={referrer || '/bills'} />
         : (
         <main className='Entry'>
             <div className='Entry__primary'>

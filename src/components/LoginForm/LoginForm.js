@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './LoginForm.css';
 import { Input, Button } from '../UI/UI';
+import Error from '../Error/Error';
+
 import { useStateValue } from '../../state';
+
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import UserApiService from '../../services/user-api-service';
-import Error from '../Error/Error';
 import ValidationService from '../../services/validation-service';
+import ReferrerService from '../../services/referrer-service';
 
 function LoginForm() {
     const [ enteredUsername, setEnteredUsername ] = useState('');
@@ -14,8 +18,14 @@ function LoginForm() {
     const [ enteredPassword, setEnteredPassword ] = useState('');
     const [ passwordTouched, setPasswordTouched ] = useState();
     const [ loginError, setLoginError ] = useState('');
-
     const [ , dispatch] = useStateValue();
+
+    let location = useLocation();
+
+    if (location.state) {
+        let { from } = location.state;
+        ReferrerService.saveReferrerToken(from.pathname);
+    }
 
     const onUsernameChange = (entered) => {
         setEnteredUsername(entered);
