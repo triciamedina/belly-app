@@ -59,6 +59,8 @@ function Bills() {
                         <OwnedByMe 
                             bills={bills} 
                             dispatch={dispatch}
+                            BillApiService={BillApiService}
+                            token={token}
                         />
                     </main>
                 </Route>
@@ -67,6 +69,9 @@ function Bills() {
                     <main className='Bills'>
                         <SharedWithMe 
                             bills={bills}
+                            BillApiService={BillApiService}
+                            token={token}
+                            dispatch={dispatch}
                         />
                     </main>
                 </Route>

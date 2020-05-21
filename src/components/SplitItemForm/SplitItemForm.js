@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './SplitItemForm.css';
 import { IconClose, IconAdd } from '../UI/UI';
-import { useStateValue } from '../../state';
 import SplitItem from '../SplitItem/SplitItem';
 import SplitterForm from '../SplitterForm/SplitterForm';
+import SplitterApiService from '../../services/splitter-api-service';
 
 const SplitItemForm = React.forwardRef((props, ref) => {
-    const { splitForm, dispatch, billId, itemId } = props;
+    const { splitForm, dispatch, itemId, items, token, BillApiService } = props;
+    const [ currentItem ] = items.filter(item => item.id === itemId);
 
     // Handle show/hide split form
     const shouldShowSplitForm = splitForm.isSplitFormOpen;
@@ -20,30 +21,19 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         });
     }
 
-    // Match bill and item from context
-    const [{ bills }] = useStateValue();
-    const { ownedByMe, sharedWithMe } = bills;
-    const [ owned ] = ownedByMe.filter(bill => bill.id === billId);
-    const [ shared ] = sharedWithMe.filter(bill => bill.id === billId);
-    const currentBill = owned || shared;
-
-    // Target current item and split list
-    const [ currentItem ] = owned
-        ? owned.items.filter(item => item.id === itemId)
-        : shared.items.filter(item => item.id === itemId);
-
     // Populate with initial list from context
     const currentShares = {};
     currentItem.split_list.forEach(person => {
         currentShares[person.id] = { 
             name: person.nickname, 
             share_qty: person.share_qty,
-            avatar: person.avatar
+            avatar: person.avatar,
+            existing: true
         }
     });
 
     // Add other splitters present in bill, with share of 0
-    currentBill.items.filter(item => item.id !== itemId).forEach(item => {
+    items.filter(item => item.id !== itemId).forEach(item => {
         item.split_list.forEach(person => {
             if (!currentShares[person.id]) {
                 currentShares[person.id] = {
@@ -66,15 +56,8 @@ const SplitItemForm = React.forwardRef((props, ref) => {
         setSplit({...split, [id]: value});
     }
 
-    const handleDelete = (id) => {
-        const newSplit = Object.keys(split).reduce((object, key) => {
-            if (key !== id) {
-                object[key] = split[key]
-            }
-            return object
-        }, {});
-
-        setSplit(newSplit); 
+    const handleDelete = (id, value) => {
+        handleSplit(id, value);
     }
 
     const handleEditSplitter = (id) => {
@@ -88,80 +71,114 @@ const SplitItemForm = React.forwardRef((props, ref) => {
     }
 
     const submitHandler = () => {
+        // For each splitter in list
+        Object.entries(split).forEach(entry => {
+            const personId = entry[0];
+            const person = entry[1];
+            
+            // If person is an existing splitter on the item
+            if (person.existing) {
+                const updatedSplitter = {
+                    nickname: person.name
+                };
 
-        // Build new split list
-        const newSplitList = [];
-        Object.entries(split).forEach(person => {
-            // Only save to split list if share is greater than 0
-            if (Number(person[1].share_qty) > 0) {
-                const newPerson = {};
-                newPerson.id = person[0];
-                newPerson.item_id = currentItem.id;
-                newPerson.nickname = person[1].name;
-                newPerson.avatar = person[1].avatar;
-                newPerson.share_qty = person[1].share_qty;
-                newSplitList.push(newPerson);
+                const newSplit = {
+                    share_qty: person.share_qty.toString(),
+                    deleted: person.deleted ? new Date() : null
+                };
+
+                // PATCH request to splitter endpoint
+                SplitterApiService.updateSplitter(token, personId, updatedSplitter)
+                    .then(res => {
+                        // PATCH request to splitter/item endpoint
+                        SplitterApiService.updateSplit(token, personId, itemId, newSplit)
+                            .then(res => {
+                                // GET all bills
+                                BillApiService.getAllBills(token, dispatch);
+                                handleCloseForm();
+                            })
+                            .catch(res => {
+                                console.log(res)
+                            });
+                    })
+                    .catch(res => {
+                        console.log(res)
+                    });
+                
+            } else {
+                // If person share is greater than 0
+                if (Number(person.share_qty) > 0) {
+
+                    // If person is newly added 
+                    if (personId === 'New') {
+
+                        const newSplitter = {
+                            nickname: person.name,
+                            avatar: person.avatar
+                        };
+
+                        const newSplit = {
+                            share_qty: person.share_qty
+                        };
+
+                        // POST new splitter
+                        SplitterApiService.postNewSplitter(token, newSplitter)
+                            .then(res => {
+                                // POST new relation to splitter and item
+                                SplitterApiService.postNewSplit(token, res.id, itemId, newSplit)
+                                    .then(res => {
+                                        // GET all bills
+                                        BillApiService.getAllBills(token, dispatch);
+                                        handleCloseForm();
+                                    })
+                                    .catch(res => {
+                                        console.log(res)
+                                    });
+                            })
+
+                    } else {
+                        // If person is existing splitter on other items in the bill but not current item
+                        const newSplit = {
+                            share_qty: person.share_qty
+                        }
+                        
+                        // POST new relation to splitter and item
+                        SplitterApiService.postNewSplit(token, personId, itemId, newSplit)
+                            .then(res => {
+                                // GET all bills
+                                BillApiService.getAllBills(token, dispatch);
+                                handleCloseForm();
+                            })
+                            .catch(res => {
+                                console.log(res)
+                            });
+                    }
+                }
             }
         })
-
-        let oldBillList;
-        let oldItemList;
-        let updatedItem;
-        let newItemList;
-        let newOwnedList;
-        let newSharedList
-
-        if (owned) {
-            // Bill list to be merged with
-            oldBillList = ownedByMe.filter(bill => bill.id.toString() !== owned.id.toString());
-            //Item list to be merged with
-            oldItemList = currentBill.items.filter(item => item.id.toString() !== currentItem.id.toString());
-            // Item to update
-            updatedItem = currentBill.items.filter(item => item.id.toString() === currentItem.id.toString())[0];
-            updatedItem.splitList = newSplitList;
-
-            newItemList = [...oldItemList, updatedItem];
-            currentBill.items = newItemList;
-            newOwnedList = [...oldBillList, currentBill];
-        }
-        if (shared) {
-            // Bill list to be merged with
-            oldBillList = sharedWithMe.filter(bill => bill.id.toString() !== shared.id.toString());
-            //Item list to be merged with
-            oldItemList = currentBill.items.filter(item => item.id.toString() !== currentItem.id.toString());
-            // Item to update
-            updatedItem = currentBill.items.filter(item => item.id.toString() === currentItem.id.toString())[0];
-            updatedItem.splitList = newSplitList;
-            newItemList = [...oldItemList, updatedItem];
-            currentBill.items = newItemList;
-            newSharedList = [...oldBillList, currentBill];
-        }
-
-        dispatch({
-            type: 'updateBills',
-            setBills: {
-                ownedByMe: newOwnedList || bills.ownedByMe,
-                sharedWithMe: newSharedList || bills.sharedWithMe
-            }
-        });
-
-        handleCloseForm();
+        
     }
 
     // Render list of splitters from local state
     const splitList = Object.entries(split).map(person => {
-        const id  = person[0]
-        const { name, avatar, share_qty } = person[1];
+        const id = person[0]
+        const { name, avatar, share_qty, existing, deleted } = person[1];
 
-        return <SplitItem 
-                    key={id}
-                    id={id} 
-                    nickname={name} 
-                    avatar={avatar} 
-                    share_qty={share_qty}
-                    handleSplit={handleSplit}
-                    handleShowSplitterForm={handleEditSplitter}
-                />
+        // Only render if not deleted (splitters marked as deleted are only updated on save)
+        if (!deleted) {
+            return <SplitItem 
+                key={id}
+                id={id} 
+                nickname={name} 
+                avatar={avatar} 
+                share_qty={share_qty}
+                existing={existing}
+                handleSplit={handleSplit}
+                handleShowSplitterForm={handleEditSplitter}
+            />
+        } else {
+            return <></>
+        }
     });
 
     // Conditionally render split item form or splitter form

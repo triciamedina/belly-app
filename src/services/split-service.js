@@ -52,15 +52,17 @@ const SplitService = {
             const currentSplitList = currentItem.split_list;
             for (let i = 0; i < currentSplitList.length; i++) {
                 const splitter = currentSplitList[i];
-                const splitterId = splitter.id;
-                const share = {
-                    itemName: currentItem.item_name,
-                    itemId: splitter.item_id,
-                    share: Number(splitter.share_qty),
-                }
+                if (Number(splitter.share_qty > 0)) {
+                    const splitterId = splitter.id;
+                    const share = {
+                        itemName: currentItem.item_name,
+                        itemId: splitter.item_id,
+                        share: Number(splitter.share_qty),
+                    }
 
-                summary[splitterId].items.push(share);
-                itemTotals[splitter.item_id].shareTotal += Number(splitter.share_qty);
+                    summary[splitterId].items.push(share);
+                    itemTotals[splitter.item_id].shareTotal += Number(splitter.share_qty);
+                }
             }
         }
         
@@ -84,6 +86,9 @@ const SplitService = {
                 const total = itemTotal.multiply((share / itemShares));
                 
                 items[i].sum = total;
+            }
+            if (person.items.length === 0) {
+                delete summary[key];
             }
         }
 

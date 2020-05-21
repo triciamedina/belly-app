@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './OwnedByMe.css';
 import BillList from '../../components/BillList/BillList';
@@ -9,11 +9,15 @@ import OutsideClick from '../../components/OutsideClick/OutsideClick';
 
 function OwnedByMe(props) {
     const [{ shareModal }] = useStateValue();
-    const { bills, dispatch } = props;
+    const { bills, dispatch, BillApiService, token } = props;
     const items = bills.ownedByMe;
     
+    useEffect(() => {
+        BillApiService.getAllBills(token, dispatch);
+    }, [dispatch, token, BillApiService]);
+
     items.sort((a, b) => {
-        return new Date(a.last_viewed) - new Date(b.last_viewed);
+        return new Date(b.last_viewed) - new Date(a.last_viewed);
     });
 
     const shouldShowShareModal = shareModal.isShareModalOpen;

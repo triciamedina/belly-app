@@ -52,7 +52,9 @@ const BillOwned = React.memo(props => {
                 <div className='details'>
                     <h3>{bill_name}</h3>
                     {last_viewed 
-                        ? (<p>Last viewed {moment(last_viewed).format('MMMM Do')} at {moment(last_viewed).format('h:mm a')}</p>)
+                        ?   ((moment(last_viewed).format('YYYY MM DD') === moment().format('YYYY MM DD'))
+                                ? (<p>Last viewed {moment(last_viewed).format('[today at] h:mm a')}</p>)
+                                : (<p>Last viewed {moment(last_viewed).format('MMMM Do [at] h:mm a')}</p>))
                         : (<p>New</p>)
                     }
                 </div>

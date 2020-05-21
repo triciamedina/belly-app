@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SharedWithMe.css';
 import BillList from '../../components/BillList/BillList';
 import BillShared from '../../components/BillShared/BillShared';
 
 function SharedWithMe(props) {
-    const { bills } = props;
+    const { bills, token, dispatch, BillApiService } = props;
     const items = bills.sharedWithMe;
 
+    useEffect(() => {
+        BillApiService.getAllBills(token, dispatch);
+    }, [dispatch, token, BillApiService]);
+
     items.sort((a, b) => {
-        return new Date(a.date_added) - new Date(b.date_added);
+        return new Date(b.date_added) - new Date(a.date_added);
     });
 
     return (

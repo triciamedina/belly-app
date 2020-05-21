@@ -7,7 +7,7 @@ import SplitItemForm from '../SplitItemForm/SplitItemForm';
 import OutsideClick from '../OutsideClick/OutsideClick';
 
 function ItemList(props) {
-    const { items, currentBillId, dispatch } = props;
+    const { items, currentBillId, dispatch, token, BillApiService } = props;
     const [ { splitForm } ] = useStateValue();
     const shouldShowSplitForm = splitForm.isSplitFormOpen;
     const { currentlyViewing } = splitForm;
@@ -32,6 +32,19 @@ function ItemList(props) {
         <ul className='ItemList'>
             {items.map((item, index) => {
                 const { id, quantity, item_name, split_list } = item;
+
+                const filteredSplitList = split_list
+                    .filter(person => person.share_qty > 0)
+                    .sort((a, b) => {
+                        if (b.nickname.toLowerCase() > a.nickname.toLowerCase()) {
+                            return -1;
+                        }
+                        if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                    
                 return (
                     <li key={index} className='Item'>
                         <Link className='edit-item' to={`/bills/${currentBillId}/${id}/edit`}>
@@ -45,16 +58,18 @@ function ItemList(props) {
                         <button className='edit-share' onClick={() => toggleOpenForm(id)}>
                             {split_list.length === 0
                                 ? <p>Split</p>
-                                : <AvatarList list={split_list}/>
+                                : <AvatarList list={filteredSplitList}/>
                             }
                         </button>
                         {(shouldShowSplitForm && currentlyViewing === id) 
                             ?   <OutsideClick onOutsideClick={() => toggleOpenForm('')}>
-                                    <SplitItemForm 
-                                        billId={currentBillId} 
+                                    <SplitItemForm
                                         itemId={id} 
                                         splitForm={splitForm}
                                         dispatch={dispatch}
+                                        items={items}
+                                        token={token}
+                                        BillApiService={BillApiService}
                                     /> 
                                 </OutsideClick>
                             : null

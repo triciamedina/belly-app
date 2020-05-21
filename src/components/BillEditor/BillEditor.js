@@ -9,6 +9,7 @@ import SplitSummary from '../SplitSummary/SplitSummary';
 import BillTotals from '../BillTotals/BillTotals';
 import ShareModal from '../ShareModal/ShareModal';
 import OutsideClick from '../OutsideClick/OutsideClick';
+import ViewApiService from '../../services/view-api-service';
 
 function BillEditor(props) {
     const history = useHistory();
@@ -26,6 +27,14 @@ function BillEditor(props) {
     useEffect(() => {
         BillApiService.getAllBills(token, dispatch);
     }, [dispatch, token, BillApiService]);
+
+    useEffect(() => {
+        const newView = {
+            bill_id: currentBill.id
+        };
+        ViewApiService.postView(token, newView);
+        BillApiService.getAllBills(token, dispatch);
+    }, [token, currentBill.id, BillApiService, dispatch]);
 
     const handleGoBack = () => {
         (ownedItem && history.push('/bills')) ||
@@ -92,6 +101,8 @@ function BillEditor(props) {
                             currentBillId={id} 
                             items={items}
                             dispatch={dispatch}
+                            token={token}
+                            BillApiService={BillApiService}
                         />
 
                         {/* Add new item button */}

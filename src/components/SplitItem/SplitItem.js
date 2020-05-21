@@ -8,7 +8,8 @@ function SplitItem(props) {
             id, 
             nickname, 
             avatar, 
-            share_qty, 
+            share_qty,
+            existing = false,
             handleSplit,
             handleShowSplitterForm
         } = props;
@@ -29,8 +30,9 @@ function SplitItem(props) {
                         onClick={() => handleSplit(id, 
                             {
                                 name: nickname, 
-                                share_q: share_qty > 0 ? (Number(share_qty) - 1).toString() : share_qty,
-                                avatar
+                                share_qty: share_qty > 0 ? (Number(share_qty) - 1).toString() : share_qty,
+                                avatar,
+                                existing
                             }
                         )}
                     >
@@ -41,7 +43,8 @@ function SplitItem(props) {
                             { 
                                 name: nickname, 
                                 share_qty: (Number(share_qty) + 1).toString(),
-                                avatar
+                                avatar,
+                                existing
                             }
                         )}
                     >
