@@ -6,7 +6,7 @@ import SplitterForm from '../SplitterForm/SplitterForm';
 import SplitterApiService from '../../services/splitter-api-service';
 
 const SplitItemForm = React.forwardRef((props, ref) => {
-    const { splitForm, dispatch, itemId, items, token, BillApiService } = props;
+    const { splitForm, dispatch, itemId, items, token, BillApiService, ws, WebSocketApiService, currentBillId } = props;
     const [ currentItem ] = items.filter(item => item.id === itemId);
 
     // Handle show/hide split form
@@ -96,6 +96,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                                 // GET all bills
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
+                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                             })
                             .catch(res => {
                                 console.log(res)
@@ -130,6 +131,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                                         // GET all bills
                                         BillApiService.getAllBills(token, dispatch);
                                         handleCloseForm();
+                                        WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                                     })
                                     .catch(res => {
                                         console.log(res)
@@ -148,6 +150,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                                 // GET all bills
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
+                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                             })
                             .catch(res => {
                                 console.log(res)

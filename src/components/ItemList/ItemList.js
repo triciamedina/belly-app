@@ -7,7 +7,7 @@ import SplitItemForm from '../SplitItemForm/SplitItemForm';
 import OutsideClick from '../OutsideClick/OutsideClick';
 
 function ItemList(props) {
-    const { items, currentBillId, dispatch, token, BillApiService } = props;
+    const { items, currentBillId, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const [ { splitForm } ] = useStateValue();
     const shouldShowSplitForm = splitForm.isSplitFormOpen;
     const { currentlyViewing } = splitForm;
@@ -70,6 +70,9 @@ function ItemList(props) {
                                         items={items}
                                         token={token}
                                         BillApiService={BillApiService}
+                                        ws={ws}
+                                        WebSocketApiService={WebSocketApiService}
+                                        currentBillId={currentBillId}
                                     /> 
                                 </OutsideClick>
                             : null

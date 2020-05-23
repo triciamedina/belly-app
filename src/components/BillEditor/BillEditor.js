@@ -14,7 +14,7 @@ import ReferrerService from '../../services/referrer-service';
 import UserApiService from '../../services/user-api-service';
 
 function BillEditor(props) {
-    const { bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients } = props;
+    const { bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients, ws, WebSocketApiService } = props;
     const [ isNew, setIsNew ] = useState(true);
 
     const history = useHistory();
@@ -140,6 +140,8 @@ function BillEditor(props) {
                             dispatch={dispatch}
                             token={token}
                             BillApiService={BillApiService}
+                            ws={ws}
+                            WebSocketApiService={WebSocketApiService}
                         />
 
                         {/* Add new item button */}

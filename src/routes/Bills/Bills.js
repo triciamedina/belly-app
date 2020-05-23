@@ -179,6 +179,8 @@ function Bills() {
                         webSocketClients={webSocketClients}
                         handleWebSocketOpen={handleWebSocketOpen}
                         handleWebSocketClose={handleWebSocketClose}
+                        ws={wsRef.current}
+                        WebSocketApiService={WebSocketApiService}
                     />
                 </Route>
                 <Route path={['/bills/:bill_id/add', '/bills/:bill_id/:item_id/edit']}>
