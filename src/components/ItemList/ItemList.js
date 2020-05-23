@@ -56,7 +56,7 @@ function ItemList(props) {
                             </h2>
                         </Link>
                         <button className='edit-share' onClick={() => toggleOpenForm(id)}>
-                            {split_list.length === 0
+                            {filteredSplitList.length === 0
                                 ? <p>Split</p>
                                 : <AvatarList list={filteredSplitList}/>
                             }
