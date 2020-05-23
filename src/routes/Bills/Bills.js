@@ -12,87 +12,90 @@ import UserApiService from '../../services/user-api-service';
 import TokenService from '../../services/token-service';
 import BillApiService from '../../services/bill-api-service';
 import WebSocketApiService from '../../services/websocket-api-service';
+import StickyStateService from '../../services/sticky-state-service';
 
 function Bills() {
-    const [ { bills, webSocket, webSocketClients, profile } , dispatch] = useStateValue();
+    const [ { bills, profile } , dispatch] = useStateValue();
     const token = TokenService.getAuthToken();
+
+    // Websocket sticky state
+    const fields = ['isWebSocketOpen', 'webSocketId', 'webSocketClients'];
+    const [ isWebSocketOpen, setIsWebSocketOpen ] = StickyStateService.useStickyState(false, 'isWebSocketOpen');
+    const [ webSocketId, setWebSocketId ] = StickyStateService.useStickyState('', 'webSocketId');
+    const [ webSocketClients, setWebSocketClients ] = StickyStateService.useStickyState([], 'webSocketClients');
 
     // Websocket reference
     const wsRef = useRef(null);
-    const { isWebSocketOpen } = webSocket;
+    // const { isWebSocketOpen } = webSocket;
+
+    // Resets sticky state if no websocket connection is open 
+    // (handles case when browser may be refreshed)
+    useEffect(() => {
+        if (!wsRef.current) {
+            setIsWebSocketOpen(false);
+        } 
+    }, [setIsWebSocketOpen])
 
     // Open websocket callback
     const handleWebSocketOpen = (routeParamsId) => {
+        
         if (!isWebSocketOpen) {
             wsRef.current = WebSocketApiService.handleOpen(routeParamsId);
-            const newUser = {
-                nickname: profile.username,
-                avatar: profile.avatarColor
-            }
+        }
+        
+        if (wsRef.current) {
             wsRef.current.onopen = () => {
-                WebSocketApiService.handleJoin(
-                    wsRef.current, 
-                    JSON.stringify({ billId: routeParamsId, newUser: newUser })
-                )
+                if (profile.username.length) {
+                    const newUser = {
+                        nickname: profile.username,
+                        avatar: profile.avatarColor
+                    }
+                    WebSocketApiService.handleJoin(
+                        wsRef.current, 
+                        JSON.stringify({ billId: routeParamsId, newUser: newUser })
+                    );
+                }
+                setIsWebSocketOpen(true);
             };
-        }
 
-        wsRef.current.onmessage = (evt) => {
+            wsRef.current.onmessage = (evt) => {
             
-            console.log(JSON.parse(evt.data))
-            const message = JSON.parse(evt.data);
-
-            if (message.viewerExited) {
-                WebSocketApiService.handleClose(wsRef.current);
-            } 
-            if (message.viewerJoined) {
-                dispatch({
-                    type: 'updateWebSocket',
-                    setWebSocket: { 
-                        isWebSocketOpen: true,
-                        webSocketId: message.id
-                    }
-                })
-                console.log('updating id')
-            }
-            if (message.updateViewers) {
-                console.log(message.clients)
-                dispatch({
-                    type: 'updateWebSocketClients',
-                    setWebSocketClients: { 
-                        viewers: message.clients
-                    }
-                })
-                console.log('updating viewers')
-            }
-        };
-
-        wsRef.current.onclose = () => {
-            console.log('closing socket')
-            dispatch({
-                type: 'updateWebSocket',
-                setWebSocket: { 
-                    isWebSocketOpen: false,
-                    webSocketId: ''
+                console.log(JSON.parse(evt.data))
+                const message = JSON.parse(evt.data);
+    
+                if (message.viewerExited) {
+                    WebSocketApiService.handleClose(wsRef.current);
+                } 
+                if (message.viewerJoined) {
+                    setWebSocketId(message.id);
+                    console.log('updating id')
                 }
-            });
-            dispatch({
-                type: 'updateWebSocketClients',
-                setWebSocketClients: { 
-                    viewers: {}
+                if (message.updateViewers) {
+                    console.log(message.clients)
+                    setWebSocketClients(message.clients);
+                    console.log('updating viewers')
                 }
-            })
-        }
+            };
+
+            wsRef.current.onclose = () => {
+                console.log('closing socket')
+                // StickyStateService.clearStickyState(fields);
+                setIsWebSocketOpen(false);
+                // setWebSocketClients({});
+                // setWebSocketId('');
+            }
+        }   
     };
 
     // Close websocket callback
     const handleWebSocketClose = (routeParamsId) => {
         console.log('close callback initiated')
-        WebSocketApiService.handleExit(
-            wsRef.current,
-            JSON.stringify({ billId: routeParamsId, userExit: webSocket.webSocketId })
-        );
-
+        if (wsRef.current) {
+            WebSocketApiService.handleExit(
+                wsRef.current,
+                JSON.stringify({ billId: routeParamsId, userExit: webSocketId })
+            );
+        }
     }
 
     // Get profile and bills

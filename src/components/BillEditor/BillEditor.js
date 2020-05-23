@@ -26,9 +26,9 @@ function BillEditor(props) {
     const currentBill = ownedItem || sharedItem;
 
     // Call web socket open
-    useEffect(() => {
-        handleWebSocketOpen(routeParamsId)
-    }, [handleWebSocketOpen, routeParamsId])
+    // useEffect(() => {
+        
+    // }, [, routeParamsId])
 
     // Post new view on entry
     useEffect(() => {
@@ -36,7 +36,8 @@ function BillEditor(props) {
             bill_id: routeParamsId
         };
         ViewApiService.postView(token, newView);
-    }, [token, routeParamsId]);
+        handleWebSocketOpen(routeParamsId)
+    }, [token, routeParamsId, handleWebSocketOpen]);
 
     // Clear referrer token
     useEffect(() => {
@@ -136,7 +137,7 @@ function BillEditor(props) {
                         <h2>Currently viewing</h2>
                         {/* This list will update based on who is currently in the room */}
                         <AvatarList list={
-                            Object.entries(webSocketClients.viewers).map(entry => entry[1])
+                            Object.entries(webSocketClients).map(entry => entry[1])
                         }/>
                     </div>
 

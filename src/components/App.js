@@ -35,13 +35,13 @@ function App() {
       isSplitFormOpen: false,
       currentlyViewing: ''
     },
-    webSocket: {
-      isWebSocketOpen: false,
-      webSocketId: '',
-    },
-    webSocketClients: {
-      viewers: {}
-    }
+    // webSocket: {
+    //   isWebSocketOpen: false,
+    //   webSocketId: '',
+    // },
+    // webSocketClients: {
+    //   viewers: {}
+    // }
   };
 
   const reducer = (state, action) => {
@@ -81,16 +81,16 @@ function App() {
           ...state,
           splitForm: action.setSplitForm
         }
-      case 'updateWebSocket':
-        return {
-          ...state,
-          webSocket: action.setWebSocket
-        }
-      case 'updateWebSocketClients':
-        return {
-          ...state,
-          webSocketClients: action.setWebSocketClients
-        }
+      // case 'updateWebSocket':
+      //   return {
+      //     ...state,
+      //     webSocket: action.setWebSocket
+      //   }
+      // case 'updateWebSocketClients':
+      //   return {
+      //     ...state,
+      //     webSocketClients: action.setWebSocketClients
+      //   }
       default:
         return state;
     };
