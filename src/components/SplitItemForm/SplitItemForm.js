@@ -177,7 +177,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 handleShowSplitterForm={handleEditSplitter}
             />
         } else {
-            return <></>
+            return null
         }
     });
 
