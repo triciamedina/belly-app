@@ -17,7 +17,11 @@ function Entry() {
     const referrer = ReferrerService.getReferrerToken();
 
     return login.isLoggedIn 
+
+        // If referrer token exists redirect to referrer
         ? <Redirect to={referrer || '/bills'} />
+        
+        // Render login or register page
         : (
         <main className='Entry'>
             <div className='Entry__primary'>

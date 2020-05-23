@@ -16,6 +16,7 @@ function OwnedByMe(props) {
         BillApiService.getAllBills(token, dispatch);
     }, [dispatch, token, BillApiService]);
 
+    // Sort by last viewed descending
     items.sort((a, b) => {
         return new Date(b.last_viewed) - new Date(a.last_viewed);
     });

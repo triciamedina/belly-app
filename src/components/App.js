@@ -34,6 +34,13 @@ function App() {
     splitForm: {
       isSplitFormOpen: false,
       currentlyViewing: ''
+    },
+    webSocket: {
+      isWebSocketOpen: false,
+      webSocketId: '',
+    },
+    webSocketClients: {
+      viewers: {}
     }
   };
 
@@ -73,6 +80,16 @@ function App() {
         return {
           ...state,
           splitForm: action.setSplitForm
+        }
+      case 'updateWebSocket':
+        return {
+          ...state,
+          webSocket: action.setWebSocket
+        }
+      case 'updateWebSocketClients':
+        return {
+          ...state,
+          webSocketClients: action.setWebSocketClients
         }
       default:
         return state;

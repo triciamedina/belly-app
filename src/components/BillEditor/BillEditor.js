@@ -13,9 +13,9 @@ import ViewApiService from '../../services/view-api-service';
 import ReferrerService from '../../services/referrer-service';
 
 function BillEditor(props) {
-    const history = useHistory();
-    const { bills, dispatch, token, BillApiService } = props;
+    const { bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients } = props;
 
+    const history = useHistory();
     const [{ shareModal }] = useStateValue();
     const shouldShowShareModal = shareModal.isShareModalOpen;
 
@@ -25,14 +25,12 @@ function BillEditor(props) {
     const [ sharedItem ] = sharedWithMe ? sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId) : null;
     const currentBill = ownedItem || sharedItem;
 
+    // Call web socket open
     useEffect(() => {
-        BillApiService.getAllBills(token, dispatch);
-    }, [dispatch, token, BillApiService]);
+        handleWebSocketOpen(routeParamsId)
+    }, [handleWebSocketOpen, routeParamsId])
 
-    useEffect(() => {
-        BillApiService.getAllBills(token, dispatch);
-    }, [token, BillApiService, dispatch]);
-
+    // Post new view on entry
     useEffect(() => {
         const newView = {
             bill_id: routeParamsId
@@ -40,6 +38,7 @@ function BillEditor(props) {
         ViewApiService.postView(token, newView);
     }, [token, routeParamsId]);
 
+    // Clear referrer token
     useEffect(() => {
         ReferrerService.clearReferrerToken();
     }, [])
@@ -55,6 +54,8 @@ function BillEditor(props) {
                 currentlyViewing: ''
             }
         });
+
+        handleWebSocketClose(routeParamsId);
     }
 
     const toggleShareModalHandler = () => {
@@ -69,7 +70,6 @@ function BillEditor(props) {
 
     if (currentBill) {
         const { id, bill_thumbnail, bill_name, items } = currentBill;
-
         return (
             <>
                 {/*  Header nav */}
@@ -135,11 +135,9 @@ function BillEditor(props) {
                     <div className='currently-viewing'>
                         <h2>Currently viewing</h2>
                         {/* This list will update based on who is currently in the room */}
-                        <AvatarList list={[
-                            { nickname: 'Tricia', avatar: 'orange' }, 
-                            { nickname: 'Sam', avatar: 'purple' }, 
-                            { nickname: 'Frodo', avatar: 'blue' }
-                        ]}/>
+                        <AvatarList list={
+                            Object.entries(webSocketClients.viewers).map(entry => entry[1])
+                        }/>
                     </div>
 
                 </main>

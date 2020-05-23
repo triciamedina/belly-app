@@ -4,9 +4,11 @@ import Avatar from '../Avatar/Avatar';
 
 function AvatarList(props) {
     const { list } = props;
-
+    console.log(list)
     return (
-        <ul className='AvatarList'>
+        <>
+        {list.length &&
+        (<ul className='AvatarList'>
             {list.map((person, index) => 
                 (<li key={index}>
                     <Avatar className={'Avatar ' + person.avatar}>
@@ -14,8 +16,9 @@ function AvatarList(props) {
                     </Avatar>
                 </li>)
             )}
-        </ul>
+        </ul>)}
+        </>
     )
 }
 
-export default AvatarList;
+export default React.memo(AvatarList);
