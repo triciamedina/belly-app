@@ -43,3 +43,7 @@
     letter-spacing: 0.0096em;
     color: rgba(0, 0, 0, 60%);
 }
+
+.BillShared p.new {
+    color: #621FEE;
+}

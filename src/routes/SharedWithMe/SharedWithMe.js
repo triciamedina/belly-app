@@ -11,10 +11,14 @@ function SharedWithMe(props) {
         BillApiService.getAllBills(token, dispatch);
     }, [dispatch, token, BillApiService]);
 
-    // Sort by last viewed descending
-    items.sort((a, b) => {
+    // Sort by last viewed descending with new first
+    const nulls = items.filter(item => item.last_viewed === null);
+    const notNulls = items.filter(item => item.last_viewed !== null);
+    notNulls.sort((a, b) => {
         return new Date(b.last_viewed) - new Date(a.last_viewed);
     });
+
+    const sortedList = nulls.concat(notNulls);
 
     return (
         <div className='SharedWithMe'>
@@ -28,7 +32,7 @@ function SharedWithMe(props) {
                 ? 'There are no bills shared with you'
                 : <BillList 
                     listItemType={BillShared}
-                    items={items}
+                    items={sortedList}
                 />
             }
             </div>

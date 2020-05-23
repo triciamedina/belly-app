@@ -16,10 +16,20 @@ function OwnedByMe(props) {
         BillApiService.getAllBills(token, dispatch);
     }, [dispatch, token, BillApiService]);
 
+    const nulls = items.filter(item => item.last_viewed === null);
+    const notNulls = items.filter(item => item.last_viewed !== null);
+
+    // Sort by date created descending
+    nulls.sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+    });
+    
     // Sort by last viewed descending
-    items.sort((a, b) => {
+    notNulls.sort((a, b) => {
         return new Date(b.last_viewed) - new Date(a.last_viewed);
     });
+
+    const sortedList = nulls.concat(notNulls);
 
     const shouldShowShareModal = shareModal.isShareModalOpen;
 
@@ -51,7 +61,7 @@ function OwnedByMe(props) {
                 ? 'There are no bills owned by you'
                 : <BillList 
                     listItemType={BillOwned}
-                    items={items}
+                    items={sortedList}
                     dispatch={dispatch}
                 />
             }
