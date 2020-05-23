@@ -60,6 +60,21 @@ const BillApiService = {
                     : res.json()
             )
     },
+    postNewSharedBill(token, billId) {
+        return fetch(`${config.API_BASE_URL}/bill/shared`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ bill_id: billId }),
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
     updateBill(token, type, billId, updatedBill) {
         return fetch(`${config.API_BASE_URL}/bill/${type}/${billId}`, {
             method: 'PATCH',
@@ -75,6 +90,32 @@ const BillApiService = {
                     : res.json()
             )
     },
+    getOwnedBillById(token, billId) {
+        return fetch(`${config.API_BASE_URL}/bill/owned/${billId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
+    getSharedBillById(token, billId) {
+        return fetch(`${config.API_BASE_URL}/bill/shared/${billId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    }
 };
 
 export default BillApiService;

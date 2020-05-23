@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
@@ -11,9 +11,11 @@ import ShareModal from '../ShareModal/ShareModal';
 import OutsideClick from '../OutsideClick/OutsideClick';
 import ViewApiService from '../../services/view-api-service';
 import ReferrerService from '../../services/referrer-service';
+import UserApiService from '../../services/user-api-service';
 
 function BillEditor(props) {
     const { bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients } = props;
+    const [ isNew, setIsNew ] = useState(true);
 
     const history = useHistory();
     const [{ shareModal }] = useStateValue();
@@ -25,19 +27,46 @@ function BillEditor(props) {
     const [ sharedItem ] = sharedWithMe ? sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId) : null;
     const currentBill = ownedItem || sharedItem;
 
-    // Call web socket open
-    // useEffect(() => {
-        
-    // }, [, routeParamsId])
-
-    // Post new view on entry
+    // Check if bill is existing or new shared bill
     useEffect(() => {
-        const newView = {
-            bill_id: routeParamsId
-        };
-        ViewApiService.postView(token, newView);
-        handleWebSocketOpen(routeParamsId)
-    }, [token, routeParamsId, handleWebSocketOpen]);
+        UserApiService.getUserHasBill(token, routeParamsId)
+            .then(res => {
+                const { hasBillWithId } = res;
+
+                if (hasBillWithId) {
+                    setIsNew(false)
+                }
+
+                if (!hasBillWithId) {
+                    console.log('new')
+                    BillApiService.postNewSharedBill(token, routeParamsId)
+                        .then(res => {
+                            history.push('/bills/shared');
+
+                        })
+                        .catch(res => {
+                            // setLoginError(res.error)
+                            console.log(res)
+                        });
+                }
+            })
+            .catch(res => {
+                // setLoginError(res.error)
+                console.log(res)
+            });
+    }, [token, routeParamsId, BillApiService, history]);
+
+    // Post new view on entry and open websocket
+    useEffect(() => {
+        if (isNew === false) {
+            const newView = {
+                bill_id: routeParamsId
+            };
+    
+            ViewApiService.postView(token, newView);
+            handleWebSocketOpen(routeParamsId);
+        }
+    }, [token, handleWebSocketOpen, routeParamsId, isNew])
 
     // Clear referrer token
     useEffect(() => {
@@ -45,8 +74,7 @@ function BillEditor(props) {
     }, [])
 
     const handleGoBack = () => {
-        (ownedItem && history.push('/bills')) ||
-        (sharedItem && history.push('/bills/shared'));
+        (ownedItem && history.push('/bills')) || (sharedItem && history.push('/bills/shared'));
 
         dispatch({
             type: 'toggleBillDetail',

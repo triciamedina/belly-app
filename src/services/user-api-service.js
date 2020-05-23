@@ -33,6 +33,19 @@ const UserApiService = {
         const min = Math.ceil(0);
         const max = Math.floor(5);
         return colors[Math.floor(Math.random() * (max - min + 1)) + min];
+    },
+    getUserHasBill(token, bill_id) {
+        return fetch(`${config.API_BASE_URL}/user/${bill_id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(res => 
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
     }
 };
 

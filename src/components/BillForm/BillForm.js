@@ -64,7 +64,7 @@ function BillForm(props) {
                 .then(res => {
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
-                    history.push(`/bills/${routeParamsId}`);
+                    history.push(`/bills/${existingBill.id}`);
                 })
                 .catch(res => {
                     console.log(res)
@@ -72,10 +72,9 @@ function BillForm(props) {
         } else {
             BillApiService.postNewOwnedBill(token, newBill)
                 .then(res => {
-                    const newBillId = res.id;
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
-                    history.push(`/bills/${newBillId}`);
+                    history.push(`/bills`);
                 })
                 .catch(res => {
                     console.log(res)

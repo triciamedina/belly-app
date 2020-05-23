@@ -19,43 +19,42 @@ function Bills() {
     const token = TokenService.getAuthToken();
 
     // Websocket sticky state
-    const fields = ['isWebSocketOpen', 'webSocketId', 'webSocketClients'];
-    const [ isWebSocketOpen, setIsWebSocketOpen ] = StickyStateService.useStickyState(false, 'isWebSocketOpen');
+    // const fields = ['webSocketId', 'webSocketClients'];
     const [ webSocketId, setWebSocketId ] = StickyStateService.useStickyState('', 'webSocketId');
     const [ webSocketClients, setWebSocketClients ] = StickyStateService.useStickyState([], 'webSocketClients');
 
     // Websocket reference
     const wsRef = useRef(null);
-    // const { isWebSocketOpen } = webSocket;
 
-    // Resets sticky state if no websocket connection is open 
-    // (handles case when browser may be refreshed)
+    // Resets sticky state on first render
     useEffect(() => {
-        if (!wsRef.current) {
-            setIsWebSocketOpen(false);
-        } 
-    }, [setIsWebSocketOpen])
+        setWebSocketId('');
+        setWebSocketClients([]);
+    }, [setWebSocketId, setWebSocketClients])
 
     // Open websocket callback
     const handleWebSocketOpen = (routeParamsId) => {
-        
-        if (!isWebSocketOpen) {
+        if (!wsRef.current || (wsRef.current && wsRef.current.readyState === 3)) {
             wsRef.current = WebSocketApiService.handleOpen(routeParamsId);
+            setWebSocketId('');
         }
         
         if (wsRef.current) {
             wsRef.current.onopen = () => {
-                if (profile.username.length) {
+                if (profile.username.length && !webSocketId) {
                     const newUser = {
                         nickname: profile.username,
                         avatar: profile.avatarColor
                     }
-                    WebSocketApiService.handleJoin(
-                        wsRef.current, 
-                        JSON.stringify({ billId: routeParamsId, newUser: newUser })
-                    );
+                    if (wsRef.current.readyState === 1) {
+                        WebSocketApiService.handleJoin(
+                            wsRef.current, 
+                            JSON.stringify({ billId: routeParamsId, newUser: newUser })
+                        );
+                    }
+                    
                 }
-                setIsWebSocketOpen(true);
+                
             };
 
             wsRef.current.onmessage = (evt) => {
@@ -80,9 +79,8 @@ function Bills() {
             wsRef.current.onclose = () => {
                 console.log('closing socket')
                 // StickyStateService.clearStickyState(fields);
-                setIsWebSocketOpen(false);
-                // setWebSocketClients({});
-                // setWebSocketId('');
+                setWebSocketClients([]);
+                setWebSocketId('');
             }
         }   
     };
@@ -93,7 +91,7 @@ function Bills() {
         if (wsRef.current) {
             WebSocketApiService.handleExit(
                 wsRef.current,
-                JSON.stringify({ billId: routeParamsId, userExit: webSocketId })
+                JSON.stringify({ billId: routeParamsId, userExit: profile.username })
             );
         }
     }

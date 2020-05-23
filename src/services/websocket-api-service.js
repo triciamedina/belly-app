@@ -13,10 +13,10 @@ const WebSocketApiService = {
         ws.send(userExit);
     },
     handleClose(ws) {
-        ws.close(1000);
+        ws.close(1000, 'close me');
     },
     str2ab(str) {
-        let buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
+        let buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
         let bufView = new Uint8Array(buf);
         for (let i = 0, strLen = str.length; i < strLen; i++) {
           bufView[i] = str.charCodeAt(i);
