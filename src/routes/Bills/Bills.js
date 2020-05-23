@@ -187,6 +187,8 @@ function Bills() {
                         dispatch={dispatch}
                         token={token}
                         BillApiService={BillApiService}
+                        ws={wsRef.current}
+                        WebSocketApiService={WebSocketApiService}
                     />
                 </Route>
             </Switch>

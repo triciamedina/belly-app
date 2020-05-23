@@ -6,7 +6,7 @@ import ItemApiService from '../../services/item-api-service';
 import StickyStateService from '../../services/sticky-state-service';
 
 function ItemForm(props) {
-    const{ bills, dispatch, token, BillApiService } = props;
+    const{ bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
     const history = useHistory();
     const location = useLocation();
@@ -85,6 +85,7 @@ function ItemForm(props) {
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
                     history.push(`/bills/${routeParamsBillId}`);
+                    WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
                 })
                 .catch(res => {
                     console.log(res)
@@ -95,6 +96,7 @@ function ItemForm(props) {
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
                     history.push(`/bills/${routeParamsBillId}`);
+                    WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
                 })
                 .catch(res => {
                     console.log(res)
@@ -194,4 +196,4 @@ function ItemForm(props) {
     )
 }
 
-export default ItemForm;
+export default React.memo(ItemForm);
