@@ -10,10 +10,7 @@ import Entry from '../routes/Entry/Entry';
 function App() {
 
   const initialState = {
-    menu: { 
-      isMenuOpen: false,
-      currentlyViewing: 'owned'
-    },
+    menu: { isMenuOpen: false },
     shareModal: { 
       isShareModalOpen: false,
       currentlyViewing: ''
@@ -34,14 +31,7 @@ function App() {
     splitForm: {
       isSplitFormOpen: false,
       currentlyViewing: ''
-    },
-    // webSocket: {
-    //   isWebSocketOpen: false,
-    //   webSocketId: '',
-    // },
-    // webSocketClients: {
-    //   viewers: {}
-    // }
+    }
   };
 
   const reducer = (state, action) => {

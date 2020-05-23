@@ -6,7 +6,6 @@ import { useStateValue } from '../../state';
 const MenuLink = React.memo(props => {
     const [{ menu }, dispatch] = useStateValue();
     const shouldShowMenu = menu.isMenuOpen;
-    const { view } = props;
 
     return (
         <Link 
@@ -14,10 +13,7 @@ const MenuLink = React.memo(props => {
             to={props.path}
             onClick={() => dispatch({
                 type: 'toggleMenuState',
-                newMenu: { 
-                    isMenuOpen: !shouldShowMenu,
-                    currentlyViewing: view
-                }
+                newMenu: { isMenuOpen: !shouldShowMenu }
             })}
         >
             {props.children}
