@@ -8,7 +8,7 @@ import StickyStateService from '../../services/sticky-state-service';
 
 function BillForm(props) {
     const history = useHistory();
-    const { bills, dispatch, token, BillApiService } = props;
+    const { bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
 
     // Pull data from app state if editing an existing bill
@@ -65,6 +65,7 @@ function BillForm(props) {
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
                     history.push(`/bills/${existingBill.id}`);
+                    WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: existingBill.id }))
                 })
                 .catch(res => {
                     console.log(res)

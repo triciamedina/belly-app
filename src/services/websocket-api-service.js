@@ -23,6 +23,9 @@ const WebSocketApiService = {
         }
         return buf;
     },
+    handleBillUpdate(ws, billUpdate) {
+        ws.send(billUpdate)
+    }
 }
 
 export default WebSocketApiService;

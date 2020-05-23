@@ -74,6 +74,10 @@ function Bills() {
                     setWebSocketClients(message.clients);
                     console.log('updating viewers')
                 }
+                if (message.updateBill) {
+                    console.log('bill updated!');
+                    BillApiService.getAllBills(token, dispatch);
+                }
             };
 
             wsRef.current.onclose = () => {
@@ -162,6 +166,8 @@ function Bills() {
                         dispatch={dispatch}
                         token={token}
                         BillApiService={BillApiService}
+                        ws={wsRef.current}
+                        WebSocketApiService={WebSocketApiService}
                     />
                 </Route>
                 <Route exact path={'/bills/:bill_id'}>
