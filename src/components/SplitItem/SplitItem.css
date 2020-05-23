@@ -72,3 +72,7 @@
     cursor: pointer;
     width: 100%;
 }
+
+.SplitItem .edit.disabled {
+    cursor: not-allowed;
+}
