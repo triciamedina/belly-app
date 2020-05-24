@@ -34,6 +34,7 @@ function Bills() {
 
     // Open websocket callback
     const handleWebSocketOpen = (routeParamsId) => {
+        console.log('opening')
         if (!wsRef.current || (wsRef.current && wsRef.current.readyState === 3)) {
             wsRef.current = WebSocketApiService.handleOpen(routeParamsId);
             setWebSocketId('');
@@ -41,6 +42,7 @@ function Bills() {
         
         if (wsRef.current) {
             wsRef.current.onopen = () => {
+                console.log('opened')
                 if (profile.username.length && !webSocketId) {
                     const newUser = {
                         nickname: profile.username,
