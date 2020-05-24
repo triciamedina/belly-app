@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import './RegisterForm.css';
 import { Input, Button } from '../UI/UI';
 import { useStateValue } from '../../state';
@@ -19,10 +18,6 @@ function RegisterForm() {
     const  [ registerError, setRegisterError ] = useState('');
 
     const [ , dispatch] = useStateValue();
-    
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
-    console.log(from)
 
     const onUsernameChange = (entered) => {
         setEnteredUsername(entered);
