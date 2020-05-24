@@ -1,5 +1,4 @@
 import config from '../config';
-// let timerID = 0; 
 
 const WebSocketApiService = {
     handleOpen(routeParamsId) {
