@@ -11,7 +11,7 @@ import ItemForm from '../../components/ItemForm/ItemForm';
 import UserApiService from '../../services/user-api-service';
 import TokenService from '../../services/token-service';
 import BillApiService from '../../services/bill-api-service';
-import WebSocketApiService from '../../services/websocket-api-service';
+import WebSocketApiService from '../../services/ws-api-service';
 import StickyStateService from '../../services/sticky-state-service';
 
 function Bills() {
