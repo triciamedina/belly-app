@@ -3,7 +3,7 @@ import config from '../config';
 const WebSocketApiService = {
     handleOpen(routeParamsId) {
         // const ws = new WebSocket(`${config.WEBSOCKET_BASE_URL}/bill/${routeParamsId}`);
-        const ws = new WebSocket(`${config.WEBSOCKET_BASE_URL}`);
+        const ws = new WebSocket(`${config.WEBSOCKET_BASE_URL}/api`);
         return ws;
     },
     handleJoin(ws, profile) {
