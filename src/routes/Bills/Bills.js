@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './Bills.css';
 import { useStateValue } from '../../state';
 import HeaderPrivate from '../../components/HeaderPrivate/HeaderPrivate';
