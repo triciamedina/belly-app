@@ -59,9 +59,10 @@ function ItemForm(props) {
 
         ItemApiService.updateItem(token, Number(routeParamsItemId), itemToDelete)
             .then(res => {
+                StickyStateService.clearStickyState(fields);
+                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
                 BillApiService.getAllBills(token, dispatch);
                 history.push(`/bills/${routeParamsBillId}`);
-                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
             })
             .catch(res => {
                 console.log(res)
