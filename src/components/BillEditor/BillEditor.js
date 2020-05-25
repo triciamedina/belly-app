@@ -99,6 +99,7 @@ function BillEditor(props) {
 
     if (currentBill) {
         const { id, bill_thumbnail, bill_name, items } = currentBill;
+        const viewerList = Object.entries(webSocketClients).map(entry => entry[1]);
         return (
             <>
                 {/*  Header nav */}
@@ -163,14 +164,12 @@ function BillEditor(props) {
                     />
 
                     {/* Currently viewing */}
-                    <div className='currently-viewing'>
-                        <h2>Currently viewing</h2>
-                        {/* This list will update based on who is currently in the room */}
-                        <AvatarList list={
-                            Object.entries(webSocketClients).map(entry => entry[1])
-                        }/>
-                    </div>
-
+                    {viewerList.length && 
+                        (<div className='currently-viewing'>
+                            <h2>Currently viewing</h2>
+                            <AvatarList list={viewerList }/>
+                        </div>)
+                    }
                 </main>
             </>
         )
