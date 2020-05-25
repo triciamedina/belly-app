@@ -52,9 +52,7 @@ function Bills() {
                             JSON.stringify({ billId: routeParamsId, newUser: newUser })
                         );
                     }
-                    
                 }
-                
             };
 
             wsRef.current.onmessage = (evt) => {
