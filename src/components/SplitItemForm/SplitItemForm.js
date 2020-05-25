@@ -94,7 +94,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         SplitterApiService.updateSplit(token, personId, itemId, newSplit)
                             .then(res => {
                                 // GET all bills
-                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
+                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId.toString() }));
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
                             })
@@ -129,7 +129,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                                 SplitterApiService.postNewSplit(token, res.id, itemId, newSplit)
                                     .then(res => {
                                         // GET all bills
-                                        WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
+                                        WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId.toString() }));
                                         BillApiService.getAllBills(token, dispatch);
                                         handleCloseForm();
                                     })
@@ -148,7 +148,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         SplitterApiService.postNewSplit(token, personId, itemId, newSplit)
                             .then(res => {
                                 // GET all bills
-                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
+                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId.toString() }));
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
                             })
