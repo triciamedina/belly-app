@@ -65,7 +65,7 @@ function BillForm(props) {
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
                     history.push(`/bills/${existingBill.id}`);
-                    WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: existingBill.id }))
+                    WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: existingBill.id.toString() }))
                 })
                 .catch(res => {
                     console.log(res)
