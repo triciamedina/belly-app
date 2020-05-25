@@ -61,6 +61,7 @@ function ItemForm(props) {
             .then(res => {
                 BillApiService.getAllBills(token, dispatch);
                 history.push(`/bills/${routeParamsBillId}`);
+                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
             })
             .catch(res => {
                 console.log(res)
