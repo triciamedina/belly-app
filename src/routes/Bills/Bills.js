@@ -34,7 +34,6 @@ function Bills() {
 
     // Open websocket callback
     const handleWebSocketOpen = (routeParamsId) => {
-        console.log('opening')
         if (!wsRef.current || (wsRef.current && wsRef.current.readyState === 3)) {
             wsRef.current = WebSocketApiService.handleOpen(routeParamsId);
             setWebSocketId('');
@@ -42,7 +41,6 @@ function Bills() {
         
         if (wsRef.current) {
             wsRef.current.onopen = () => {
-                console.log('opened')
                 if (profile.username.length && !webSocketId) {
                     const newUser = {
                         nickname: profile.username,
@@ -61,7 +59,6 @@ function Bills() {
 
             wsRef.current.onmessage = (evt) => {
             
-                console.log(JSON.parse(evt.data))
                 const message = JSON.parse(evt.data);
     
                 if (message.viewerExited) {
@@ -69,21 +66,16 @@ function Bills() {
                 } 
                 if (message.viewerJoined) {
                     setWebSocketId(message.id);
-                    console.log('updating id')
                 }
                 if (message.updateViewers) {
-                    console.log(message.clients)
                     setWebSocketClients(message.clients);
-                    console.log('updating viewers')
                 }
                 if (message.updateBill) {
-                    console.log('bill updated!');
                     BillApiService.getAllBills(token, dispatch);
                 }
             };
 
             wsRef.current.onclose = () => {
-                console.log('closing socket')
                 // StickyStateService.clearStickyState(fields);
                 setWebSocketClients([]);
                 setWebSocketId('');
@@ -93,7 +85,6 @@ function Bills() {
 
     // Close websocket callback
     const handleWebSocketClose = (routeParamsId) => {
-        console.log('close callback initiated')
         if (wsRef.current) {
             WebSocketApiService.handleExit(
                 wsRef.current,

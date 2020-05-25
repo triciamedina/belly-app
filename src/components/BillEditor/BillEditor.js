@@ -38,7 +38,6 @@ function BillEditor(props) {
                 }
 
                 if (!hasBillWithId) {
-                    console.log('new')
                     BillApiService.postNewSharedBill(token, routeParamsId)
                         .then(res => {
                             history.push('/bills/shared');

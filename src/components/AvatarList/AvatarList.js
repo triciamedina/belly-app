@@ -4,7 +4,7 @@ import Avatar from '../Avatar/Avatar';
 
 function AvatarList(props) {
     const { list } = props;
-    console.log(list)
+    
     return (
         <>
         {list.length &&

@@ -23,8 +23,7 @@ const WebSocketApiService = {
         return buf;
     },
     handleBillUpdate(ws, billUpdate) {
-        console.log('updating bill')
-        ws.send(billUpdate)
+        ws.send(billUpdate);
     }
 }
 
