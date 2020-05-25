@@ -94,9 +94,9 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         SplitterApiService.updateSplit(token, personId, itemId, newSplit)
                             .then(res => {
                                 // GET all bills
+                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
-                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                             })
                             .catch(res => {
                                 console.log(res)
@@ -129,9 +129,9 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                                 SplitterApiService.postNewSplit(token, res.id, itemId, newSplit)
                                     .then(res => {
                                         // GET all bills
+                                        WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                                         BillApiService.getAllBills(token, dispatch);
                                         handleCloseForm();
-                                        WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                                     })
                                     .catch(res => {
                                         console.log(res)
@@ -148,9 +148,9 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         SplitterApiService.postNewSplit(token, personId, itemId, newSplit)
                             .then(res => {
                                 // GET all bills
+                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
-                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId }));
                             })
                             .catch(res => {
                                 console.log(res)
