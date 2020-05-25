@@ -164,10 +164,10 @@ function BillEditor(props) {
                     />
 
                     {/* Currently viewing */}
-                    {viewerList.length && 
+                    {(viewerList.length > 0) && 
                         (<div className='currently-viewing'>
                             <h2>Currently viewing</h2>
-                            <AvatarList list={viewerList }/>
+                            <AvatarList list={viewerList}/>
                         </div>)
                     }
                 </main>
