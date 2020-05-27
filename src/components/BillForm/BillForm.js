@@ -75,7 +75,7 @@ function BillForm(props) {
                 .then(res => {
                     BillApiService.getAllBills(token, dispatch);
                     StickyStateService.clearStickyState(fields);
-                    history.push(`/bills`);
+                    history.push(`/bills/${res.id}`);
                 })
                 .catch(res => {
                     console.log(res)
