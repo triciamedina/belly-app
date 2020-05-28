@@ -27,12 +27,14 @@ const MenuDrawer = React.forwardRef((props, ref) => {
                 <IconClose />
             </button>
             <div className='Profile'>
-                <Avatar className={'Avatar ' + profile.avatarColor}>
-                    {profile.username.slice(0, 2)}
-                </Avatar>
-                <h2 className='Profile__username'>
-                    {profile.username}
-                </h2>
+                <div className='Profile__user'>
+                    <Avatar className={'Avatar ' + profile.avatarColor}>
+                        {profile.username.slice(0, 2)}
+                    </Avatar>
+                    <h2 className='Profile__username'>
+                        {profile.username}
+                    </h2>
+                </div>
                 <Button
                     className='Button sign-out'
                     onClick={signOutHandler}

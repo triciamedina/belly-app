@@ -26,12 +26,10 @@
 
 .Button.ghost {
     background-color: transparent;
-    /* border: 2px solid #efefef; */
 }
 
 .Button.ghost:hover {
     color: #EBE5FC !important;
-    /* border: 2px solid #EBE5FC; */
 }
 
 .ButtonLink {
@@ -70,7 +68,6 @@
     border: 0;
     background-color: transparent;
     padding: 0px;
-    margin-top: 5px;
     font-size: 14px;
     color: rgba(0, 0, 0, 60%);
 }
