@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './BillTotals.css';
 import Dinero from 'dinero.js';
-import SplitService from '../../services/split-service';
+import { calculateBillSubtotal } from '../../lib/split';
 const Money = Dinero;
 const currency = 'USD';
 
@@ -10,7 +10,7 @@ const currency = 'USD';
 function BillTotals(props) {
     const { currentBill } = props;
 
-    const subtotal = SplitService.calculateBillSubtotal(currentBill);
+    const subtotal = calculateBillSubtotal(currentBill);
     const discounts = Money({ amount: (Number(currentBill.discounts)*100), currency});
     const tax = Money({ amount: (Number(currentBill.tax)*100), currency});
     const tip = Money({ amount: (Number(currentBill.tip)*100), currency});

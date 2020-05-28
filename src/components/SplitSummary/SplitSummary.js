@@ -1,6 +1,6 @@
 import React from 'react';
 import './SplitSummary.css';
-import SplitService from '../../services/split-service';
+import { getSummary, calculatePersonTotal } from '../../lib/split';
 import Avatar from '../Avatar/Avatar';
 import { useStateValue } from '../../state';
 import SplitDetail from '../SplitDetail/SplitDetail';
@@ -21,14 +21,14 @@ function SplitSummary(props) {
         });
     }
 
-    const summary = SplitService.getSummary(currentBill);
+    const summary = getSummary(currentBill);
     const summaryArray = Object.entries(summary);
 
     const items = summaryArray.map(item => {
         const person = item[1];
 
             const { nickname, avatar } = person;
-            const personTotal = SplitService.calculatePersonTotal(person, summaryArray, currentBill);
+            const personTotal = calculatePersonTotal(person, summaryArray, currentBill);
     
             return (
                 <li className='SplitSummaryItem' key={item[0]}>

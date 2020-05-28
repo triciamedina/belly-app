@@ -2,7 +2,7 @@ import React from 'react';
 import { IconBack } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
 import './SplitDetail.css';
-import SplitService from '../../services/split-service';
+import { calculateSubtotal, calculateBillSubtotal, calculatePersonTotal } from '../../lib/split';
 import Dinero from 'dinero.js';
 const Money = Dinero;
 const currency = 'USD';
@@ -15,9 +15,9 @@ function SplitDetail(props) {
 
     const [ personDetails ] = summaryArray.filter(person => person[0] === currentlyViewing);
     const person = personDetails[1];
-    const itemsSubtotal = SplitService.calculateSubtotal(person);
+    const itemsSubtotal = calculateSubtotal(person);
     // Dinero object
-    const billItemsSubtotal = SplitService.calculateBillSubtotal(currentBill);
+    const billItemsSubtotal = calculateBillSubtotal(currentBill);
 
     // Number
     const ratio = itemsSubtotal.getAmount() / billItemsSubtotal.getAmount();
@@ -26,7 +26,7 @@ function SplitDetail(props) {
     const personTip = Money({ amount: (Number(tip)*100), currency }).divide(summaryArray.length);
     const personFees = Money({ amount: Number(fees)*100, currency }).divide(summaryArray.length);
     const personDiscounts = Money({ amount: Number(discounts)*100, currency}).divide(summaryArray.length);
-    const personTotal = SplitService.calculatePersonTotal(person, summaryArray, currentBill);
+    const personTotal = calculatePersonTotal(person, summaryArray, currentBill);
 
     const toggleDetailState = () => {
         dispatch({
