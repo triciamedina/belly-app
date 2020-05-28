@@ -53,7 +53,14 @@ function OwnedByMe(props) {
             </div>
             <div className='BillList'>
                 {bills.ownedByMe.length === 0
-                    ? 'There are no bills owned by you'
+                    ?   (<div>
+                            <p>
+                                You don’t have any bills yet.
+                            </p>
+                            <Link className='ButtonLink' to={'/bills/add'}>
+                                Let’s get started
+                            </Link>
+                        </div>)
                     : <BillList 
                         listItemType={BillOwned}
                         items={sortedList}
