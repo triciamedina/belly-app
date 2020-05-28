@@ -18,10 +18,12 @@
     flex-direction: column;
     align-items: center;
     padding-top: 80px;
+    padding-bottom: 70px;
 }
 
 .BillEditor__overview {
     width: 100%;
+    max-width: 800px;
 }
 
 .overview__bill-name {
@@ -61,11 +63,17 @@
 }
 
 .currently-viewing {
+    position: fixed;
+    bottom: 0;
+    right: 50%;
+    transform: translate(50%, 0);
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
+    max-width: 800px;
     padding: 18px;
+    background-color: white;
 }
 
 .currently-viewing h2 {
