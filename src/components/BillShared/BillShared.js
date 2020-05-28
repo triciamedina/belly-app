@@ -7,6 +7,7 @@ import moment from  'moment';
 
 const BillShared = React.memo(props => {
     const { id, bill_thumbnail, bill_name, last_viewed } = props;
+    
     return (
         <li className='BillShared'>
             <Link className='edit' to={`/bills/${id}`}>

@@ -16,7 +16,10 @@ function SplitItem(props) {
 
         return (
             <li className='SplitItem' key={id}>
-                <button className={'edit' + (!existing ? ' disabled' : '')} onClick={existing ? () => handleShowSplitterForm(id): null}>
+                <button 
+                    className={'edit' + (existing ? '' : ' disabled')} 
+                    onClick={existing ? () => handleShowSplitterForm(id): null}
+                >
                     <Avatar className={'Avatar ' + avatar}>
                         {nickname.slice(0,2)}
                     </Avatar>

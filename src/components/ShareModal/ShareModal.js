@@ -5,13 +5,13 @@ import { IconClose } from '../UI/UI';
 import { useStateValue } from '../../state';
 
 const ShareModal = React.forwardRef((props, ref) => {
-    const { handleClose } = props;
     const [{ shareModal }] = useStateValue();
-    const id = shareModal.currentlyViewing;
     const [copySuccess, setCopySuccess] = useState('');
     const urlRef = useRef(null);
     const location = useLocation().pathname;
 
+    const { handleClose } = props;
+    const id = shareModal.currentlyViewing;
     const url = location === '/bills' ? window.location.href + `/${id}` : window.location.href;
 
     const copyToClipboard = (event) => {

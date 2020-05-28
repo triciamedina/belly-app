@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { sortByDateCreatedDesc, sortByLastViewedDesc } from '../../lib/sort';
 import './OwnedByMe.css';
 import BillList from '../../components/BillList/BillList';
 import BillOwned from '../../components/BillOwned/BillOwned';
@@ -12,30 +13,19 @@ function OwnedByMe(props) {
     const { bills, dispatch, BillApiService, token } = props;
     const shouldShowShareModal = shareModal.isShareModalOpen;
     const items = bills.ownedByMe;
+
+    const nulls = items.filter(item => item.last_viewed === null);
+    const notNulls = items.filter(item => item.last_viewed !== null);
+
+    sortByDateCreatedDesc(nulls);
+    sortByLastViewedDesc(notNulls);
+
+    const sortedList = nulls.concat(notNulls);
     
-    // FETCH BILLS
     useEffect(() => {
         BillApiService.getAllBills(token, dispatch);
     }, [dispatch, token, BillApiService]);
 
-    // HANDLE SORT LISTS //
-    const nulls = items.filter(item => item.last_viewed === null);
-    const notNulls = items.filter(item => item.last_viewed !== null);
-
-    // Sort by date created descending
-    nulls.sort((a, b) => {
-        return new Date(b.created_at) - new Date(a.created_at);
-    });
-    
-    // Sort by last viewed descending
-    notNulls.sort((a, b) => {
-        return new Date(b.last_viewed) - new Date(a.last_viewed);
-    });
-
-    // Combine with new bills first
-    const sortedList = nulls.concat(notNulls);
-
-    // HANDLE SHARE MODAL
     const toggleShareModalHandler = () => {
         dispatch({
             type: 'toggleShareModalState',

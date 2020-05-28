@@ -4,7 +4,7 @@ import './Avatar.css';
 function Avatar(props) {
     return (
         <div className={props.className}>
-        {props.children}
+            {props.children}
         </div>
     )
 }

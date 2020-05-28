@@ -8,6 +8,7 @@ import StickyStateService from '../../services/sticky-state-service';
 function ItemForm(props) {
     const{ bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
+    
     const history = useHistory();
     const location = useLocation();
 

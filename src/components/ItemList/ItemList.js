@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../state';
+import { sortByDateCreatedAsc } from '../../lib/sort';
 import './ItemList.css';
 import AvatarList from '../AvatarList/AvatarList';
 import SplitItemForm from '../SplitItemForm/SplitItemForm';
@@ -8,13 +9,12 @@ import OutsideClick from '../OutsideClick/OutsideClick';
 
 function ItemList(props) {
     const { items, currentBillId, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
+
     const [ { splitForm } ] = useStateValue();
     const shouldShowSplitForm = splitForm.isSplitFormOpen;
     const { currentlyViewing } = splitForm;
 
-    items.sort((a, b) => {
-        return new Date(a.created_at) - new Date(b.created_at);
-    });
+    sortByDateCreatedAsc(items);
 
     const toggleOpenForm = (itemId) => {
         const newView = itemId;

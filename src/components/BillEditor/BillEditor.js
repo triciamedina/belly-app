@@ -14,14 +14,15 @@ import ReferrerService from '../../services/referrer-service';
 import UserApiService from '../../services/user-api-service';
 
 function BillEditor(props) {
-    const { bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients, ws, WebSocketApiService } = props;
+    const { 
+        bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients, ws, WebSocketApiService 
+    } = props;
     const [ isNew, setIsNew ] = useState(true);
-
     const history = useHistory();
     const [{ shareModal }] = useStateValue();
-    const shouldShowShareModal = shareModal.isShareModalOpen;
-
     const routeParamsId = useRouteMatch().params.bill_id;
+    
+    const shouldShowShareModal = shareModal.isShareModalOpen;
     const { ownedByMe, sharedWithMe } = bills;
     const [ ownedItem ] = ownedByMe ? ownedByMe.filter(bill => bill.id.toString() === routeParamsId) : null;
     const [ sharedItem ] = sharedWithMe ? sharedWithMe.filter(bill => (bill.id.toString() || bill.id) === routeParamsId) : null;
@@ -99,6 +100,7 @@ function BillEditor(props) {
     if (currentBill) {
         const { id, bill_thumbnail, bill_name, items } = currentBill;
         const viewerList = Object.entries(webSocketClients).map(entry => entry[1]);
+
         return (
             <>
                 {/*  Header nav */}

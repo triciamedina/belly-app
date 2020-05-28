@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeaderPublic.css';
-
 import { Header } from '../UI/UI';
 import { LockupHorizontal } from '../UI/Logo';
 

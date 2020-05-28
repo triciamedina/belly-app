@@ -4,6 +4,7 @@ import { IconShare, IconTrash, IconClose } from '../UI/UI';
 
 const BillOptions = React.forwardRef((props, ref) => {
     const { id, onDelete, onClose, toggleShareModal } = props;
+    
     return (
         <div className='BillOptions' ref={ref}>
             <button className='close' onClick={onClose}>

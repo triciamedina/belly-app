@@ -11,10 +11,11 @@ import BillApiService from '../../services/bill-api-service';
 import TokenService from '../../services/token-service';
 
 const BillOwned = React.memo(props => {
+    const { id, bill_thumbnail, bill_name, last_viewed } = props;
+
     const [ isOptionsMenuOpen, toggleOptionsMenuState ] = useState();
     const [{ shareModal }, dispatch] = useStateValue();
     const shouldShowShareModal = shareModal.isShareModalOpen;
-    const { id, bill_thumbnail, bill_name, last_viewed } = props;
 
     const toggleShareModalHandler = () => {
         toggleOptionsMenuState(!isOptionsMenuOpen);

@@ -90,12 +90,19 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 // PATCH request to splitter endpoint
                 SplitterApiService.updateSplitter(token, personId, updatedSplitter)
                     .then(res => {
+                        
                         // PATCH request to splitter/item endpoint
                         SplitterApiService.updateSplit(token, personId, itemId, newSplit)
                             .then(res => {
+
+                                WebSocketApiService.handleBillUpdate(
+                                    ws,
+                                    JSON.stringify({ billUpdate: currentBillId.toString() })
+                                );
+                                
                                 // GET all bills
-                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId.toString() }));
                                 BillApiService.getAllBills(token, dispatch);
+
                                 handleCloseForm();
                             })
                             .catch(res => {
@@ -125,12 +132,18 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         // POST new splitter
                         SplitterApiService.postNewSplitter(token, newSplitter)
                             .then(res => {
+
                                 // POST new relation to splitter and item
                                 SplitterApiService.postNewSplit(token, res.id, itemId, newSplit)
                                     .then(res => {
+
+                                        WebSocketApiService.handleBillUpdate(
+                                            ws, JSON.stringify({ billUpdate: currentBillId.toString() })
+                                        );
+
                                         // GET all bills
-                                        WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId.toString() }));
                                         BillApiService.getAllBills(token, dispatch);
+
                                         handleCloseForm();
                                     })
                                     .catch(res => {
@@ -147,8 +160,12 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         // POST new relation to splitter and item
                         SplitterApiService.postNewSplit(token, personId, itemId, newSplit)
                             .then(res => {
+                                WebSocketApiService.handleBillUpdate(
+                                    ws,
+                                    JSON.stringify({ billUpdate: currentBillId.toString() })
+                                );
+
                                 // GET all bills
-                                WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: currentBillId.toString() }));
                                 BillApiService.getAllBills(token, dispatch);
                                 handleCloseForm();
                             })

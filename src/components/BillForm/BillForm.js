@@ -7,12 +7,14 @@ import './BillForm.css';
 import StickyStateService from '../../services/sticky-state-service';
 
 function BillForm(props) {
-    const history = useHistory();
     const { bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
 
-    // Pull data from app state if editing an existing bill
+    const history = useHistory();
     const routeParamsId = useRouteMatch().params.bill_id;
+    const emojiEl = useRef(null);
+
+    // Pull data from app state if editing an existing bill
     const [ ownedItem ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
     const [ sharedItem ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
     let existingBill = '';
@@ -31,7 +33,7 @@ function BillForm(props) {
     const [ enteredFees, setEnteredFees ] = StickyStateService.useStickyState(existingBill ? existingBill.fees : '0', 'enteredFees');
 
     // Uncontrolled input
-    const emojiEl = useRef(null);
+    
     const selectEmojiHandler = (emoji) => {
         emojiEl.current.value = emoji;
         togglePickerState(!shouldShowPicker);
