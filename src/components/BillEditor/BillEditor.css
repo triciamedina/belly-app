@@ -8,6 +8,7 @@
     justify-content: center;
     padding: 0px 15px;
     z-index: 3;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
 }
 
 .BillEditor {
@@ -32,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    margin: 28px 0px;
 }
 
 .overview__bill-name:visited {
@@ -63,17 +64,12 @@
 }
 
 .currently-viewing {
-    position: fixed;
-    bottom: 0;
-    right: 50%;
-    transform: translate(50%, 0);
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    max-width: 800px;
     padding: 18px;
-    background-color: white;
+    margin-right: 24px;
 }
 
 .currently-viewing h2 {

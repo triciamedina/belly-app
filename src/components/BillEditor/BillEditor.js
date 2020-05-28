@@ -108,6 +108,13 @@ function BillEditor(props) {
                     <button className='Back' onClick={handleGoBack}>
                         <IconBack />
                     </button>
+                    {/* Currently viewing */}
+                    {(viewerList.length > 0) && 
+                        (<div className='currently-viewing'>
+                            <h2>Currently viewing</h2>
+                            <AvatarList list={viewerList}/>
+                        </div>)
+                    }
                     <button className='Share' onClick={toggleShareModalHandler} >
                         <IconShare />
                     </button>
@@ -163,14 +170,6 @@ function BillEditor(props) {
                         currentBill={currentBill}
                         dispatch={dispatch}
                     />
-
-                    {/* Currently viewing */}
-                    {(viewerList.length > 0) && 
-                        (<div className='currently-viewing'>
-                            <h2>Currently viewing</h2>
-                            <AvatarList list={viewerList}/>
-                        </div>)
-                    }
                 </main>
             </>
         )
