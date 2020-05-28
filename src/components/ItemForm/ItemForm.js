@@ -8,7 +8,7 @@ import StickyStateService from '../../services/sticky-state-service';
 function ItemForm(props) {
     const{ bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
-    
+
     const history = useHistory();
     const location = useLocation();
 
@@ -44,13 +44,11 @@ function ItemForm(props) {
     // Uncontrolled input
     const quantityEl = useRef(null);
 
-    // Form close
     const closeHandler = () => {
         StickyStateService.clearStickyState(fields);
         history.goBack();
     }
 
-    // Delete handler
     const deleteHandler = (event) => {
         event.preventDefault();
 
@@ -70,11 +68,9 @@ function ItemForm(props) {
             });
     }
 
-    // Submit handler
     const submitHandler = (event) => {
         event.preventDefault();
 
-        // Build new item object
         const newItem = {
             itemName: enteredItemName,
             quantity: Number(quantityEl.current.value),
@@ -122,9 +118,11 @@ function ItemForm(props) {
     return (
         <>
             <header className='ItemFormHeader'>
-                <button className='Close' onClick={() => closeHandler()}>
-                    <IconClose />
-                </button>
+                <div className='ItemFormHeader__container'>
+                    <button className='Close' onClick={() => closeHandler()}>
+                        <IconClose />
+                    </button>
+                </div>
             </header>
             <main className='ItemFormContainer'>
                 <form className='ItemForm' onSubmit={event => submitHandler(event)}>

@@ -88,9 +88,11 @@ function BillForm(props) {
     return (
         <>
             <header className='BillFormHeader'>
-                <button className='Close' onClick={() => closeHandler()}>
-                    <IconClose />
-                </button>
+                <div className='BillFormHeader__container'>
+                    <button className='Close' onClick={() => closeHandler()}>
+                        <IconClose />
+                    </button>
+                </div>
             </header>
             <main className='BillFormContainer'>
                 <form className='BillForm' onSubmit={event => submitHandler(event)}>

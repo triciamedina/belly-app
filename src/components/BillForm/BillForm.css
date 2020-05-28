@@ -10,6 +10,14 @@
     z-index: 3;
 }
 
+.BillFormHeader__container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .BillFormContainer {
     background-color: #4f4f4f;
     height: 100%;
