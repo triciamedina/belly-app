@@ -21,10 +21,12 @@ function SharedWithMe(props) {
 
     return (
         <div className='SharedWithMe'>
-            <div className='SharedWithMe__title-container'>
-                <h2 className='SharedWithMe__title'>
-                    Shared with me
-                </h2>
+            <div className='SharedWithMe__header'>
+                <div className='SharedWithMe__title-container'>
+                    <h2 className='SharedWithMe__title'>
+                        Shared with me
+                    </h2>
+                </div>
             </div>
             <div className='BillList'>
             {bills.sharedWithMe.length === 0

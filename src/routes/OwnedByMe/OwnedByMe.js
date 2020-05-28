@@ -38,26 +38,28 @@ function OwnedByMe(props) {
 
     return (
         <div className='OwnedByMe'>
-            <div className='OwnedByMe__title-container'>
-                <h2 className='OwnedByMe__title'>
-                    Owned by me
-                </h2>
-                <Link 
-                    className='ButtonLink OwnedByMe__add-button'
-                    to={'/bills/add'}
-                >
-                    <span>New bill</span>
-                </Link>
+            <div className='OwnedByMe__header'>
+                <div className='OwnedByMe__title-container'>
+                    <h2 className='OwnedByMe__title'>
+                        Owned by me
+                    </h2>
+                    <Link 
+                        className='ButtonLink OwnedByMe__add-button'
+                        to={'/bills/add'}
+                    >
+                        <span>New bill</span>
+                    </Link>
+                </div>
             </div>
             <div className='BillList'>
-            {bills.ownedByMe.length === 0
-                ? 'There are no bills owned by you'
-                : <BillList 
-                    listItemType={BillOwned}
-                    items={sortedList}
-                    dispatch={dispatch}
-                />
-            }
+                {bills.ownedByMe.length === 0
+                    ? 'There are no bills owned by you'
+                    : <BillList 
+                        listItemType={BillOwned}
+                        items={sortedList}
+                        dispatch={dispatch}
+                    />
+                }
             </div>
             {shouldShowShareModal 
                 ?   <OutsideClick 

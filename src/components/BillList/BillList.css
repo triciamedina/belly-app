@@ -1,9 +1,13 @@
 .BillList {
     padding: 30px 18px;
+    display: flex;
+    justify-content: center;
 }
 
 .BillList ul {
     list-style: none;
     margin: 0px;
     padding: 0px;
+    width: 100%;
+    max-width: 800px;
 }
