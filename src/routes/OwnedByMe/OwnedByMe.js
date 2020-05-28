@@ -10,12 +10,15 @@ import OutsideClick from '../../components/OutsideClick/OutsideClick';
 function OwnedByMe(props) {
     const [{ shareModal }] = useStateValue();
     const { bills, dispatch, BillApiService, token } = props;
+    const shouldShowShareModal = shareModal.isShareModalOpen;
     const items = bills.ownedByMe;
     
+    // FETCH BILLS
     useEffect(() => {
         BillApiService.getAllBills(token, dispatch);
     }, [dispatch, token, BillApiService]);
 
+    // HANDLE SORT LISTS //
     const nulls = items.filter(item => item.last_viewed === null);
     const notNulls = items.filter(item => item.last_viewed !== null);
 
@@ -29,10 +32,10 @@ function OwnedByMe(props) {
         return new Date(b.last_viewed) - new Date(a.last_viewed);
     });
 
+    // Combine with new bills first
     const sortedList = nulls.concat(notNulls);
 
-    const shouldShowShareModal = shareModal.isShareModalOpen;
-
+    // HANDLE SHARE MODAL
     const toggleShareModalHandler = () => {
         dispatch({
             type: 'toggleShareModalState',

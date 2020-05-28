@@ -74,7 +74,6 @@ function Bills() {
             };
 
             wsRef.current.onclose = () => {
-                // StickyStateService.clearStickyState(fields);
                 setWebSocketClients([]);
                 setWebSocketId('');
             }
