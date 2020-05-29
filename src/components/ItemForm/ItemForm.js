@@ -124,75 +124,79 @@ function ItemForm(props) {
                     </button>
                 </div>
             </header>
-            <main className='ItemFormContainer'>
-                <form className='ItemForm' onSubmit={event => submitHandler(event)}>
-                    <div className='input-container'>
-                        <input 
-                            type='text' 
-                            id='item-name' 
-                            name='item-name'
-                            className='name-input'
-                            placeholder='Item name'
-                            aria-label='Item name'
-                            value={enteredItemName}
-                            onChange={event => setEnteredItemName(event.target.value)}
-                        />
-                    </div>
-                    <div className='input-container'>
-                        <Button 
-                            className='Button add-subtract' 
-                            onClick={(event) => subtractQuantityHandler(event)}
-                        >
-                            <IconSubtract />
-                        </Button>
-                        <input
-                            type='number'
-                            id='quantity'
-                            name='quantity'
-                            min='0'
-                            aria-label='Item quanitity'
-                            placeholder={1}
-                            defaultValue={enteredItemQuantity}
-                            ref={quantityEl}
-                        >
-                        </input>
-                        <Button
-                            className='Button add-subtract'
-                            onClick={(event) => addQuantityHandler(event)}
-                        >
-                            <IconAdd />
-                        </Button>             
-                    </div>
-                    <div className='text-container'>
-                        <span>x</span>
-                    </div>
-                    <div className='input-container currency'>
-                        <span>$</span>
-                        <input
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='price'
-                            name='price'
-                            placeholder='0.00'
-                            aria-label='Item price'
-                            value={enteredItemPrice}
-                            onChange={event => setEnteredItemPrice(event.target.value)}
-                        >
-                        </input>
-                    </div>
-                    <div className='button-container'>
-                        {existingItem
-                         ?  <Button className='Button ghost' onClick={event => deleteHandler(event)}>
-                                Delete
+            <div className='isolate'>
+                <div className='gradient radial'></div>
+                <div className='gradient linear'></div>
+                <main className='ItemFormContainer'>
+                    <form className='ItemForm' onSubmit={event => submitHandler(event)}>
+                        <div className='input-container'>
+                            <input 
+                                type='text' 
+                                id='item-name' 
+                                name='item-name'
+                                className='name-input'
+                                placeholder='Item name'
+                                aria-label='Item name'
+                                value={enteredItemName}
+                                onChange={event => setEnteredItemName(event.target.value)}
+                            />
+                        </div>
+                        <div className='input-container'>
+                            <Button 
+                                className='Button add-subtract' 
+                                onClick={(event) => subtractQuantityHandler(event)}
+                            >
+                                <IconSubtract />
                             </Button>
-                        : null }
-                        <Button className='Button' type='submit'>
-                            Save
-                        </Button>
-                    </div>
-                </form>
-            </main>
+                            <input
+                                type='number'
+                                id='quantity'
+                                name='quantity'
+                                min='0'
+                                aria-label='Item quanitity'
+                                placeholder={1}
+                                defaultValue={enteredItemQuantity}
+                                ref={quantityEl}
+                            >
+                            </input>
+                            <Button
+                                className='Button add-subtract'
+                                onClick={(event) => addQuantityHandler(event)}
+                            >
+                                <IconAdd />
+                            </Button>             
+                        </div>
+                        <div className='text-container'>
+                            <span>x</span>
+                        </div>
+                        <div className='input-container currency'>
+                            <span>$</span>
+                            <input
+                                type='number'
+                                min='0'
+                                step='.01'
+                                id='price'
+                                name='price'
+                                placeholder='0.00'
+                                aria-label='Item price'
+                                value={enteredItemPrice}
+                                onChange={event => setEnteredItemPrice(event.target.value)}
+                            >
+                            </input>
+                        </div>
+                        <div className='button-container'>
+                            {existingItem
+                            ?  <Button className='Button ghost' onClick={event => deleteHandler(event)}>
+                                    Delete
+                                </Button>
+                            : null }
+                            <Button className='Button' type='submit'>
+                                Save
+                            </Button>
+                        </div>
+                    </form>
+                </main>
+            </div>
         </>
     )
 }

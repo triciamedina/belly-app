@@ -18,8 +18,30 @@
     margin-right: auto;
 }
 
+.isolate {
+    isolation: isolate; 
+    position: relative;
+}
+
+.gradient {
+    mix-blend-mode: overlay;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.gradient.linear {
+    background: #28357D;
+    background: linear-gradient(187deg, rgba(250,92,80,1) 0%, rgba(189,90,121,1) 0%, rgba(65,86,204,1) 20%, rgba(55,73,173,1) 32%, rgba(44,59,139,1) 51%, rgba(40,53,125,1) 100%);
+}
+
+.gradient.radial {
+    background: #28357D;
+    background: 
+        radial-gradient(ellipse farthest-corner at 100% 120%, rgba(250,92,80,1) 0%, rgba(189,90,121,1) 8%, rgba(44,59,139,1) 35%, rgba(65,86,204,1) 68%, rgba(40,53,125,1) 100%);
+}
+
 .ItemFormContainer {
-    background-color: #4f4f4f;
     height: 100%;
     display: flex;
     flex-direction: column;

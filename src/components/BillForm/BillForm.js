@@ -94,109 +94,113 @@ function BillForm(props) {
                     </button>
                 </div>
             </header>
-            <main className='BillFormContainer'>
-                <form className='BillForm' onSubmit={event => submitHandler(event)}>
-                    <div className='input-container emoji'>
-                        <input
-                            type='text'
-                            id='emoji'
-                            name='emoji'
-                            ref={emojiEl}
-                            placeholder='🌯'
-                            className='emoji-input'
-                            onFocus={() => togglePickerState(!shouldShowPicker)} 
-                            aria-label='Emoji'
-                            defaultValue={existingBill ? existingBill.bill_thumbnail : ''}
-                            required
-                        />
-                        {shouldShowPicker
-                            ? <Picker onSelect={(emoji) => selectEmojiHandler(emoji.native)}/>
-                            : null
-                        }
-                    </div>
-                    <div className='input-container'>
-                        <input 
-                            type='text' 
-                            id='bill-name' 
-                            name='bill-name'
-                            className='name-input'
-                            placeholder='Bill name'
-                            aria-label='Bill name'
-                            value={enteredBillName}
-                            onChange={event => setEnteredBillName(event.target.value)}
-                        />
-                    </div>
-                    <div className='input-container currency'>
-                        <label htmlFor='discounts'>
-                            Discounts
-                        </label>
-                        <span>$</span>
-                        <input 
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='discounts' 
-                            name='discounts' 
-                            placeholder='0.00'
-                            value={enteredDiscounts}
-                            onChange={event => setEnteredDiscounts(event.target.value)}
-                        />
-                    </div>
-                    <div className='input-container currency'>
-                        <label htmlFor='tax'>
-                            Tax
-                        </label>
-                        <span>$</span>
-                        <input 
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='tax' 
-                            name='tax' 
-                            placeholder='0.00'
-                            value={enteredTax}
-                            onChange={event => setEnteredTax(event.target.value)}
-                        />
-                    </div>
-                    <div className='input-container currency'>
-                        <label htmlFor='tip'>
-                            Tip
-                        </label>
-                        <span>$</span>
-                        <input 
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='tip' 
-                            name='tip' 
-                            placeholder='0.00'
-                            value={enteredTip}
-                            onChange={event => setEnteredTip(event.target.value)}
-                        />
-                    </div>
-                    <div className='input-container currency'>
-                        <label htmlFor='fees'>
-                            Fees
-                        </label>
-                        <span>$</span>
-                        <input 
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='fees' 
-                            name='fees' 
-                            placeholder='0.00'
-                            value={enteredFees}
-                            onChange={event => setEnteredFees(event.target.value)}
-                        />
-                    </div>
-                    <div className='button-container'>
-                        <Button className='Button' type='submit'>
-                            {existingBill ? 'Save' : 'Next'}
-                        </Button>
-                    </div>
-                </form>
-            </main>
+            <div className='isolate'>
+                <div className='gradient radial'></div>
+                <div className='gradient linear'></div>
+                <main className='BillFormContainer'>
+                    <form className='BillForm' onSubmit={event => submitHandler(event)}>
+                        <div className='input-container emoji'>
+                            <input
+                                type='text'
+                                id='emoji'
+                                name='emoji'
+                                ref={emojiEl}
+                                placeholder='🌯'
+                                className='emoji-input'
+                                onFocus={() => togglePickerState(!shouldShowPicker)} 
+                                aria-label='Emoji'
+                                defaultValue={existingBill ? existingBill.bill_thumbnail : ''}
+                                required
+                            />
+                            {shouldShowPicker
+                                ? <Picker onSelect={(emoji) => selectEmojiHandler(emoji.native)}/>
+                                : null
+                            }
+                        </div>
+                        <div className='input-container'>
+                            <input 
+                                type='text' 
+                                id='bill-name' 
+                                name='bill-name'
+                                className='name-input'
+                                placeholder='Bill name'
+                                aria-label='Bill name'
+                                value={enteredBillName}
+                                onChange={event => setEnteredBillName(event.target.value)}
+                            />
+                        </div>
+                        <div className='input-container currency'>
+                            <label htmlFor='discounts'>
+                                Discounts
+                            </label>
+                            <span>$</span>
+                            <input 
+                                type='number'
+                                min='0'
+                                step='.01'
+                                id='discounts' 
+                                name='discounts' 
+                                placeholder='0.00'
+                                value={enteredDiscounts}
+                                onChange={event => setEnteredDiscounts(event.target.value)}
+                            />
+                        </div>
+                        <div className='input-container currency'>
+                            <label htmlFor='tax'>
+                                Tax
+                            </label>
+                            <span>$</span>
+                            <input 
+                                type='number'
+                                min='0'
+                                step='.01'
+                                id='tax' 
+                                name='tax' 
+                                placeholder='0.00'
+                                value={enteredTax}
+                                onChange={event => setEnteredTax(event.target.value)}
+                            />
+                        </div>
+                        <div className='input-container currency'>
+                            <label htmlFor='tip'>
+                                Tip
+                            </label>
+                            <span>$</span>
+                            <input 
+                                type='number'
+                                min='0'
+                                step='.01'
+                                id='tip' 
+                                name='tip' 
+                                placeholder='0.00'
+                                value={enteredTip}
+                                onChange={event => setEnteredTip(event.target.value)}
+                            />
+                        </div>
+                        <div className='input-container currency'>
+                            <label htmlFor='fees'>
+                                Fees
+                            </label>
+                            <span>$</span>
+                            <input 
+                                type='number'
+                                min='0'
+                                step='.01'
+                                id='fees' 
+                                name='fees' 
+                                placeholder='0.00'
+                                value={enteredFees}
+                                onChange={event => setEnteredFees(event.target.value)}
+                            />
+                        </div>
+                        <div className='button-container'>
+                            <Button className='Button' type='submit'>
+                                {existingBill ? 'Save' : 'Next'}
+                            </Button>
+                        </div>
+                    </form>
+                </main>
+            </div>
         </>
     )
 }
