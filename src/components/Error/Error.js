@@ -2,11 +2,11 @@ import React from 'react';
 import './Error.css';
 
 function Error(props) {
-    const { message } = props;
+    const { message, className } = props;
     
     if (message) {
         return (
-            <div className='Error'>{message}</div>
+            <div className={'Error' + (className ? ` ${className}` : '')}>{message}</div>
         )
     };
 

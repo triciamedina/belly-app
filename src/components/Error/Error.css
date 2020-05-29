@@ -3,3 +3,23 @@
     color: #621FEE;
     font-size: 12px;
 }
+
+.BillForm .Error {
+    position: absolute;
+    color: #FA5C50;
+    margin: 0;
+    top: 65px;
+    right: 0;
+}
+
+.BillForm .Error.billname {
+    top: 90px;
+    right: 0;
+}
+
+.BillForm .Error.submit {
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    right: unset;
+}

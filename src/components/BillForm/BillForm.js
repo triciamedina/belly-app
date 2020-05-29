@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Picker } from 'emoji-mart';
 import { IconClose, Button } from '../UI/UI';
+import Error from '../Error/Error';
 import 'emoji-mart/css/emoji-mart.css';
 import './BillForm.css';
 import StickyStateService from '../../services/sticky-state-service';
+import ValidationService from '../../services/validation-service';
 
 function BillForm(props) {
     const { bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
@@ -13,43 +15,68 @@ function BillForm(props) {
     const history = useHistory();
     const routeParamsId = useRouteMatch().params.bill_id;
     const emojiEl = useRef(null);
+    const [ shouldShowPicker, togglePickerState ] = useState();
 
-    // Pull data from app state if editing an existing bill
     const [ ownedItem ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsId);
     const [ sharedItem ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
-    let existingBill = '';
 
+    let existingBill = '';
     if (routeParamsId) {
         existingBill = ownedItem || sharedItem;
     }
 
     // Controlled inputs
     const fields = ['enteredBillName', 'enteredDiscounts', 'enteredTax', 'enteredTip', 'enteredFees'];
-    const [ shouldShowPicker, togglePickerState ] = useState();
     const [ enteredBillName, setEnteredBillName ] = StickyStateService.useStickyState(existingBill ? existingBill.bill_name : '', 'enteredBillName');
+    const [ billNameTouched, setBillNameTouched ] = useState();
     const [ enteredDiscounts, setEnteredDiscounts ] = StickyStateService.useStickyState(existingBill ? existingBill.discounts : '0', 'enteredDiscounts');
+    const [ discountsTouched, setDiscountsTouched ] = useState();
     const [ enteredTax, setEnteredTax ] = StickyStateService.useStickyState(existingBill ? existingBill.tax : '0', 'enteredTax');
+    const [ taxTouched, setTaxTouched ] = useState();
     const [ enteredTip, setEnteredTip ] = StickyStateService.useStickyState(existingBill ? existingBill.tip : '0', 'enteredTip');
+    const [ tipTouched, setTipTouched ] = useState();
     const [ enteredFees, setEnteredFees ] = StickyStateService.useStickyState(existingBill ? existingBill.fees : '0', 'enteredFees');
+    const [ feesTouched, setFeesTouched ] = useState();
+    const [ submitError, setSubmitError ] = useState('');
 
-    // Uncontrolled input
-    
     const selectEmojiHandler = (emoji) => {
         emojiEl.current.value = emoji;
         togglePickerState(!shouldShowPicker);
     }
 
-    // Form close
+    const onBillNameChange = (entered) => {
+        setEnteredBillName(entered);
+        setBillNameTouched(true);
+    };
+
+    const onDiscountsChange = (entered) => {
+        setEnteredDiscounts(entered);
+        setDiscountsTouched(true);
+    };
+
+    const onTaxChange = (entered) => {
+        setEnteredTax(entered);
+        setTaxTouched(true);
+    };
+
+    const onTipChange = (entered) => {
+        setEnteredTip(entered);
+        setTipTouched(true);
+    };
+
+    const onFeesChange = (entered) => {
+        setEnteredFees(entered);
+        setFeesTouched(true);
+    };
+
     const closeHandler = () => {
         StickyStateService.clearStickyState(fields);
         history.goBack();
     }
 
-    // Form submit
     const submitHandler = (event) => {
         event.preventDefault();
 
-        // Build new bill object
         const newBill = {
             billName: enteredBillName,
             billThumbnail: emojiEl.current.value,
@@ -69,8 +96,8 @@ function BillForm(props) {
                     history.push(`/bills/${existingBill.id}`);
                     WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: existingBill.id.toString() }));
                 })
-                .catch(res => {
-                    console.log(res)
+                .catch(err => {
+                    setSubmitError(err.message)
                 });
         } else {
             BillApiService.postNewOwnedBill(token, newBill)
@@ -79,8 +106,8 @@ function BillForm(props) {
                     StickyStateService.clearStickyState(fields);
                     history.push(`/bills/${res.id}`);
                 })
-                .catch(res => {
-                    console.log(res)
+                .catch(err => {
+                    setSubmitError(err.message)
                 });
         }
     }
@@ -126,8 +153,14 @@ function BillForm(props) {
                                 placeholder='Bill name'
                                 aria-label='Bill name'
                                 value={enteredBillName}
-                                onChange={event => setEnteredBillName(event.target.value)}
+                                onChange={event => onBillNameChange(event.target.value)}
                             />
+                            {billNameTouched &&
+                                (<Error
+                                    className='Error billname'
+                                    message={ValidationService.validateBillName(enteredBillName)} 
+                                />)
+                            }
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='discounts'>
@@ -142,8 +175,13 @@ function BillForm(props) {
                                 name='discounts' 
                                 placeholder='0.00'
                                 value={enteredDiscounts}
-                                onChange={event => setEnteredDiscounts(event.target.value)}
+                                onChange={event => onDiscountsChange(event.target.value)}
                             />
+                            {discountsTouched &&
+                                (<Error 
+                                    message={ValidationService.validateDiscounts(enteredDiscounts)} 
+                                />)
+                            }
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='tax'>
@@ -158,8 +196,13 @@ function BillForm(props) {
                                 name='tax' 
                                 placeholder='0.00'
                                 value={enteredTax}
-                                onChange={event => setEnteredTax(event.target.value)}
+                                onChange={event => onTaxChange(event.target.value)}
                             />
+                            {taxTouched &&
+                                (<Error 
+                                    message={ValidationService.validateTax(enteredTax)} 
+                                />)
+                            }
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='tip'>
@@ -174,8 +217,13 @@ function BillForm(props) {
                                 name='tip' 
                                 placeholder='0.00'
                                 value={enteredTip}
-                                onChange={event => setEnteredTip(event.target.value)}
+                                onChange={event => onTipChange(event.target.value)}
                             />
+                            {tipTouched &&
+                                (<Error 
+                                    message={ValidationService.validateTip(enteredTip)} 
+                                />)
+                            }
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='fees'>
@@ -190,11 +238,27 @@ function BillForm(props) {
                                 name='fees' 
                                 placeholder='0.00'
                                 value={enteredFees}
-                                onChange={event => setEnteredFees(event.target.value)}
+                                onChange={event => onFeesChange(event.target.value)}
                             />
+                            {feesTouched &&
+                                (<Error 
+                                    message={ValidationService.validateFees(enteredFees)} 
+                                />)
+                            }
                         </div>
                         <div className='button-container'>
-                            <Button className='Button' type='submit'>
+                            {submitError && (<Error className='Error submit' message={submitError} />) }
+                            <Button 
+                                className='Button' 
+                                type='submit'
+                                disabled={
+                                    ValidationService.validateBillName(enteredBillName)
+                                    || ValidationService.validateDiscounts(enteredDiscounts)
+                                    || ValidationService.validateTax(enteredTax)
+                                    || ValidationService.validateTip(enteredTip)
+                                    || ValidationService.validateFees(enteredFees)
+                                }
+                            >
                                 {existingBill ? 'Save' : 'Next'}
                             </Button>
                         </div>
