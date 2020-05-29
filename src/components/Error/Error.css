@@ -4,7 +4,8 @@
     font-size: 12px;
 }
 
-.BillForm .Error {
+.BillForm .Error,
+.ItemForm .Error {
     position: absolute;
     color: #FA5C50;
     margin: 0;
@@ -22,4 +23,23 @@
     left: 50%;
     transform: translate(-50%, 0);
     right: unset;
+    line-height: 16px;
+}
+
+.ItemForm .Error.submit {
+    top: -30px;
+    right: unset;
+    line-height: 16px;
+}
+
+.ItemForm .Error.item-name {
+    top: 90px;
+    right: unset;
+    line-height: 16px;
+}
+
+.ItemForm .Error.item-price {
+    top: 80px;
+    right: unset;
+    line-height: 16px;
 }

@@ -73,7 +73,21 @@ const ValidationService = {
             console.log(fees)
             return 'Fees is required'
         }
-    }
+    },
+    validateItemName(itemname) {
+        if (itemname.trim().length === 0) {
+            return 'Item name is required'
+        }
+    },
+    validateItemPrice(itemprice) {
+        if (!/^[0-9]{1,9}(?:\.[0-9]{1,2})?$/.test(itemprice)) {
+            return 'Price must be a valid dollar amount'
+        }
+        if (itemprice.toString().trim().length === 0) {
+            console.log(itemprice)
+            return 'Price is required'
+        }
+    },
 }
 
 export default ValidationService;

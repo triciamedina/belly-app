@@ -1,28 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 import './ItemForm.css';
 import { IconClose, Button, IconSubtract, IconAdd } from '../UI/UI';
+import Error from '../Error/Error';
 import ItemApiService from '../../services/item-api-service';
 import StickyStateService from '../../services/sticky-state-service';
+import ValidationService from '../../services/validation-service';
 
 function ItemForm(props) {
     const{ bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
 
+    const quantityEl = useRef(null);
     const history = useHistory();
     const location = useLocation();
-
-    //  ID of current bill
     const routeParamsBillId = useRouteMatch().params.bill_id;
-
-    // ID of current item (will be null if adding a new item)
     const routeParamsItemId = useRouteMatch().params.item_id;
 
-    // Targets bill that the item belongs to (one will be null)
     const [ owned ] = ownedByMe.filter(bill => bill.id.toString() === routeParamsBillId);
     const [ shared ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsBillId);
-    
-    // Checks whether adding a new item or modifying an existing one
     const isExisting = location.pathname === `/bills/${routeParamsBillId}/${routeParamsItemId}/edit`;
 
     let existingItem = '';
@@ -35,14 +31,23 @@ function ItemForm(props) {
         }
     }
 
-    // Controlled inputs
     const fields = ['enteredItemName', 'enteredItemPrice', 'enteredItemQuantity'];
     const [ enteredItemName, setEnteredItemName ] = StickyStateService.useStickyState(existingItem ? existingItem.item_name : '', 'enteredItemName');
+    const [ itemNameTouched, setItemNameTouched ] = useState();
     const [ enteredItemPrice, setEnteredItemPrice ] = StickyStateService.useStickyState(existingItem ? existingItem.price : '', 'enteredItemPrice');
+    const [ itemPriceTouched, setItemPriceTouched ] = useState();
     const [ enteredItemQuantity ] = StickyStateService.useStickyState(existingItem ? existingItem.quantity : '1', 'enteredItemQuantity');
+    const [ submitError, setSubmitError ] = useState('');
 
-    // Uncontrolled input
-    const quantityEl = useRef(null);
+    const onItemNameChange = (entered) => {
+        setEnteredItemName(entered);
+        setItemNameTouched(true);
+    };
+
+    const onItemPriceChange = (entered) => {
+        setEnteredItemPrice(entered);
+        setItemPriceTouched(true);
+    };
 
     const closeHandler = () => {
         StickyStateService.clearStickyState(fields);
@@ -63,8 +68,8 @@ function ItemForm(props) {
                 BillApiService.getAllBills(token, dispatch);
                 history.push(`/bills/${routeParamsBillId}`);
             })
-            .catch(res => {
-                console.log(res)
+            .catch(err => {
+                setSubmitError(err.message);
             });
     }
 
@@ -86,8 +91,8 @@ function ItemForm(props) {
                     history.push(`/bills/${routeParamsBillId}`);
                     WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
                 })
-                .catch(res => {
-                    console.log(res)
+                .catch(err => {
+                    setSubmitError(err.message);
                 });
         } else {
             ItemApiService.postNewItem(token, newItem)
@@ -97,15 +102,15 @@ function ItemForm(props) {
                     history.push(`/bills/${routeParamsBillId}`);
                     WebSocketApiService.handleBillUpdate(ws, JSON.stringify({ billUpdate: routeParamsBillId }));
                 })
-                .catch(res => {
-                    console.log(res)
+                .catch(err => {
+                    setSubmitError(err.message)
                 });
         }
     }
 
     const subtractQuantityHandler = (event) => {
         event.preventDefault();
-        if (quantityEl.current.value > 0) {
+        if (quantityEl.current.value > 1) {
             quantityEl.current.value--;
         }
     }
@@ -138,8 +143,14 @@ function ItemForm(props) {
                                 placeholder='Item name'
                                 aria-label='Item name'
                                 value={enteredItemName}
-                                onChange={event => setEnteredItemName(event.target.value)}
+                                onChange={event => onItemNameChange(event.target.value)}
                             />
+                            {itemNameTouched &&
+                                (<Error
+                                    className='Error item-name'
+                                    message={ValidationService.validateItemName(enteredItemName)} 
+                                />)
+                            }
                         </div>
                         <div className='input-container'>
                             <Button 
@@ -152,11 +163,11 @@ function ItemForm(props) {
                                 type='number'
                                 id='quantity'
                                 name='quantity'
-                                min='0'
                                 aria-label='Item quanitity'
                                 placeholder={1}
                                 defaultValue={enteredItemQuantity}
                                 ref={quantityEl}
+                                required
                             >
                             </input>
                             <Button
@@ -180,17 +191,31 @@ function ItemForm(props) {
                                 placeholder='0.00'
                                 aria-label='Item price'
                                 value={enteredItemPrice}
-                                onChange={event => setEnteredItemPrice(event.target.value)}
+                                onChange={event => onItemPriceChange(event.target.value)}
                             >
                             </input>
+                            {itemPriceTouched &&
+                                (<Error
+                                    className='Error item-price'
+                                    message={ValidationService.validateItemPrice(enteredItemPrice)} 
+                                />)
+                            }
                         </div>
                         <div className='button-container'>
+                            {submitError && (<Error className='Error submit' message={submitError} />) }
                             {existingItem
                             ?  <Button className='Button ghost' onClick={event => deleteHandler(event)}>
                                     Delete
                                 </Button>
                             : null }
-                            <Button className='Button' type='submit'>
+                            <Button 
+                                className='Button'
+                                type='submit'
+                                disabled={
+                                    ValidationService.validateItemName(enteredItemName)
+                                    || ValidationService.validateItemPrice(enteredItemPrice)
+                                }
+                            >
                                 Save
                             </Button>
                         </div>
