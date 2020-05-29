@@ -88,6 +88,11 @@ const ValidationService = {
             return 'Price is required'
         }
     },
+    validateSplitterName(name) {
+        if (name.trim().length === 0) {
+            return 'Name is required'
+        }
+    },
 }
 
 export default ValidationService;

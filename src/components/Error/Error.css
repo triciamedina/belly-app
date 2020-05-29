@@ -5,7 +5,8 @@
 }
 
 .BillForm .Error,
-.ItemForm .Error {
+.ItemForm .Error,
+.SplitterForm .Error {
     position: absolute;
     color: #FA5C50;
     margin: 0;
@@ -40,6 +41,12 @@
 
 .ItemForm .Error.item-price {
     top: 80px;
+    right: unset;
+    line-height: 16px;
+}
+
+.SplitterForm .Error.splitter-name {
+    top: unset;
     right: unset;
     line-height: 16px;
 }
