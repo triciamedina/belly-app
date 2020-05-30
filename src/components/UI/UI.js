@@ -11,6 +11,8 @@ import UsersIcon from '../../img/icon-users.svg';
 import TrashIcon from '../../img/icon-trash.svg';
 import AddIcon from '../../img/icon-add.svg';
 import MinusIcon from '../../img/icon-minus.svg';
+import ChevronUp from '../../img/icon-chevron-up.svg';
+import ChevronDown from '../../img/icon-chevron-down.svg';
 
 export function Button(props) {
     return <button className={props.className} {...props}>{props.children}</button>
@@ -89,6 +91,18 @@ export function IconAdd() {
 export function IconSubtract() {
     return (
         <img className='icon-minus' src={MinusIcon} alt='' />
+    )
+}
+
+export function IconDown() {
+    return (
+        <img className='icon-down' src={ChevronDown} alt='' />
+    )
+}
+
+export function IconUp() {
+    return (
+        <img className='icon-up' src={ChevronUp} alt='' />
     )
 }
 

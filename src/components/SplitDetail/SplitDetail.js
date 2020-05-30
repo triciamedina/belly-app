@@ -1,6 +1,4 @@
 import React from 'react';
-import { IconBack } from '../UI/UI';
-import Avatar from '../Avatar/Avatar';
 import './SplitDetail.css';
 import { calculateSubtotal, calculateBillSubtotal, calculatePersonTotal } from '../../lib/split';
 import Dinero from 'dinero.js';
@@ -8,14 +6,15 @@ const Money = Dinero;
 const currency = 'USD';
 
 function SplitDetail(props) {
-    const { summaryArray, currentBill, billDetail, dispatch } = props;
+    const { summaryArray, currentBill, billDetail } = props;
     const { tax, tip, fees, discounts } = currentBill;
-    const shouldShowDetail = billDetail.isBillDetailOpen;
     const currentlyViewing = billDetail.currentlyViewing;
 
     const [ personDetails ] = summaryArray.filter(person => person[0] === currentlyViewing);
     const person = personDetails[1];
+
     const itemsSubtotal = calculateSubtotal(person);
+
     // Dinero object
     const billItemsSubtotal = calculateBillSubtotal(currentBill);
 
@@ -28,16 +27,6 @@ function SplitDetail(props) {
     const personDiscounts = Money({ amount: Number(discounts)*100, currency}).divide(summaryArray.length);
     const personTotal = calculatePersonTotal(person, summaryArray, currentBill);
 
-    const toggleDetailState = () => {
-        dispatch({
-            type: 'toggleBillDetail',
-            setBillDetail: { 
-                isBillDetailOpen: !shouldShowDetail,
-                currentlyViewing: ''
-            }
-        });
-    }
-
     const items = person.items.map(item => {
         const { itemId, itemName, sum } = item;
         return (
@@ -49,19 +38,12 @@ function SplitDetail(props) {
         )
     });
 
-    const { avatar, nickname } = person;
+    const { nickname } = person;
 
     return (
         <div className='SplitDetail'>
 
-            <button className='Back' onClick={toggleDetailState}>
-                <IconBack />
-            </button>
-
             <div className='split-name'>
-                <Avatar className={'Avatar ' + avatar}>
-                    {nickname.slice(0,2)}
-                </Avatar>
                 <h2>{nickname}</h2>
             </div>
 

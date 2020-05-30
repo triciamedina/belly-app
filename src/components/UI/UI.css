@@ -191,6 +191,16 @@
     margin: 5px;
 }
 
+.icon-down {
+    height: 24px;
+    width: 24px;
+}
+
+.icon-up {
+    height: 24px;
+    width: 24px;
+}
+
 .Emoji {
     width: 38px;
     height: 38px;
