@@ -24,10 +24,6 @@ function App() {
       ownedByMe: [],
       sharedWithMe: []
     },
-    billDetail: {
-      isBillDetailOpen: false,
-      currentlyViewing: ''
-    },
     splitForm: {
       isSplitFormOpen: false,
       currentlyViewing: ''
@@ -61,26 +57,11 @@ function App() {
           ...state,
           bills: action.setBills
         }
-      case 'toggleBillDetail':
-        return {
-          ...state,
-          billDetail: action.setBillDetail
-        }
       case 'toggleSplitForm':
         return {
           ...state,
           splitForm: action.setSplitForm
         }
-      // case 'updateWebSocket':
-      //   return {
-      //     ...state,
-      //     webSocket: action.setWebSocket
-      //   }
-      // case 'updateWebSocketClients':
-      //   return {
-      //     ...state,
-      //     webSocketClients: action.setWebSocketClients
-      //   }
       default:
         return state;
     };

@@ -6,11 +6,10 @@ const Money = Dinero;
 const currency = 'USD';
 
 function SplitDetail(props) {
-    const { summaryArray, currentBill, billDetail } = props;
+    const { summaryArray, currentBill, id } = props;
     const { tax, tip, fees, discounts } = currentBill;
-    const currentlyViewing = billDetail.currentlyViewing;
 
-    const [ personDetails ] = summaryArray.filter(person => person[0] === currentlyViewing);
+    const [ personDetails ] = summaryArray.filter(person => person[0] === id);
     const person = personDetails[1];
 
     const itemsSubtotal = calculateSubtotal(person);
