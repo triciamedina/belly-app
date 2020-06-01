@@ -33,24 +33,23 @@
 }
 
 .ButtonLink {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: black;
-    padding: 15px 48px;
-    background-color: #efefef;
-    border-radius: 4px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    padding: 15px 28px;
+    background-color: #28357D;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
 }
 
 .ButtonLink:hover {
-    background-color: #EBE5FC;
+    background-color: #4E67F9;
 }
 
 .ButtonLink:visited {
-    color: black;
+    color: white;
 }
 
 .ButtonLink.ghost {
@@ -74,21 +73,22 @@
 
 .TextLink {
     font-family: inherit;
+    font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.0096em;
     padding: 0px 15px;
     text-decoration: none;
-    color: black;
+    color: #28357D;
     cursor: pointer;
 }
 
 .TextLink:visited {
-    color: black;
+    color: #28357D;
 }
 
 .TextLink:hover {
-    color: #621FEE;
+    color: #4E67F9;
 }
 
 .Input.outline {

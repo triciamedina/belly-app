@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Logo.css';
+import BellyLogo from '../../img/belly-logo.svg'
+
+export function LogoLink(props) {
+    return (
+        <Link to='/' className={props.className} {...props}><img src={BellyLogo} alt='' /></Link>
+    )
+}
 
 export function Logo(props) {
     return (
-        <Link to='/' className={props.className} {...props}><div></div></Link>
+        <div className={props.className} {...props}><img src={BellyLogo} alt='' /></div>
     )
 }
 

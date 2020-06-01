@@ -12,8 +12,8 @@ function HeaderPublic() {
                 <Link className='TextLink' to='/login'>
                     Sign in
                 </Link>
-                <Link className='TextLink' to='/register'>
-                    Sign up
+                <Link className='ButtonLink' to='/register'>
+                    Try it out
                 </Link>
             </div>
         </Header>
