@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, Redirect } from 'react-router-dom';
 import './Entry.css';
 
-import { Logo } from '../../components/UI/Logo';
+import { LogoLinkReverse } from '../../components/UI/Logo';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
@@ -25,7 +25,7 @@ function Entry() {
         : (
         <main className='Entry'>
             <div className='Entry__primary'>
-                <Logo className='Logo medium' />
+                <LogoLinkReverse className='Logo medium' />
                 <h1 className='Entry__header'>
                     {isLoginPage && 'Welcome back'}
                     {isRegisterPage && 'Welcome to Belly'}
@@ -41,7 +41,7 @@ function Entry() {
                     {isLoginPage && 'No account?'}
                     {isRegisterPage && 'Already have an account?'}
                 </p>
-                {isLoginPage && <Link className='TextLink' to={'/register'}>Sign up</Link>}
+                {isLoginPage && <Link className='TextLink' to={'/register'}>Create account</Link>}
                 {isRegisterPage && <Link className='TextLink' to={'/login'}>Sign in</Link>}
             </div>
         </main>

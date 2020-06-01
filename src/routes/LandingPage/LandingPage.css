@@ -80,5 +80,11 @@
     color: white;
     font-family: inherit;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.LandingPage__footer a:hover {
+    text-decoration: underline;
 }

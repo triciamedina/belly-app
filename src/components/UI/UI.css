@@ -1,10 +1,10 @@
 .Button {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: black;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
     padding: 15px 48px;
-    background-color: #efefef;
+    background-color: #28357D;
     border: 0px;
     border-radius: 4px;
     text-decoration: none;
@@ -12,16 +12,16 @@
 }
 
 .Button:hover {
-    background-color: #EBE5FC;
+    background-color: #4E67F9;
 }
 
 .Button:disabled {
     cursor: not-allowed;
-    color: #6b6e6f;
+    color: #efefef;
 }
 
 .Button:disabled:hover {
-    background-color: #efefef;
+    background-color: #28357D;
 }
 
 .Button.ghost {
@@ -92,14 +92,20 @@
 }
 
 .Input.outline {
-    border: 1px solid rgba(0,0,0,50%);
+    border: 2px solid #e0e0e0;
     border-radius: 4px;
+    /* background-color: transparent; */
+    /* background-color: rgba(40, 53, 125, .3); */
     margin: 10px 0px;
     padding: 20px 15px;
     width: 100%;
     font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
+}
+
+.Input::placeholder {
+    color: #4a4a4a;
 }
 
 .Header {

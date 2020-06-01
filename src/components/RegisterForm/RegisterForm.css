@@ -1,8 +1,30 @@
 .RegisterForm {
     width: 100%;
     margin: 10px 0px;
+    background-color: white;
+    border-radius: 4px;
+    color: #4a4a4a;
+    padding: 40px;
 }
 
-.RegisterForm .Button {
-    margin: 30px 0px;
+.RegisterForm .label-container {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.RegisterForm .Input {
+    margin-bottom: 30px;
+}
+
+.RegisterForm .Error {
+    margin-top: 0px;
+}
+
+.RegisterForm label {
+    flex: 1;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
 }

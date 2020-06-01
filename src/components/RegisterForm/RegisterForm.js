@@ -82,6 +82,14 @@ function RegisterForm() {
 
     return (
         <form className='RegisterForm' onSubmit={submitHandler}>
+            <div className='label-container'>
+                <label htmlFor='username'>Username</label>
+                {usernameTouched &&
+                    (<Error 
+                        message={ValidationService.validateRegisterUsername(enteredUsername)} 
+                    />)
+                }
+            </div>
             <Input 
                 className='Input outline'
                 type='text' 
@@ -93,11 +101,14 @@ function RegisterForm() {
                 value={enteredUsername}
                 onChange={event => onUsernameChange(event.target.value)}
             />
-            {usernameTouched &&
-                (<Error 
-                    message={ValidationService.validateRegisterUsername(enteredUsername)} 
-                />)
-            }
+            <div className='label-container'>
+                <label htmlFor='password'>Password</label>
+                {passwordTouched &&
+                    (<Error 
+                        message={ValidationService.validateRegisterPassword(enteredPassword)} 
+                    />)
+                }
+            </div>
             <Input 
                 className='Input outline'
                 type='password' 
@@ -109,11 +120,14 @@ function RegisterForm() {
                 autoComplete='new-password'
                 onChange={event => onPasswordChange(event.target.value)}
             />
-            {passwordTouched &&
-                (<Error 
-                    message={ValidationService.validateRegisterPassword(enteredPassword)} 
-                />)
-            }
+            <div className='label-container'>
+                <label htmlFor='confirm-password'>Confirm password</label>
+                {confirmPasswordTouched &&
+                    (<Error 
+                        message={ValidationService.validateRegisterPasswordMatch(enteredPassword, enteredConfirmPassword)} 
+                    />)
+                }
+            </div>
             <Input 
                 className='Input outline'
                 type='password' 
@@ -125,11 +139,7 @@ function RegisterForm() {
                 autoComplete='new-password'
                 onChange={event => onConfirmPasswordChange(event.target.value)}
             />
-            {confirmPasswordTouched &&
-                (<Error 
-                    message={ValidationService.validateRegisterPasswordMatch(enteredPassword, enteredConfirmPassword)} 
-                />)
-            }
+            
             <Button
                 className='Button'
                 type='submit'

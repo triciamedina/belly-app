@@ -73,6 +73,14 @@ function LoginForm() {
 
     return (
         <form className='LoginForm' onSubmit={submitHandler}>
+            <div className='label-container'>
+                <label htmlFor='username'>Username</label>
+                {usernameTouched &&
+                    (<Error 
+                        message={ValidationService.validateLoginUsername(enteredUsername)} 
+                    />)
+                }
+            </div>
             <Input 
                 className='Input outline'
                 type='text' 
@@ -84,11 +92,14 @@ function LoginForm() {
                 value={enteredUsername}
                 onChange={event => onUsernameChange(event.target.value)}
             />
-            {usernameTouched &&
-                (<Error 
-                    message={ValidationService.validateLoginUsername(enteredUsername)} 
-                />)
-            }
+            <div className='label-container'>
+                <label htmlFor='password'>Password</label>
+                {passwordTouched &&
+                    (<Error 
+                        message={ValidationService.validateLoginPassword(enteredPassword)} 
+                    />)
+                }
+            </div>
             <Input 
                 className='Input outline'
                 type='password' 
@@ -100,11 +111,6 @@ function LoginForm() {
                 value={enteredPassword}
                 onChange={event => onPasswordChange(event.target.value)}
             />
-            {passwordTouched &&
-                (<Error 
-                    message={ValidationService.validateLoginPassword(enteredPassword)} 
-                />)
-            }
             <Button
                 className='Button'
                 type='submit'

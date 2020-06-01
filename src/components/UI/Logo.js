@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Logo.css';
-import BellyLogo from '../../img/belly-logo.svg'
+import BellyLogo from '../../img/belly-logo.svg';
+import BellyLogoReverse from '../../img/belly-logo-reverse.svg';
 
-export function LogoLink(props) {
+export function LogoLinkReverse(props) {
     return (
-        <Link to='/' className={props.className} {...props}><img src={BellyLogo} alt='' /></Link>
+        <Link to='/' className={props.className} {...props} aria-label='Home'><img src={BellyLogoReverse} alt='Home' /></Link>
     )
 }
 
