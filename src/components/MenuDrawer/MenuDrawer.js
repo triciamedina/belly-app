@@ -4,7 +4,7 @@ import './MenuDrawer.css';
 import { useStateValue } from '../../state';
 import TokenService from '../../services/token-service';
 import Avatar from '../Avatar/Avatar';
-import { Button, IconClose } from '../UI/UI';
+import { Button, ButtonClose } from '../UI/UI';
 import MenuList from '../MenuList/MenuList';
 
 const MenuDrawer = React.forwardRef((props, ref) => {
@@ -23,9 +23,10 @@ const MenuDrawer = React.forwardRef((props, ref) => {
 
     return (
         <div className='MenuDrawer' ref={ref}>
-            <button className='close' onClick={onCloseClick} >
+             <ButtonClose className='close' onClick={onCloseClick}/>
+            {/* <button className='close' onClick={onCloseClick} >
                 <IconClose />
-            </button>
+            </button> */}
             <div className='Profile'>
                 <div className='Profile__user'>
                     <Avatar className={'Avatar ' + profile.avatarColor}>

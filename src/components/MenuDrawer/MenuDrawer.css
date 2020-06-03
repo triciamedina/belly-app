@@ -15,17 +15,18 @@
     cursor: pointer;
     padding: 0px;
     margin: 0px;
-    height: 24px;
-    width: 24px;
+    height: 34px;
+    width: 34px;
     position: absolute;
     top: 40px;
     transform: translate(0, -50%);
     right: 18px;
+    border-radius: 50%;
     background-color: transparent;
 }
 
-.MenuDrawer .close img {
-    filter: brightness(0.1)
+.MenuDrawer .close:hover {
+    background-color: rgba(80, 106, 248, 20%);
 }
 
 .Profile {
