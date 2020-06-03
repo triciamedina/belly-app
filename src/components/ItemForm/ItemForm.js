@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 import './ItemForm.css';
-import { IconClose, Button, IconSubtract, IconAdd } from '../UI/UI';
+import { Button, IconSubtract, IconAdd, ButtonClose } from '../UI/UI';
 import Error from '../Error/Error';
 import ItemApiService from '../../services/item-api-service';
 import StickyStateService from '../../services/sticky-state-service';
@@ -124,9 +124,10 @@ function ItemForm(props) {
         <>
             <header className='ItemFormHeader'>
                 <div className='ItemFormHeader__container'>
-                    <button className='Close' onClick={() => closeHandler()}>
+                    <ButtonClose className='Close' color='white' onClick={closeHandler} />
+                    {/* <button className='Close' onClick={() => closeHandler()}>
                         <IconClose />
-                    </button>
+                    </button> */}
                 </div>
             </header>
             <div className='isolate'>

@@ -1,10 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './HeaderPublic.css';
-import { Header } from '../UI/UI';
+import { Header, Button } from '../UI/UI';
 import { LockupHorizontal } from '../UI/Logo';
+import AuthApiService from '../../services/auth-api-service';
+import TokenService from '../../services/token-service';
+import UserApiService from '../../services/user-api-service';
+import { useStateValue } from '../../state';
 
 function HeaderPublic() {
+    const [ , dispatch] = useStateValue();
+    
+    const handleDemoLogin = () => {
+        const credentials = {
+            username: 'Sam',
+            password: 'password1'
+        }
+
+        AuthApiService.postLogin(credentials)
+            .then(res => {
+                TokenService.saveAuthToken(res.authToken);
+                const token = TokenService.getAuthToken();
+
+                // Get user account info
+                UserApiService.getUser(token)
+                    .then(res => {
+                        dispatch({
+                            type: 'onLoginSuccess',
+                            setLogin: { isLoggedIn: true },
+                            setProfile: { 
+                                username: res.username,
+                                avatarColor: res.avatar
+                            }
+                        });
+                    })
+                    .catch(res => {
+                        console.log(res.error)
+                    });
+            })
+            .catch(res => {
+                console.log(res.error)
+            });
+    }
+
     return (
         <Header className='Header Public'>
             <LockupHorizontal />
@@ -12,9 +50,9 @@ function HeaderPublic() {
                 <Link className='TextLink' to='/login'>
                     Sign in
                 </Link>
-                <Link className='ButtonLink' to='/register'>
+                <Button className='Button' onClick={handleDemoLogin}>
                     Try it out
-                </Link>
+                </Button>
             </div>
         </Header>
     )

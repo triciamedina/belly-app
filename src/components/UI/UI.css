@@ -10,6 +10,10 @@
     cursor: pointer;
 }
 
+.Header.Public .Button {
+    padding: 15px 28px;
+}
+
 .Button:hover {
     background-color: #4E67F9;
 }

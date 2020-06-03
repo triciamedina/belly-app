@@ -1,11 +1,20 @@
 import React from 'react';
+import { Redirect } from  'react-router-dom';
 import './LandingPage.css';
 import HeaderPublic from '../../components/HeaderPublic/HeaderPublic';
 import { LockupVertical } from '../../components/UI/Logo';
-// import { Link } from 'react-router-dom';
+import { useStateValue } from '../../state';
 
 function LandingPage() {
-    return (
+    const [{ login }] = useStateValue();
+    
+    return login.isLoggedIn 
+
+    // If referrer token exists redirect to referrer
+    ? <Redirect to={'/bills'} />
+    
+    // Render login or register page
+    : (
         <>
         <HeaderPublic />
         <main className='LandingPage'>
@@ -23,9 +32,6 @@ function LandingPage() {
             </div>
         </main>
         <footer className='LandingPage__footer'>
-            {/* <Link className='ButtonLink' to='/login'>
-                Try it out
-            </Link> */}
             <p>Belly© 2020. All rights reserved.</p>
             <a href='https://github.com/triciamedina/belly-app' target='_blank' rel='noopener noreferrer'>GitHub</a>
         </footer>
