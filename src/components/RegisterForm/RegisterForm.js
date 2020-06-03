@@ -67,16 +67,16 @@ function RegisterForm() {
                                     }
                             });
                         })
-                        .catch(res => {
-                            setRegisterError(res.error)
+                        .catch(err => {
+                            setRegisterError(err.message)
                         });
                     })
-                    .catch(res => {
-                        setRegisterError(res.error)
+                    .catch(err => {
+                        setRegisterError(err.message)
                     });
             })
-            .catch(res => {
-                setRegisterError(res.error)
+            .catch(err => {
+                setRegisterError(err.message)
             });
     }
 
@@ -140,18 +140,20 @@ function RegisterForm() {
                 onChange={event => onConfirmPasswordChange(event.target.value)}
             />
             
-            <Button
-                className='Button'
-                type='submit'
-                disabled={
-                    ValidationService.validateRegisterUsername(enteredUsername)
-                    || ValidationService.validateRegisterPassword(enteredPassword)
-                    || ValidationService.validateRegisterPasswordMatch(enteredPassword, enteredConfirmPassword)
-                }
-            >
-                Sign up
-            </Button>
-            {registerError && (<Error message={registerError} />) }
+            <div className='button-container'>
+                <Button
+                    className='Button'
+                    type='submit'
+                    disabled={
+                        ValidationService.validateRegisterUsername(enteredUsername)
+                        || ValidationService.validateRegisterPassword(enteredPassword)
+                        || ValidationService.validateRegisterPasswordMatch(enteredPassword, enteredConfirmPassword)
+                    }
+                >
+                    Sign up
+                </Button>
+                {registerError && (<Error message={registerError} />) }
+            </div>
         </form>
     )
 }

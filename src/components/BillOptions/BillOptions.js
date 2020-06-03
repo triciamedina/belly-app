@@ -1,18 +1,18 @@
 import React from 'react';
 import './BillOptions.css';
-import { IconShare, IconTrash, IconClose } from '../UI/UI';
+import { IconTrash, ButtonClose, IconShare } from '../UI/UI';
 
 const BillOptions = React.forwardRef((props, ref) => {
     const { id, onDelete, onClose, toggleShareModal } = props;
     
     return (
         <div className='BillOptions' ref={ref}>
-            <button className='close' onClick={onClose}>
-                <IconClose />
-            </button>
+            <ButtonClose className='close' onClick={onClose}/>
             <ul className='OptionsList'>
                 <li className='Option'>
-                    <button onClick={toggleShareModal}>
+                    <button
+                        onClick={toggleShareModal}
+                    >
                         <IconShare />
                         <span>Share</span>
                     </button>

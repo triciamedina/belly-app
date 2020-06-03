@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
-import { IconBack, IconShare, Emoji, IconAdd } from '../UI/UI';
+import { ButtonBack, ButtonShare, Emoji, IconAdd } from '../UI/UI';
 import AvatarList from '../AvatarList/AvatarList';
 import ItemList from '../ItemList/ItemList';
 import SplitSummary from '../SplitSummary/SplitSummary';
@@ -105,9 +105,9 @@ function BillEditor(props) {
             <>
                 {/*  Header nav */}
                 <header className='BillEditorHeader'>
-                    <button className='Back' onClick={handleGoBack}>
-                        <IconBack />
-                    </button>
+
+                    <ButtonBack className='Back' aria-label='Back' tabIndex='0' onClick={handleGoBack} />
+
                     {/* Currently viewing */}
                     {(viewerList.length > 0) && 
                         (<div className='currently-viewing'>
@@ -115,9 +115,9 @@ function BillEditor(props) {
                             <AvatarList list={viewerList}/>
                         </div>)
                     }
-                    <button className='Share' onClick={toggleShareModalHandler} >
-                        <IconShare />
-                    </button>
+
+                    <ButtonShare className='Share' aria-label='Share' tabIndex='0' onClick={toggleShareModalHandler} />
+
                     {shouldShowShareModal 
                         ?   <OutsideClick 
                                 onOutsideClick={toggleShareModalHandler}

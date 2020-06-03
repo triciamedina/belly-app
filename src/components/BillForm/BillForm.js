@@ -124,6 +124,7 @@ function BillForm(props) {
             <div className='isolate'>
                 <div className='gradient radial'></div>
                 <div className='gradient linear'></div>
+                {/* <svg><ellipse className='bubble'></ellipse></svg> */}
                 <main className='BillFormContainer'>
                     <form className='BillForm' onSubmit={event => submitHandler(event)}>
                         <div className='input-container emoji'>

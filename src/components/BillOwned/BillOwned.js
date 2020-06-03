@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import './BillOwned.css';
-import { IconMore, Emoji } from '../UI/UI';
+import { ButtonMore, Emoji } from '../UI/UI';
 import BillOptions from '../BillOptions/BillOptions';
 import OutsideClick from '../OutsideClick/OutsideClick';
 import ReactHtmlParser from 'react-html-parser';
@@ -60,12 +60,7 @@ const BillOwned = React.memo(props => {
                     }
                 </div>
             </Link>
-            <button 
-                className='view-options'
-                onClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}
-            >
-                <IconMore />
-            </button>
+            <ButtonMore className='view-options' onClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}/>
             {isOptionsMenuOpen 
                 ?   <OutsideClick 
                         onOutsideClick={() => toggleOptionsMenuState(!isOptionsMenuOpen)}

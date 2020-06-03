@@ -77,3 +77,9 @@
 .Entry .TextLink:hover {
     text-decoration: underline;
 }
+
+@media screen and (min-width: 1500px) {
+    .Entry {
+        background-size: cover;
+    }
+}

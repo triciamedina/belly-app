@@ -50,7 +50,7 @@ function ItemList(props) {
                         <Link className='edit-item' to={`/bills/${currentBillId}/${id}/edit`}>
                             <h2>
                                 <span className='quantity'>
-                                    {quantity}x
+                                    {quantity}
                                 </span>
                                 {item_name}
                             </h2>

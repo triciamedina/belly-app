@@ -1,9 +1,8 @@
 import React from 'react';
 import './UI.css';
 
-import ShareIcon from '../../img/icon-share.svg';
-import ChevronLeft from '../../img/icon-chevron-left.svg';
 import X from '../../img/icon-x.svg';
+import XBlk from '../../img/icon-x-blk.svg';
 import More from '../../img/icon-more.svg';
 import MenuIcon from '../../img/icon-menu.svg';
 import EditIcon from '../../img/icon-edit.svg';
@@ -13,6 +12,9 @@ import AddIcon from '../../img/icon-add.svg';
 import MinusIcon from '../../img/icon-minus.svg';
 import ChevronUp from '../../img/icon-chevron-up.svg';
 import ChevronDown from '../../img/icon-chevron-down.svg';
+import ChevronLeft from '../../img/icon-chevron-left.svg';
+import ShareIcon from '../../img/icon-share.svg';
+import ShareIconBlk from '../../img/icon-share-blk.svg'
 
 export function Button(props) {
     return <button className={props.className} {...props}>{props.children}</button>
@@ -34,15 +36,21 @@ export function Header(props) {
     return <header className={props.className}>{props.children}</header>
 }
 
-export function IconBack() {
+export function ButtonBack(props) {
     return (
-        <img className='icon-chevron-left' src={ChevronLeft} alt=''/>
+        <input type='image' alt='Back' src={ChevronLeft} className={props.className} {...props}></input>
     )
 }
 
 export function IconClose() {
     return (
         <img className='icon-x' src={X} alt=''/>
+    )
+}
+
+export function ButtonClose(props) {
+    return (
+        <input type='image' alt='Close' src={XBlk} className={props.className} {...props}></input>
     )
 }
 
@@ -70,15 +78,27 @@ export function IconMore() {
     )
 }
 
-export function IconShare() {
+export function ButtonMore(props) {
     return (
-        <img className='icon-share' src={ShareIcon} alt=''/>
+        <input type='image' alt='More' src={More} className={props.className} {...props}></input>
+    )
+}
+
+export function ButtonShare(props) {
+    return (
+        <input type='image' alt='Share' src={ShareIcon} className={props.className} {...props}></input>
     )
 }
 
 export function IconTrash() {
     return (
         <img className='icon-trash' src={TrashIcon} alt=''/>
+    )
+}
+
+export function IconShare() {
+    return (
+        <img className='icon-share' src={ShareIconBlk} alt=''/>
     )
 }
 

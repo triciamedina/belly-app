@@ -111,17 +111,19 @@ function LoginForm() {
                 value={enteredPassword}
                 onChange={event => onPasswordChange(event.target.value)}
             />
-            <Button
-                className='Button'
-                type='submit'
-                disabled={
-                    ValidationService.validateLoginUsername(enteredUsername)
-                    || ValidationService.validateLoginPassword(enteredPassword)
-                }
-            >
-                Sign in
-            </Button>
-            {loginError && (<Error message={loginError} />) }
+            <div className='button-container'>
+                <Button
+                    className='Button'
+                    type='submit'
+                    disabled={
+                        ValidationService.validateLoginUsername(enteredUsername)
+                        || ValidationService.validateLoginPassword(enteredPassword)
+                    }
+                >
+                    Sign in
+                </Button>
+                {loginError && (<Error message={loginError} />) }
+            </div>
         </form>
     )
 }

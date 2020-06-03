@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SplitterForm.css';
-import { IconClose, IconBack } from '../UI/UI';
+import { IconClose, ButtonBack } from '../UI/UI';
 import Error from '../Error/Error';
 import UserApiService from '../../services/user-api-service';
 import ValidationService from '../../services/validation-service';
@@ -53,9 +53,7 @@ function SplitterForm(props) {
 
     return (
         <div className='SplitterForm' >
-            <button className='Back' onClick={handleGoBack}>
-                <IconBack />
-            </button>
+            <ButtonBack className='Back' onClick={handleGoBack}/>
             <button className='close' onClick={onClose}>
                 <IconClose />
             </button>
