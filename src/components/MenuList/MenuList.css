@@ -7,22 +7,12 @@
 
 .MenuList__item {
     font-size: 14px;
-    letter-spacing: 0.0174em;
 }
 
 .MenuList__item__name {
     margin-left: 30px;
 }
 
-.MenuList__item.active .MenuList__item__name {
-    font-weight: 700;
-    color: #621FEE;
-}
-
-.MenuList__item.active .icon-edit {
-    filter: invert(10%) sepia(98%) saturate(6944%) hue-rotate(264deg) brightness(96%) contrast(95%);
-}
-
-.MenuList__item.active .icon-users {
-    filter: invert(10%) sepia(98%) saturate(6944%) hue-rotate(264deg) brightness(96%) contrast(95%);
+.MenuList__item.active {
+    background-color: rgba(80, 106, 248, 20%);
 }

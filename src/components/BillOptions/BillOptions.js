@@ -1,6 +1,6 @@
 import React from 'react';
 import './BillOptions.css';
-import { IconTrash, ButtonClose, IconShare } from '../UI/UI';
+import { ButtonClose } from '../UI/UI';
 
 const BillOptions = React.forwardRef((props, ref) => {
     const { id, onDelete, onClose, toggleShareModal } = props;
@@ -10,14 +10,12 @@ const BillOptions = React.forwardRef((props, ref) => {
             <ButtonClose className='close' onClick={onClose}/>
             <ul className='OptionsList'>
                 <li className='Option'>
-                    <button onClick={toggleShareModal} >
-                        <IconShare />
-                        <span>Share</span>
+                    <button className='share' onClick={toggleShareModal} >
+                        <span >Share</span>
                     </button>
                 </li>
                 <li className='Option'>
-                    <button id={id} onClick={onDelete} >
-                        <IconTrash />
+                    <button className='delete' id={id} onClick={onDelete} >
                         <span>Delete</span>
                     </button>
                 </li>

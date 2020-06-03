@@ -102,9 +102,9 @@ export function IconTrash() {
     )
 }
 
-export function IconShare() {
+export function IconShare(props) {
     return (
-        <img className='icon-share' src={ShareIconBlk} alt=''/>
+        <img className='icon-share' src={ShareIconBlk} alt='' {...props} />
     )
 }
 

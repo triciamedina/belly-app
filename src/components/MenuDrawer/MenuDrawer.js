@@ -24,9 +24,6 @@ const MenuDrawer = React.forwardRef((props, ref) => {
     return (
         <div className='MenuDrawer' ref={ref}>
              <ButtonClose className='close' onClick={onCloseClick}/>
-            {/* <button className='close' onClick={onCloseClick} >
-                <IconClose />
-            </button> */}
             <div className='Profile'>
                 <div className='Profile__user'>
                     <Avatar className={'Avatar ' + profile.avatarColor}>
@@ -36,10 +33,7 @@ const MenuDrawer = React.forwardRef((props, ref) => {
                         {profile.username}
                     </h2>
                 </div>
-                <Button
-                    className='Button sign-out'
-                    onClick={signOutHandler}
-                >
+                <Button className='Button sign-out' onClick={signOutHandler}>
                     Sign out
                 </Button>
             </div>

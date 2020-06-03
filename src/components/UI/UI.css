@@ -68,6 +68,12 @@
     padding: 0px;
     font-size: 14px;
     color: rgba(0, 0, 0, 60%);
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.Button.Button.sign-out:hover {
+    text-decoration: underline;
 }
 
 .TextLink {
@@ -185,6 +191,11 @@
 }
 
 .icon-users {
+    height: 24px;
+    width: 24px;
+}
+
+.icon-edit {
     height: 24px;
     width: 24px;
 }
