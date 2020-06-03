@@ -13,7 +13,7 @@
 }
 
 .BillShared:hover {
-    background-color: #EBE5FC;
+    background-color: rgba(80, 106, 248, 20%);
 }
 
 .BillShared:hover .Emoji {
