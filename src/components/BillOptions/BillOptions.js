@@ -10,18 +10,13 @@ const BillOptions = React.forwardRef((props, ref) => {
             <ButtonClose className='close' onClick={onClose}/>
             <ul className='OptionsList'>
                 <li className='Option'>
-                    <button
-                        onClick={toggleShareModal}
-                    >
+                    <button onClick={toggleShareModal} >
                         <IconShare />
                         <span>Share</span>
                     </button>
                 </li>
                 <li className='Option'>
-                    <button
-                        id={id}
-                        onClick={onDelete}
-                    >
+                    <button id={id} onClick={onDelete} >
                         <IconTrash />
                         <span>Delete</span>
                     </button>
