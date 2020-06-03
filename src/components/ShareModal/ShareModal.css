@@ -29,20 +29,22 @@
     cursor: pointer;
     padding: 0px;
     margin: 0px;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     position: absolute;
     top: 18px;
     right: 18px;
     background-color: transparent;
+    border-radius: 50%;
 }
 
-.ShareModal .close img {
-    filter: brightness(0.1)
+.ShareModal .close:hover {
+    background-color: rgba(80, 106, 248, 20%);
 }
 
 .ShareModal h1 {
     font-family: inherit;
+    color: #28357D;
     font-size: 24px;
     font-weight: 500;
     margin: 0;
@@ -56,12 +58,13 @@
 
 .ShareModal textarea {
     border: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #28357D;
     width: 100%;
     resize: none;
     font-size: 12px;
     font-family: inherit;
     white-space: nowrap;  overflow: auto;
+    color: #28357D;
 }
 
 .ShareModal .Button {
@@ -71,14 +74,15 @@
 .ShareModal .Button.ghost {
     float: right;
     padding-right: 0px;
+    color: #28357D;
 }
 
 .ShareModal .Button.ghost:hover {
-    color: #621FEE !important;
+    color: #506AFA !important;
 }
 
 .ShareModal .copy-success {
     font-size: 14px;
     margin-left: 15px;
-    color: #621FEE;
+    color: #506AFA;
 }

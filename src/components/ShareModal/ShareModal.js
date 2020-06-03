@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import './ShareModal.css';
-import { IconClose } from '../UI/UI';
+import { ButtonClose } from '../UI/UI';
 import { useStateValue } from '../../state';
 
 const ShareModal = React.forwardRef((props, ref) => {
@@ -24,15 +24,14 @@ const ShareModal = React.forwardRef((props, ref) => {
     return (
         <div className='modal-overlay'>
             <div className='ShareModal' ref={ref}>
-                <button className='close' onClick={handleClose}>
-                    <IconClose />
-                </button>
-                <h1>Share bill</h1>
+                <ButtonClose className='close' onClick={handleClose}/>
+                <h1 id='BillLink'>Share bill</h1>
                 <form>
                     <textarea
                         ref={urlRef}
                         value={url} 
                         readOnly
+                        aria-labelledby='BillLink'
                     >
                     </textarea>
                 </form>
