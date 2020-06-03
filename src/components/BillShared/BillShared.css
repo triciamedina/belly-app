@@ -26,22 +26,23 @@
 
 .BillShared h3 {
     padding: 16px 0px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     margin: 0px;
     padding: 0px;
     letter-spacing: 0.0096em;
     margin-bottom: 5px;
+    color: #28357D;
 }
 
 .BillShared p {
     padding: 16px 0px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
+    font-weight: 300;
     margin: 0px;
     padding: 0px;
-    letter-spacing: 0.0096em;
-    color: rgba(0, 0, 0, 60%);
+    letter-spacing: 0.01em;
+    color: rgba(0, 0 , 0, 60%);
 }
 
 .BillShared p.new {
