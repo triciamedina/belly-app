@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { Picker } from 'emoji-mart';
-import { IconClose, Button } from '../UI/UI';
+import { ButtonClose, Button } from '../UI/UI';
 import Error from '../Error/Error';
 import 'emoji-mart/css/emoji-mart.css';
 import './BillForm.css';
@@ -116,15 +116,12 @@ function BillForm(props) {
         <>
             <header className='BillFormHeader'>
                 <div className='BillFormHeader__container'>
-                    <button className='Close' onClick={() => closeHandler()}>
-                        <IconClose />
-                    </button>
+                    <ButtonClose className='Close' color='white' onClick={closeHandler}/>
                 </div>
             </header>
             <div className='isolate'>
                 <div className='gradient radial'></div>
                 <div className='gradient linear'></div>
-                {/* <svg><ellipse className='bubble'></ellipse></svg> */}
                 <main className='BillFormContainer'>
                     <form className='BillForm' onSubmit={event => submitHandler(event)}>
                         <div className='input-container emoji'>
@@ -165,7 +162,7 @@ function BillForm(props) {
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='discounts'>
-                                Discounts
+                                Discounts:
                             </label>
                             <span>$</span>
                             <input 
@@ -186,7 +183,7 @@ function BillForm(props) {
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='tax'>
-                                Tax
+                                Tax:
                             </label>
                             <span>$</span>
                             <input 
@@ -207,7 +204,7 @@ function BillForm(props) {
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='tip'>
-                                Tip
+                                Tip:
                             </label>
                             <span>$</span>
                             <input 
@@ -228,7 +225,7 @@ function BillForm(props) {
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='fees'>
-                                Fees
+                                Fees:
                             </label>
                             <span>$</span>
                             <input 

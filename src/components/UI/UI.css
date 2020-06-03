@@ -16,10 +16,17 @@
 
 .Button:disabled {
     cursor: not-allowed;
-    color: #efefef;
 }
 
 .Button:disabled:hover {
+    background-color: #28357D;
+}
+
+.BillForm .Button {
+    background-color: #4E67F9;
+}
+
+.BillForm .Button:hover {
     background-color: #28357D;
 }
 

@@ -49,8 +49,10 @@ export function IconClose() {
 }
 
 export function ButtonClose(props) {
+    const { color='black' } = props;
+    const icon = (color === 'black' && XBlk) || (color === 'white' && X)
     return (
-        <input type='image' alt='Close' src={XBlk} className={props.className} {...props}></input>
+        <input type='image' alt='Close' src={icon} className={props.className} {...props}></input>
     )
 }
 

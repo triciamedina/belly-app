@@ -11,7 +11,7 @@ const BillOptions = React.forwardRef((props, ref) => {
             <ul className='OptionsList'>
                 <li className='Option'>
                     <button className='share' onClick={toggleShareModal} >
-                        <span >Share</span>
+                        <span>Share</span>
                     </button>
                 </li>
                 <li className='Option'>
