@@ -60,6 +60,12 @@ export function IconMenu() {
     )
 }
 
+export function ButtonMenu(props) {
+    return (
+        <input type='image' alt='Open menu' src={MenuIcon} className={props.className} {...props}></input>
+    )
+}
+
 export function IconEdit() {
     return (
         <img className='icon-edit' src={EditIcon} alt=''/>

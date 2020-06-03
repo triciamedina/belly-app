@@ -1,10 +1,9 @@
 import React from 'react';
 import './HeaderPrivate.css';
-import { Header } from '../UI/UI';
+import { Header, ButtonMenu } from '../UI/UI';
 import { LockupHorizontal } from '../UI/Logo';
 import OutsideClick from '../OutsideClick/OutsideClick';
 import MenuDrawer from '../MenuDrawer/MenuDrawer';
-import MenuButton from '../MenuButton/MenuButton';
 import { useStateValue } from '../../state';
 
 function HeaderPrivate() {
@@ -21,7 +20,7 @@ function HeaderPrivate() {
     return (
         <Header className='Header Private'>
             <LockupHorizontal />
-            <MenuButton />
+            <ButtonMenu  className='MenuButton' onClick={() => toggleMenuHandler()} />
             {shouldShowMenu 
                 ?   <OutsideClick onOutsideClick={() => toggleMenuHandler()} >
                         <MenuDrawer onCloseClick={() => toggleMenuHandler()} />

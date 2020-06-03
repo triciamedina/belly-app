@@ -1,4 +1,23 @@
 .Private {
     justify-content: center;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
+    position: relative;
+}
+
+.MenuButton {
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    height: 34px;
+    width: 34px;
+    position: absolute;
+    top: 50%; left: 18px;
+    transform: translate(0px, -50%);
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.MenuButton:hover {
+    background-color: rgba(80, 106, 248, 20%);
 }
