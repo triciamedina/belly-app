@@ -29,13 +29,13 @@ function BillForm(props) {
     const fields = ['enteredBillName', 'enteredDiscounts', 'enteredTax', 'enteredTip', 'enteredFees'];
     const [ enteredBillName, setEnteredBillName ] = StickyStateService.useStickyState(existingBill ? existingBill.bill_name : '', 'enteredBillName');
     const [ billNameTouched, setBillNameTouched ] = useState();
-    const [ enteredDiscounts, setEnteredDiscounts ] = StickyStateService.useStickyState(existingBill ? existingBill.discounts : '0', 'enteredDiscounts');
+    const [ enteredDiscounts, setEnteredDiscounts ] = StickyStateService.useStickyState(existingBill ? existingBill.discounts : '0.00', 'enteredDiscounts');
     const [ discountsTouched, setDiscountsTouched ] = useState();
-    const [ enteredTax, setEnteredTax ] = StickyStateService.useStickyState(existingBill ? existingBill.tax : '0', 'enteredTax');
+    const [ enteredTax, setEnteredTax ] = StickyStateService.useStickyState(existingBill ? existingBill.tax : '0.00', 'enteredTax');
     const [ taxTouched, setTaxTouched ] = useState();
-    const [ enteredTip, setEnteredTip ] = StickyStateService.useStickyState(existingBill ? existingBill.tip : '0', 'enteredTip');
+    const [ enteredTip, setEnteredTip ] = StickyStateService.useStickyState(existingBill ? existingBill.tip : '0.00', 'enteredTip');
     const [ tipTouched, setTipTouched ] = useState();
-    const [ enteredFees, setEnteredFees ] = StickyStateService.useStickyState(existingBill ? existingBill.fees : '0', 'enteredFees');
+    const [ enteredFees, setEnteredFees ] = StickyStateService.useStickyState(existingBill ? existingBill.fees : '0.00', 'enteredFees');
     const [ feesTouched, setFeesTouched ] = useState();
     const [ submitError, setSubmitError ] = useState('');
 
@@ -125,6 +125,7 @@ function BillForm(props) {
                 <main className='BillFormContainer'>
                     <form className='BillForm' onSubmit={event => submitHandler(event)}>
                         <div className='input-container emoji'>
+                            <label htmlFor='emoji'>Emoji</label>
                             <input
                                 type='text'
                                 id='emoji'
@@ -143,6 +144,7 @@ function BillForm(props) {
                             }
                         </div>
                         <div className='input-container'>
+                            <label htmlFor='bill-name'>Bill name</label>
                             <input 
                                 type='text' 
                                 id='bill-name' 
@@ -161,41 +163,21 @@ function BillForm(props) {
                             }
                         </div>
                         <div className='input-container currency'>
-                            <label htmlFor='discounts'>
-                                Discounts:
-                            </label>
-                            <span>$</span>
-                            <input 
-                                type='number'
-                                min='0'
-                                step='.01'
-                                id='discounts' 
-                                name='discounts' 
-                                placeholder='0.00'
-                                value={enteredDiscounts}
-                                onChange={event => onDiscountsChange(event.target.value)}
-                            />
-                            {discountsTouched &&
-                                (<Error 
-                                    message={ValidationService.validateDiscounts(enteredDiscounts)} 
-                                />)
-                            }
-                        </div>
-                        <div className='input-container currency'>
                             <label htmlFor='tax'>
-                                Tax:
+                                Tax
                             </label>
-                            <span>$</span>
-                            <input 
-                                type='number'
-                                min='0'
-                                step='.01'
-                                id='tax' 
-                                name='tax' 
-                                placeholder='0.00'
-                                value={enteredTax}
-                                onChange={event => onTaxChange(event.target.value)}
-                            />
+                            <div className='box'>
+                                <span>$</span>
+                                <input 
+                                    type='number'
+                                    min='0'
+                                    step='.01'
+                                    id='tax' 
+                                    name='tax'
+                                    value={enteredTax}
+                                    onChange={event => onTaxChange(event.target.value)}
+                                />
+                            </div>
                             {taxTouched &&
                                 (<Error 
                                     message={ValidationService.validateTax(enteredTax)} 
@@ -204,19 +186,20 @@ function BillForm(props) {
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='tip'>
-                                Tip:
+                                Tip
                             </label>
-                            <span>$</span>
-                            <input 
-                                type='number'
-                                min='0'
-                                step='.01'
-                                id='tip' 
-                                name='tip' 
-                                placeholder='0.00'
-                                value={enteredTip}
-                                onChange={event => onTipChange(event.target.value)}
-                            />
+                            <div className='box'>
+                                <span>$</span>
+                                <input 
+                                    type='number'
+                                    min='0'
+                                    step='.01'
+                                    id='tip' 
+                                    name='tip'
+                                    value={enteredTip}
+                                    onChange={event => onTipChange(event.target.value)}
+                                />
+                            </div>
                             {tipTouched &&
                                 (<Error 
                                     message={ValidationService.validateTip(enteredTip)} 
@@ -225,22 +208,45 @@ function BillForm(props) {
                         </div>
                         <div className='input-container currency'>
                             <label htmlFor='fees'>
-                                Fees:
+                                Fees
                             </label>
-                            <span>$</span>
-                            <input 
-                                type='number'
-                                min='0'
-                                step='.01'
-                                id='fees' 
-                                name='fees' 
-                                placeholder='0.00'
-                                value={enteredFees}
-                                onChange={event => onFeesChange(event.target.value)}
-                            />
+                            <div className='box'>
+                                <span>$</span>
+                                <input 
+                                    type='number'
+                                    min='0'
+                                    step='.01'
+                                    id='fees' 
+                                    name='fees'
+                                    value={enteredFees}
+                                    onChange={event => onFeesChange(event.target.value)}
+                                />
+                            </div>
                             {feesTouched &&
                                 (<Error 
                                     message={ValidationService.validateFees(enteredFees)} 
+                                />)
+                            }
+                        </div>
+                        <div className='input-container currency'>
+                            <label htmlFor='discounts'>
+                                Discounts
+                            </label>
+                            <div className='box'>
+                                <span>$</span>
+                                <input 
+                                    type='number'
+                                    min='0'
+                                    step='.01'
+                                    id='discounts' 
+                                    name='discounts'
+                                    value={enteredDiscounts}
+                                    onChange={event => onDiscountsChange(event.target.value)}
+                                />
+                            </div>
+                            {discountsTouched &&
+                                (<Error 
+                                    message={ValidationService.validateDiscounts(enteredDiscounts)} 
                                 />)
                             }
                         </div>

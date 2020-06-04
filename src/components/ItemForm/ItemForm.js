@@ -125,9 +125,6 @@ function ItemForm(props) {
             <header className='ItemFormHeader'>
                 <div className='ItemFormHeader__container'>
                     <ButtonClose className='Close' color='white' onClick={closeHandler} />
-                    {/* <button className='Close' onClick={() => closeHandler()}>
-                        <IconClose />
-                    </button> */}
                 </div>
             </header>
             <div className='isolate'>

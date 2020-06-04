@@ -82,11 +82,23 @@
 
 .BillForm .input-container {
     width: 100%;
-    text-align: right;
     position: relative;
+    border-bottom: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px;
+    margin-bottom: 10px;
 }
 
 .BillForm .input-container.emoji {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 0;
+}
+
+.BillForm .input-container.emoji label {
     text-align: center;
 }
 
@@ -99,7 +111,6 @@
     font-size: 24px;
     border: 0px;
     border-radius: 4px;
-    margin: 10px 0px;
     padding: 15px 10px;
 }
 
@@ -114,55 +125,51 @@
 .BillForm .name-input {
     font-family: 'Fira Sans', sans-serif;
     border: 0px;
-    border-bottom: 1px solid white;
     background-color: transparent;
-    margin: 10px 0px;
-    padding: 15px 10px;
-    text-align: center;
+    text-align: right;
     color: white;
     font-size: 24px;
     font-weight: 300;
     width: 100%;
-    margin-bottom: 30px;
+    min-width: 0px;
+    flex: 2;
 }
 
-.BillForm .input-container.input-container.currency {
-    margin-right: 40px;
-}
-
-.BillForm .input-container.currency label {
+.BillForm label {
     font-weight: 500;
     text-transform: uppercase;
     color: white;
     font-size: 14px;
-    line-height: 68px;
-    padding-right: 60px;
+    width: 100%;
+    flex: 1;
+}
+
+.BillForm .input-container.currency {
+    border: 0;
+    margin: 0px;
+}
+
+.BillForm .input-container.currency .box {
+    position: relative;
+    display: inline-block;
+    background-color: #424EC2;
 }
 
 .BillForm .input-container.currency input {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
     border: 0px;
-    border-bottom: 1px solid white;
     background-color: transparent;
-    margin: 10px 0px;
-    padding: 20px 10px;
-    width: 100px;
     text-align: center;
     color: white;
     font-size: 16px;
-    background-color: rgba(255, 255, 255, 20%);
 }
 
 .BillForm .input-container.currency span {
     position: absolute;
-    top: 0; right: 0;
-    transform: translate(-100px, 0);
+    top: 0; left: 0;
     color: white;
     font-size: 16px;
-    line-height: 58px;
-    background-color: rgba(255, 255, 255, 20%);
-    border-bottom: 1px solid white;
-    margin: 10px 0;
-    padding-left: 25px;
 }
 
 .BillForm .button-container {
@@ -171,15 +178,4 @@
     align-items: center;
     justify-content: flex-end;
     padding: 34px 0px;
-    margin-right: 40px;
-}
-
-@media screen and (min-width: 600px) {
-    .BillForm .input-container.input-container.currency {
-        width: 50%;
-    }
-
-    .BillForm .button-container {
-        width: 50%;
-    }
 }
