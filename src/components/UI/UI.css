@@ -153,7 +153,7 @@
 .Share:focus,
 .Share:hover,
 .close:hover {
-    background-color: rgba(80, 106, 248, 20%);
+    background-color: #F5F5F5;
 }
 
 .Share {

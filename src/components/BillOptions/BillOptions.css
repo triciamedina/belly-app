@@ -26,7 +26,7 @@
 }
 
 .BillOptions .close:hover {
-    background-color: rgba(80, 106, 248, 20%);
+    background-color: #F5F5F5;
 }
 
 .Option button {
@@ -42,7 +42,7 @@
 }
 
 .Option button:hover {
-    background-color: rgba(80, 106, 248, 20%);
+    background-color: #F5F5F5;
 }
 
 .Option span {
