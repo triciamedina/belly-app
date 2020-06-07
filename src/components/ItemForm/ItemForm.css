@@ -77,7 +77,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     padding: 0px 42px;
     max-width: 600px;
     color: white;
@@ -99,6 +99,34 @@
     padding: 10px 0;
 }
 
+.ItemForm .input-container.quantity div {
+    display: flex;
+    align-items: center;
+}
+
+.ItemForm .input-container.currency {
+    margin-top: 10px;
+}
+
+.ItemForm .input-container.currency .box {
+    background-color: #424EC2;
+    position: relative;
+    line-height: 1.6;
+    padding: 20px 30px;
+}
+
+.ItemForm .input-container.currency label { 
+    margin-bottom: 10px;
+}
+
+.ItemForm .input-container.currency span {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    line-height: 1.6;
+    transform: translate(0, -50%);
+}
+
 .ItemForm label {
     font-weight: 500;
     text-transform: uppercase;
@@ -107,24 +135,17 @@
     line-height: 1.6;
 }
 
-.ItemForm .input-container.currency span {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-61px, 0);
-}
-
 .ItemForm input {
     border: 0px;
-    border-bottom: 1px solid white;
     background-color: transparent;
     margin: 10px 0px;
     padding: 15px 10px;
     width: 100px;
     text-align: center;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
 }
 
 .ItemForm input[id='item-name'] {
@@ -135,20 +156,28 @@
     margin-top: 0px;
     margin-bottom: 50px;
     padding: 20px 10px;
+    border-bottom: 1px solid white;
 }
 
 .ItemForm input[id='quantity'] {
     border: 0;
     background-color: #424EC2;
+    padding: 20px 0;
+    padding-left: 5px;
 }
 
-.ItemForm .input-container.quantity div {
-    display: flex;
-    align-items: center;
+.ItemForm input[id='price'] {
+    margin: 0;
+    padding: 0;
+    padding-left: 15px;
 }
 
 .ItemForm .Button.ghost {
     color: white;
+}
+
+.ItemForm .Button.ghost:hover {
+    color: #4E67F9 !important;
 }
 
 .ItemForm .Button.add,
@@ -178,7 +207,7 @@
     background-image: url('../../img/icon-plus.svg');
 }
 
-.ItemForm .Button.Button.subtract{
+.ItemForm .Button.subtract{
     background-image: url('../../img/icon-minus.svg');
 }
 
@@ -192,10 +221,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 50px 0px;
+    padding: 40px 0;
+    margin-top: 40px;
 }
 
 .ItemForm .text-container {
     line-height: 50px;
-    padding-top: 18px;
 }

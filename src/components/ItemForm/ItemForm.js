@@ -181,18 +181,21 @@ function ItemForm(props) {
                         <span>x</span>
                     </div>
                     <div className='input-container currency'>
-                        <span>$</span>
-                        <input
-                            type='number'
-                            min='0'
-                            step='.01'
-                            id='price'
-                            name='price'
-                            aria-label='Item price'
-                            value={enteredItemPrice}
-                            onChange={event => onItemPriceChange(event.target.value)}
-                        >
-                        </input>
+                        <label htmlFor='price'>Price</label>
+                        <div className='box'>
+                            <span>$</span>
+                            <input
+                                type='number'
+                                min='0'
+                                step='.01'
+                                id='price'
+                                name='price'
+                                aria-label='Item price'
+                                value={enteredItemPrice}
+                                onChange={event => onItemPriceChange(event.target.value)}
+                            >
+                            </input>
+                        </div>
                         {itemPriceTouched &&
                             (<Error
                                 className='Error item-price'
