@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SplitSummaryItem.css';
 import SplitDetail from '../SplitDetail/SplitDetail';
-import { IconUp, IconDown } from '../UI/UI';
+import { ButtonUp, ButtonDown } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
 
 function SplitSummaryItem(props) {
@@ -20,7 +20,7 @@ function SplitSummaryItem(props) {
                     {nickname.slice(0,2)}
                 </Avatar>
                 <span>{personTotal.toFormat('$0,0.00')}</span>
-                {shouldShowDetail ? <IconUp /> : <IconDown />}
+                {shouldShowDetail ? <ButtonUp className='ButtonUp' /> : <ButtonDown className='ButtonDown'/>}
             </button>
 
             {shouldShowDetail &&

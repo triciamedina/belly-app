@@ -111,15 +111,15 @@ export function IconShare(props) {
     )
 }
 
-export function IconDown() {
+export function ButtonDown(props) {
     return (
-        <img className='icon-down' src={ChevronDown} alt='' />
+        <input type='image' alt='View details' src={ChevronDown} className={props.className} {...props}></input>
     )
 }
 
-export function IconUp() {
+export function ButtonUp(props) {
     return (
-        <img className='icon-up' src={ChevronUp} alt='' />
+        <input type='image' alt='Hide details' src={ChevronUp} className={props.className} {...props}></input>
     )
 }
 

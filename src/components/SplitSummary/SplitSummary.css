@@ -5,20 +5,22 @@
     width: 100%;
     max-width: 800px;
     padding: 0px 18px;
+    margin-bottom: 40px;
 }
 
 .SplitSummary {
     list-style: none;
-    padding: 12px 0px;
-    background-color: #4f4f4f;
+    padding: 18px 0px;
+    background-color: white;
     width: 100%;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+    margin: 0;
 }
 
-.SplitSummary .icon-down,
-.SplitSummary .icon-up {
+.SplitSummary .ButtonDown,
+.SplitSummary .ButtonUp {
     position: absolute;
     right: 0;
     top: 50%;
     transform: translate(0, -50%);
-    filter: invert(91%) sepia(0%) saturate(7462%) hue-rotate(86deg) brightness(116%) contrast(111%);
 }
