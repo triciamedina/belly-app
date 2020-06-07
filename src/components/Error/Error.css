@@ -8,19 +8,30 @@
 .ItemForm .Error,
 .SplitterForm .Error {
     position: absolute;
-    color: #FFA07a;
+    color: #F9bf3b;
     margin: 0;
     top: 72px;
     right: 0;
 }
 
+.BillForm .Error {
+    position: relative;
+    top: auto; right: auto;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
 .BillForm .Error.billname {
-    top: 80px;
+    position: absolute;
+    top: 100px;
     right: 0;
+    margin: 0;
 }
 
 .BillForm .Error.submit {
-    top: 0px;
+    position: absolute;
+    bottom: -15px;
     left: 50%;
     transform: translate(-50%, 0);
     right: unset;
