@@ -3,6 +3,7 @@ import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
 import { ButtonBack, ButtonShare, Emoji } from '../UI/UI';
+import { LockupHorizontal } from '../UI/Logo';
 import AvatarList from '../AvatarList/AvatarList';
 import ItemList from '../ItemList/ItemList';
 import SplitSummary from '../SplitSummary/SplitSummary';
@@ -104,7 +105,7 @@ function BillEditor(props) {
         return (
             <>
                 {/*  Header nav */}
-                <header className='BillEditorHeader'>
+                <header className='BillEditorNav'>
 
                     <ButtonBack className='Back' aria-label='Back' tabIndex='0' onClick={handleGoBack} />
 
@@ -129,11 +130,10 @@ function BillEditor(props) {
                 </header>
 
                 <main className='BillEditor'>
-
-                    <div className='BillEditor__overview'>
-
-                        {/* Bill name and link to edit form */}
-                        <Link className='overview__bill-name' to={`/bills/${id}/edit`}>
+                    {/* Bill name and link to edit form */}
+                    <div className='BillEditor__header'>
+                        <LockupHorizontal />
+                        <Link className='bill-name' to={`/bills/${id}/edit`}>
                             <Emoji>
                                 {bill_thumbnail}
                             </Emoji>
@@ -141,7 +141,8 @@ function BillEditor(props) {
                                 {bill_name}
                             </h1>
                         </Link>
-
+                    </div>
+                    <div className='BillEditor__overview'>
                         {/* Items list */}
                         <ItemList 
                             currentBillId={id} 

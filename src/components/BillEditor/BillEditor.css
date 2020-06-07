@@ -1,4 +1,4 @@
-.BillEditorHeader {
+.BillEditorNav {
     position: fixed;
     width: 100%;
     background-color: white;
@@ -9,57 +9,6 @@
     padding: 0px 15px;
     z-index: 3;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
-}
-
-.BillEditor {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 80px;
-    background-color: #F5F5F5;
-}
-
-.BillEditor__overview {
-    width: 100%;
-    max-width: 800px;
-}
-
-.overview__bill-name {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 28px 0px;
-}
-
-.overview__bill-name:visited {
-    color: black;
-}
-
-.overview__bill-name:hover {
-    color: #621FEE;
-}
-
-.overview__bill-name h1 {
-    font-size: 24px;
-    font-weight: 500;
-    margin: 0px 15px;
-    padding: 0px;
-}
-
-.overview__bill-name .Emoji {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    background-color: #f4f4f4;
-    margin: 0px;
-}
-
-.overview__bill-name:hover .Emoji {
-    background-color: #EBE5FC;
 }
 
 .currently-viewing {
@@ -78,6 +27,84 @@
     margin-right: 20px;
     padding: 0px;
     color: #757575;
+}
+
+.BillEditor {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    background-color: #F5F5F5;
+}
+
+.BillEditor__header {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.BillEditor__header .LockupHorizontal {
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.BillEditor__header .LockupHorizontal .Logo.small img {
+    width: 40px;
+    height: 40px;
+}
+
+.BillEditor__header .LockupHorizontal__wordmark {
+    font-size: 40px;
+}
+
+.bill-name {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    padding: 15px 18px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.bill-name:visited {
+    color: black;
+}
+
+.bill-name:hover {
+    color: #621FEE;
+}
+
+.bill-name h1 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0px 15px;
+    padding: 0px;
+    color: #28357D;
+    text-transform: uppercase;
+}
+
+.bill-name .Emoji {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    background-color: #f4f4f4;
+    margin: 0px;
+}
+
+.bill-name:hover .Emoji {
+    background-color: #EBE5FC;
+}
+
+.BillEditor__overview {
+    width: 100%;
+    max-width: 800px;
 }
 
 .AddItemButton {
