@@ -34,7 +34,7 @@ function ItemForm(props) {
     const fields = ['enteredItemName', 'enteredItemPrice', 'enteredItemQuantity'];
     const [ enteredItemName, setEnteredItemName ] = StickyStateService.useStickyState(existingItem ? existingItem.item_name : '', 'enteredItemName');
     const [ itemNameTouched, setItemNameTouched ] = useState();
-    const [ enteredItemPrice, setEnteredItemPrice ] = StickyStateService.useStickyState(existingItem ? existingItem.price : '', 'enteredItemPrice');
+    const [ enteredItemPrice, setEnteredItemPrice ] = StickyStateService.useStickyState(existingItem ? existingItem.price : '0.00', 'enteredItemPrice');
     const [ itemPriceTouched, setItemPriceTouched ] = useState();
     const [ enteredItemQuantity ] = StickyStateService.useStickyState(existingItem ? existingItem.quantity : '1', 'enteredItemQuantity');
     const [ submitError, setSubmitError ] = useState('');
@@ -132,7 +132,7 @@ function ItemForm(props) {
             <main className='ItemFormContainer'>
                 <form className='ItemForm' onSubmit={event => submitHandler(event)}>
                     <div className='input-container name'>
-                        <label for='item-name'>Item name</label>
+                        <label htmlFor='item-name'>Item name</label>
                         <input 
                             type='text' 
                             id='item-name' 
@@ -150,30 +150,32 @@ function ItemForm(props) {
                             />)
                         }
                     </div>
-                    <div className='input-container'>
-                        <Button 
-                            className='Button subtract' 
-                            onClick={(event) => subtractQuantityHandler(event)}
-                            aria-label='Subtract'
-                        >
-                        </Button>
-                        <input
-                            type='number'
-                            id='quantity'
-                            name='quantity'
-                            aria-label='Item quanitity'
-                            placeholder={1}
-                            defaultValue={enteredItemQuantity}
-                            ref={quantityEl}
-                            required
-                        >
-                        </input>
-                        <Button
-                            className='Button add'
-                            onClick={(event) => addQuantityHandler(event)}
-                            aria-label='Add'
-                        >
-                        </Button>             
+                    <div className='input-container quantity'>
+                        <label htmlFor='quantity'>Quantity</label>
+                        <div>
+                            <Button 
+                                className='Button subtract' 
+                                onClick={(event) => subtractQuantityHandler(event)}
+                                aria-label='Subtract'
+                            >
+                            </Button>
+                            <input
+                                type='number'
+                                id='quantity'
+                                name='quantity'
+                                aria-label='Item quanitity'
+                                defaultValue={enteredItemQuantity}
+                                ref={quantityEl}
+                                required
+                            >
+                            </input>
+                            <Button
+                                className='Button add'
+                                onClick={(event) => addQuantityHandler(event)}
+                                aria-label='Add'
+                            >
+                            </Button>      
+                        </div>       
                     </div>
                     <div className='text-container'>
                         <span>x</span>
@@ -186,7 +188,6 @@ function ItemForm(props) {
                             step='.01'
                             id='price'
                             name='price'
-                            placeholder='0.00'
                             aria-label='Item price'
                             value={enteredItemPrice}
                             onChange={event => onItemPriceChange(event.target.value)}

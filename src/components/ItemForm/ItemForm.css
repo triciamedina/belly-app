@@ -92,10 +92,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .ItemForm .input-container.name {
-    flex-direction: column;
     padding: 10px 0;
 }
 
@@ -135,6 +135,16 @@
     margin-top: 0px;
     margin-bottom: 50px;
     padding: 20px 10px;
+}
+
+.ItemForm input[id='quantity'] {
+    border: 0;
+    background-color: #424EC2;
+}
+
+.ItemForm .input-container.quantity div {
+    display: flex;
+    align-items: center;
 }
 
 .ItemForm .Button.ghost {
