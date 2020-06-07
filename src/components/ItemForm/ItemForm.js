@@ -122,8 +122,8 @@ function ItemForm(props) {
 
     return (
         <div className='isolate'>
-            <div className='gradient radial'></div>
-            <div className='gradient linear'></div>
+            <div className='ItemFormGradient radial'></div>
+            <div className='ItemFormGradient linear'></div>
             <header className='ItemFormHeader'>
                 <div className='ItemFormHeader__container'>
                     <ButtonClose className='Close' color='white' onClick={closeHandler} />
@@ -131,7 +131,8 @@ function ItemForm(props) {
             </header>
             <main className='ItemFormContainer'>
                 <form className='ItemForm' onSubmit={event => submitHandler(event)}>
-                    <div className='input-container'>
+                    <div className='input-container name'>
+                        <label for='item-name'>Item name</label>
                         <input 
                             type='text' 
                             id='item-name' 
