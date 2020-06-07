@@ -1,23 +1,28 @@
 .SplitItem {
     position: relative;
     padding: 12px 18px;
+    margin: 5px 0px;
     border-bottom: 1px solid white;
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
+}
+.SplitItem:hover {
+    background-color: #F5F5F5;
 }
 
 .SplitItem h3 {
     position: absolute;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     top: 50%;
     left: 70px;
     transform: translate(0, -50%);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.0096em;
+    font-size: 16px;
+    font-weight: 400;
     padding: 0px;
     margin: 0px;
-    color: white;
+    color: #28357D;
 }
 
 .SplitItem .Avatar {
@@ -39,13 +44,14 @@
 }
 
 .split-count .count {
-    color: white;
+    color: #28357D;
     margin-right: 15px;
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 16px;
 }
 
-.SplitItem .add-subtract-btn {
+.SplitItem .add-btn,
+.SplitItem .subtract-btn {
     width: 34px;
     height: 34px;
     padding: 0px;
@@ -54,16 +60,28 @@
     justify-content: center;
     cursor: pointer;
     border-radius: 0px;
-    background-color: #efefef;
+    background-color: #28357D;
     font-size: 14px;
     font-weight: 500;
     color: black;
     border: 0px;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.add-subtract-btn img {
-    width: 20px;
-    height: 20px;
+.SplitItem .add-btn {
+    background-image: url('../../img/icon-plus.svg');
+}
+
+.SplitItem .subtract-btn {
+    background-image: url('../../img/icon-minus.svg');
+}
+
+
+.SplitItem .add-btn:hover,
+.SplitItem .subtract-btn:hover {
+    background-color: #4E67F9;
 }
 
 .SplitItem .edit {

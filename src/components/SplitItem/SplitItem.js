@@ -28,7 +28,9 @@ function SplitItem(props) {
                     <span className='count'>
                         {share_qty}
                     </span>
-                    <button className='add-subtract-btn' 
+                    <button 
+                        className='subtract-btn'
+                        aria-label='Subtract'
                         onClick={() => handleSplit(id, 
                             {
                                 name: nickname, 
@@ -38,9 +40,10 @@ function SplitItem(props) {
                             }
                         )}
                     >
-                        {/* <IconSubtract /> */}
                     </button>
-                    <button className='add-subtract-btn' 
+                    <button 
+                        className='add-btn'
+                        aria-label='Add'
                         onClick={() => handleSplit(id, 
                             { 
                                 name: nickname, 
@@ -50,7 +53,6 @@ function SplitItem(props) {
                             }
                         )}
                     >
-                        {/* <IconAdd /> */}
                     </button>
                 </div>
             </li>

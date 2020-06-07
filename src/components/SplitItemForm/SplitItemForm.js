@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SplitItemForm.css';
-import { IconClose } from '../UI/UI';
+import { ButtonClose } from '../UI/UI';
 import SplitItem from '../SplitItem/SplitItem';
 import SplitterForm from '../SplitterForm/SplitterForm';
 import SplitterApiService from '../../services/splitter-api-service';
@@ -213,9 +213,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                         splitterToEdit={splitterToEdit}
                     />
                 :   (<div className='SplitItemForm' ref={ref}>
-                        <button className='close' onClick={handleCloseForm}>
-                            <IconClose />
-                        </button>
+                        <ButtonClose className='close' color='white' onClick={handleCloseForm}/>
                         <ul className='split-list'>
                             {splitList}
                         </ul>
@@ -223,8 +221,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                             className='add-item' 
                             onClick={() => toggleOpenSplitterForm(!showSplitterForm)}
                         >
-                            {/* <IconAdd /> */}
-                            Add
+                            <span>Add</span>
                         </button>
                         <div className='button-container'>
                             <button 
