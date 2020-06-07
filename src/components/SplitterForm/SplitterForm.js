@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SplitterForm.css';
-import { IconClose, ButtonBack } from '../UI/UI';
+import { ButtonBack, ButtonClose } from '../UI/UI';
 import Error from '../Error/Error';
 import UserApiService from '../../services/user-api-service';
 import ValidationService from '../../services/validation-service';
@@ -53,11 +53,10 @@ function SplitterForm(props) {
 
     return (
         <div className='SplitterForm' >
-            <ButtonBack className='Back' onClick={handleGoBack}/>
-            <button className='close' onClick={onClose}>
-                <IconClose />
-            </button>
+            <ButtonBack className='Back' color='white' onClick={handleGoBack}/>
+            <ButtonClose className='close' color='white' onClick={onClose}/>
             <form onSubmit={event => submitHandler(event)}>
+                <label htmlFor='name'>Name</label>
                 <input 
                     type='text' 
                     id='name' 

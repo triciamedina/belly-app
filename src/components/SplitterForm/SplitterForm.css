@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #4f4f4f;
+    background-color: #FA5C50;
     border-radius: 4px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
     width: 100%;
@@ -15,12 +15,13 @@
     cursor: pointer;
     padding: 0px;
     margin: 0px;
-    height: 24px;
-    width: 24px;
+    height: 34px;
+    width: 34px;
     position: absolute;
     top: 18px;
     right: 18px;
     background-color: transparent;
+    border-radius: 50%;
 }
 
 .SplitterForm .Back {
@@ -28,33 +29,48 @@
     cursor: pointer;
     padding: 0px;
     margin: 0px;
-    height: 24px;
-    width: 24px;
+    height: 34px;
+    width: 34px;
     position: absolute;
     top: 18px;
     left: 18px;
     background-color: transparent;
     transform: unset;
-    filter: invert(91%) sepia(0%) saturate(7462%) hue-rotate(86deg) brightness(116%) contrast(111%);
+    border-radius: 50%;
+}
+
+.SplitterForm .close:hover,
+.SplitterForm .Back:hover {
+    background-color: rgba(255, 255, 255, 20%);
 }
 
 .SplitterForm form {
-    padding: 0px 28px;
-    padding-top: 50px;
-    padding-bottom: 28px;
+    margin: 0px 28px;
+    margin-top: 70px;
+    margin-bottom: 28px;
+    background-color: white;
+    padding: 30px;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.SplitterForm form label {
+    color: #4a4a4a;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .SplitterForm input {
-    border: 0px;
-    border-bottom: 1px solid white;
-    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #e0e0e0;
     margin: 10px 0px;
-    padding: 15px 10px;
+    padding: 15px 18px;
     width: 100%;
     text-align: center;
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
+    color: #28357D;
+    font-size: 16px;
+    font-weight: 400;
     letter-spacing: 0.0096em;
     font-family: inherit;
 }
@@ -62,9 +78,13 @@
 .SplitterForm .button-container {
     display: flex;
     justify-content: center;
-    padding-top: 45px;
+    padding: 20px 0;
 }
 
 .SplitterForm .Button.ghost {
-    color: white;
+    color: #28357D;
+}
+
+.SplitterForm .Button.ghost:hover {
+    color: #4E67F9;
 }

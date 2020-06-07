@@ -11,6 +11,7 @@ import TrashIcon from '../../img/icon-trash.svg';
 import ChevronUp from '../../img/icon-chevron-up.svg';
 import ChevronDown from '../../img/icon-chevron-down.svg';
 import ChevronLeft from '../../img/icon-chevron-left.svg';
+import ChevronLeftWht from '../../img/icon-chevron-left-wht.svg';
 import ShareIcon from '../../img/icon-share.svg';
 import ShareIconBlk from '../../img/icon-share-blk.svg'
 
@@ -35,8 +36,10 @@ export function Header(props) {
 }
 
 export function ButtonBack(props) {
+    const { color='black' } = props;
+    const icon = (color === 'black' && ChevronLeft) || (color === 'white' && ChevronLeftWht);
     return (
-        <input type='image' alt='Back' src={ChevronLeft} className={props.className} {...props}></input>
+        <input type='image' alt='Back' src={icon} className={props.className} {...props}></input>
     )
 }
 
