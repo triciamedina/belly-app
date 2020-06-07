@@ -99,7 +99,11 @@
 }
 
 .bill-name:hover .Emoji {
-    background-color: #EBE5FC;
+    background-color: rgba(78, 103, 249, 20%);
+}
+
+.bill-name:hover h1 {
+    color: #4E67F9;
 }
 
 .BillEditor__overview {
