@@ -1,6 +1,5 @@
 import React from 'react';
 import './SplitItem.css';
-import { IconSubtract, IconAdd } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
 
 function SplitItem(props) {
@@ -39,7 +38,7 @@ function SplitItem(props) {
                             }
                         )}
                     >
-                        <IconSubtract />
+                        {/* <IconSubtract /> */}
                     </button>
                     <button className='add-subtract-btn' 
                         onClick={() => handleSplit(id, 
@@ -51,7 +50,7 @@ function SplitItem(props) {
                             }
                         )}
                     >
-                        <IconAdd />
+                        {/* <IconAdd /> */}
                     </button>
                 </div>
             </li>

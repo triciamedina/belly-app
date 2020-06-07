@@ -8,8 +8,6 @@ import MenuIcon from '../../img/icon-menu.svg';
 import EditIcon from '../../img/icon-edit.svg';
 import UsersIcon from '../../img/icon-users.svg';
 import TrashIcon from '../../img/icon-trash.svg';
-import AddIcon from '../../img/icon-add.svg';
-import MinusIcon from '../../img/icon-minus.svg';
 import ChevronUp from '../../img/icon-chevron-up.svg';
 import ChevronDown from '../../img/icon-chevron-down.svg';
 import ChevronLeft from '../../img/icon-chevron-left.svg';
@@ -107,18 +105,6 @@ export function IconTrash() {
 export function IconShare(props) {
     return (
         <img className='icon-share' src={ShareIconBlk} alt='' {...props} />
-    )
-}
-
-export function IconAdd() {
-    return (
-        <img className='icon-add' src={AddIcon} alt='' />
-    )
-}
-
-export function IconSubtract() {
-    return (
-        <img className='icon-minus' src={MinusIcon} alt='' />
     )
 }
 

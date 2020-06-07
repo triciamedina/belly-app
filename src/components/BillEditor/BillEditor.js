@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import './BillEditor.css';
 import { useStateValue } from '../../state';
-import { ButtonBack, ButtonShare, Emoji, IconAdd } from '../UI/UI';
+import { ButtonBack, ButtonShare, Emoji } from '../UI/UI';
 import AvatarList from '../AvatarList/AvatarList';
 import ItemList from '../ItemList/ItemList';
 import SplitSummary from '../SplitSummary/SplitSummary';
@@ -155,7 +155,7 @@ function BillEditor(props) {
 
                         {/* Add new item button */}
                         <Link className='AddItemButton' to={`/bills/${id}/add`}>
-                            <IconAdd />
+                            {/* <IconAdd /> */}
                             Add items
                         </Link>
 

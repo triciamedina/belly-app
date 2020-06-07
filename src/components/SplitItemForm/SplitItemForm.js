@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SplitItemForm.css';
-import { IconClose, IconAdd } from '../UI/UI';
+import { IconClose } from '../UI/UI';
 import SplitItem from '../SplitItem/SplitItem';
 import SplitterForm from '../SplitterForm/SplitterForm';
 import SplitterApiService from '../../services/splitter-api-service';
@@ -223,7 +223,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                             className='add-item' 
                             onClick={() => toggleOpenSplitterForm(!showSplitterForm)}
                         >
-                            <IconAdd />
+                            {/* <IconAdd /> */}
                             Add
                         </button>
                         <div className='button-container'>

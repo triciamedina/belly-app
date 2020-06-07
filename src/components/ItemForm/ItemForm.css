@@ -123,7 +123,8 @@
     color: white;
 }
 
-.ItemForm .Button.add-subtract {
+.ItemForm .Button.add,
+.ItemForm .Button.subtract {
     background-color: #4E67F9;
     border-radius: 50px;
     width: 40px;
@@ -134,15 +135,22 @@
     justify-content: center;
     cursor: pointer;
     margin: 0px 12px;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.ItemForm .Button.add-subtract:hover {
+.ItemForm .Button.add:hover,
+.ItemForm .Button.subtract:hover {
     background-color: #28357D;
 }
 
-.ItemForm .Button.add-subtract img {
-    width: 24px;
-    height: 24px;
+.ItemForm .Button.add {
+    background-image: url('../../img/icon-plus.svg');
+}
+
+.ItemForm .Button.Button.subtract{
+    background-image: url('../../img/icon-minus.svg');
 }
 
 .ItemForm .button-container {

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 import './ItemForm.css';
-import { Button, IconSubtract, IconAdd, ButtonClose } from '../UI/UI';
+import { Button, ButtonClose } from '../UI/UI';
 import Error from '../Error/Error';
 import ItemApiService from '../../services/item-api-service';
 import StickyStateService from '../../services/sticky-state-service';
@@ -121,106 +121,104 @@ function ItemForm(props) {
     }
 
     return (
-        <>
+        <div className='isolate'>
+            <div className='gradient radial'></div>
+            <div className='gradient linear'></div>
             <header className='ItemFormHeader'>
                 <div className='ItemFormHeader__container'>
                     <ButtonClose className='Close' color='white' onClick={closeHandler} />
                 </div>
             </header>
-            <div className='isolate'>
-                <div className='gradient radial'></div>
-                <div className='gradient linear'></div>
-                <main className='ItemFormContainer'>
-                    <form className='ItemForm' onSubmit={event => submitHandler(event)}>
-                        <div className='input-container'>
-                            <input 
-                                type='text' 
-                                id='item-name' 
-                                name='item-name'
-                                className='name-input'
-                                placeholder='Item name'
-                                aria-label='Item name'
-                                value={enteredItemName}
-                                onChange={event => onItemNameChange(event.target.value)}
-                            />
-                            {itemNameTouched &&
-                                (<Error
-                                    className='Error item-name'
-                                    message={ValidationService.validateItemName(enteredItemName)} 
-                                />)
-                            }
-                        </div>
-                        <div className='input-container'>
-                            <Button 
-                                className='Button add-subtract' 
-                                onClick={(event) => subtractQuantityHandler(event)}
-                            >
-                                <IconSubtract />
+            <main className='ItemFormContainer'>
+                <form className='ItemForm' onSubmit={event => submitHandler(event)}>
+                    <div className='input-container'>
+                        <input 
+                            type='text' 
+                            id='item-name' 
+                            name='item-name'
+                            className='name-input'
+                            placeholder='Item name'
+                            aria-label='Item name'
+                            value={enteredItemName}
+                            onChange={event => onItemNameChange(event.target.value)}
+                        />
+                        {itemNameTouched &&
+                            (<Error
+                                className='Error item-name'
+                                message={ValidationService.validateItemName(enteredItemName)} 
+                            />)
+                        }
+                    </div>
+                    <div className='input-container'>
+                        <Button 
+                            className='Button subtract' 
+                            onClick={(event) => subtractQuantityHandler(event)}
+                            aria-label='Subtract'
+                        >
+                        </Button>
+                        <input
+                            type='number'
+                            id='quantity'
+                            name='quantity'
+                            aria-label='Item quanitity'
+                            placeholder={1}
+                            defaultValue={enteredItemQuantity}
+                            ref={quantityEl}
+                            required
+                        >
+                        </input>
+                        <Button
+                            className='Button add'
+                            onClick={(event) => addQuantityHandler(event)}
+                            aria-label='Add'
+                        >
+                        </Button>             
+                    </div>
+                    <div className='text-container'>
+                        <span>x</span>
+                    </div>
+                    <div className='input-container currency'>
+                        <span>$</span>
+                        <input
+                            type='number'
+                            min='0'
+                            step='.01'
+                            id='price'
+                            name='price'
+                            placeholder='0.00'
+                            aria-label='Item price'
+                            value={enteredItemPrice}
+                            onChange={event => onItemPriceChange(event.target.value)}
+                        >
+                        </input>
+                        {itemPriceTouched &&
+                            (<Error
+                                className='Error item-price'
+                                message={ValidationService.validateItemPrice(enteredItemPrice)} 
+                            />)
+                        }
+                    </div>
+                    <div className='button-container'>
+                        {submitError && (<Error className='Error submit' message={submitError} />) }
+                        {existingItem
+                        ?  <Button className='Button ghost' onClick={event => deleteHandler(event)}>
+                                Delete
                             </Button>
-                            <input
-                                type='number'
-                                id='quantity'
-                                name='quantity'
-                                aria-label='Item quanitity'
-                                placeholder={1}
-                                defaultValue={enteredItemQuantity}
-                                ref={quantityEl}
-                                required
-                            >
-                            </input>
-                            <Button
-                                className='Button add-subtract'
-                                onClick={(event) => addQuantityHandler(event)}
-                            >
-                                <IconAdd />
-                            </Button>             
-                        </div>
-                        <div className='text-container'>
-                            <span>x</span>
-                        </div>
-                        <div className='input-container currency'>
-                            <span>$</span>
-                            <input
-                                type='number'
-                                min='0'
-                                step='.01'
-                                id='price'
-                                name='price'
-                                placeholder='0.00'
-                                aria-label='Item price'
-                                value={enteredItemPrice}
-                                onChange={event => onItemPriceChange(event.target.value)}
-                            >
-                            </input>
-                            {itemPriceTouched &&
-                                (<Error
-                                    className='Error item-price'
-                                    message={ValidationService.validateItemPrice(enteredItemPrice)} 
-                                />)
+                        : null }
+                        <Button 
+                            className='Button'
+                            type='submit'
+                            disabled={
+                                ValidationService.validateItemName(enteredItemName)
+                                || ValidationService.validateItemPrice(enteredItemPrice)
                             }
-                        </div>
-                        <div className='button-container'>
-                            {submitError && (<Error className='Error submit' message={submitError} />) }
-                            {existingItem
-                            ?  <Button className='Button ghost' onClick={event => deleteHandler(event)}>
-                                    Delete
-                                </Button>
-                            : null }
-                            <Button 
-                                className='Button'
-                                type='submit'
-                                disabled={
-                                    ValidationService.validateItemName(enteredItemName)
-                                    || ValidationService.validateItemPrice(enteredItemPrice)
-                                }
-                            >
-                                Save
-                            </Button>
-                        </div>
-                    </form>
-                </main>
-            </div>
-        </>
+                        >
+                            Save
+                        </Button>
+                    </div>
+                </form>
+            </main>
+        </div>
     )
 }
 
