@@ -1,5 +1,5 @@
 .ItemFormHeader {
-    position: fixed;
+    position: relative;
     width: 100%;
     background-color: transparent;
     height: 80px;
@@ -169,7 +169,8 @@
 }
 
 .ItemForm .Button.add:hover,
-.ItemForm .Button.subtract:hover {
+.ItemForm .Button.subtract:hover,
+.ItemForm button[type='submit']:hover {
     background-color: #28357D;
 }
 
@@ -181,15 +182,17 @@
     background-image: url('../../img/icon-minus.svg');
 }
 
+.ItemForm button[type='submit'] {
+    background-color: #4E67F9;;
+}
+
 .ItemForm .button-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 34px 0px;
+    padding: 50px 0px;
 }
 
 .ItemForm .text-container {
