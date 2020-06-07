@@ -15,24 +15,29 @@
 
 .bill-totals__edit {
     text-decoration: none;
-    color: black;
-}
-
-.bill-totals__edit:visited {
-    color: black;
-}
-
-.bill-totals__edit:hover {
-    color: #621FEE;
 }
 
 .bill-totals h2 {
     margin: 0px;
     margin-bottom: 18px;
     padding: 0px;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #696969;
+}
+
+.bill-totals .currency,
+.bill-totals .amount {
+    font-family: 'Fira Sans Condensed', sans-serif;
     font-weight: 400;
-    letter-spacing: 0.0096em;
+    font-size: 16px;
+    color: #28357D;
+}
+
+.bill-totals__edit:hover .currency,
+.bill-totals__edit:hover .amount {
+    color: #4E67F9;
 }
 
 .bill-totals .currency {
