@@ -18,6 +18,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 80px;
+    background-color: #F5F5F5;
 }
 
 .BillEditor__overview {
@@ -83,22 +84,35 @@
     display: flex;
     align-items: center;
     height: 60px;
-    background-color: #f4f4f4;
+    background-color: rgb(235, 235, 235);
     margin-bottom: 5px;
     margin-left: 18px;
     margin-right: 18px;
     padding-left: 55px;
-    font-size: 14px;
-    font-weight: 400;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
     line-height: 60px;
-    color: #757575;
+    color: #696969;
     text-decoration: none;
+    position: relative;
 }
 
 .AddItemButton:visited {
-    color: #757575;
+    color: #696969;
 }
 
 .AddItemButton:hover {
-    background-color: #EBE5FC;
+    background-color: rgb(225, 225, 225);
+}
+
+.AddItemButton span:before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0;
+    transform: translate(30px, -50%);
+    width: 15px;
+    height: 15px;
+    background-image: url('../../img/icon-plus.svg');
+    filter: brightness(0.4);
 }

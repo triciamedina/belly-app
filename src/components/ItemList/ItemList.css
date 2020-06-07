@@ -10,10 +10,11 @@
     width: 100%;
     background-color: #F5F5F5;
     margin-bottom: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 20%);
 }
 
 .Item:hover {
-    background-color: #EBE5FC;
+    background-color: rgb(231, 231, 231);
 }
 
 .Item .edit-item {
@@ -31,10 +32,10 @@
     font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 20px;
     font-weight: 300;
-    /* letter-spacing: 0.01em; */
     line-height: 60px;
     margin: 0px;
     white-space: nowrap;
+    display: flex;
 }
 
 .Item .quantity {
@@ -59,10 +60,14 @@
 }
 
 .Item .edit-share p {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 60px;
-    color: #757575;
+    color: #696969;
     margin: 0px;
+}
+
+.Item .edit-share:hover p {
+    color: #4E67F9;
 }

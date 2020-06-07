@@ -155,8 +155,7 @@ function BillEditor(props) {
 
                         {/* Add new item button */}
                         <Link className='AddItemButton' to={`/bills/${id}/add`}>
-                            {/* <IconAdd /> */}
-                            Add items
+                            <span>Add items</span>
                         </Link>
 
                         {/* Bill totals */}
