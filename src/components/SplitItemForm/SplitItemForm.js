@@ -6,7 +6,7 @@ import SplitterForm from '../SplitterForm/SplitterForm';
 import SplitterApiService from '../../services/splitter-api-service';
 
 const SplitItemForm = React.forwardRef((props, ref) => {
-    const { splitForm, dispatch, itemId, items, token, BillApiService, ws, WebSocketApiService, currentBillId } = props;
+    const { splitForm={ isSplitFormOpen: false, currentlyViewing:'' }, dispatch, itemId, items=[], token, BillApiService, ws, WebSocketApiService, currentBillId } = props;
     const [ currentItem ] = items.filter(item => item.id === itemId);
 
     // Handle show/hide split form
@@ -23,14 +23,17 @@ const SplitItemForm = React.forwardRef((props, ref) => {
 
     // Populate with initial list from context
     const currentShares = {};
-    currentItem.split_list.forEach(person => {
-        currentShares[person.id] = { 
-            name: person.nickname, 
-            share_qty: person.share_qty,
-            avatar: person.avatar,
-            existing: true
-        }
-    });
+    if(currentItem) {
+        currentItem.split_list.forEach(person => {
+            currentShares[person.id] = { 
+                name: person.nickname, 
+                share_qty: person.share_qty,
+                avatar: person.avatar,
+                existing: true
+            }
+        });
+    }
+
 
     // Add other splitters present in bill, with share of 0
     items.filter(item => item.id !== itemId).forEach(item => {
