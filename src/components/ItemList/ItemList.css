@@ -33,21 +33,22 @@
     font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 20px;
     font-weight: 300;
-    line-height: 60px;
     margin: 0px;
+    overflow: hidden;
     white-space: nowrap;
-    display: flex;
+    text-overflow: ellipsis;
 }
 
 .Item .quantity {
     display: inline-block;
     text-align: center;
-    width: 50px;
+    min-width: 50px;
     font-size: 24px;
     font-weight: 500;
     margin-right: 15px;
     color: white;
     background-color: #FA5C50;
+    line-height: 61px;
 }
 
 .Item .edit-share {
