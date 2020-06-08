@@ -127,12 +127,15 @@
     transform: translate(0, -50%);
 }
 
-.ItemForm label {
+.ItemForm label,
+.ItemForm label h1 {
     font-weight: 500;
     text-transform: uppercase;
     color: white;
     font-size: 12px;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 .ItemForm input {

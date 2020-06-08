@@ -132,7 +132,7 @@ function ItemForm(props) {
             <main className='ItemFormContainer'>
                 <form className='ItemForm' onSubmit={event => submitHandler(event)}>
                     <div className='input-container name'>
-                        <label htmlFor='item-name'>Item name</label>
+                        <label htmlFor='item-name'><h1>Item name</h1></label>
                         <input 
                             type='text' 
                             id='item-name' 
