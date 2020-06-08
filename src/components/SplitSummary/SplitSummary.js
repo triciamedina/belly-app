@@ -5,7 +5,7 @@ import { getSummary, calculatePersonTotal } from '../../lib/split';
 import SplitSummaryItem from '../SplitSummaryItem/SplitSummaryItem';
 
 function SplitSummary(props) {
-    const { currentBill } = props;
+    const { currentBill={ items: [] } } = props;
 
     const summary = getSummary(currentBill);
     const summaryArray = Object.entries(summary);
