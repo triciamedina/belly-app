@@ -27,7 +27,7 @@ function OutsideClick(props) {
     return (
         <>
             <div className='disableClicks'></div>
-            {React.cloneElement(props.children, { ref: wrapperRef })}
+            {React.cloneElement((props.children || <></>), { ref: wrapperRef })}
         </>
     )
 }
