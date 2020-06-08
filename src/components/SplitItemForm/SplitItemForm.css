@@ -38,6 +38,7 @@
 }
 
 .SplitItemForm .add-item {
+    font-family: 'Fira Sans Condensed', sans-serif !important;
     display: flex;
     align-items: center;
     height: 60px;
@@ -46,8 +47,8 @@
     border: 0px;
     margin: 5px 0px;
     padding-left: 55px;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 300;
     line-height: 60px;
     color: white;
     cursor: pointer;

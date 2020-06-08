@@ -10,7 +10,6 @@
     width: 100%;
     cursor: pointer;
     position: relative;
-    border-bottom: 1px solid #DFE9FE;
     padding: 12px 0;
 }
 
@@ -20,4 +19,8 @@
     font-size: 20px;
     line-height: 56px;
     color: #28357D;
+}
+
+.SplitSummaryItem .divider {
+    border-bottom: 1px solid #DFE9FE;
 }

@@ -2,19 +2,18 @@
     position: relative;
     padding: 12px 18px;
     margin: 5px 0px;
-    border-bottom: 1px solid white;
     display: flex;
     justify-content: space-between;
-    background-color: white;
+    background-color: #f5f5f5;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 16%);
 }
 .SplitItem:hover {
-    background-color: #F5F5F5;
+    background-color: rgb(231, 231, 231);
 }
 
 .SplitItem h3 {
     position: absolute;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Fira Sans Condensed', sans-serif;
     top: 50%;
     left: 70px;
     transform: translate(0, -50%);
@@ -44,6 +43,7 @@
 }
 
 .split-count .count {
+    font-family: 'Fira Sans Condensed', sans-serif;
     color: #28357D;
     margin-right: 15px;
     font-weight: 400;
@@ -77,7 +77,6 @@
 .SplitItem .subtract-btn {
     background-image: url('../../img/icon-minus.svg');
 }
-
 
 .SplitItem .add-btn:hover,
 .SplitItem .subtract-btn:hover {

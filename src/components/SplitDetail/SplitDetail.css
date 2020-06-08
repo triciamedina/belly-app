@@ -1,22 +1,7 @@
 .SplitDetail {
     padding: 12px 0px;
-    background-color: #4f4f4f;
+    background-color: white;
     text-align: center;
-}
-
-.SplitDetail .Back {
-    border: 0px;
-    cursor: pointer;
-    padding: 0px;
-    margin: 0px;
-    height: 24px;
-    width: 24px;
-    position: absolute;
-    top: 18px;
-    left: 32px;
-    background-color: transparent;
-    transform: unset;
-    filter: invert(91%) sepia(0%) saturate(7462%) hue-rotate(86deg) brightness(116%) contrast(111%);
 }
 
 .split-name {
@@ -30,9 +15,10 @@
 .split-name h2 {
     margin: 0px 15px;
     padding: 0px;
-    color: white;
+    font-size: 14px;
     font-weight: 500;
-    font-size: 24px;
+    color: #28357D;
+    text-transform: uppercase;
 }
 
 .split-list {
@@ -46,14 +32,10 @@
 .totals-list {
     list-style: none;
     margin: 0px;
-    padding: 0px 30px;
-    color: white;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.items-list {
-    border-bottom: 1px solid white;
+    padding: 0px;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    color: #28357D;
+    font-weight: 300;
 }
 
 .totals-list {
@@ -63,14 +45,37 @@
 .items-list li,
 .totals-list li {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 24px;
     position: relative;
+    font-size: 18px;
+}
+
+.items-list li {
+    background-color: #F5F5F5;
+    padding: 24px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+}
+
+.totals-list li {
+    padding: 0 24px;
+    justify-content: space-between;
+    margin: 20px 0;
 }
 
 .items-list .currency,
-.totals-list .currency {
+.totals-list .currency  {
     position: absolute;
-    top: 0;
-    right: 50px;
+    top: 50%;
+    right: 82px;
+    transform: translate(0, -50%);
+}
+
+.totals-list .label {
+    width: calc(100% - 92px);
+    text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #696969;
+    line-height: 20px;
 }

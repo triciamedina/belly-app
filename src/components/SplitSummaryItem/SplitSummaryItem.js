@@ -31,6 +31,7 @@ function SplitSummaryItem(props) {
                 />
             }
 
+            <div className='divider'></div>
         </li>
     )
 };

@@ -5,8 +5,7 @@
 }
 
 .BillForm .Error,
-.ItemForm .Error,
-.SplitterForm .Error {
+.ItemForm .Error {
     position: absolute;
     color: #F9bf3b;
     margin: 0;
@@ -60,4 +59,5 @@
     top: unset;
     right: unset;
     line-height: 16px;
+    color: #4E67F9;
 }

@@ -53,34 +53,34 @@ function SplitDetail(props) {
                 <li>
                     <ul className='totals-list'>
                         <li>
-                            Items subtotal
+                            <span className='label'>Subtotal</span>
                             <span className='currency'>$</span>
                             <span className='amount'>{itemsSubtotal.toFormat('0,0.00')}</span>
                         </li>
                         <li>
-                            Tax
+                            <span className='label'>Tax</span>
                             <span className='currency'>$</span>
                             <span className='amount'>{personTax.toFormat('0,0.00')}</span>
                         </li>
                         <li>
-                            Tip
+                            <span className='label'>Tip</span>
                             <span className='currency'>$</span>
                             <span className='amount'>{personTip.toFormat('0,0.00')}</span>
                         </li>
                         <li>
-                            Fees
+                            <span className='label'>Fees</span>
                             <span className='currency'>$</span>
                             <span className='amount'>{personFees.toFormat('0,0.00')}</span>
                         </li>
                         <li>
-                            Discounts
+                            <span className='label'>Discounts</span>
                             <span className='currency'>$</span>
                             <span className='amount'>({personDiscounts.toFormat('0,0.00')})</span>
                         </li>
                         <li>
-                            Total
-                            <span className='currency'>$</span>
-                            <span className='amount'>{personTotal.toFormat('0,0.00')}</span>
+                            <span className='label'>Total</span>
+                            <span className='currency'><strong>$</strong></span>
+                            <span className='amount'><strong>{personTotal.toFormat('0,0.00')}</strong></span>
                         </li>
                     </ul>
                 </li>
