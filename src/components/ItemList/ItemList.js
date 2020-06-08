@@ -55,7 +55,7 @@ function ItemList(props) {
                                 {item_name}
                             </h2>
                         </Link>
-                        <button className='edit-share' onClick={() => toggleOpenForm(id)}>
+                        <button className='edit-share' aria-label='Edit shares' onClick={() => toggleOpenForm(id)}>
                             {filteredSplitList.length === 0
                                 ? <p>Split</p>
                                 : <AvatarList list={filteredSplitList}/>
