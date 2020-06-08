@@ -85,7 +85,7 @@ function SplitterForm(props) {
                             ValidationService.validateSplitterName(enteredName)
                         }
                     >
-                        Save
+                        Add
                     </button>
                 </div>
             </form>
