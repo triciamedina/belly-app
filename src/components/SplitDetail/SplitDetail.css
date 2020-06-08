@@ -70,6 +70,12 @@
     transform: translate(0, -50%);
 }
 
+.items-list .item-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .totals-list .label {
     width: calc(100% - 92px);
     text-align: right;
@@ -78,4 +84,10 @@
     text-transform: uppercase;
     color: #696969;
     line-height: 20px;
+}
+
+@media screen and (max-width: 370px) {
+    .items-list .item-name {
+        max-width: 110px;
+    }
 }

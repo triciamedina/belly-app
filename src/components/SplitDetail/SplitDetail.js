@@ -30,7 +30,7 @@ function SplitDetail(props) {
         const { itemId, itemName, sum } = item;
         return (
             <li key={itemId}>
-                {itemName}
+                <span className='item-name'>{itemName}</span>
                 <span className='currency'>$</span>
                 <span className='amount'>{sum.toFormat('0,0.00')}</span>
             </li>
