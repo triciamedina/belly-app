@@ -3,9 +3,12 @@ import './SplitSummaryItem.css';
 import SplitDetail from '../SplitDetail/SplitDetail';
 import { ButtonUp, ButtonDown } from '../UI/UI';
 import Avatar from '../Avatar/Avatar';
+import Dinero from 'dinero.js';
+const Money = Dinero;
+const currency = 'USD';
 
 function SplitSummaryItem(props) {
-    const { id, avatar, nickname, personTotal, summaryArray, currentBill } = props;
+    const { id, avatar, nickname='', personTotal=Money({ amount: (0*100), currency }), summaryArray, currentBill } = props;
     const [ shouldShowDetail, toggleShouldShowDetail ] = useState();
 
     const handleOpenDetails = () => {
