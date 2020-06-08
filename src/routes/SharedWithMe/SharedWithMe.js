@@ -3,9 +3,10 @@ import { sortByDateCreatedDesc, sortByLastViewedDesc } from '../../lib/sort';
 import './SharedWithMe.css';
 import BillList from '../../components/BillList/BillList';
 import BillShared from '../../components/BillShared/BillShared';
+import billApiService from '../../services/bill-api-service';
 
 function SharedWithMe(props) {
-    const { bills, token, dispatch, BillApiService } = props;
+    const { bills={ sharedWithMe: [] }, token, dispatch, BillApiService=billApiService } = props;
     const items = bills.sharedWithMe;
     const nulls = items.filter(item => item.last_viewed === null);
     const notNulls = items.filter(item => item.last_viewed !== null);
