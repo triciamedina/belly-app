@@ -15,9 +15,11 @@ import ReferrerService from '../../services/referrer-service';
 import UserApiService from '../../services/user-api-service';
 
 function BillEditor(props) {
+
     const { 
         bills, dispatch, token, BillApiService, handleWebSocketOpen, handleWebSocketClose, webSocketClients, ws, WebSocketApiService 
     } = props;
+
     const [ isNew, setIsNew ] = useState(true);
     const history = useHistory();
     const [{ shareModal }] = useStateValue();
@@ -97,6 +99,7 @@ function BillEditor(props) {
     }
 
     if (currentBill) {
+        
         const { id, bill_thumbnail, bill_name, items } = currentBill;
         const viewerList = Object.entries(webSocketClients).map(entry => entry[1]);
 

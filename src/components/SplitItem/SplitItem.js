@@ -19,7 +19,7 @@ function SplitItem(props) {
                     className={'edit' + (existing ? '' : ' disabled')} 
                     onClick={existing ? () => handleShowSplitterForm(id): null}
                 >
-                    <Avatar className={'Avatar ' + avatar}>
+                    <Avatar className={'Avatar'} avatar={avatar}>
                         {nickname.slice(0,2)}
                     </Avatar>
                     <h3>{nickname}</h3>

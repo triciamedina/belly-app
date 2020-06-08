@@ -9,6 +9,7 @@ import StickyStateService from '../../services/sticky-state-service';
 import ValidationService from '../../services/validation-service';
 
 function BillForm(props) {
+
     const { bills={ ownedByMe: [], sharedWithMe: [] }, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
 
@@ -21,6 +22,7 @@ function BillForm(props) {
     const [ sharedItem ] = sharedWithMe.filter(bill => bill.id.toString() === routeParamsId);
 
     let existingBill = '';
+    
     if (routeParamsId) {
         existingBill = ownedItem || sharedItem;
     }
