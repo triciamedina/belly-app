@@ -5,7 +5,7 @@ import Avatar from '../Avatar/Avatar';
 function SplitItem(props) {
         const { 
             id, 
-            nickname, 
+            nickname='', 
             avatar, 
             share_qty,
             existing = false,
