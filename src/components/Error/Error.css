@@ -38,19 +38,20 @@
 }
 
 .ItemForm .Error.submit {
-    top: -30px;
+    top: auto;
+    bottom: 0;
     right: unset;
     line-height: 16px;
 }
 
 .ItemForm .Error.item-name {
-    top: 90px;
+    top: 110px;
     right: unset;
     line-height: 16px;
 }
 
 .ItemForm .Error.item-price {
-    top: 80px;
+    top: 110px;
     right: unset;
     line-height: 16px;
 }
