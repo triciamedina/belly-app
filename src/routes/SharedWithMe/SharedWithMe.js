@@ -30,7 +30,9 @@ function SharedWithMe(props) {
             </div>
             <div className='BillList'>
             {bills.sharedWithMe.length === 0
-                ? 'There are no bills shared with you.'
+                ? (<div className='empty'>
+                    <p>There are no bills shared with you.</p>
+                </div>)
                 : <BillList 
                     listItemType={BillShared}
                     items={sortedList}
