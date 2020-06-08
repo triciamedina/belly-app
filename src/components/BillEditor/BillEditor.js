@@ -46,13 +46,11 @@ function BillEditor(props) {
 
                         })
                         .catch(res => {
-                            // setLoginError(res.error)
                             console.log(res)
                         });
                 }
             })
             .catch(res => {
-                // setLoginError(res.error)
                 console.log(res)
             });
     }, [token, routeParamsId, BillApiService, history]);

@@ -84,62 +84,61 @@ function RegisterForm() {
         <form className='RegisterForm' onSubmit={submitHandler}>
             <div className='label-container'>
                 <label htmlFor='username'>Username</label>
+                <Input 
+                    className='Input outline'
+                    type='text' 
+                    id='username' 
+                    name='username' 
+                    placeholder='Username'
+                    aria-label='Username'
+                    autoComplete='username'
+                    value={enteredUsername}
+                    onChange={event => onUsernameChange(event.target.value)}
+                />
                 {usernameTouched &&
                     (<Error 
                         message={ValidationService.validateRegisterUsername(enteredUsername)} 
                     />)
                 }
             </div>
-            <Input 
-                className='Input outline'
-                type='text' 
-                id='username' 
-                name='username' 
-                placeholder='Username'
-                aria-label='Username'
-                autoComplete='username'
-                value={enteredUsername}
-                onChange={event => onUsernameChange(event.target.value)}
-            />
             <div className='label-container'>
                 <label htmlFor='password'>Password</label>
+                <Input 
+                    className='Input outline'
+                    type='password' 
+                    id='password' 
+                    name='password' 
+                    placeholder='Password'
+                    aria-label='Password'
+                    value={enteredPassword}
+                    autoComplete='new-password'
+                    onChange={event => onPasswordChange(event.target.value)}
+                />
                 {passwordTouched &&
-                    (<Error 
-                        message={ValidationService.validateRegisterPassword(enteredPassword)} 
-                    />)
-                }
+                        (<Error 
+                            message={ValidationService.validateRegisterPassword(enteredPassword)} 
+                        />)
+                    }
             </div>
-            <Input 
-                className='Input outline'
-                type='password' 
-                id='password' 
-                name='password' 
-                placeholder='Password'
-                aria-label='Password'
-                value={enteredPassword}
-                autoComplete='new-password'
-                onChange={event => onPasswordChange(event.target.value)}
-            />
             <div className='label-container'>
                 <label htmlFor='confirm-password'>Confirm password</label>
+                <Input 
+                    className='Input outline'
+                    type='password' 
+                    id='confirm-password' 
+                    name='confirm-password' 
+                    placeholder='Confirm password'
+                    aria-label='Confirm password'
+                    value={enteredConfirmPassword}
+                    autoComplete='new-password'
+                    onChange={event => onConfirmPasswordChange(event.target.value)}
+                />
                 {confirmPasswordTouched &&
-                    (<Error 
-                        message={ValidationService.validateRegisterPasswordMatch(enteredPassword, enteredConfirmPassword)} 
-                    />)
-                }
+                        (<Error 
+                            message={ValidationService.validateRegisterPasswordMatch(enteredPassword, enteredConfirmPassword)} 
+                        />)
+                    }
             </div>
-            <Input 
-                className='Input outline'
-                type='password' 
-                id='confirm-password' 
-                name='confirm-password' 
-                placeholder='Confirm password'
-                aria-label='Confirm password'
-                value={enteredConfirmPassword}
-                autoComplete='new-password'
-                onChange={event => onConfirmPasswordChange(event.target.value)}
-            />
-            
             <div className='button-container'>
                 <Button
                     className='Button'

@@ -53,7 +53,7 @@ function OwnedByMe(props) {
             </div>
             <div className='BillList'>
                 {bills.ownedByMe.length === 0
-                    ?   (<div>
+                    ?   (<div className='empty'>
                             <p>
                                 You don’t have any bills yet.
                             </p>

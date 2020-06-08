@@ -62,12 +62,12 @@ function LoginForm() {
                             }
                         });
                     })
-                    .catch(res => {
-                        setLoginError(res.error)
+                    .catch(err => {
+                        setLoginError(err.message)
                     });
             })
-            .catch(res => {
-                setLoginError(res.error)
+            .catch(err => {
+                setLoginError(err.message)
             });
     }
 

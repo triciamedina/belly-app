@@ -19,10 +19,10 @@ const ValidationService = {
             return 'Password is required'
         }
         if (password.trim().length < 8 || password.trim().length > 36) {
-            return 'Password must be between 8 and 36 characters'
+            return 'Must be between 8 and 36 characters'
         }
         if (!/\d/.test(password)) {
-            return 'Password must contain at least one digit'
+            return 'Must contain at least one digit'
         }
     },
     validateRegisterPasswordMatch(password, confirmedPassword) {

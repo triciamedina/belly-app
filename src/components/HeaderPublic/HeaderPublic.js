@@ -35,11 +35,11 @@ function HeaderPublic() {
                         });
                     })
                     .catch(res => {
-                        console.log(res.error)
+                        console.log(res.message)
                     });
             })
             .catch(res => {
-                console.log(res.error)
+                console.log(res.message)
             });
     }
 

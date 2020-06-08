@@ -39,3 +39,10 @@
     height: 20px;
     background-image: url('../../img/icon-plus.svg');
 }
+
+.BillList .empty {
+    text-align: center;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+    color: #28357D;
+}

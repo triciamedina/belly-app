@@ -8,8 +8,9 @@
 }
 
 .RegisterForm .label-container {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     flex: 1;
 }
 
@@ -19,6 +20,9 @@
 
 .RegisterForm .Error {
     margin-top: 0px;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
 }
 
 .RegisterForm label {
