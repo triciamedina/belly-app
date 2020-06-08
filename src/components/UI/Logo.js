@@ -19,7 +19,7 @@ export function Logo(props) {
 export function LockupHorizontal (props) {
     return (
         <div className='LockupHorizontal' {...props}>
-            <Logo className='Logo small' href='#'/>
+            <Logo className='Logo small'/>
             <h1 className='LockupHorizontal__wordmark'>Belly</h1>
         </div>
     )
@@ -28,7 +28,7 @@ export function LockupHorizontal (props) {
 export function LockupVertical (props) {
     return (
         <div className='LockupVertical' {...props}>
-            <Logo className='Logo large' href='#'/>
+            <Logo className='Logo large' />
             <h2 className='LockupVertical__wordmark'>Belly</h2>
         </div>
     )
