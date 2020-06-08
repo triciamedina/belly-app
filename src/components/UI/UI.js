@@ -7,13 +7,11 @@ import More from '../../img/icon-more.svg';
 import MenuIcon from '../../img/icon-menu.svg';
 import EditIcon from '../../img/icon-edit.svg';
 import UsersIcon from '../../img/icon-users.svg';
-import TrashIcon from '../../img/icon-trash.svg';
 import ChevronUp from '../../img/icon-chevron-up.svg';
 import ChevronDown from '../../img/icon-chevron-down.svg';
 import ChevronLeft from '../../img/icon-chevron-left.svg';
 import ChevronLeftWht from '../../img/icon-chevron-left-wht.svg';
 import ShareIcon from '../../img/icon-share.svg';
-import ShareIconBlk from '../../img/icon-share-blk.svg'
 
 export function Button(props) {
     return <button className={props.className} {...props}>{props.children}</button>
@@ -25,10 +23,6 @@ export function ButtonLink(props) {
 
 export function TextLink(props) {
     return <a className={props.className} {...props}>{props.children}</a>
-}
-
-export function Input(props) {
-    return <input className={props.className} {...props}>{props.children}</input>
 }
 
 export function Header(props) {
@@ -43,12 +37,6 @@ export function ButtonBack(props) {
     )
 }
 
-export function IconClose() {
-    return (
-        <img className='icon-x' src={X} alt=''/>
-    )
-}
-
 export function ButtonClose(props) {
     const { color='black' } = props;
     const icon = (color === 'black' && XBlk) || (color === 'white' && X)
@@ -57,33 +45,9 @@ export function ButtonClose(props) {
     )
 }
 
-export function IconMenu() {
-    return (
-        <img className='icon-menu' src={MenuIcon} alt=''/>
-    )
-}
-
 export function ButtonMenu(props) {
     return (
         <input type='image' alt='Open menu' src={MenuIcon} className={props.className} {...props}></input>
-    )
-}
-
-export function IconEdit() {
-    return (
-        <img className='icon-edit' src={EditIcon} alt=''/>
-    )
-}
-
-export function IconUsers() {
-    return (
-        <img className='icon-users' src={UsersIcon} alt=''/>
-    )
-}
-
-export function IconMore() {
-    return (
-        <img className='icon-more' src={More} alt=''/>
     )
 }
 
@@ -96,18 +60,6 @@ export function ButtonMore(props) {
 export function ButtonShare(props) {
     return (
         <input type='image' alt='Share' src={ShareIcon} className={props.className} {...props}></input>
-    )
-}
-
-export function IconTrash() {
-    return (
-        <img className='icon-trash' src={TrashIcon} alt=''/>
-    )
-}
-
-export function IconShare(props) {
-    return (
-        <img className='icon-share' src={ShareIconBlk} alt='' {...props} />
     )
 }
 
@@ -126,5 +78,17 @@ export function ButtonUp(props) {
 export function Emoji(props) {
     return (
         <div className='Emoji'>{props.children}</div>
+    )
+}
+
+export function IconEdit() {
+    return (
+        <img className='icon-edit' src={EditIcon} alt=''/>
+    )
+}
+
+export function IconUsers() {
+    return (
+        <img className='icon-users' src={UsersIcon} alt=''/>
     )
 }
