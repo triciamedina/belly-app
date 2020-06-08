@@ -22,6 +22,10 @@
     padding: 0px;
     margin: 0px;
     color: #28357D;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 110px;
 }
 
 .SplitItem .Avatar {
@@ -92,4 +96,10 @@
 
 .SplitItem .edit.disabled {
     cursor: not-allowed;
+}
+
+@media screen and (max-width: 370px) {
+    .SplitItem h3 {
+        max-width: 60px;
+    }
 }
