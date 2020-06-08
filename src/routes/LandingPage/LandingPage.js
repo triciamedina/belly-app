@@ -4,6 +4,8 @@ import './LandingPage.css';
 import HeaderPublic from '../../components/HeaderPublic/HeaderPublic';
 import { LockupVertical } from '../../components/UI/Logo';
 import { useStateValue } from '../../state';
+import BellyMockupPrimary from '../../img/belly-screen-1@2x.png';
+import BellyMockupSecondary from '../../img/belly-screen-2@2x.png';
 
 function LandingPage() {
     const [{ login }] = useStateValue();
@@ -27,8 +29,8 @@ function LandingPage() {
             </div>
             <div className='LandingPage__secondary'>
                 <h3>What can we do to make this math easier?</h3>
-                <img src='https://dummyimage.com/300x400/ffffff/909090.png&text=placeholder' alt='' />
-                <img src='https://dummyimage.com/300x400/ffffff/909090.png&text=placeholder' alt='' />
+                <img className='mockup primary' src={BellyMockupPrimary} alt='' />
+                <img className='mockup secondary' src={BellyMockupSecondary} alt='' />
             </div>
         </main>
         <footer className='LandingPage__footer'>
