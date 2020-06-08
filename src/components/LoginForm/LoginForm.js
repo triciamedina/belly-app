@@ -74,43 +74,43 @@ function LoginForm() {
     return (
         <form className='LoginForm' onSubmit={submitHandler}>
             <div className='label-container'>
-                <label htmlFor='username'>Username</label>
+                <label htmlFor='username'>Username</label> 
+                <Input 
+                    className='Input outline'
+                    type='text' 
+                    id='username' 
+                    name='username' 
+                    placeholder='Username'
+                    aria-label='Username'
+                    autoComplete='username'
+                    value={enteredUsername}
+                    onChange={event => onUsernameChange(event.target.value)}
+                />
                 {usernameTouched &&
                     (<Error 
                         message={ValidationService.validateLoginUsername(enteredUsername)} 
                     />)
                 }
             </div>
-            <Input 
-                className='Input outline'
-                type='text' 
-                id='username' 
-                name='username' 
-                placeholder='Username'
-                aria-label='Username'
-                autoComplete='username'
-                value={enteredUsername}
-                onChange={event => onUsernameChange(event.target.value)}
-            />
             <div className='label-container'>
                 <label htmlFor='password'>Password</label>
+                <Input 
+                    className='Input outline'
+                    type='password' 
+                    id='password' 
+                    name='password' 
+                    placeholder='Password'
+                    aria-label='Password'
+                    autoComplete='current-password'
+                    value={enteredPassword}
+                    onChange={event => onPasswordChange(event.target.value)}
+                />
                 {passwordTouched &&
                     (<Error 
                         message={ValidationService.validateLoginPassword(enteredPassword)} 
                     />)
                 }
             </div>
-            <Input 
-                className='Input outline'
-                type='password' 
-                id='password' 
-                name='password' 
-                placeholder='Password'
-                aria-label='Password'
-                autoComplete='current-password'
-                value={enteredPassword}
-                onChange={event => onPasswordChange(event.target.value)}
-            />
             <div className='button-container'>
                 <Button
                     className='Button'

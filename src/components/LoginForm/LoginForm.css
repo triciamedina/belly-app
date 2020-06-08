@@ -8,8 +8,9 @@
 }
 
 .LoginForm .label-container {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     flex: 1;
 }
 
@@ -27,6 +28,9 @@
 
 .LoginForm .Error {
     margin-top: 0px;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
 }
 
 .LoginForm .button-container {
