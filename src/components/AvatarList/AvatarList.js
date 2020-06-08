@@ -3,7 +3,7 @@ import './AvatarList.css';
 import Avatar from '../Avatar/Avatar';
 
 function AvatarList(props) {
-    const { list } = props;
+    const { list=[] } = props;
     
     return (
         <>
