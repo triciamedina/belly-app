@@ -66,3 +66,13 @@
 .view-options:hover {
     background-color: rgba(0, 0, 0, 8%);
 }
+
+@media screen and (max-width: 370px) {
+    .BillOwned .details {
+        padding-right: 30px;
+    }
+
+    .view-options {
+        right: 0;
+    }
+}
