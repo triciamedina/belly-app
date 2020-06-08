@@ -25,6 +25,10 @@ export function TextLink(props) {
     return <a className={props.className} {...props}>{props.children}</a>
 }
 
+export function Input(props) {
+    return <input className={props.className} {...props}>{props.children}</input>
+}
+
 export function Header(props) {
     return <header className={props.className}>{props.children}</header>
 }
