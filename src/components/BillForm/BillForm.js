@@ -9,7 +9,7 @@ import StickyStateService from '../../services/sticky-state-service';
 import ValidationService from '../../services/validation-service';
 
 function BillForm(props) {
-    const { bills, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
+    const { bills={ ownedByMe: [], sharedWithMe: [] }, dispatch, token, BillApiService, ws, WebSocketApiService } = props;
     const { ownedByMe, sharedWithMe } = bills;
 
     const history = useHistory();
