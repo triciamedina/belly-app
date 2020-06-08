@@ -36,5 +36,5 @@ $ npm run test
 - [Emoji Mart](https://github.com/missive/emoji-mart)
 
 ## Acknowledgments
-– Design by [Kartika Lie](https://www.kartikalie.com/)
+- Design by [Kartika Lie](https://www.kartikalie.com/)
 - [Feather Icons](https://feathericons.com/)
