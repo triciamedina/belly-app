@@ -5,6 +5,7 @@ import {
     Button,
     ButtonLink,
     TextLink,
+    Input,
     Header,
     ButtonBack,
     ButtonClose,
@@ -38,6 +39,14 @@ describe('<TextLink />', () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<TextLink />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+});
+
+describe('<Input/>', () => {
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Input />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
 });
