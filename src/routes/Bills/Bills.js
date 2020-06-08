@@ -19,7 +19,6 @@ function Bills() {
     const token = TokenService.getAuthToken();
 
     // Websocket sticky state
-    // const fields = ['webSocketId', 'webSocketClients'];
     const [ webSocketId, setWebSocketId ] = StickyStateService.useStickyState('', 'webSocketId');
     const [ webSocketClients, setWebSocketClients ] = StickyStateService.useStickyState([], 'webSocketClients');
 
@@ -120,7 +119,6 @@ function Bills() {
                 });
             })
             .catch(res => {
-                // setLoginError(res.error)
                 console.log(res)
             });
     }, [dispatch, token]);
