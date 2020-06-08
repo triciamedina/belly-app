@@ -143,7 +143,7 @@ function BillForm(props) {
                         }
                     </div>
                     <div className='input-container name'>
-                        <label htmlFor='bill-name'>Bill name</label>
+                        <label htmlFor='bill-name'><h1>Bill name</h1></label>
                         <input 
                             type='text' 
                             id='bill-name' 

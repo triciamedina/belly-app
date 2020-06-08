@@ -106,11 +106,14 @@
     margin-bottom: 44px;
 }
 
-.BillForm label {
+.BillForm label,
+.BillForm label h1 {
     font-weight: 500;
     text-transform: uppercase;
     color: white;
     font-size: 12px;
+    margin: 0;
+    padding: 0;
 }
 
 .BillForm .input-container.emoji label {
