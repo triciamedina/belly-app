@@ -89,3 +89,22 @@
     margin-left: 15px;
     color: #d43900;
 }
+
+@media screen and (max-width: 370px) {
+    .ShareModal {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ShareModal .Button.ghost {
+        float: none;
+        padding: 15px 28px;
+    }
+
+    .ShareModal .copy-success {
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+    }
+}
