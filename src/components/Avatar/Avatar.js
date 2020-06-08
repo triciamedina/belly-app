@@ -27,8 +27,9 @@ const invertColor = (hex, isBW=true ) => {
 }
 
 function Avatar(props) {
+    const { className, avatar='' } = props;
     return (
-        <div className={props.className} style={{color: invertColor(props.avatar), backgroundColor: props.avatar}}>
+        <div className={className} style={{color: invertColor(avatar), backgroundColor: avatar}}>
             {props.children}
         </div>
     )
