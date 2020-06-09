@@ -28,12 +28,6 @@ const UserApiService = {
                     : res.json()
             )
     },
-    getRandomColor() {
-        const colors = { 'pink': '#ca03a3', 'light-blue': '#027cac', 'light-purple': '#9443bb', 'orange': '#dd3326', 'purple': '#8459A0', 'blue': '#405cf7' };
-        const min = Math.ceil(0);
-        const max = Math.floor(5);
-        return Object.entries(colors)[Math.floor(Math.random() * (max - min + 1)) + min][1];
-    },
     getUserHasBill(token, bill_id) {
         return fetch(`${config.API_BASE_URL}/user/${bill_id}`, {
             method: 'GET',

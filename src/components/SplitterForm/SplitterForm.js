@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './SplitterForm.css';
 import { ButtonBack, ButtonClose } from '../UI/UI';
 import Error from '../Error/Error';
-import UserApiService from '../../services/user-api-service';
 import ValidationService from '../../services/validation-service';
+import { getRandomColor } from '../../lib/color';
 
 function SplitterForm(props) {
     const { handleGoBack, onClose, handleSplit, splitterToEdit, handleDelete } = props;
@@ -36,7 +36,7 @@ function SplitterForm(props) {
         
         const id = splitterToEdit ? splitterToEdit[0] : 'New';
         const share_qty = splitterToEdit ? splitterToEdit[1].share_qty : '1';
-        const avatar = splitterToEdit ? splitterToEdit[1].avatar : UserApiService.getRandomColor();
+        const avatar = splitterToEdit ? splitterToEdit[1].avatar : getRandomColor();
         const existing = splitterToEdit ? true : false;
 
         handleSplit(id, 

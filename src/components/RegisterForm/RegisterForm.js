@@ -7,6 +7,7 @@ import ValidationService from '../../services/validation-service';
 import UserApiService from '../../services/user-api-service';
 import Error from '../Error/Error';
 import AuthApiService from '../../services/auth-api-service';
+import { getRandomColor } from '../../lib/color';
 
 function RegisterForm() {
     const [ enteredUsername, setEnteredUsername ] = useState('');
@@ -40,7 +41,7 @@ function RegisterForm() {
         const newUser = {
             username: enteredUsername,
             password: enteredConfirmPassword,
-            avatar: UserApiService.getRandomColor()
+            avatar: getRandomColor()
         }
 
         UserApiService.postRegistration(newUser)
