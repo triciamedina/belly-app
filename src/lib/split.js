@@ -33,7 +33,6 @@ export const getSummary = (bill) => {
 
     for (let i = 0; i < items.length; i++) {
         const currentItem = items[i];
-        console.log(currentItem)
         const quantity = Number(currentItem.quantity);
         const price = Money({ amount: (Math.ceil(Number(currentItem.price)*100)), currency});
         const itemTotal = {
@@ -133,10 +132,10 @@ export const calculatePersonTotal = (person, summaryArray, currentBill) => {
     const { tax, tip, fees, discounts } = currentBill;
 
     // Dinero objects
-    const personTax = Money({ amount: Math.ceil(Number(tax)*100), currency }).multiply(ratio);
-    const personTip = Money({ amount: Math.ceil(Number(tip)*100), currency }).divide(summaryArray.length);
-    const personFees = Money({ amount: Math.ceil(Number(fees)*100), currency }).divide(summaryArray.length);
-    const personDiscounts = Money({ amount: Math.ceil(Number(discounts)*100), currency}).divide(summaryArray.length);
+    const personTax = Money({ amount: (Math.ceil(Number(tax)*100)), currency }).multiply(ratio);
+    const personTip = Money({ amount: (Math.ceil(Number(tip)*100)), currency }).divide(summaryArray.length);
+    const personFees = Money({ amount: (Math.ceil(Number(fees)*100)), currency }).divide(summaryArray.length);
+    const personDiscounts = Money({ amount: (Math.ceil(Number(discounts)*100)), currency}).divide(summaryArray.length);
 
     // Dinero object
     return itemsSubtotal.add(personTax).add(personTip).add(personFees).subtract(personDiscounts);
