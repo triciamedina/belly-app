@@ -30,10 +30,13 @@ $ npm run test
 ```
 
 ## Built With
+- WebSockets
 - [React](https://reactjs.org/)
 - [Moment.js](https://momentjs.com/)
 - [Dinero.js](https://sarahdayan.github.io/dinero.js/)
 - [Emoji Mart](https://github.com/missive/emoji-mart)
+- HTML
+- CSS
 
 ## Acknowledgments
 - Design by [Kartika Lie](https://www.kartikalie.com/)
