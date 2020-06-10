@@ -33,6 +33,7 @@ export const getSummary = (bill) => {
 
     for (let i = 0; i < items.length; i++) {
         const currentItem = items[i];
+        console.log(currentItem)
         const quantity = Number(currentItem.quantity);
         const price = Money({ amount: (Number(currentItem.price)*100), currency});
         const itemTotal = {
