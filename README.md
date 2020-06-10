@@ -1,7 +1,7 @@
 # Belly
 Belly is a real-time bill splitting calculator for collaborating with others on complicated food bills.
 
-<kbd><img width="1154" alt="Screen Shot 2020-05-26 at 12 02 39 PM" src="https://user-images.githubusercontent.com/48637126/84213802-755b4500-aa76-11ea-8020-0f8950030fa7.png"></kbd>
+<kbd><img width="993" alt="Screen Shot 2020-05-26 at 12 02 39 PM" src="https://user-images.githubusercontent.com/48637126/84213802-755b4500-aa76-11ea-8020-0f8950030fa7.png"></kbd>
 
 ## Live App
 https://belly-app.now.sh/
