@@ -1,50 +1,49 @@
 const ValidationService = {
     validateLoginUsername(username) {
         if (username.trim().length === 0) {
-            return 'Username is required'
+            return 'Username is required';
         }
     },
     validateLoginPassword(password) {
         if (password.trim().length === 0) {
-            return 'Password is required'
+            return 'Password is required';
         }
     },
     validateRegisterUsername(username) {
         if (username.trim().length < 2) {
-            return 'Username must be at least 2 characters'
+            return 'Username must be at least 2 characters';
         }
     },
     validateRegisterPassword(password) {
         if (password.trim().length === 0) {
-            return 'Password is required'
+            return 'Password is required';
         }
         if (password.trim().length < 8 || password.trim().length > 36) {
-            return 'Must be between 8 and 36 characters'
+            return 'Must be between 8 and 36 characters';
         }
         if (!/\d/.test(password)) {
-            return 'Must contain at least one digit'
+            return 'Must contain at least one digit';
         }
     },
     validateRegisterPasswordMatch(password, confirmedPassword) {
         if (confirmedPassword.trim().length === 0) {
-            return 'Confirmed password is required'
+            return 'Confirmed password is required';
         }
         if (confirmedPassword.trim() !== password.trim()) {
-            return 'Passwords must match'
+            return 'Passwords must match';
         }
     },
     validateBillName(billname) {
         if (billname.trim().length === 0) {
-            return 'Bill name is required'
+            return 'Bill name is required';
         }
     },
     validateDiscounts(discounts) {
         if (!/^[0-9]{1,9}(?:\.[0-9]{1,2})?$/.test(discounts)) {
-            return 'Discounts must be a valid dollar amount'
+            return 'Discounts must be a valid dollar amount';
         }
         if (discounts.toString().trim().length === 0) {
-            console.log(discounts)
-            return 'Discounts is required'
+            return 'Discounts is required';
         }
     },
     validateTax(tax) {
@@ -52,8 +51,7 @@ const ValidationService = {
             return 'Tax must be a valid dollar amount'
         }
         if (tax.toString().trim().length === 0) {
-            console.log(tax)
-            return 'Tax is required'
+            return 'Tax is required';
         }
     },
     validateTip(tip) {
@@ -61,8 +59,7 @@ const ValidationService = {
             return 'Tip must be a valid dollar amount'
         }
         if (tip.toString().trim().length === 0) {
-            console.log(tip)
-            return 'Tip is required'
+            return 'Tip is required';
         }
     },
     validateFees(fees) {
@@ -70,13 +67,12 @@ const ValidationService = {
             return 'Fees must be a valid dollar amount'
         }
         if (fees.toString().trim().length === 0) {
-            console.log(fees)
-            return 'Fees is required'
+            return 'Fees is required';
         }
     },
     validateItemName(itemname) {
         if (itemname.trim().length === 0) {
-            return 'Item name is required'
+            return 'Item name is required';
         }
     },
     validateItemPrice(itemprice) {
@@ -84,15 +80,14 @@ const ValidationService = {
             return 'Price must be a valid dollar amount'
         }
         if (itemprice.toString().trim().length === 0) {
-            console.log(itemprice)
-            return 'Price is required'
+            return 'Price is required';
         }
     },
     validateSplitterName(name) {
         if (name.trim().length === 0) {
-            return 'Name is required'
+            return 'Name is required';
         }
     },
-}
+};
 
 export default ValidationService;

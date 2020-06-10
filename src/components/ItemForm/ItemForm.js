@@ -22,14 +22,15 @@ function ItemForm(props) {
     const isExisting = location.pathname === `/bills/${routeParamsBillId}/${routeParamsItemId}/edit`;
 
     let existingItem = '';
+
     if (isExisting) {
         if (owned) {
             existingItem = owned.items.filter(item => item.id.toString() === routeParamsItemId)[0]; 
-        }
+        };
         if (shared) {
             existingItem = shared.items.filter(item => item.id.toString() === routeParamsItemId)[0];
-        }
-    }
+        };
+    };
 
     const fields = ['enteredItemName', 'enteredItemPrice', 'enteredItemQuantity'];
     const [ enteredItemName, setEnteredItemName ] = StickyStateService.useStickyState(existingItem ? existingItem.item_name : '', 'enteredItemName');
@@ -52,7 +53,7 @@ function ItemForm(props) {
     const closeHandler = () => {
         StickyStateService.clearStickyState(fields);
         history.goBack();
-    }
+    };
 
     const deleteHandler = (event) => {
         event.preventDefault();
@@ -71,7 +72,7 @@ function ItemForm(props) {
             .catch(err => {
                 setSubmitError(err.message);
             });
-    }
+    };
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -105,20 +106,20 @@ function ItemForm(props) {
                 .catch(err => {
                     setSubmitError(err.message)
                 });
-        }
-    }
+        };
+    };
 
     const subtractQuantityHandler = (event) => {
         event.preventDefault();
         if (quantityEl.current.value > 1) {
             quantityEl.current.value--;
-        }
-    }
+        };
+    };
 
     const addQuantityHandler = (event) => {
         event.preventDefault();
         quantityEl.current.value++;
-    }
+    };
 
     return (
         <div className='isolate'>
@@ -224,7 +225,7 @@ function ItemForm(props) {
                 </form>
             </main>
         </div>
-    )
-}
+    );
+};
 
 export default React.memo(ItemForm);

@@ -19,7 +19,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 currentlyViewing: ''
             }
         });
-    }
+    };
 
     // Populate with initial list from context
     const currentShares = {};
@@ -32,7 +32,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 existing: true
             }
         });
-    }
+    };
 
 
     // Add other splitters present in bill, with share of 0
@@ -46,7 +46,7 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 }
             }
         })
-    })
+    });
     
     // Local state
     const [ split, setSplit ] = useState(currentShares || {});
@@ -57,21 +57,21 @@ const SplitItemForm = React.forwardRef((props, ref) => {
     // Update local state
     const handleSplit = (id, value) => {
         setSplit({...split, [id]: value});
-    }
+    };
 
     const handleDelete = (id, value) => {
         handleSplit(id, value);
-    }
+    };
 
     const handleEditSplitter = (id) => {
         setSplitter(id);
         toggleOpenSplitterForm(!showSplitterForm);
-    }
+    };
 
     const handleGoBack = () => {
         setSplitter('');
         toggleOpenSplitterForm(!showSplitterForm);
-    }
+    };
 
     const submitHandler = () => {
         // For each splitter in list
@@ -179,12 +179,11 @@ const SplitItemForm = React.forwardRef((props, ref) => {
                 }
             }
         })
-        
-    }
+    };
 
     // Render list of splitters from local state
     const splitList = Object.entries(split).map(person => {
-        const id = person[0]
+        const id = person[0];
         const { name, avatar, share_qty, existing, deleted } = person[1];
 
         // Only render if not deleted (splitters marked as deleted are only updated on save)

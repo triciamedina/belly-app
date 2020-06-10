@@ -29,7 +29,7 @@ function SplitterForm(props) {
         handleDelete(id, updated);
 
         handleGoBack();
-    }
+    };
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -49,7 +49,7 @@ function SplitterForm(props) {
         );
 
         handleGoBack();
-    }
+    };
 
     return (
         <div className='SplitterForm' >
@@ -90,7 +90,7 @@ function SplitterForm(props) {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default React.memo(SplitterForm);

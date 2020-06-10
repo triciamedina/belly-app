@@ -4,7 +4,7 @@ export const sortByDateCreatedDesc = (array) => {
     });
 
     return array;
-}
+};
 
 export const sortByDateCreatedAsc = (array) => {
     array.sort((a, b) => {
@@ -12,7 +12,7 @@ export const sortByDateCreatedAsc = (array) => {
     });
 
     return array;
-}
+};
 
 export const sortByLastViewedDesc = (array) => {
     array.sort((a, b) => {
@@ -20,4 +20,4 @@ export const sortByLastViewedDesc = (array) => {
     });
 
     return array;
-}
+};

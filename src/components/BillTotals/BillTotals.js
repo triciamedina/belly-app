@@ -72,7 +72,7 @@ function BillTotals(props) {
         )
     } else {
         return <></>
-    }
-}
+    };
+};
 
 export default React.memo(BillTotals);

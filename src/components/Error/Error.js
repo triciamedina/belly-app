@@ -10,7 +10,7 @@ function Error(props) {
         )
     };
 
-    return <></>
-}
+    return <></>;
+};
 
 export default React.memo(Error);

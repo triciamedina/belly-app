@@ -15,7 +15,7 @@ function HeaderPrivate() {
             type: 'toggleMenuState',
             newMenu: { isMenuOpen: !shouldShowMenu }
         })
-    }
+    };
 
     return (
         <Header className='Header Private'>
@@ -28,7 +28,7 @@ function HeaderPrivate() {
                 : null
             }
         </Header>
-    )
-}
+    );
+};
 
 export default HeaderPrivate;

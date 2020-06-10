@@ -26,7 +26,7 @@ const BillOwned = React.memo(props => {
                 currentlyViewing: id
             }
         });
-    }
+    };
 
     const deleteHandler = () => {
         const token = TokenService.getAuthToken();
@@ -42,7 +42,7 @@ const BillOwned = React.memo(props => {
             .catch(res => {
                 console.log(res)
             });
-    }
+    };
 
     return (
         <li className='BillOwned'>
@@ -75,6 +75,6 @@ const BillOwned = React.memo(props => {
             }
         </li>
     )
-})
+});
 
 export default BillOwned;

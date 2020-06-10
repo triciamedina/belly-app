@@ -25,7 +25,7 @@ const BillShared = React.memo(props => {
                 </div>
             </Link>
         </li>
-    )
-})
+    );
+});
 
 export default BillShared;

@@ -23,17 +23,17 @@ function RegisterForm() {
     const onUsernameChange = (entered) => {
         setEnteredUsername(entered);
         setUsernameTouched(true);
-    }
+    };
 
     const onPasswordChange = (entered) => {
         setEnteredPassword(entered);
         setPasswordTouched(true);
-    }
+    };
 
     const onConfirmPasswordChange = (entered) => {
         setEnteredConfirmPassword(entered);
         setConfirmPasswordTouched(true);
-    }
+    };
 
     const submitHandler = event => {
         event.preventDefault();
@@ -42,7 +42,7 @@ function RegisterForm() {
             username: enteredUsername,
             password: enteredConfirmPassword,
             avatar: getRandomColor()
-        }
+        };
 
         UserApiService.postRegistration(newUser)
             .then(res => {
@@ -79,7 +79,7 @@ function RegisterForm() {
             .catch(err => {
                 setRegisterError(err.message)
             });
-    }
+    };
 
     return (
         <form className='RegisterForm' onSubmit={submitHandler}>
@@ -155,7 +155,7 @@ function RegisterForm() {
                 {registerError && (<Error message={registerError} />) }
             </div>
         </form>
-    )
-}
+    );
+};
 
 export default RegisterForm;

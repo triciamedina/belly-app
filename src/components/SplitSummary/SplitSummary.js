@@ -31,7 +31,7 @@ function SplitSummary(props) {
         <div className='split-summary'>
             {items.length ? <ul className='SplitSummary'>{items}</ul> : null}
         </div>
-    )
-}
+    );
+};
 
 export default React.memo(SplitSummary);

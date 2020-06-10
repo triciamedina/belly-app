@@ -11,7 +11,8 @@ const BillList = React.memo(props => {
                 <ListItemType key={item.id} {...item}></ListItemType>
             )}
         </ul>
-    )
-})
+    );
+    
+});
 
 export default BillList;

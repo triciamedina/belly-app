@@ -25,7 +25,7 @@ function BillForm(props) {
     
     if (routeParamsId) {
         existingBill = ownedItem || sharedItem;
-    }
+    };
 
     // Controlled inputs
     const fields = ['enteredBillName', 'enteredDiscounts', 'enteredTax', 'enteredTip', 'enteredFees'];
@@ -112,7 +112,7 @@ function BillForm(props) {
                     setSubmitError(err.message)
                 });
         }
-    }
+    };
 
     return (
         <div className='isolate'>
@@ -271,6 +271,6 @@ function BillForm(props) {
             </main>
         </div>
     )
-}
+};
 
 export default React.memo(BillForm);

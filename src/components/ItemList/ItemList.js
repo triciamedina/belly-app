@@ -26,24 +26,25 @@ function ItemList(props) {
                 currentlyViewing: newView
             }
         });
-    }
+    };
     
     return (
         <ul className='ItemList'>
             {items.map((item, index) => {
                 const { id, quantity, item_name, split_list } = item;
 
-                const filteredSplitList = split_list
-                    .filter(person => person.share_qty > 0)
-                    .sort((a, b) => {
-                        if (b.nickname.toLowerCase() > a.nickname.toLowerCase()) {
-                            return -1;
-                        }
-                        if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
-                            return 1;
-                        }
-                        return 0;
-                    });
+                const filteredSplitList = 
+                    split_list
+                        .filter(person => person.share_qty > 0)
+                        .sort((a, b) => {
+                            if (b.nickname.toLowerCase() > a.nickname.toLowerCase()) {
+                                return -1;
+                            }
+                            if (a.nickname.toLowerCase() > b.nickname.toLowerCase()) {
+                                return 1;
+                            }
+                            return 0;
+                        });
                     
                 return (
                     <li key={index} className='Item'>
@@ -81,7 +82,7 @@ function ItemList(props) {
                 )})
             }
         </ul>
-    )
-}
+    );
+};
 
 export default React.memo(ItemList);

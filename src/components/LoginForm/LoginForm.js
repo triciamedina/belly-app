@@ -3,9 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './LoginForm.css';
 import { Input, Button } from '../UI/UI';
 import Error from '../Error/Error';
-
 import { useStateValue } from '../../state';
-
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import UserApiService from '../../services/user-api-service';
@@ -25,7 +23,7 @@ function LoginForm() {
     if (location.state) {
         let { from } = location.state;
         ReferrerService.saveReferrerToken(from.pathname);
-    }
+    };
 
     const onUsernameChange = (entered) => {
         setEnteredUsername(entered);
@@ -35,7 +33,7 @@ function LoginForm() {
     const onPasswordChange = (entered) => {
         setEnteredPassword(entered);
         setPasswordTouched(true);
-    }
+    };
 
     const submitHandler = event => {
         event.preventDefault();
@@ -43,7 +41,7 @@ function LoginForm() {
         const credentials = {
             username: enteredUsername,
             password: enteredPassword
-        }
+        };
 
         AuthApiService.postLogin(credentials)
             .then(res => {
@@ -69,7 +67,7 @@ function LoginForm() {
             .catch(err => {
                 setLoginError(err.message)
             });
-    }
+    };
 
     return (
         <form className='LoginForm' onSubmit={submitHandler}>
@@ -125,7 +123,7 @@ function LoginForm() {
                 {loginError && (<Error message={loginError} />) }
             </div>
         </form>
-    )
-}
+    );
+};
 
 export default LoginForm;

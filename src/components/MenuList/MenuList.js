@@ -26,7 +26,7 @@ function MenuList() {
                 </MenuLink>
             </li>
         </ul>
-    )
-}
+    );
+};
 
 export default MenuList;

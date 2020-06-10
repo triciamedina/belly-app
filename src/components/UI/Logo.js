@@ -8,13 +8,13 @@ export function LogoLinkReverse(props) {
     return (
         <Link to='/' className={props.className} {...props} aria-label='Home'><img src={BellyLogoReverse} alt='Home' /></Link>
     )
-}
+};
 
 export function Logo(props) {
     return (
         <div className={props.className} {...props}><img src={BellyLogo} alt='' /></div>
     )
-}
+};
 
 export function LockupHorizontal (props) {
     return (
@@ -23,7 +23,7 @@ export function LockupHorizontal (props) {
             <h1 className='LockupHorizontal__wordmark'>Belly</h1>
         </div>
     )
-}
+};
 
 export function LockupVertical (props) {
     return (
@@ -32,4 +32,4 @@ export function LockupVertical (props) {
             <h2 className='LockupVertical__wordmark'>Belly</h2>
         </div>
     )
-}
+};

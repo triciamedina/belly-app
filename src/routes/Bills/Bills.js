@@ -29,29 +29,33 @@ function Bills() {
     useEffect(() => {
         setWebSocketId('');
         setWebSocketClients([]);
-    }, [setWebSocketId, setWebSocketClients])
+    }, [setWebSocketId, setWebSocketClients]);
 
     // Open websocket callback
     const handleWebSocketOpen = (routeParamsId) => {
         if (!wsRef.current || (wsRef.current && wsRef.current.readyState === 3)) {
             wsRef.current = WebSocketApiService.handleOpen(routeParamsId);
             setWebSocketId('');
-        }
+        };
         
         if (wsRef.current) {
             wsRef.current.onopen = () => {
+
                 if (profile.username.length && !webSocketId) {
+
                     const newUser = {
                         nickname: profile.username,
                         avatar: profile.avatarColor
-                    }
+                    };
+
                     if (wsRef.current.readyState === 1) {
                         WebSocketApiService.handleJoin(
                             wsRef.current, 
                             JSON.stringify({ billId: routeParamsId, newUser: newUser })
                         );
-                    }
-                }
+                    };
+                };
+                
             };
 
             wsRef.current.onmessage = (evt) => {
@@ -75,8 +79,8 @@ function Bills() {
             wsRef.current.onclose = () => {
                 setWebSocketClients([]);
                 setWebSocketId('');
-            }
-        }   
+            };
+        };
     };
 
     // Close websocket callback
@@ -86,8 +90,8 @@ function Bills() {
                 wsRef.current,
                 JSON.stringify({ billId: routeParamsId, userExit: profile.username })
             );
-        }
-    }
+        };
+    };
 
     // Get profile and bills
     useEffect(() => {
@@ -184,6 +188,6 @@ function Bills() {
             </Switch>
         </>
     )
-}
+};
 
 export default Bills;

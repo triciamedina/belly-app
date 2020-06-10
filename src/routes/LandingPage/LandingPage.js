@@ -39,6 +39,6 @@ function LandingPage() {
         </footer>
         </>
     )
-}
+};
 
 export default LandingPage;

@@ -18,7 +18,7 @@ const MenuLink = React.memo(props => {
         >
             {props.children}
         </Link>
-    )
-})
+    );
+});
 
 export default React.memo(MenuLink);

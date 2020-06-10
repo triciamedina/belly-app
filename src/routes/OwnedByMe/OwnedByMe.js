@@ -34,7 +34,7 @@ function OwnedByMe(props) {
                 currentlyViewing: ''
             }
         });
-    }
+    };
 
     return (
         <div className='OwnedByMe'>
@@ -78,6 +78,6 @@ function OwnedByMe(props) {
             }
         </div>
     )
-}
+};
 
 export default React.memo(OwnedByMe);

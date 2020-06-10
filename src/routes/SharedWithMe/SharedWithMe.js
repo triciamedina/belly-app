@@ -42,6 +42,6 @@ function SharedWithMe(props) {
             </div>
         </div>
     )
-}
+};
 
 export default React.memo(SharedWithMe);

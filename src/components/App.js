@@ -87,6 +87,6 @@ function App() {
       </div>
     </StateProvider>
   );
-}
+};
 
 export default App;

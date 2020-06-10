@@ -29,7 +29,7 @@ function OutsideClick(props) {
             <div className='disableClicks'></div>
             {React.cloneElement((props.children || <></>), { ref: wrapperRef })}
         </>
-    )
-}
+    );
+};
 
 export default OutsideClick;

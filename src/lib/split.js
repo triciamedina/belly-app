@@ -63,7 +63,7 @@ export const getSummary = (bill) => {
                 itemTotals[splitter.item_id].shareTotal += Number(splitter.share_qty);
             }
         }
-    }
+    };
         
     for (const key in summary) {
         const person = summary[key];
@@ -89,10 +89,10 @@ export const getSummary = (bill) => {
         if (person.items.length === 0) {
             delete summary[key];
         }
-    }
+    };
 
     return summary;
-}
+};
 
 export const calculateSubtotal = (person) => {
     const items = person.items;
@@ -104,7 +104,7 @@ export const calculateSubtotal = (person) => {
     // Sum is Dinero object
     return sum;
     
-}
+};
 
 export const calculateBillSubtotal = (bill) => {
     const { items } = bill;
@@ -116,7 +116,7 @@ export const calculateBillSubtotal = (bill) => {
     
     // Dinero object
     return sum;
-}
+};
 
 export const calculatePersonTotal = (person, summaryArray, currentBill) => {
     // Dinero object
@@ -139,4 +139,4 @@ export const calculatePersonTotal = (person, summaryArray, currentBill) => {
 
     // Dinero object
     return itemsSubtotal.add(personTax).add(personTip).add(personFees).subtract(personDiscounts);
-}
+};

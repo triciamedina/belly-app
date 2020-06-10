@@ -19,7 +19,7 @@ const ShareModal = React.forwardRef((props, ref) => {
         document.execCommand('copy');
         event.target.focus();
         setCopySuccess('Copied!');
-    }
+    };
 
     return (
         <div className='modal-overlay'>

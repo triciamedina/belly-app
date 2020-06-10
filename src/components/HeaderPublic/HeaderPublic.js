@@ -15,7 +15,7 @@ function HeaderPublic() {
         const credentials = {
             username: 'Sam',
             password: 'password1'
-        }
+        };
 
         AuthApiService.postLogin(credentials)
             .then(res => {
@@ -41,7 +41,7 @@ function HeaderPublic() {
             .catch(res => {
                 console.log(res.message)
             });
-    }
+    };
 
     return (
         <Header className='Header Public'>
@@ -55,7 +55,7 @@ function HeaderPublic() {
                 </Button>
             </div>
         </Header>
-    )
-}
+    );
+};
 
 export default HeaderPublic;

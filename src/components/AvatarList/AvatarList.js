@@ -20,6 +20,6 @@ function AvatarList(props) {
             }
         </>
     )
-}
+};
 
 export default React.memo(AvatarList);

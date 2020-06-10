@@ -67,12 +67,12 @@ function BillEditor(props) {
             ViewApiService.postView(token, newView);
             handleWebSocketOpen(routeParamsId);
         }
-    }, [token, handleWebSocketOpen, routeParamsId, isNew])
+    }, [token, handleWebSocketOpen, routeParamsId, isNew]);
 
     // Clear referrer token
     useEffect(() => {
         ReferrerService.clearReferrerToken();
-    }, [])
+    }, []);
 
     const handleGoBack = () => {
         (ownedItem && history.push('/bills')) || (sharedItem && history.push('/bills/shared'));
@@ -86,7 +86,7 @@ function BillEditor(props) {
         });
 
         handleWebSocketClose(routeParamsId);
-    }
+    };
 
     const toggleShareModalHandler = () => {
         dispatch({
@@ -96,7 +96,7 @@ function BillEditor(props) {
                 currentlyViewing: ''
             }
         });
-    }
+    };
 
     if (currentBill) {
         
@@ -176,6 +176,6 @@ function BillEditor(props) {
         )
     }
     return <></>
-}
+};
 
 export default React.memo(BillEditor);

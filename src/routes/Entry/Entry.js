@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link, useLocation, Redirect } from 'react-router-dom';
 import './Entry.css';
-
 import { LogoLinkReverse } from '../../components/UI/Logo';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
-
 import { useStateValue } from '../../state';
 import ReferrerService from '../../services/referrer-service';
 

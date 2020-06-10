@@ -18,7 +18,7 @@ const MenuDrawer = React.forwardRef((props, ref) => {
             type: 'onLogout'
         });
         history.push('/');
-    }
+    };
 
     return (
         <div className='MenuDrawer' ref={ref}>

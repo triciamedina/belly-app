@@ -13,7 +13,7 @@ function SplitSummaryItem(props) {
 
     const handleOpenDetails = () => {
         toggleShouldShowDetail(!shouldShowDetail);
-    }
+    };
 
     return (
         <li className='SplitSummaryItem' key={id}>

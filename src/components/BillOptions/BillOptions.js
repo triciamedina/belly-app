@@ -21,7 +21,7 @@ const BillOptions = React.forwardRef((props, ref) => {
                 </li>
             </ul>
         </div>
-    )
-})
+    );
+});
 
 export default React.memo(BillOptions);
