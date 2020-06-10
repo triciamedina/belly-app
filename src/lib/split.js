@@ -35,7 +35,7 @@ export const getSummary = (bill) => {
         const currentItem = items[i];
         console.log(currentItem)
         const quantity = Number(currentItem.quantity);
-        const price = Money({ amount: ((Number(currentItem.price))*100), currency});
+        const price = Money({ amount: (Math.ceil(Number(currentItem.price))*100), currency});
         const itemTotal = {
             itemName: currentItem.itemName,
             total: price.multiply(quantity),
@@ -112,7 +112,7 @@ export const calculateBillSubtotal = (bill) => {
 
     const sum = items.reduce((accumulator, currentValue) => {
         const qty = Number(currentValue.quantity);
-        return accumulator.add(Money({ amount: (Number(currentValue.price)*100), currency}).multiply(qty));
+        return accumulator.add(Money({ amount: (Math.ceil(Number(currentValue.price)*100)), currency}).multiply(qty));
     }, Money({ amount: 0, currency })); 
     
     // Dinero object
@@ -133,10 +133,10 @@ export const calculatePersonTotal = (person, summaryArray, currentBill) => {
     const { tax, tip, fees, discounts } = currentBill;
 
     // Dinero objects
-    const personTax = Money({ amount: (Number(tax)*100), currency }).multiply(ratio);
-    const personTip = Money({ amount: (Number(tip)*100), currency }).divide(summaryArray.length);
-    const personFees = Money({ amount: Number(fees)*100, currency }).divide(summaryArray.length);
-    const personDiscounts = Money({ amount: Number(discounts)*100, currency}).divide(summaryArray.length);
+    const personTax = Money({ amount: Math.ceil(Number(tax)*100), currency }).multiply(ratio);
+    const personTip = Money({ amount: Math.ceil(Number(tip)*100), currency }).divide(summaryArray.length);
+    const personFees = Money({ amount: Math.ceil(Number(fees)*100), currency }).divide(summaryArray.length);
+    const personDiscounts = Money({ amount: Math.ceil(Number(discounts)*100), currency}).divide(summaryArray.length);
 
     // Dinero object
     return itemsSubtotal.add(personTax).add(personTip).add(personFees).subtract(personDiscounts);
