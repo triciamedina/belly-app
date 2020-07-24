@@ -11,10 +11,10 @@ function BillTotals(props) {
 
     if(currentBill) {
         const subtotal = calculateBillSubtotal(currentBill);
-        const discounts = Money({ amount: (Math.ceil(Number(currentBill.discounts)*100)), currency});
-        const tax = Money({ amount: (Math.ceil(Number(currentBill.tax)*100)), currency});
-        const tip = Money({ amount: (Math.ceil(Number(currentBill.tip)*100)), currency});
-        const fees = Money({ amount: (Math.ceil(Number(currentBill.fees)*100)), currency});
+        const discounts = Money({ amount: (Math.floor(Number(currentBill.discounts)*100)), currency});
+        const tax = Money({ amount: (Math.floor(Number(currentBill.tax)*100)), currency});
+        const tip = Money({ amount: (Math.floor(Number(currentBill.tip)*100)), currency});
+        const fees = Money({ amount: (Math.floor(Number(currentBill.fees)*100)), currency});
         const total = subtotal.add(tax).add(tip).add(fees).subtract(discounts);
         
         return (
