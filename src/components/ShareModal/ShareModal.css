@@ -65,6 +65,7 @@
     font-family: inherit;
     white-space: nowrap;  overflow: auto;
     color: #28357D;
+    border-radius: 0;
 }
 
 .ShareModal .Button {
