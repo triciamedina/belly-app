@@ -160,6 +160,7 @@
     flex: 2;
     margin-top: 10px;
     padding: 10px 0;
+    border-radius: 0;
 }
 
 .BillForm .input-container.currency label {
