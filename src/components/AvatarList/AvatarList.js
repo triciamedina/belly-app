@@ -11,9 +11,7 @@ function AvatarList(props) {
                 (<ul className='AvatarList'>
                     {list.map((person, index) => 
                         (<li key={index}>
-                            <Avatar className={'Avatar'} avatar={person.avatar}>
-                                {person.nickname.slice(0,2)}
-                            </Avatar>
+                            <Avatar className={'Avatar'} avatar={person.avatar} nickname={person.nickname.slice(0,2)} />
                         </li>)
                     )}
                 </ul>)

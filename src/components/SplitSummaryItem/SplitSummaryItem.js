@@ -19,9 +19,7 @@ function SplitSummaryItem(props) {
         <li className='SplitSummaryItem' key={id}>
 
             <button id={id} onClick={() => handleOpenDetails()}>
-                <Avatar className={'Avatar'} avatar={avatar}>
-                    {nickname.slice(0,2)}
-                </Avatar>
+                <Avatar className={'Avatar'} avatar={avatar} nickname={nickname.slice(0,2)} />
                 <span>{personTotal.toFormat('$0,0.00')}</span>
                 {shouldShowDetail ? <ButtonUp className='ButtonUp' /> : <ButtonDown className='ButtonDown'/>}
             </button>

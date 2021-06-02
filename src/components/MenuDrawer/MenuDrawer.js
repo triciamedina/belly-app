@@ -25,9 +25,7 @@ const MenuDrawer = React.forwardRef((props, ref) => {
              <ButtonClose className='close' onClick={onCloseClick}/>
             <div className='Profile'>
                 <div className='Profile__user'>
-                    <Avatar className={'Avatar'} avatar={profile.avatarColor}>
-                        {profile.username.slice(0, 2)}
-                    </Avatar>
+                    <Avatar className={'Avatar'} avatar={profile.avatarColor} nickname={profile.username.slice(0, 2)} />
                     <h2 className='Profile__username'>
                         {profile.username}
                     </h2>
