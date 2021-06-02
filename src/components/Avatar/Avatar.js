@@ -10,7 +10,7 @@ function Avatar(props) {
             style={{color: invertColor(avatar), backgroundColor: avatar}}
             role='img'
         >
-            {nickname}
+            {nickname.slice(0,2)}
         </div>
     )
 };

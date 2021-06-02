@@ -12,9 +12,9 @@ describe('<Avatar />', () => {
         ReactDOM.unmountComponentAtNode(div);
     });
 
-    it('renders avatar with correct background color, text, color, and text', () => {
+    it('renders avatar with correct background color, text color, and text', () => {
         const testColor = '#ca03a3';
-        const testNickname = 'Tr';
+        const testNickname = 'Tricia';
 
         const testProps = {
             avatar: testColor,
@@ -30,6 +30,6 @@ describe('<Avatar />', () => {
 
         expect(avatar).toHaveStyle(`color: ${invertColor(testColor)}`);
 
-        expect(avatar).toHaveTextContent(testNickname);
+        expect(avatar).toHaveTextContent(/^Tr$/i);
     });
 });
