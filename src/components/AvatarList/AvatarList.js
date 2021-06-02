@@ -7,14 +7,15 @@ function AvatarList(props) {
     
     return (
         <>
-            {list.length &&
-                (<ul className='AvatarList'>
+            {list.length 
+                ? (<ul className='AvatarList'>
                     {list.map((person, index) => 
                         (<li key={index}>
                             <Avatar className={'Avatar'} avatar={person.avatar} nickname={person.nickname} />
                         </li>)
                     )}
                 </ul>)
+                : ''
             }
         </>
     )
