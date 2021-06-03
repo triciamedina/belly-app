@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './AvatarList.css';
 import Avatar from '../Avatar/Avatar';
 
@@ -20,5 +21,12 @@ function AvatarList(props) {
         </>
     )
 };
+
+AvatarList.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.shape({
+        avatar: PropTypes.string,
+        nickname: PropTypes.string
+    })).isRequired
+}
 
 export default React.memo(AvatarList);

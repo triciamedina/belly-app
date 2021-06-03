@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Avatar.css';
 import { invertColor } from '../../lib/color';
 
@@ -14,5 +15,11 @@ function Avatar(props) {
         </div>
     )
 };
+
+Avatar.propTypes = {
+    className: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    nickname: PropTypes.string.isRequired
+}
 
 export default Avatar;
